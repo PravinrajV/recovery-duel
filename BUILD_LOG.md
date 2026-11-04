@@ -138,3 +138,10 @@ Built by Grok Bot (coding agent) for Pravinraj Vincent. Times are America/New_Yo
 - Tenant: `uip solution resources refresh`; `uip maestro flow debug ... -i @tests/inputs/T17_KILLNEG.json` job bfe72eff: Completed, negInit -> skipDuel -> approvalCtx -> noApproval; carrierAgent/negotiator never executed; status PAUSED_KILL_SWITCH (docs/runs/T17_KILLNEG_debug.json).
 - Regression `scripts/harness.py S01 S02 S11 S15`: 4/4 PASS (S02 specialist task completed via `uip tasks complete`). Saved as docs/runs/T17_regress_*; T15 artifacts restored unchanged.
 - Not tenant-tested: the agent onError handlers (no safe way to force an agent fault from input). Verified by check/validate only. The bucket config was not changed in this task.
+
+## 2026-11-04 04:50 ET | T18 ROI report, fallback path (no Slack connection yet)
+- Plan T18 allows "Slack card or dashboard, fallback HTML report in repo". Slack needs the owner's interactive sign-in, so the HTML fallback was built; a Slack card can be added after T16 sign-ins.
+- `scripts/roi_html.mjs` reads docs/runs/T15_results.json (tenant debug runs), applies `rules.js` deductibleRefund + ledgerSummary (no money math elsewhere), writes `docs/roi_report.html`. Labels SYNTHETIC + SIMULATED, NAIC 4.5% shown as an indicator with source link.
+- Result: 15/15 pass, recovered $72,791 (6 settled and approved; S05 $27,300 manager-rejected counts as $0), refunds $2,890, insurer net $69,901, reconciles true. Scenario-set recovery ratio 23.4% is a hand-picked test set, flagged as not comparable.
+- tests/test_roi_html.mjs added to tests/run.sh: 21/21 node tests pass.
+- Not a UiPath artifact (repo-side report); no uip commands needed beyond the T15 runs it reads.
