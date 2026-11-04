@@ -1,0 +1,55 @@
+{
+ "schema": "recovery-duel/ledger@1",
+ "synthetic": true,
+ "entries": [
+  {
+   "run_id": "T7c-bucket-1",
+   "claim_id": "CLM-00039",
+   "status": "SETTLED",
+   "amount": 1800,
+   "tier": "AUTO",
+   "approval": "APPROVED",
+   "rounds": 3,
+   "demand": 2080,
+   "floor": 1456,
+   "source": "bucket",
+   "simulated_counterparty": true,
+   "synthetic": true,
+   "at": "2026-11-04T07:57:51.314Z"
+  },
+  {
+   "run_id": "T7c-killswitch",
+   "claim_id": "NONE",
+   "status": "NO_CASE",
+   "amount": 0,
+   "tier": "NONE",
+   "approval": "NOT_REQUIRED",
+   "rounds": 0,
+   "demand": 0,
+   "floor": 0,
+   "source": "bucket",
+   "simulated_counterparty": true,
+   "synthetic": true,
+   "at": "2026-11-04T07:58:25.029Z"
+  },
+  {
+   "run_id": "T14-roi-1",
+   "claim_id": "CLM-00039",
+   "status": "SETTLED",
+   "amount": 1876,
+   "tier": "AUTO",
+   "approval": "APPROVED",
+   "rounds": 3,
+   "demand": 2080,
+   "floor": 1456,
+   "paid": 4700,
+   "deductible": 500,
+   "refund": 180,
+   "insurer_net": 1696,
+   "source": "bucket",
+   "simulated_counterparty": true,
+   "synthetic": true,
+   "at": "2026-11-04T08:02:31.315Z"
+  }
+ ]
+}

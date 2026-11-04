@@ -16,7 +16,7 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
   .name("RecoveryDuel")
   .trigger(manual(), { version: "1.0" })
   .input({ claims: types.array, asOf: types.string, killSwitch: types.boolean, counterparty: types.object, source: types.string, claimIds: types.array, runId: types.string })
-  .output({ ranked: types.array, summary: types.object, evidence: types.object, liability: types.object, negotiation: types.object, store: types.object })
+  .output({ ranked: types.array, summary: types.object, evidence: types.object, liability: types.object, negotiation: types.object, store: types.object, roi: types.object })
   .var("assessed", types.array, [])
   .var("neg", types.object, {})
   .var("approval", types.object, {})
@@ -88,6 +88,7 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
       .step("noCaseEnd", script({ code: 'const l = $vars.ledger || {}; return { ledger_ok: !!l.ok, ledger_count: l.ok ? l.ledgerCount : null };', returns: "object" }))
       .return({ ranked: js`$vars.rank.output.ranked`, summary: js`$vars.rank.output.summary`,
       evidence: js`({})`, liability: js`({})`, negotiation: js`({ status: "NO_CASE", simulated_counterparty: true, history: [] })`,
+      roi: js`({ runs: 1, approved: 0, recovered: 0, refunds: 0, insurer_net: 0, reconciles: true })`,
       store: js`Object.assign({ source: ($vars.store || {}).source || "input", ledger_appended: ($vars.store || {}).loaded === true }, $vars.noCaseEnd.output)` }))
   .step("evidenceAnalyst", inlineAgent({
     model: "anthropic.claude-sonnet-4-6", temperature: 0, maxIterations: 5,
@@ -195,14 +196,31 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
         ]) },
   ], (other) => other.step("noApproval", script({ code: `return { decision: "NOT_REQUIRED", by: "NONE", note: "No settlement to approve: " + $vars.neg.status };`,
       returns: { decision: "string", by: "string", note: "string" } }), { updates: { approval: js`$vars.noApproval.output` } }))
+  .step("book", script({
+    code: RULES + `
+      const n = $vars.neg; const ap = $vars.approval || {};
+      const c = ($vars.intake.output.claims || []).find(x => x.claim_id === n.claim_id) || {};
+      const won = n.status === "SETTLED" && ap.decision === "APPROVED";
+      const d = RD.deductibleRefund(c.paid_amount, c.deductible, won ? n.settled_amount : 0);
+      const entry = { run_id: $vars.start.output.runId || ("run-" + new Date().toISOString()), claim_id: n.claim_id || "NONE", status: n.status,
+        amount: Number(n.settled_amount) || 0, tier: n.tier || "NONE", approval: ap.decision || "NONE", rounds: Number(n.round) || 0,
+        demand: Number(n.demand) || 0, floor: Number(n.floor) || 0, paid: Number(c.paid_amount) || 0, deductible: Number(c.deductible) || 0,
+        refund: d.refund, insurer_net: won ? d.insurer_net : 0, source: ($vars.store || {}).source || "input",
+        simulated_counterparty: true, synthetic: true, at: new Date().toISOString() };
+      const paidBase = ($vars.intake.output.items || []).reduce((t, x) => t + (Number(x.paid_amount) || 0), 0);
+      const roi = RD.ledgerSummary([entry], paidBase);
+      roi.policyholder_refund = { claim_id: entry.claim_id, refund: d.refund, share: d.share, note: d.refund > 0 ? "Pro-rata deductible refund owed to the policyholder (synthetic)" : "No refund" };
+      return { entry, entryJson: JSON.stringify(entry), roi };`,
+    returns: { entry: "object", entryJson: "string", roi: "object" },
+  }))
   .step("stylePass", script({
     code: `const clean = (x) => typeof x === "string" ? x.replace(/\\s*[\\u2014\\u2013]\\s*/g, ", ").replace(/ ,/g, ",")
         : Array.isArray(x) ? x.map(clean) : (x && typeof x === "object") ? Object.keys(x).reduce((o, k) => { o[k] = clean(x[k]); return o; }, {}) : x;
       return { negotiation: Object.assign(clean($vars.neg), { approval: clean($vars.approval) }), evidence: clean($vars.evidenceAnalyst.output || {}), liability: clean($vars.liabilityAssessor.output || {}) };`,
     returns: { negotiation: "object", evidence: "object", liability: "object" },
   }))
-  .branch("mainLedger", js`($vars.store || {}).loaded === true`, (y) => y.step("ledgerAppend", publishedFunction({ ...STORE, inputs: { op: "append", entryJson: js`JSON.stringify({ run_id: $vars.start.output.runId || ("run-" + new Date().toISOString()), claim_id: $vars.neg.claim_id || "NONE", status: $vars.neg.status, amount: Number($vars.neg.settled_amount) || 0, tier: $vars.neg.tier || "NONE", approval: ($vars.approval || {}).decision || "NONE", rounds: Number($vars.neg.round) || 0, demand: Number($vars.neg.demand) || 0, floor: Number($vars.neg.floor) || 0, source: ($vars.store || {}).source || "input", simulated_counterparty: true, synthetic: true, at: new Date().toISOString() })` }, returns: STORE_RETURNS }), { updates: { ledger: js`$vars.ledgerAppend.output` } })
+  .branch("mainLedger", js`($vars.store || {}).loaded === true`, (y) => y.step("ledgerAppend", publishedFunction({ ...STORE, inputs: { op: "append", entryJson: js`$vars.book.output.entryJson` }, returns: STORE_RETURNS }), { updates: { ledger: js`$vars.ledgerAppend.output` } })
       .onError((h) => h.step("ledgerAppendFailed", script({ code: 'return { ok: false, ledgerCount: null };', returns: "object" }), { updates: { ledger: js`$vars.ledgerAppendFailed.output` } }).stepToRef("storeOut")))
   .step("storeOut", script({ code: 'const st = $vars.store || {}; const l = ($vars.ledger && $vars.ledger.ok) ? $vars.ledger : null; return { source: st.source || "input", loaded: !!st.loaded, total_in_bucket: st.total_in_bucket || null, ledger_appended: !!(l && l.ok), ledger_count: l ? l.ledgerCount : null };', returns: "object" }))
-  .return({ store: js`$vars.storeOut.output`, negotiation: js`$vars.stylePass.output.negotiation`, ranked: js`$vars.rank.output.ranked`, summary: js`$vars.rank.output.summary`, evidence: js`$vars.stylePass.output.evidence`, liability: js`$vars.stylePass.output.liability` })
+  .return({ roi: js`$vars.book.output.roi`, store: js`$vars.storeOut.output`, negotiation: js`$vars.stylePass.output.negotiation`, ranked: js`$vars.rank.output.ranked`, summary: js`$vars.rank.output.summary`, evidence: js`$vars.stylePass.output.evidence`, liability: js`$vars.stylePass.output.liability` })
   .build();

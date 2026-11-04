@@ -1,0 +1,14 @@
+{
+ "asOf": "2026-11-04",
+ "killSwitch": false,
+ "counterparty": {
+  "persona": "cooperative",
+  "reservation_price": 2000
+ },
+ "claims": [],
+ "source": "bucket",
+ "claimIds": [
+  "CLM-00039"
+ ],
+ "runId": "T14-roi-1"
+}

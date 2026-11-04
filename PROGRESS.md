@@ -14,5 +14,6 @@
 | T13 HITL approval tiers + 24h escalation script | done | | AUTO 4af5efd0, SPECIALIST approve bc1af303, MANAGER reject 53a23b11 |
 | T7/T8 bucket JSON data layer | done | | bucket recovery-duel-data (key 25e701cb-...) in Shared folder; claims/config/ledger uploaded, roundtrip identical. Flow read/append wiring pending |
 | T7c flow <-> bucket | done | | Coded Function `rdstore` (Default folder) load/append via robot token; bucket recovery-duel-data in Default; debug f7644150 bucket SETTLED + ledger append, fdb50ae4 kill switch, a3edb329 fallback to input |
-| NEXT | T14 ledger + deductible refund + ROI summary (NAIC benchmark UNVERIFIED until source opened); then T15 15-scenario harness |
+| T14 ledger + deductible refund + ROI | done | | NAIC JIR 2023 4.5% / 6.2% VERIFIED from PDF; test_ledger 4/4; debug df75a510 refund $180, net $1,696, roi_report reconciles |
+| NEXT | T15 15-scenario harness (tests/scenarios/*.json + run.sh, results tests/RESULTS.md). Plan says via replay webhook; no webhook trigger yet, so drive with `uip maestro flow debug` per scenario |
 | (old) | T12: tune carrier persona prompt, NO_CASE guard branch, tenant runs for S02 stubborn + S03 lowball (impasse), then HITL approval tiers (T13) and storage-bucket JSON (T7/T8) | | |
