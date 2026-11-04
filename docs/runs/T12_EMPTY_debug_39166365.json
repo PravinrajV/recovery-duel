@@ -1,0 +1,568 @@
+{
+ "Result": "Success",
+ "Code": "FlowDebug",
+ "Data": {
+  "jobKey": "39166365-41e4-4dbe-aed3-b012c497f311",
+  "instanceId": "39166365-41e4-4dbe-aed3-b012c497f311",
+  "runId": "01a1a57f-e123-797f-92cc-db0bad109824",
+  "folderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+  "finalStatus": "Completed",
+  "entryPoint": "start",
+  "solutionId": "3f8821e0-173c-40bd-54bb-08df39ae9b2f",
+  "studioWebUrl": "https://cloud.uipath.com/pvincent/studio_/designer/daf7bc15-77cd-47a1-b42d-80dd3cd1d5f4?solutionId=3f8821e0-173c-40bd-54bb-08df39ae9b2f",
+  "elementExecutions": [
+   {
+    "elementId": "start",
+    "elementType": "StartEvent",
+    "status": "Completed",
+    "startedAt": "2026-11-04T07:39:45.111052Z",
+    "completedAt": "2026-11-04T07:39:45.2837331Z"
+   },
+   {
+    "elementId": "intake",
+    "elementType": "ScriptTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T07:39:45.3750506Z",
+    "completedAt": "2026-11-04T07:39:45.540337Z"
+   },
+   {
+    "elementId": "eachClaim",
+    "elementType": "SubProcess",
+    "status": "Completed",
+    "startedAt": "2026-11-04T07:39:45.6275208Z",
+    "completedAt": "2026-11-04T07:39:45.6275208Z"
+   },
+   {
+    "elementId": "rank",
+    "elementType": "ScriptTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T07:39:45.7314413Z",
+    "completedAt": "2026-11-04T07:39:45.8975316Z"
+   },
+   {
+    "elementId": "pickTop",
+    "elementType": "ScriptTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T07:39:45.9742351Z",
+    "completedAt": "2026-11-04T07:39:46.1250188Z"
+   },
+   {
+    "elementId": "noCase",
+    "elementType": "InclusiveGateway",
+    "status": "Completed",
+    "startedAt": "2026-11-04T07:39:46.2014134Z",
+    "completedAt": "2026-11-04T07:39:46.2763731Z"
+   },
+   {
+    "elementId": "end",
+    "elementType": "EndEvent",
+    "status": "Completed",
+    "startedAt": "2026-11-04T07:39:46.3610371Z",
+    "completedAt": "2026-11-04T07:39:46.528725Z"
+   }
+  ],
+  "variables": {
+   "elements": [
+    {
+     "elementId": "start",
+     "elementRunId": "31745814-322e-40c8-b569-bcdcb6e099eb",
+     "isMarker": false,
+     "inputs": {},
+     "inputDefinitions": {},
+     "outputs": {}
+    },
+    {
+     "elementId": "intake",
+     "elementRunId": "58bce246-ebd5-42b5-9bf9-debdbced7bbe",
+     "isMarker": false,
+     "inputs": {
+      "args": {
+       "vars": {
+        "end2.ranked": null,
+        "markNeedsData.output": null,
+        "evidenceAnalyst.output": null,
+        "negotiation": null,
+        "pickTop.output": null,
+        "negInit.error": null,
+        "negInit.output": null,
+        "start.output.asOf": "2026-11-04",
+        "getRecalls.error": null,
+        "assess.output": null,
+        "nextClaim.error": null,
+        "assess.error": null,
+        "liabilityAssessor.output": null,
+        "end2.neg": null,
+        "carrierAgent.output": null,
+        "eachClaim.error": null,
+        "end2.negotiation": null,
+        "intake.error": null,
+        "evidence": null,
+        "rank.error": null,
+        "carrierAgent.error": null,
+        "end.ranked": null,
+        "end.neg": null,
+        "negCtx.output": null,
+        "start.output.killSwitch": false,
+        "end2.assessed": null,
+        "nextClaim.output": null,
+        "duel.error": null,
+        "evidenceAnalyst.error": null,
+        "judgeOffer.output": null,
+        "counterparty": {},
+        "guardCounter.output": null,
+        "stylePass.output": null,
+        "negCtx.error": null,
+        "killSwitch": false,
+        "end2.evidence": null,
+        "summary": null,
+        "asOf": "2026-11-04",
+        "negotiator.error": null,
+        "end.assessed": null,
+        "markNeedsData.error": null,
+        "roundCtx.output": null,
+        "end.evidence": null,
+        "start.output.claims": [],
+        "end.summary": null,
+        "neg": {},
+        "judgeOffer.error": null,
+        "liabilityAssessor.error": null,
+        "error": null,
+        "end2.liability": null,
+        "end2.summary": null,
+        "stylePass.error": null,
+        "getRecalls.output": null,
+        "eachClaim.output": null,
+        "roundCtx.error": null,
+        "negotiator.output": null,
+        "pickTop.error": null,
+        "start.output.counterparty": {},
+        "end.negotiation": null,
+        "rank.output": null,
+        "claims": [],
+        "intake.output": null,
+        "response": null,
+        "ranked": null,
+        "liability": null,
+        "guardCounter.error": null,
+        "assessed": [],
+        "end.liability": null
+       },
+       "metadata": {
+        "ExternalId": "57768549",
+        "InstanceId": "39166365-41e4-4dbe-aed3-b012c497f311",
+        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+        "ProcessKey": null
+       }
+      }
+     },
+     "inputDefinitions": {},
+     "outputs": {
+      "response": {
+       "items": [],
+       "stopped": false
+      }
+     }
+    },
+    {
+     "elementId": "rank",
+     "elementRunId": "10facf0e-21b7-448e-8a68-f9cbac64483f",
+     "isMarker": false,
+     "inputs": {
+      "args": {
+       "vars": {
+        "end2.ranked": null,
+        "markNeedsData.output": null,
+        "evidenceAnalyst.output": null,
+        "negotiation": null,
+        "pickTop.output": null,
+        "negInit.error": null,
+        "negInit.output": null,
+        "start.output.asOf": "2026-11-04",
+        "getRecalls.error": null,
+        "assess.output": null,
+        "nextClaim.error": null,
+        "assess.error": null,
+        "liabilityAssessor.output": null,
+        "end2.neg": null,
+        "carrierAgent.output": null,
+        "eachClaim.error": null,
+        "end2.negotiation": null,
+        "intake.error": null,
+        "evidence": null,
+        "rank.error": null,
+        "carrierAgent.error": null,
+        "end.ranked": null,
+        "end.neg": null,
+        "negCtx.output": null,
+        "start.output.killSwitch": false,
+        "end2.assessed": null,
+        "nextClaim.output": null,
+        "duel.error": null,
+        "evidenceAnalyst.error": null,
+        "judgeOffer.output": null,
+        "counterparty": {},
+        "guardCounter.output": null,
+        "stylePass.output": null,
+        "negCtx.error": null,
+        "killSwitch": false,
+        "end2.evidence": null,
+        "summary": null,
+        "asOf": "2026-11-04",
+        "negotiator.error": null,
+        "end.assessed": null,
+        "markNeedsData.error": null,
+        "roundCtx.output": null,
+        "end.evidence": null,
+        "start.output.claims": [],
+        "end.summary": null,
+        "neg": {},
+        "judgeOffer.error": null,
+        "liabilityAssessor.error": null,
+        "error": null,
+        "end2.liability": null,
+        "end2.summary": null,
+        "stylePass.error": null,
+        "getRecalls.output": null,
+        "eachClaim.output": null,
+        "roundCtx.error": null,
+        "negotiator.output": null,
+        "pickTop.error": null,
+        "start.output.counterparty": {},
+        "end.negotiation": null,
+        "rank.output": null,
+        "claims": [],
+        "intake.output": {
+         "items": [],
+         "stopped": false
+        },
+        "response": null,
+        "ranked": null,
+        "liability": null,
+        "guardCounter.error": null,
+        "assessed": [],
+        "end.liability": null
+       },
+       "metadata": {
+        "ExternalId": "57768549",
+        "InstanceId": "39166365-41e4-4dbe-aed3-b012c497f311",
+        "ElementCount": {
+         "intake": 1,
+         "start": 1
+        },
+        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+        "ProcessKey": null
+       }
+      }
+     },
+     "inputDefinitions": {},
+     "outputs": {
+      "response": {
+       "ranked": [],
+       "summary": {
+        "total": 0,
+        "pursue": 0,
+        "needs_data": 0,
+        "sol_expired": 0,
+        "barred": 0,
+        "no_case": 0,
+        "pipeline_demand": 0
+       }
+      }
+     }
+    },
+    {
+     "elementId": "pickTop",
+     "elementRunId": "f213f523-c94b-46d5-a60c-cbd65bb55671",
+     "isMarker": false,
+     "inputs": {
+      "args": {
+       "vars": {
+        "end2.ranked": null,
+        "markNeedsData.output": null,
+        "evidenceAnalyst.output": null,
+        "negotiation": null,
+        "pickTop.output": null,
+        "negInit.error": null,
+        "negInit.output": null,
+        "start.output.asOf": "2026-11-04",
+        "getRecalls.error": null,
+        "assess.output": null,
+        "nextClaim.error": null,
+        "assess.error": null,
+        "liabilityAssessor.output": null,
+        "end2.neg": null,
+        "carrierAgent.output": null,
+        "eachClaim.error": null,
+        "end2.negotiation": null,
+        "intake.error": null,
+        "evidence": null,
+        "rank.error": null,
+        "carrierAgent.error": null,
+        "end.ranked": null,
+        "end.neg": null,
+        "negCtx.output": null,
+        "start.output.killSwitch": false,
+        "end2.assessed": null,
+        "nextClaim.output": null,
+        "duel.error": null,
+        "evidenceAnalyst.error": null,
+        "judgeOffer.output": null,
+        "counterparty": {},
+        "guardCounter.output": null,
+        "stylePass.output": null,
+        "negCtx.error": null,
+        "killSwitch": false,
+        "end2.evidence": null,
+        "summary": null,
+        "asOf": "2026-11-04",
+        "negotiator.error": null,
+        "end.assessed": null,
+        "markNeedsData.error": null,
+        "roundCtx.output": null,
+        "end.evidence": null,
+        "start.output.claims": [],
+        "end.summary": null,
+        "neg": {},
+        "judgeOffer.error": null,
+        "liabilityAssessor.error": null,
+        "error": null,
+        "end2.liability": null,
+        "end2.summary": null,
+        "stylePass.error": null,
+        "getRecalls.output": null,
+        "eachClaim.output": null,
+        "roundCtx.error": null,
+        "negotiator.output": null,
+        "pickTop.error": null,
+        "start.output.counterparty": {},
+        "end.negotiation": null,
+        "rank.output": {
+         "ranked": [],
+         "summary": {
+          "total": 0,
+          "pursue": 0,
+          "needs_data": 0,
+          "sol_expired": 0,
+          "barred": 0,
+          "no_case": 0,
+          "pipeline_demand": 0
+         }
+        },
+        "claims": [],
+        "intake.output": {
+         "items": [],
+         "stopped": false
+        },
+        "response": null,
+        "ranked": null,
+        "liability": null,
+        "guardCounter.error": null,
+        "assessed": [],
+        "end.liability": null
+       },
+       "metadata": {
+        "ExternalId": "57768549",
+        "InstanceId": "39166365-41e4-4dbe-aed3-b012c497f311",
+        "ElementCount": {
+         "eachClaim": 1,
+         "intake": 1,
+         "start": 1
+        },
+        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+        "ProcessKey": null
+       }
+      }
+     },
+     "inputDefinitions": {},
+     "outputs": {
+      "response": {
+       "found": false,
+       "assessment": {},
+       "claim": {},
+       "claimJson": "{}",
+       "assessmentJson": "{}"
+      }
+     }
+    },
+    {
+     "elementId": "end",
+     "elementRunId": "f5bc56bc-6a57-487b-a87d-9127eb2b7d3e",
+     "isMarker": false,
+     "inputs": {},
+     "inputDefinitions": {},
+     "outputs": {}
+    }
+   ],
+   "globals": {
+    "pickTop.error": null,
+    "liabilityAssessor.output": null,
+    "eachClaim.output": null,
+    "intake.error": null,
+    "stylePass.output": null,
+    "summary": {
+     "total": 0,
+     "pursue": 0,
+     "needs_data": 0,
+     "sol_expired": 0,
+     "barred": 0,
+     "no_case": 0,
+     "pipeline_demand": 0
+    },
+    "pickTop.output": {
+     "found": false,
+     "assessment": {},
+     "claim": {},
+     "claimJson": "{}",
+     "assessmentJson": "{}"
+    },
+    "start.output.claims": [],
+    "ranked": [],
+    "neg": {},
+    "evidence": {},
+    "negInit.error": null,
+    "liability": {},
+    "evidenceAnalyst.output": null,
+    "negotiation": {
+     "status": "NO_CASE",
+     "simulated_counterparty": true,
+     "history": []
+    },
+    "intake.output": {
+     "items": [],
+     "stopped": false
+    },
+    "start.output.asOf": "2026-11-04",
+    "start.output.killSwitch": false,
+    "evidenceAnalyst.error": null,
+    "start.output.counterparty": {},
+    "rank.output": {
+     "ranked": [],
+     "summary": {
+      "total": 0,
+      "pursue": 0,
+      "needs_data": 0,
+      "sol_expired": 0,
+      "barred": 0,
+      "no_case": 0,
+      "pipeline_demand": 0
+     }
+    },
+    "liabilityAssessor.error": null,
+    "negInit.output": null,
+    "assessed": [],
+    "stylePass.error": null,
+    "rank.error": null
+   },
+   "instanceId": "39166365-41e4-4dbe-aed3-b012c497f311",
+   "workflowId": "39166365-41e4-4dbe-aed3-b012c497f311/BpmnGenericWorkflow",
+   "parentElementId": null,
+   "globalDefinitions": {
+    "pickTop.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "liabilityAssessor.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "eachClaim.output": {
+     "name": "output",
+     "type": "array"
+    },
+    "intake.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "stylePass.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "summary": {
+     "name": "summary",
+     "type": "object"
+    },
+    "pickTop.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "start.output.claims": {
+     "name": "claims",
+     "type": "array"
+    },
+    "ranked": {
+     "name": "ranked",
+     "type": "array"
+    },
+    "neg": {
+     "name": "neg",
+     "type": "object"
+    },
+    "evidence": {
+     "name": "evidence",
+     "type": "object"
+    },
+    "negInit.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "liability": {
+     "name": "liability",
+     "type": "object"
+    },
+    "evidenceAnalyst.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "negotiation": {
+     "name": "negotiation",
+     "type": "object"
+    },
+    "intake.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "start.output.asOf": {
+     "name": "asOf",
+     "type": "string"
+    },
+    "start.output.killSwitch": {
+     "name": "killSwitch",
+     "type": "boolean"
+    },
+    "evidenceAnalyst.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "start.output.counterparty": {
+     "name": "counterparty",
+     "type": "object"
+    },
+    "rank.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "liabilityAssessor.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "negInit.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "assessed": {
+     "name": "assessed",
+     "type": "array"
+    },
+    "stylePass.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "rank.error": {
+     "name": "error",
+     "type": "object"
+    }
+   }
+  }
+ },
+ "Instructions": "Debug completed with status: Completed"
+}

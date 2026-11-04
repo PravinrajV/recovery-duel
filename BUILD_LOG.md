@@ -70,3 +70,15 @@ Built by Grok Bot (coding agent) for Pravinraj Vincent. Times are America/New_Yo
 - Debug run 1 (job 08ac04b6, hero CLM-00017, cooperative, reservation 11,050): Completed, SETTLED $13,350 round 3. BUG: simulated carrier offered above its private reservation. Fix: judgeOffer clamps offer to min(offer, last_ask, reservation) and logs raw_offer/clamped.
 - Debug run 2 (job 978c169d): Completed, SETTLED $11,050 in round 5, tier SPECIALIST, 0 guardrail violations. Matches the rules-engine hero ($11,050). Trace docs/runs/T11_debug_978c169d.json.
 - Follow-ups for T12: carrier prompt ignores reservation (clamped every round), so tune persona prompt; run stubborn/lowball scenarios on tenant; NO_CASE guard branch before agents.
+
+## 2026-11-04 03:15 ET | T12 carrier prompt, NO_CASE guard, style pass, stubborn/lowball tenant runs (skills: uipath-maestro-flow branch.md, return.md, script.md, inline-agent.md)
+- Carrier prompt: private limit renamed `max_offer` with a HARD RULE ("offer must be <= max_offer every round; if you want to pay more, offer exactly max_offer"), explicit per-persona schedules (cooperative 70% -> max by r3, stubborn 60% + small steps -> max only in r5, lowball holds), no em dashes. Code clamp in judgeOffer kept as backstop.
+- Guard: `.branch("noCase", !pickTop.found, t => t.return({... negotiation.status NO_CASE}))` before evidenceAnalyst, so agents never run on empty data.
+- Style pass: `stylePass` Script before return deep-replaces U+2014/U+2013 in negotiation, evidence and liability outputs.
+- `bash tests/run.sh`: 16/16, flow check 0/0, validate Valid.
+- Tenant: `uip maestro flow debug solution/RecoveryDuel/RecoveryDuel -i @tests/inputs/<S>.json`
+  - EMPTY (no claims), job 39166365: Completed, path pickTop -> noCase -> end; no agent nodes executed.
+  - S02 stubborn (CLM-00002, max 9000), job 572c6b96: SETTLED $9,000 round 5, tier SPECIALIST, carrier 5400/6300/7200/9000/9000, 0 clamps, 0 guardrail violations.
+  - S03 lowball (CLM-00003, max 1500), job 90a491bb: IMPASSE after round 5 (floor $11,550), carrier held 1500, 0 clamps, 0 violations.
+  - stylePass inputs held 9 em dashes per run (agent "gaps" text); outputs 0.
+- Note: S02 carrier reached max in round 4 (prompt said round 5); acceptance still exact (settles r5 at $9,000) because the negotiator was above it.

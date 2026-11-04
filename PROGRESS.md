@@ -10,4 +10,5 @@
 | T10 Evidence Analyst + Liability Assessor | done | | debug job ef089aaa Completed |
 | Intake data | DECIDED (owner, 2026-11-04) | | Data Fabric not available on Community license. Use Orchestrator storage bucket + JSON files (local JSON offline). T7/T8 re-planned as storage-bucket JSON |
 | T11 Negotiator + SIMULATED carrier | done | | debug 978c169d SETTLED $11,050 r5; carrier offer clamped to reservation |
-| NEXT | T12: tune carrier persona prompt, NO_CASE guard branch, tenant runs for S02 stubborn + S03 lowball (impasse), then HITL approval tiers (T13) and storage-bucket JSON (T7/T8) | | |
+| T12 carrier prompt + NO_CASE guard + style pass | done | | S02 SETTLED $9,000 r5 (572c6b96), S03 IMPASSE (90a491bb), EMPTY skips agents (39166365), 0 clamps |
+| NEXT | (old) T12: tune carrier persona prompt, NO_CASE guard branch, tenant runs for S02 stubborn + S03 lowball (impasse), then HITL approval tiers (T13) and storage-bucket JSON (T7/T8) | | |

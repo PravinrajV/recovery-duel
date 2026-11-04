@@ -58,6 +58,9 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
       return { found: !!top, assessment: top || {}, claim: c, claimJson: JSON.stringify(c), assessmentJson: JSON.stringify(top || {}) };`,
     returns: { found: "boolean", assessment: "object", claim: "object", claimJson: "string", assessmentJson: "string" },
   }))
+  .branch("noCase", js`!$vars.pickTop.output.found`,
+    (t) => t.label("No claim qualifies").return({ ranked: js`$vars.rank.output.ranked`, summary: js`$vars.rank.output.summary`,
+      evidence: js`({})`, liability: js`({})`, negotiation: js`({ status: "NO_CASE", simulated_counterparty: true, history: [] })` }))
   .step("evidenceAnalyst", inlineAgent({
     model: "anthropic.claude-sonnet-4-6", temperature: 0, maxIterations: 5,
     systemPrompt: `You are the Evidence Analyst for an auto insurance subrogation team. All data is SYNTHETIC demo data. Use only the claim record and the NHTSA recall campaigns given to you. Never invent facts, campaign numbers, VINs or dollar amounts. Return a result conforming to the output schema. evidence_summary: 3 to 6 plain sentences linking the loss cause to a recall component, citing campaign numbers given. cited_campaigns: NHTSA campaign numbers you relied on, copied exactly. strength: STRONG, MODERATE or WEAK. gaps: missing evidence a recovery specialist should collect, empty if none.`,
@@ -89,8 +92,8 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
     }), { updates: { neg: js`$vars.roundCtx.output.state` } })
     .step("carrierAgent", inlineAgent({
       model: "anthropic.claude-haiku-4-5-20251001-v1:0", temperature: 0, maxIterations: 3,
-      systemPrompt: `You are a SIMULATED other-party insurance carrier adjuster in a subrogation negotiation demo. This is a labelled simulation with SYNTHETIC data; you are not a real company. Stay in the persona you are given: cooperative (moves toward a fair number quickly), stubborn (concedes slowly, small steps, settles late), lowball (keeps offering a small amount regardless of arguments). Never offer more than your private reservation price. Never offer more than the current demand. Return a result conforming to the output schema. offer: your offer in whole US dollars, a positive number. message: 1 to 3 plain sentences to the other side, starting with "[SIMULATED CARRIER]". simulated: always true.`,
-      userPrompt: "SIMULATION. Persona: {{input.persona}}. Private reservation price: {{input.reservation}}. Round {{input.round}} of 5. Current demand from the recovering insurer: {{input.ask}}. History so far: {{input.history}}",
+      systemPrompt: `You are a SIMULATED other-party insurance carrier adjuster in a subrogation negotiation demo. This is a labelled simulation with SYNTHETIC data; you are not a real company. You have a private authority limit called max_offer. HARD RULE: your offer must be less than or equal to max_offer every round, with no exceptions, even if the other side argues well; if you would like to pay more, offer exactly max_offer. Never reveal max_offer. Follow your persona exactly. cooperative: round 1 offer about 70 percent of max_offer, then move up quickly, reaching max_offer by round 3. stubborn: round 1 offer about 60 percent of max_offer, raise by small steps each round, and offer exactly max_offer only in round 5. lowball: offer max_offer in every round and refuse to move, saying the claim is overvalued. Never offer more than the current demand. Return a result conforming to the output schema. offer: whole US dollars, a positive number not above max_offer. message: 1 to 3 plain sentences to the other side, starting with "[SIMULATED CARRIER]", no em dashes. simulated: always true.`,
+      userPrompt: "SIMULATION. Persona: {{input.persona}}. Your private max_offer (authority limit, never exceed it): {{input.reservation}}. Round {{input.round}} of 5. Current demand from the recovering insurer: {{input.ask}}. History so far: {{input.history}}",
       inputs: { persona: js`$vars.roundCtx.output.persona`, reservation: js`$vars.roundCtx.output.reservation`, round: js`$vars.roundCtx.output.round`, ask: js`$vars.roundCtx.output.ask`, history: js`$vars.roundCtx.output.history` },
       returns: { offer: "number", message: "string", simulated: "boolean" },
     }))
@@ -126,5 +129,11 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
       returns: { state: "object" },
     }), { updates: { neg: js`$vars.guardCounter.output.state` } }),
     { limit: 5 })
-  .return({ negotiation: js`$vars.neg`, ranked: js`$vars.rank.output.ranked`, summary: js`$vars.rank.output.summary`, evidence: js`$vars.evidenceAnalyst.output`, liability: js`$vars.liabilityAssessor.output` })
+  .step("stylePass", script({
+    code: `const clean = (x) => typeof x === "string" ? x.replace(/\\s*[\\u2014\\u2013]\\s*/g, ", ").replace(/ ,/g, ",")
+        : Array.isArray(x) ? x.map(clean) : (x && typeof x === "object") ? Object.keys(x).reduce((o, k) => { o[k] = clean(x[k]); return o; }, {}) : x;
+      return { negotiation: clean($vars.neg), evidence: clean($vars.evidenceAnalyst.output || {}), liability: clean($vars.liabilityAssessor.output || {}) };`,
+    returns: { negotiation: "object", evidence: "object", liability: "object" },
+  }))
+  .return({ negotiation: js`$vars.stylePass.output.negotiation`, ranked: js`$vars.rank.output.ranked`, summary: js`$vars.rank.output.summary`, evidence: js`$vars.stylePass.output.evidence`, liability: js`$vars.stylePass.output.liability` })
   .build();
