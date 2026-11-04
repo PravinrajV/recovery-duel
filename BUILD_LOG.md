@@ -95,3 +95,10 @@ Built by Grok Bot (coding agent) for Pravinraj Vincent. Times are America/New_Yo
   - MANAGER CLM-00005, job 53a23b11: SETTLED $36,000 -> task 100029148 (Manager), Reject -> managerReviewNo REJECTED.
 - Finding: Quick Form output arrives with both `note` and `Note` keys depending on the client; arms now read `o.note || o.Note`.
 - 24h escalation: Quick Form has no timeout, so `scripts/escalate_stale_approvals.py` (uses `uip tasks list/labels/reassign`) runs on a schedule; dry run by default, `--apply [--manager email]` labels and reassigns Specialist tasks older than 24h. `tests/test_escalation.py` 1/1; live dry run: 0 stale tasks. Scheduling it (cron or Orchestrator trigger) is part of T20 packaging.
+
+## 2026-11-04 03:55 ET | T7/T8 storage-bucket JSON data layer (skill: uipath-platform; Data Fabric unavailable on Community, owner decision)
+- `uip or buckets list --folder-key <Shared>` -> none. `uip or buckets create recovery-duel-data --folder-key 4167c81e-... -d "...SYNTHETIC..."` -> Id 223741, key 25e701cb-cbc5-42fd-9403-0a46224008e0 (Orchestrator built-in storage, no cost).
+- `scripts/build_store.py` writes data/store/claims.json (200 synthetic rows, typed numbers), config.json (kill switches global/negotiation/outbound_email/paused_states, guardrails mirroring rules.js, escalate_after_hours 24), ledger.json (empty append-only).
+- `scripts/sync_bucket.sh <folder-key> <bucket-key>` -> `uip or bucket-files upload` x3 Success; `uip or bucket-files download claims.json` byte-identical to local.
+- `tests/test_store.py` 3/3 (count, typing, config guardrails equal rules.js G). Added to tests/run.sh.
+- Open: `uip maestro flow registry search bucket` returns no Flow node for storage buckets, so the flow still takes claims as a trigger input. Next: wire read/append via the Orchestrator API from a managed HTTP node, or an RPA/API-workflow helper, verified against docs.

@@ -12,4 +12,6 @@
 | T11 Negotiator + SIMULATED carrier | done | | debug 978c169d SETTLED $11,050 r5; carrier offer clamped to reservation |
 | T12 carrier prompt + NO_CASE guard + style pass | done | | S02 SETTLED $9,000 r5 (572c6b96), S03 IMPASSE (90a491bb), EMPTY skips agents (39166365), 0 clamps |
 | T13 HITL approval tiers + 24h escalation script | done | | AUTO 4af5efd0, SPECIALIST approve bc1af303, MANAGER reject 53a23b11 |
-| NEXT | (old) T12: tune carrier persona prompt, NO_CASE guard branch, tenant runs for S02 stubborn + S03 lowball (impasse), then HITL approval tiers (T13) and storage-bucket JSON (T7/T8) | | |
+| T7/T8 bucket JSON data layer | done | | bucket recovery-duel-data (key 25e701cb-...) in Shared folder; claims/config/ledger uploaded, roundtrip identical. Flow read/append wiring pending |
+| NEXT | T7c wire flow to bucket (no Flow bucket node: Orchestrator API via HTTP or API workflow), ledger append, kill switch from config.json; then T14+ per plan |
+| (old) | T12: tune carrier persona prompt, NO_CASE guard branch, tenant runs for S02 stubborn + S03 lowball (impasse), then HITL approval tiers (T13) and storage-bucket JSON (T7/T8) | | |

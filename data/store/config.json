@@ -1,0 +1,20 @@
+{
+ "schema": "recovery-duel/config@1",
+ "synthetic": true,
+ "kill_switch": {
+  "global": false,
+  "negotiation": false,
+  "outbound_email": false,
+  "paused_states": []
+ },
+ "guardrails": {
+  "MAX_ROUNDS": 5,
+  "MIN_CONCESSION_PCT": 0.03,
+  "FLOOR_PCT": 0.7,
+  "AUTO_MAX": 5000,
+  "SPECIALIST_MAX": 25000
+ },
+ "approval": {
+  "escalate_after_hours": 24
+ }
+}
