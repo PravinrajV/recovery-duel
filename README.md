@@ -19,10 +19,11 @@ the money.
 2. Checks a kill switch and paused states in the bucket config.
 3. For each claim, calls the live NHTSA recalls API (retries, then NEEDS_DATA on failure).
 4. A script rules engine (`rules/rules.js`) checks state filing deadlines, fault rules and recall to cause matching, ranks the claims, and sets the demand and floor.
-5. Two agents, the Evidence Analyst and the Liability Assessor, write the case with cited recall campaigns. They never set dollar amounts.
-6. The duel: our Negotiator agent trades offers with a SIMULATED carrier agent for up to 5 rounds. Every offer is clamped by script, so it cannot go below our floor, and the carrier cannot go above its private limit, which the Negotiator never sees. Carrier messages are tagged `[SIMULATED CARRIER]`.
-7. Approval by amount: auto under the first tier, a specialist form, or a manager form in Action Center. A script escalates approvals older than 24 hours.
-8. Books the result to a ledger in the bucket, including the policyholder's deductible refund, and builds an ROI view.
+5. Document step (A1): if a repair estimate PDF is attached, a Document Reader agent reads it with the built-in Analyze Files tool. This is an AI agent checked by rules, not a trained Document Understanding model. A script (`rules/doc_rules.js`) checks claim ID, VIN, line-item math, the total against the claim, agent confidence and instruction-like text. If any check fails, a person validates the estimate in an Action Center form (Accept or Reject). The document only adds facts to the case; it never changes the demand or the floor.
+6. Two agents, the Evidence Analyst and the Liability Assessor, write the case with cited recall campaigns. They never set dollar amounts.
+7. The duel: our Negotiator agent trades offers with a SIMULATED carrier agent for up to 5 rounds. Every offer is clamped by script, so it cannot go below our floor, and the carrier cannot go above its private limit, which the Negotiator never sees. Carrier messages are tagged `[SIMULATED CARRIER]`.
+8. Approval by amount: auto under the first tier, a specialist form, or a manager form in Action Center. A script escalates approvals older than 24 hours.
+9. Books the result to a ledger in the bucket, including the policyholder's deductible refund, and builds an ROI view.
 
 Error paths: an agent failure routes the claim to NEEDS_REVIEW_AGENT_ERROR instead of failing the run (tested on the tenant, job 007fde7b), a bucket outage falls back to the trigger input, and a ledger write never fails the run.
 
@@ -36,7 +37,10 @@ flowchart LR
   I --> N[Loop: NHTSA recalls API]
   N --> R[Rules engine script: deadlines, fault, rank, demand, floor]
   R -->|no case| X[Ledger: no money]
-  R -->|case| E[Evidence Analyst agent]
+  R -->|case| DR[Document Reader agent + doc rules]
+  DR -->|check failed| DV[Action Center: validate estimate]
+  DV --> E
+  DR -->|validated or no file| E[Evidence Analyst agent]
   E --> A[Liability Assessor agent]
   A --> D[Duel loop: Negotiator vs SIMULATED carrier, script clamps]
   D --> P{Approval tier}
@@ -54,6 +58,7 @@ flowchart LR
 | Other carrier's negotiating agent | SIMULATED, clearly labelled |
 | State law table (deadlines, negligence) | ILLUSTRATIVE, not legal advice |
 | NAIC recovery benchmark | CONFIRMED: 4.5% of net claims paid, salvage plus subrogation, whole book. Shown as an indicator, not like for like |
+| Repair estimate reading (A1) | REAL UiPath inline agent with the built-in Analyze Files tool, checked by a rules script and a human form. Not a trained Document Understanding model (DU is not enabled on this tenant). The estimate PDFs are SYNTHETIC (`scripts/gen_docs.py`, every page stamped SYNTHETIC DEMO DOCUMENT) |
 | Demand letter email to a test inbox | REAL SMTP/IMAP to recoveryduel@vncntlabs.com only, via Coded Function `rdmail`. Carrier replies are SIMULATED (sent by the flow, matched by claim ID). Refund email not built |
 
 No real customer data and no employer data are used.
@@ -68,6 +73,8 @@ No real customer data and no employer data are used.
 - `solution/RecoveryDuel/` UiPath solution and Flow project. The flow source is `.flow-sdk/RecoveryDuel.flow.ts`, compiled to `RecoveryDuel.flow`
 - `functions_src/RdStore/` coded function that reads and writes the bucket
 - `rules/rules.js` rules engine (all dollar math)
+- `rules/doc_rules.js` repair estimate checks (no dollar math, facts and status only)
+- `data/docs/` SYNTHETIC repair estimate PDFs from `scripts/gen_docs.py`
 - `scripts/` data generator, scenario harness, bucket sync, ROI report, approval escalation
 - `tests/` unit tests, scenarios, run inputs, `run.sh`
 - `docs/` tenant check, sources, demo script, run traces in `docs/runs/`
@@ -80,6 +87,9 @@ uip login                           # your own tenant
 tests/run.sh                        # offline checks
 uip maestro flow debug solution/RecoveryDuel/RecoveryDuel -i @tests/inputs/T15_S01.json
 python3 scripts/harness.py          # all 15 scenarios, completes approval tasks for you
+python3 scripts/gen_docs.py         # SYNTHETIC repair estimate PDFs in data/docs
+uip maestro flow debug solution/RecoveryDuel/RecoveryDuel -i @tests/inputs/T15_S01.json --attachment estimateFile=data/docs/estimate_CLM-00017.pdf
+python3 scripts/harness.py --a1 S01 S05   # document step scenarios, writes docs/runs/A1_*
 ```
 Bucket source: create a storage bucket, run `scripts/sync_bucket.sh <folder-key> <bucket-key>`, deploy `functions_src/RdStore` as process `rdstore`, then debug with `tests/inputs/T19_BUCKET.json`.
 Needs Python 3.10+, Node 22+ and the UiPath CLI.
