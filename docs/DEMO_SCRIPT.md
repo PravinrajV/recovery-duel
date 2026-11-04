@@ -23,5 +23,5 @@ All claim data is SYNTHETIC. The other carrier is a SIMULATED agent and every on
 | 3:45 | End | Repo link. |
 
 ## Not in this cut yet
-- Demand letter and deductible refund email to a test inbox (T16) need the Gmail test inbox connection, which needs the owner's sign-in. If it is connected before recording, add the email at 2:20 and the refund mail at 3:00.
+- Demand letter email is live (T16): at 2:20 show the letter and the SIMULATED reply in the recoveryduel@vncntlabs.com inbox, and the S14 trace where the injection reply is flagged INJECTION_IGNORED and the price is unchanged. The deductible refund email is not built.
 - Recording and narration are done by the owner on his machine.

@@ -5,7 +5,7 @@
 | T6 skeleton, T9 rules engine (16/16) | done | 1066b28 | |
 | T2 tenant check | done | 66b5843 | docs/TENANT_CHECK.md |
 | T7/T8 data store | REPLANNED | | Storage bucket `recovery-duel-data` with claims.json, scenarios.json, ledger.json via `uip or` buckets; offline = repo JSON |
-| Connections (Gmail test inbox, Slack) | BLOCKED on owner sign-in | | `uip is connections create` needs interactive OAuth |
+| Connections (Gmail test inbox, Slack) | Gmail SUPERSEDED by T16 IONOS inbox; Slack still needs owner sign-in | | `uip is connections create` needs interactive OAuth |
 | S02 seed fix | done | | reservation 9000, settles round 5 |
 | T10 Evidence Analyst + Liability Assessor | done | | debug job ef089aaa Completed |
 | Intake data | DECIDED (owner, 2026-11-04) | | Data Fabric not available on Community license. Use Orchestrator storage bucket + JSON files (local JSON offline). T7/T8 re-planned as storage-bucket JSON |
@@ -20,7 +20,8 @@
 | T18 ROI report (HTML fallback) | done | | docs/roi_report.html: recovered $72,791 = refunds $2,890 + net $69,901, reconciles; Slack card deferred to after sign-in |
 | T19 hardening | done | | 3 clean runs: bucket 1015ac55 (ledger 3 -> 4), S01 740f0214, S02 06e8fa26; agent onError verified on tenant 007fde7b (NEEDS_REVIEW_AGENT_ERROR); no flakes |
 | T20 demo script | done (draft) | | docs/DEMO_SCRIPT.md; recording by owner; email shots wait on T16 |
-| T21 README | done | | email row marked planned until T16 |
+| T21 README | done | | email row updated for T16 |
+| T16 email channel | done | (see git log) | Test inbox recoveryduel@vncntlabs.com (IONOS). IS Mail connector (uipath-mail-mail) has no send and needs a browser form, so Coded Function `rdmail` 1.0.1 (process 6ef74487, Default) does SMTP send + IMAP read; login in Credential asset `rd-mail`. Recipient hard-coded. Debug S01 7737144c, S13 9b55f1c6 DOC_REQUEST, S14 d02fd717 INJECTION_IGNORED ($500 below floor, not applied). docs/runs/T16_RESULTS.md |
 | T22 coding-agent section | done (owner review) | | in README |
-| NEXT | T16 email channel BLOCKED on owner Gmail test inbox sign-in; then T23 verify repo signed out, T24 submission draft. Earlier NEXT notes below are superseded | T19 hardening (3 clean full runs incl. bucket source); T16 email channel BLOCKED on owner Gmail sign-in (test inbox connection). Unblocked alternative: T17 kill switches + error paths polish |
+| NEXT | T16 done. Next T23 verify repo signed out, T24 submission draft. Earlier NEXT notes below are superseded | T19 hardening (3 clean full runs incl. bucket source); T16 email channel BLOCKED on owner Gmail sign-in (test inbox connection). Unblocked alternative: T17 kill switches + error paths polish |
 | (old) | T12: tune carrier persona prompt, NO_CASE guard branch, tenant runs for S02 stubborn + S03 lowball (impasse), then HITL approval tiers (T13) and storage-bucket JSON (T7/T8) | | |
