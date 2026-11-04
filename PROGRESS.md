@@ -22,5 +22,6 @@
 | T20 demo script | done (draft) | | docs/DEMO_SCRIPT.md; recording by owner; email shots wait on T16 |
 | T21 README | done | | email row marked planned until T16 |
 | T22 coding-agent section | done (owner review) | | in README |
-| NEXT | T16 email channel BLOCKED on owner Gmail test inbox sign-in; then T23 verify repo signed out, T24 submission draft. Earlier NEXT notes below are superseded | T19 hardening (3 clean full runs incl. bucket source); T16 email channel BLOCKED on owner Gmail sign-in (test inbox connection). Unblocked alternative: T17 kill switches + error paths polish |
+| T16 email channel | BLOCKED (auth) | branch t16-email | connection Enabled + ping ok, but Google returns 401 Invalid Credentials on every call; needs `uip is connections edit 2c5948e4-0efb-4aa4-a2c0-78dc0a8d4353` re-consent by owner. Flow authored on branch; resolve Inbox lookup, compile, debug S01/S13/S14 |
+| NEXT | T16 finish after re-auth; then T23 verify repo signed out, T24 submission draft. Earlier NEXT notes below are superseded | T19 hardening (3 clean full runs incl. bucket source); T16 email channel BLOCKED on owner Gmail sign-in (test inbox connection). Unblocked alternative: T17 kill switches + error paths polish |
 | (old) | T12: tune carrier persona prompt, NO_CASE guard branch, tenant runs for S02 stubborn + S03 lowball (impasse), then HITL approval tiers (T13) and storage-bucket JSON (T7/T8) | | |
