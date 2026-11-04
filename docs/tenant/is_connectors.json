@@ -1,0 +1,1224 @@
+{
+  "Result": "Success",
+  "Code": "ConnectorList",
+  "Data": [
+    {
+      "Id": 131,
+      "Name": "SAP Cloud for Customer (Legacy)",
+      "Key": "uipath-sap-c4c",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 11872,
+      "Name": "Active Directory",
+      "Key": "uipath-microsoft-activedirectorydomainservices",
+      "Active": "Yes",
+      "Stage": "PREVIEW"
+    },
+    {
+      "Id": 11871,
+      "Name": "Exchange Server",
+      "Key": "uipath-microsoft-exchangeserver",
+      "Active": "Yes",
+      "Stage": "PREVIEW"
+    },
+    {
+      "Id": 11869,
+      "Name": "System Center",
+      "Key": "uipath-microsoft-systemcenter",
+      "Active": "Yes",
+      "Stage": "PREVIEW"
+    },
+    {
+      "Id": 11870,
+      "Name": "HyperV",
+      "Key": "uipath-microsoft-hyperv",
+      "Active": "Yes",
+      "Stage": "PREVIEW"
+    },
+    {
+      "Id": 2013,
+      "Name": "Facebook",
+      "Key": "uipath-meta-facebook",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 15217,
+      "Name": "Workday REST",
+      "Key": "uipath-workday-workdayrest",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 55211,
+      "Name": "Azure Defender for Cloud",
+      "Key": "uipath-microsoft-azuredefenderforcloud",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 55060,
+      "Name": "Microsoft Azure Sentinel",
+      "Key": "uipath-microsoft-azuresentinel",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 55212,
+      "Name": "Microsoft Sentinel Threat Intelligence",
+      "Key": "uipath-microsoft-azurethreatintelligence",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 492,
+      "Name": "Zoho Desk",
+      "Key": "uipath-zoho-desk",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 27736,
+      "Name": "DeepSeek",
+      "Key": "uipath-deepseek-deepseek",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 48,
+      "Name": "Citrix Hypervisor",
+      "Key": "uipath-citrix-hypervisor",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 91,
+      "Name": "Microsoft Sentiment",
+      "Key": "uipath-microsoft-sentiment",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 8,
+      "Name": "Google Cloud Platform",
+      "Key": "uipath-google-cloudplatform",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 46,
+      "Name": "NetIQ eDirectory",
+      "Key": "uipath-netiq-netiq",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 49,
+      "Name": "Google Vision",
+      "Key": "uipath-google-vision",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 44,
+      "Name": "VMware ESXi vSphere",
+      "Key": "uipath-vmware-vsphere",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 21,
+      "Name": "LinkedIn",
+      "Key": "uipath-microsoft-linkedin",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 29955,
+      "Name": "OpenAI V1 Compliant LLM",
+      "Key": "uipath-openai-openaiv1compliant",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 23,
+      "Name": "X",
+      "Key": "uipath-twitter-twitter",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 20838,
+      "Name": "Jina",
+      "Key": "uipath-jina-jina",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 89,
+      "Name": "Amazon Bedrock",
+      "Key": "uipath-aws-bedrock",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 476,
+      "Name": "Google Text-to-Speech",
+      "Key": "uipath-google-texttospeech",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 95,
+      "Name": "Twilio",
+      "Key": "uipath-twilio-messaging",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 2712,
+      "Name": "Azure AI Document Intelligence",
+      "Key": "uipath-microsoft-azureformrecognizer",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 34,
+      "Name": "Campaign Monitor",
+      "Key": "uipath-campaignmonitor-campaignmonitor",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 33,
+      "Name": "Asana",
+      "Key": "uipath-asana-asana",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 41,
+      "Name": "Constant Contact",
+      "Key": "uipath-constantcontact-constantcontact",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 38,
+      "Name": "SendGrid",
+      "Key": "uipath-twilio-sendgrid",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 75,
+      "Name": "Azure Maps",
+      "Key": "uipath-microsoft-azuremaps",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 58,
+      "Name": "QuickBooks Online",
+      "Key": "uipath-intuit-quickbooksonline",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 105,
+      "Name": "Keap",
+      "Key": "uipath-keap-keap",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 482,
+      "Name": "Exchangerates",
+      "Key": "uipath-exchangerates-exchangerates",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 101,
+      "Name": "Salesforce Marketing Cloud",
+      "Key": "uipath-salesforce-marketingcloud",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 499,
+      "Name": "Clearbit",
+      "Key": "uipath-hubspot-clearbit",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 70,
+      "Name": "Oracle Eloqua",
+      "Key": "uipath-oracle-eloqua",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 11865,
+      "Name": "Icertis",
+      "Key": "uipath-icertis-icertis",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 42,
+      "Name": "FreshBooks",
+      "Key": "uipath-freshworks-freshbooks",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 43,
+      "Name": "Freshdesk",
+      "Key": "uipath-freshworks-freshdesk",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 57,
+      "Name": "Freshservice",
+      "Key": "uipath-freshworks-freshservice",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 46157,
+      "Name": "UiPath Apps",
+      "Key": "uipath-uipath-apps",
+      "Active": "Yes",
+      "Stage": "PREVIEW"
+    },
+    {
+      "Id": 98,
+      "Name": "Okta",
+      "Key": "uipath-okta-okta",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 493,
+      "Name": "Google Speech-to-Text",
+      "Key": "uipath-google-speechtotext",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 5029,
+      "Name": "WhatsApp Business",
+      "Key": "uipath-meta-whatsapp",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 115,
+      "Name": "YouTube",
+      "Key": "uipath-google-youtube",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 65,
+      "Name": "Dropbox",
+      "Key": "uipath-dropbox-dropbox",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 488,
+      "Name": "watsonx.ai",
+      "Key": "uipath-ibm-watsonx",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 478,
+      "Name": "Datadog",
+      "Key": "uipath-datadog-datadog",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 11864,
+      "Name": "Freshsales",
+      "Key": "uipath-freshworks-freshsales",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 2715,
+      "Name": "Zoho Campaigns",
+      "Key": "uipath-zoho-campaigns",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 477,
+      "Name": "PayPal",
+      "Key": "uipath-paypal-paypal",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 2713,
+      "Name": "Deputy",
+      "Key": "uipath-deputy-deputy",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 55,
+      "Name": "HubSpot Marketing",
+      "Key": "uipath-hubspot-marketing",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 120,
+      "Name": "SAP Concur",
+      "Key": "uipath-sap-concur",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 484,
+      "Name": "Aweber",
+      "Key": "uipath-aweber-aweber",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 483,
+      "Name": "Customer.io",
+      "Key": "uipath-customerio-customerio",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 13,
+      "Name": "Brevo",
+      "Key": "uipath-brevo-brevo",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 8525,
+      "Name": "Mailjet",
+      "Key": "uipath-sinch-mailjet",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 2716,
+      "Name": "Egnyte",
+      "Key": "uipath-egnyte-egnyte",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 76,
+      "Name": "Oracle NetSuite",
+      "Key": "uipath-oracle-netsuite",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 73,
+      "Name": "SmartRecruiters",
+      "Key": "uipath-smartrecruiters-smartrecruiters",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 2012,
+      "Name": "Mailgun",
+      "Key": "uipath-sinch-mailgun",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 100,
+      "Name": "Expensify",
+      "Key": "uipath-expensify-expensify",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 6,
+      "Name": "Microsoft Azure",
+      "Key": "uipath-microsoft-azure",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 63,
+      "Name": "Microsoft Vision",
+      "Key": "uipath-microsoft-vision",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 9,
+      "Name": "Microsoft Translator",
+      "Key": "uipath-microsoft-translator",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 36,
+      "Name": "BambooHR",
+      "Key": "uipath-bamboo-bamboohr",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 55661,
+      "Name": "UiPath Test Manager",
+      "Key": "uipath-uipath-testmanager",
+      "Active": "Yes",
+      "Stage": "PREVIEW"
+    },
+    {
+      "Id": 18765,
+      "Name": "Mail",
+      "Key": "uipath-mail-mail",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 52,
+      "Name": "Trello",
+      "Key": "uipath-trello-trello",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 97,
+      "Name": "Hootsuite",
+      "Key": "uipath-hootsuite-hootsuite",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 55059,
+      "Name": "Nvidia NIM",
+      "Key": "uipath-nvidia-nim",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 61,
+      "Name": "GitHub",
+      "Key": "uipath-microsoft-github",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 35,
+      "Name": "Dropbox Business (Legacy)",
+      "Key": "uipath-dropbox-business",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 4,
+      "Name": "PDFMonkey",
+      "Key": "uipath-pdfmonkey-pdfmonkey",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 496,
+      "Name": "TangoCard",
+      "Key": "uipath-tangocard-tangocard",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 78,
+      "Name": "Stripe",
+      "Key": "uipath-stripe-stripe",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 118,
+      "Name": "Google Docs",
+      "Key": "uipath-google-docs",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 67,
+      "Name": "PagerDuty",
+      "Key": "uipath-pagerduty-pagerduty",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 47,
+      "Name": "Google Drive",
+      "Key": "uipath-google-drive",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 24,
+      "Name": "Zoom",
+      "Key": "uipath-zoom-zoom",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 39,
+      "Name": "DocuSign",
+      "Key": "uipath-docusign-docusign",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 56,
+      "Name": "Google Sheets",
+      "Key": "uipath-google-sheets",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 2714,
+      "Name": "Zoho Mail",
+      "Key": "uipath-zoho-mail",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 46547,
+      "Name": "UiPath Orchestrator",
+      "Key": "uipath-uipath-orchestrator",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 7,
+      "Name": "Microsoft Azure Active Directory",
+      "Key": "uipath-microsoft-azureactivedirectory",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 497,
+      "Name": "MailerLite",
+      "Key": "uipath-mailerlite-mailerlite",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 90,
+      "Name": "iContact",
+      "Key": "uipath-icontact-icontact",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 111,
+      "Name": "Shopify",
+      "Key": "uipath-shopify-shopify",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 485,
+      "Name": "GetResponse",
+      "Key": "uipath-getresponse-getresponse",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 50,
+      "Name": "Google Maps",
+      "Key": "uipath-google-maps",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 481,
+      "Name": "Todoist",
+      "Key": "uipath-doist-todoist",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 498,
+      "Name": "Quip",
+      "Key": "uipath-salesforce-quip",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 489,
+      "Name": "WooCommerce",
+      "Key": "uipath-automattic-woocommerce",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 53,
+      "Name": "HubSpot CRM",
+      "Key": "uipath-hubspot-crm",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 490,
+      "Name": "Amazon SES",
+      "Key": "uipath-amazon-ses",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 4053,
+      "Name": "Google Workspace",
+      "Key": "uipath-google-workspace",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 114,
+      "Name": "Google Tasks",
+      "Key": "uipath-google-tasks",
+      "Active": "Yes",
+      "Stage": "PREVIEW"
+    },
+    {
+      "Id": 486,
+      "Name": "Eventbrite",
+      "Key": "uipath-eventbrite-eventbrite",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 16,
+      "Name": "Adobe Acrobat Sign",
+      "Key": "uipath-adobe-sign",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 14,
+      "Name": "Drip",
+      "Key": "uipath-drip-drip",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 30,
+      "Name": "Confluence Cloud",
+      "Key": "uipath-atlassian-confluence",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 26,
+      "Name": "Adobe PDF Services",
+      "Key": "uipath-adobe-pdfservices",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 51,
+      "Name": "Greenhouse",
+      "Key": "uipath-greenhouse-greenhouse",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 31,
+      "Name": "Calendly",
+      "Key": "uipath-calendly-calendly",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 19807,
+      "Name": "SAP OData",
+      "Key": "uipath-sap-odata",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 86,
+      "Name": "Insightly CRM",
+      "Key": "uipath-insightly-insightly",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 102,
+      "Name": "Microsoft Outlook 365 (Legacy)",
+      "Key": "uipath-microsoft-outlook365ews",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 77,
+      "Name": "GoToWebinar",
+      "Key": "uipath-logmein-gotowebinar",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 92,
+      "Name": "Cisco Webex Teams",
+      "Key": "uipath-cisco-webexteams",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 83,
+      "Name": "Xero",
+      "Key": "uipath-xero-xero",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 113,
+      "Name": "Google Forms",
+      "Key": "uipath-google-forms",
+      "Active": "Yes",
+      "Stage": "PREVIEW"
+    },
+    {
+      "Id": 494,
+      "Name": "Miro",
+      "Key": "uipath-miro-miro",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 37,
+      "Name": "Citrix ShareFile",
+      "Key": "uipath-citrix-sharefile",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 46158,
+      "Name": "Microsoft Azure AI Foundry",
+      "Key": "uipath-microsoft-azureaifoundry",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 55643,
+      "Name": "MCP",
+      "Key": "uipath-uipath-mcp",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 72,
+      "Name": "Salesforce",
+      "Key": "uipath-salesforce-sfdc",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 12,
+      "Name": "Microsoft Power Automate",
+      "Key": "uipath-microsoft-powerautomate",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 87,
+      "Name": "Slack",
+      "Key": "uipath-salesforce-slack",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 479,
+      "Name": "ZoomInfo",
+      "Key": "uipath-zoominfo-zoominfo",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 15216,
+      "Name": "SAP Cloud for Customer",
+      "Key": "uipath-sap-c4cv2",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 8526,
+      "Name": "Pipedrive",
+      "Key": "uipath-pipedrive-pipedrive",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 16346,
+      "Name": "SAP BAPI",
+      "Key": "uipath-sap-bapi",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 71,
+      "Name": "ServiceNow",
+      "Key": "uipath-servicenow-servicenow",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 495,
+      "Name": "Workable",
+      "Key": "uipath-workable-workable",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 19,
+      "Name": "HTTP Webhook",
+      "Key": "uipath-http-webhook",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 55828,
+      "Name": "Epic FHIR",
+      "Key": "uipath-epic-fhir",
+      "Active": "Yes",
+      "Stage": "PREVIEW"
+    },
+    {
+      "Id": 22,
+      "Name": "Microsoft Outlook 365",
+      "Key": "uipath-microsoft-outlook365",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 5,
+      "Name": "Gmail",
+      "Key": "uipath-google-gmail",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 88,
+      "Name": "Workday",
+      "Key": "uipath-workday-workday",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 40,
+      "Name": "Jira",
+      "Key": "uipath-atlassian-jira",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 22007,
+      "Name": "UiPath Data Fabric",
+      "Key": "uipath-uipath-dataservice",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 36929,
+      "Name": "Salesforce Agentforce & Flows",
+      "Key": "uipath-salesforce-agent",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 93,
+      "Name": "Mock",
+      "Key": "uipath-mock-element",
+      "Active": "Yes",
+      "Stage": "PREVIEW"
+    },
+    {
+      "Id": 26024,
+      "Name": "Perplexity",
+      "Key": "uipath-perplexity-perplexity",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 55848,
+      "Name": "Databricks",
+      "Key": "uipath-databricks-http",
+      "Active": "Yes",
+      "Stage": "PREVIEW"
+    },
+    {
+      "Id": 103,
+      "Name": "Smartsheet",
+      "Key": "uipath-smartsheet-smartsheet",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 85,
+      "Name": "UiPath GenAI Activities",
+      "Key": "uipath-uipath-airdk",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 25,
+      "Name": "Snowflake",
+      "Key": "uipath-snowflake-snowflake",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 94,
+      "Name": "Microsoft Teams",
+      "Key": "uipath-microsoft-teams",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 46159,
+      "Name": "Snowflake Cortex",
+      "Key": "uipath-snowflake-cortex",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 49386,
+      "Name": "HTTP",
+      "Key": "uipath-uipath-http",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 47822,
+      "Name": "Database Hub",
+      "Key": "uipath-uipath-jdbc",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 46160,
+      "Name": "Databricks Agent",
+      "Key": "uipath-databricks-databricks",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 474,
+      "Name": "Amazon Connect",
+      "Key": "uipath-amazon-connect",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 480,
+      "Name": "Amazon Polly",
+      "Key": "uipath-amazon-polly",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 17,
+      "Name": "OpenAI",
+      "Key": "uipath-openai-openai",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 28877,
+      "Name": "CrewAI",
+      "Key": "uipath-crewai-crewai",
+      "Active": "Yes",
+      "Stage": "PREVIEW"
+    },
+    {
+      "Id": 475,
+      "Name": "Amazon Transcribe",
+      "Key": "uipath-amazon-transcribe",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 96,
+      "Name": "Google Vertex",
+      "Key": "uipath-google-vertex",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 68,
+      "Name": "Pinecone",
+      "Key": "uipath-pinecone-pinecone",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 55452,
+      "Name": "Agent 2 Agent",
+      "Key": "uipath-google-agent2agent",
+      "Active": "Yes",
+      "Stage": "PREVIEW"
+    },
+    {
+      "Id": 27,
+      "Name": "Amazon Web Services",
+      "Key": "uipath-amazon-webservices",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 99,
+      "Name": "Box",
+      "Key": "uipath-box-box",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 54,
+      "Name": "Anthropic Claude",
+      "Key": "uipath-anthropic-claude",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 64,
+      "Name": "Microsoft Azure OpenAI",
+      "Key": "uipath-microsoft-azureopenai",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 55901,
+      "Name": "TypeSafe",
+      "Key": "uipath-typesafe-typesafe",
+      "Active": "Yes",
+      "Stage": "PREVIEW"
+    },
+    {
+      "Id": 20,
+      "Name": "Microsoft OneDrive & SharePoint",
+      "Key": "uipath-microsoft-onedrive",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 104,
+      "Name": "Mailchimp",
+      "Key": "uipath-mailchimp-mailchimp",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 80,
+      "Name": "Sugar Professional",
+      "Key": "uipath-sugar-professional",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 59,
+      "Name": "Microsoft Dynamics 365 CRM",
+      "Key": "uipath-microsoft-dynamicscrm",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 487,
+      "Name": "Discord",
+      "Key": "uipath-discord-discord",
+      "Active": "Yes",
+      "Stage": "PREVIEW"
+    },
+    {
+      "Id": 28,
+      "Name": "Act! 365",
+      "Key": "uipath-act-act365",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 69,
+      "Name": "Zendesk",
+      "Key": "uipath-zendesk-zendesk",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 79,
+      "Name": "Sugar Enterprise",
+      "Key": "uipath-sugar-enterprise",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 45,
+      "Name": "Coupa",
+      "Key": "uipath-coupa-coupa",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 491,
+      "Name": "Klaviyo",
+      "Key": "uipath-klaviyo-klaviyo",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 60,
+      "Name": "Intercom",
+      "Key": "uipath-intercom-intercom",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 62,
+      "Name": "ActiveCampaign",
+      "Key": "uipath-activecampaign-activecampaign",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 29,
+      "Name": "Marketo",
+      "Key": "uipath-adobe-marketo",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 84,
+      "Name": "Sugar Sell",
+      "Key": "uipath-sugar-sell",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 82,
+      "Name": "Sugar Serve",
+      "Key": "uipath-sugar-serve",
+      "Active": "Yes",
+      "Stage": "GA"
+    },
+    {
+      "Id": 4052,
+      "Name": "Microsoft 365",
+      "Key": "uipath-microsoft-365",
+      "Active": "Yes",
+      "Stage": "GA"
+    }
+  ]
+}

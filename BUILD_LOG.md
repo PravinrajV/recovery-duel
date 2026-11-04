@@ -46,3 +46,7 @@ Built by Grok Bot (coding agent) for Pravinraj Vincent. Times are America/New_Yo
 - `uip maestro flow check --source`: run 1 warned HTTP_V1_RETIRED -> managed: true + onError; run 2 warned NO_RETURN -> stepToRef("nextClaim"); run 3 0 errors 0 warnings.
 - `uip maestro flow compile ... -o RecoveryDuel.flow` (9 nodes, 10 edges); `uip maestro flow format`; `uip maestro flow validate` -> Valid.
 - `uip solution pack` -> authentication_required (needs tenant login). Data Fabric intake, debug run, schedule/webhook triggers deferred to login.
+
+## 2026-11-04 02:35 ET | T2 tenant check (skills: uipath-platform, uipath-maestro-flow)
+- Commands: `uip df entities list`, `uip is connectors list`, `uip is connections list`, `uip tasks list`, `uip agent model list`, `uip or folders list`, `uip maestro flow registry search <voice|email received|parallel|subflow|data fabric|context grounding|hitl>`, `registry get quick-form`, `uip maestro flow debug solution/RecoveryDuel/RecoveryDuel` (Completed).
+- Result: docs/TENANT_CHECK.md. Data Fabric NOT provisioned -> T7/T8 blocked. No HITL timeout field. Debug runs work.

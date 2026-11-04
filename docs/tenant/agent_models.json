@@ -1,0 +1,223 @@
+{
+  "Result": "Success",
+  "Code": "AgentModelList",
+  "Data": [
+    {
+      "Provider": "AwsBedrock",
+      "Name": "anthropic.claude-haiku-4-5-20251001-v1:0",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 64000
+    },
+    {
+      "Provider": "AwsBedrock",
+      "Name": "anthropic.claude-opus-4-6-v1",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 128000
+    },
+    {
+      "Provider": "AwsBedrock",
+      "Name": "anthropic.claude-opus-4-7",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 128000
+    },
+    {
+      "Provider": "AwsBedrock",
+      "Name": "anthropic.claude-opus-4-8",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 128000
+    },
+    {
+      "Provider": "AwsBedrock",
+      "Name": "anthropic.claude-sonnet-4-20250514-v1:0",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 64000
+    },
+    {
+      "Provider": "AwsBedrock",
+      "Name": "anthropic.claude-sonnet-4-5-20250929-v1:0",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 64000
+    },
+    {
+      "Provider": "AwsBedrock",
+      "Name": "anthropic.claude-sonnet-4-6",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 64000
+    },
+    {
+      "Provider": "AwsBedrock",
+      "Name": "anthropic.claude-sonnet-5",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 128000
+    },
+    {
+      "Provider": "VertexAi",
+      "Name": "claude-opus-5",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 128000
+    },
+    {
+      "Provider": "VertexAi",
+      "Name": "gemini-2.5-flash",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 65535
+    },
+    {
+      "Provider": "VertexAi",
+      "Name": "gemini-2.5-pro",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 65535
+    },
+    {
+      "Provider": "VertexAi",
+      "Name": "gemini-3-flash-preview",
+      "IsByo": false,
+      "IsPreview": true,
+      "MaxTokens": 64000
+    },
+    {
+      "Provider": "VertexAi",
+      "Name": "gemini-3.1-pro-preview",
+      "IsByo": false,
+      "IsPreview": true,
+      "MaxTokens": 64000
+    },
+    {
+      "Provider": "VertexAi",
+      "Name": "gemini-3.5-flash",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 65536
+    },
+    {
+      "Provider": "VertexAi",
+      "Name": "gemini-3.7-flash",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 65536
+    },
+    {
+      "Provider": "OpenAi",
+      "Name": "gpt-4.1-2025-04-14",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 32768
+    },
+    {
+      "Provider": "OpenAi",
+      "Name": "gpt-4.1-mini-2025-04-14",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 32768
+    },
+    {
+      "Provider": "OpenAi",
+      "Name": "gpt-4o-2024-05-13",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 4096
+    },
+    {
+      "Provider": "OpenAi",
+      "Name": "gpt-4o-2024-08-06",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 16384
+    },
+    {
+      "Provider": "OpenAi",
+      "Name": "gpt-4o-2024-11-20",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 16384
+    },
+    {
+      "Provider": "OpenAi",
+      "Name": "gpt-4o-mini-2024-07-18",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 16384
+    },
+    {
+      "Provider": "OpenAi",
+      "Name": "gpt-5-2025-08-07",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 128000
+    },
+    {
+      "Provider": "OpenAi",
+      "Name": "gpt-5-mini-2025-08-07",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 128000
+    },
+    {
+      "Provider": "OpenAi",
+      "Name": "gpt-5.1-2025-11-13",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 128000
+    },
+    {
+      "Provider": "OpenAi",
+      "Name": "gpt-5.2-2025-12-11",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 128000
+    },
+    {
+      "Provider": "OpenAi",
+      "Name": "gpt-5.4",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 128000
+    },
+    {
+      "Provider": "OpenAi",
+      "Name": "gpt-5.4-mini-2026-03-17",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 128000
+    },
+    {
+      "Provider": "OpenAi",
+      "Name": "gpt-5.5-2026-04-23",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 128000
+    },
+    {
+      "Provider": "OpenAi",
+      "Name": "gpt-5.6-luna",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 128000
+    },
+    {
+      "Provider": "OpenAi",
+      "Name": "gpt-5.6-sol",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 128000
+    },
+    {
+      "Provider": "OpenAi",
+      "Name": "gpt-5.6-terra",
+      "IsByo": false,
+      "IsPreview": false,
+      "MaxTokens": 128000
+    }
+  ]
+}

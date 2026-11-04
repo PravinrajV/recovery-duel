@@ -1,0 +1,28 @@
+{
+  "Result": "Success",
+  "Code": "FolderList",
+  "Pagination": {
+    "Returned": 2,
+    "Limit": 50,
+    "Offset": 0,
+    "HasMore": false
+  },
+  "Data": [
+    {
+      "Key": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+      "Name": "pravinraj.vincent@gmail.com's workspace",
+      "Path": "pravinraj.vincent@gmail.com's workspace",
+      "Description": "",
+      "Type": "Personal",
+      "ParentKey": ""
+    },
+    {
+      "Key": "47ef9a9b-c625-4aec-8ed0-b68ccb92b0b2",
+      "Name": "Default",
+      "Path": "Default",
+      "Description": "",
+      "Type": "Standard",
+      "ParentKey": ""
+    }
+  ]
+}

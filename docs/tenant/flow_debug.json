@@ -1,0 +1,276 @@
+[WARN] Connection ImplicitConnection not found in Resource Catalog
+{
+  "Result": "Success",
+  "Code": "FlowDebug",
+  "Data": {
+    "jobKey": "208a4d11-9942-4ef5-aa30-7f86e8910011",
+    "instanceId": "208a4d11-9942-4ef5-aa30-7f86e8910011",
+    "runId": "01a1a575-a308-765c-9c82-aa3eb5df3689",
+    "folderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+    "finalStatus": "Completed",
+    "entryPoint": "start",
+    "solutionId": "3f8821e0-173c-40bd-54bb-08df39ae9b2f",
+    "studioWebUrl": "https://cloud.uipath.com/pvincent/studio_/designer/daf7bc15-77cd-47a1-b42d-80dd3cd1d5f4?solutionId=3f8821e0-173c-40bd-54bb-08df39ae9b2f",
+    "elementExecutions": [
+      {
+        "elementId": "start",
+        "elementType": "StartEvent",
+        "status": "Completed",
+        "startedAt": "2026-11-04T07:28:34.7036261Z",
+        "completedAt": "2026-11-04T07:28:35.0293857Z"
+      },
+      {
+        "elementId": "intake",
+        "elementType": "ScriptTask",
+        "status": "Completed",
+        "startedAt": "2026-11-04T07:28:35.1896736Z",
+        "completedAt": "2026-11-04T07:28:35.4199923Z"
+      },
+      {
+        "elementId": "eachClaim",
+        "elementType": "SubProcess",
+        "status": "Completed",
+        "startedAt": "2026-11-04T07:28:35.5948445Z",
+        "completedAt": "2026-11-04T07:28:35.5948445Z"
+      },
+      {
+        "elementId": "rank",
+        "elementType": "ScriptTask",
+        "status": "Completed",
+        "startedAt": "2026-11-04T07:28:35.7491984Z",
+        "completedAt": "2026-11-04T07:28:35.9557057Z"
+      },
+      {
+        "elementId": "end",
+        "elementType": "EndEvent",
+        "status": "Completed",
+        "startedAt": "2026-11-04T07:28:36.0393051Z",
+        "completedAt": "2026-11-04T07:28:36.2229554Z"
+      }
+    ],
+    "variables": {
+      "elements": [
+        {
+          "elementId": "start",
+          "elementRunId": "e47dd428-b66d-4936-af82-0884ea65d38c",
+          "isMarker": false,
+          "inputs": {},
+          "inputDefinitions": {},
+          "outputs": {}
+        },
+        {
+          "elementId": "intake",
+          "elementRunId": "1ee02b45-6218-4512-a95a-abefc5ffaf1f",
+          "isMarker": false,
+          "inputs": {
+            "args": {
+              "vars": {
+                "asOf": null,
+                "end.assessed": null,
+                "markNeedsData.output": null,
+                "assess.error": null,
+                "summary": null,
+                "rank.output": null,
+                "intake.error": null,
+                "getRecalls.error": null,
+                "claims": null,
+                "eachClaim.output": null,
+                "nextClaim.error": null,
+                "intake.output": null,
+                "rank.error": null,
+                "eachClaim.error": null,
+                "nextClaim.output": null,
+                "start.output.asOf": null,
+                "getRecalls.output": null,
+                "response": null,
+                "assessed": [],
+                "end.summary": null,
+                "assess.output": null,
+                "error": null,
+                "ranked": null,
+                "end.ranked": null,
+                "start.output.claims": null,
+                "killSwitch": null,
+                "start.output.killSwitch": null,
+                "markNeedsData.error": null
+              },
+              "metadata": {
+                "InstanceId": "208a4d11-9942-4ef5-aa30-7f86e8910011",
+                "ExternalId": "45934609",
+                "ProcessKey": null,
+                "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e"
+              }
+            }
+          },
+          "inputDefinitions": {},
+          "outputs": {
+            "response": {
+              "items": [],
+              "stopped": false
+            }
+          }
+        },
+        {
+          "elementId": "rank",
+          "elementRunId": "8fe892ec-cee3-47bb-a8ad-afcdfef10615",
+          "isMarker": false,
+          "inputs": {
+            "args": {
+              "vars": {
+                "asOf": null,
+                "end.assessed": null,
+                "markNeedsData.output": null,
+                "assess.error": null,
+                "summary": null,
+                "rank.output": null,
+                "intake.error": null,
+                "getRecalls.error": null,
+                "claims": null,
+                "eachClaim.output": null,
+                "nextClaim.error": null,
+                "intake.output": {
+                  "items": [],
+                  "stopped": false
+                },
+                "rank.error": null,
+                "eachClaim.error": null,
+                "nextClaim.output": null,
+                "start.output.asOf": null,
+                "getRecalls.output": null,
+                "response": null,
+                "assessed": [],
+                "end.summary": null,
+                "assess.output": null,
+                "error": null,
+                "ranked": null,
+                "end.ranked": null,
+                "start.output.claims": null,
+                "killSwitch": null,
+                "start.output.killSwitch": null,
+                "markNeedsData.error": null
+              },
+              "metadata": {
+                "InstanceId": "208a4d11-9942-4ef5-aa30-7f86e8910011",
+                "ExternalId": "45934609",
+                "ProcessKey": null,
+                "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+                "ElementCount": {
+                  "intake": 1,
+                  "start": 1
+                }
+              }
+            }
+          },
+          "inputDefinitions": {},
+          "outputs": {
+            "response": {
+              "ranked": [],
+              "summary": {
+                "total": 0,
+                "pursue": 0,
+                "needs_data": 0,
+                "sol_expired": 0,
+                "barred": 0,
+                "no_case": 0,
+                "pipeline_demand": 0
+              }
+            }
+          }
+        },
+        {
+          "elementId": "end",
+          "elementRunId": "c933b6f4-1020-49db-92f7-9796764aaa13",
+          "isMarker": false,
+          "inputs": {},
+          "inputDefinitions": {},
+          "outputs": {}
+        }
+      ],
+      "globals": {
+        "rank.error": null,
+        "eachClaim.output": null,
+        "start.output.killSwitch": null,
+        "assessed": [],
+        "intake.output": {
+          "items": [],
+          "stopped": false
+        },
+        "intake.error": null,
+        "rank.output": {
+          "ranked": [],
+          "summary": {
+            "total": 0,
+            "pursue": 0,
+            "needs_data": 0,
+            "sol_expired": 0,
+            "barred": 0,
+            "no_case": 0,
+            "pipeline_demand": 0
+          }
+        },
+        "start.output.claims": null,
+        "ranked": [],
+        "summary": {
+          "total": 0,
+          "pursue": 0,
+          "needs_data": 0,
+          "sol_expired": 0,
+          "barred": 0,
+          "no_case": 0,
+          "pipeline_demand": 0
+        },
+        "start.output.asOf": null
+      },
+      "instanceId": "208a4d11-9942-4ef5-aa30-7f86e8910011",
+      "workflowId": "208a4d11-9942-4ef5-aa30-7f86e8910011/BpmnGenericWorkflow",
+      "parentElementId": null,
+      "globalDefinitions": {
+        "rank.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "eachClaim.output": {
+          "name": "output",
+          "type": "array"
+        },
+        "start.output.killSwitch": {
+          "name": "killSwitch",
+          "type": "boolean"
+        },
+        "assessed": {
+          "name": "assessed",
+          "type": "array"
+        },
+        "intake.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "intake.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "rank.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "start.output.claims": {
+          "name": "claims",
+          "type": "array"
+        },
+        "ranked": {
+          "name": "ranked",
+          "type": "array"
+        },
+        "summary": {
+          "name": "summary",
+          "type": "object"
+        },
+        "start.output.asOf": {
+          "name": "asOf",
+          "type": "string"
+        }
+      }
+    }
+  },
+  "Instructions": "Debug completed with status: Completed"
+}

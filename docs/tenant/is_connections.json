@@ -1,0 +1,6 @@
+{
+  "Result": "Success",
+  "Code": "ConnectionList",
+  "Data": [],
+  "Instructions": "No connections found for any connector. Scope: default Integration Service scope. Use --all-folders to search across all folders."
+}

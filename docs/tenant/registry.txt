@@ -1,0 +1,57 @@
+== voice
+ERR Expecting value: line 1 column 2 (char 1)
+== email received
+Success 8
+  {'NodeType': 'uipath.connector.trigger.uipath-google-gmail.email-received', 'Category': 'trigger.113548', 'DisplayName': 'Email Received', 'Description': 'Triggers when an email is received in your inbox.'}
+  {'NodeType': 'uipath.connector.event.uipath-google-gmail.email-received', 'Category': 'connector.113548', 'DisplayName': 'Email Received', 'Description': 'Triggers when an email is received in your inbox.'}
+  {'NodeType': 'uipath.connector.trigger.uipath-mail-mail.email-received', 'Category': 'trigger.266253', 'DisplayName': 'Email Received', 'Description': 'Trigger automation when an Email is Received'}
+  {'NodeType': 'uipath.connector.event.uipath-mail-mail.email-received', 'Category': 'connector.266253', 'DisplayName': 'Email Received', 'Description': 'Trigger automation when an Email is Received'}
+  {'NodeType': 'uipath.connector.trigger.uipath-microsoft-outlook365.email-received', 'Category': 'trigger.113549', 'DisplayName': 'Email Received', 'Description': 'Triggers when an e-mail is received in your Inbox.'}
+  {'NodeType': 'uipath.connector.event.uipath-microsoft-outlook365.email-received', 'Category': 'connector.113549', 'DisplayName': 'Email Received', 'Description': 'Triggers when an e-mail is received in your Inbox.'}
+== gmail
+Success 86
+  {'NodeType': 'uipath.connector.uipath-google-gmail.get-gmail-labels', 'Category': 'connector.113548', 'DisplayName': 'Get Gmail Labels', 'Description': 'Fetch list of labels/folders user has access to'}
+  {'NodeType': 'uipath.connector.uipath-google-gmail.forward-event', 'Category': 'connector.113548', 'DisplayName': 'Forward Event', 'Description': 'Forwards calendar event or calendar event series based on calendar event ID'}
+  {'NodeType': 'uipath.connector.uipath-google-gmail.turn-on-automatic-replies', 'Category': 'connector.113548', 'DisplayName': 'Turn on Automatic Replies', 'Description': 'Turn on automatic replies to email messages'}
+  {'NodeType': 'uipath.connector.uipath-google-gmail.get-event-by-id-calendar-event-', 'Category': 'connector.113548', 'DisplayName': 'Get Event by ID (Calendar Event)', 'Description': 'Get a calendar event details based on calendar event ID'}
+  {'NodeType': 'uipath.connector.uipath-google-gmail.download-email-attachment-by-attachment-id', 'Category': 'connector.113548', 'DisplayName': 'Download Email Attachment by Attachment ID', 'Description': 'Download an attachment from email by attachment ID'}
+  {'NodeType': 'uipath.connector.uipath-google-gmail.update-record-deprecated-', 'Category': 'connector.113548', 'DisplayName': 'Update Record (deprecated)', 'Description': 'Updates a record in Gmail'}
+== parallel
+Success 1
+  {'NodeType': 'core.logic.merge', 'Category': 'control-flow', 'DisplayName': 'Merge', 'Description': 'Join parallel branches into one path'}
+== subflow
+Success 1
+  {'NodeType': 'core.subflow', 'Category': 'flow', 'DisplayName': 'Subflow', 'Description': 'Group steps into a reusable subflow'}
+== data fabric
+Success 18
+  {'NodeType': 'core.datafabric.read', 'Category': 'data', 'DisplayName': 'Query entity records', 'Description': 'Query one or more entity records from Data Fabric'}
+  {'NodeType': 'core.datafabric.update', 'Category': 'data', 'DisplayName': 'Update entity record', 'Description': 'Update an entity record in Data Fabric'}
+  {'NodeType': 'core.datafabric.delete', 'Category': 'data', 'DisplayName': 'Delete entity record', 'Description': 'Delete an entity record in Data Fabric'}
+  {'NodeType': 'core.datafabric.create', 'Category': 'data', 'DisplayName': 'Create entity record', 'Description': 'Create an entity record in Data Fabric'}
+  {'NodeType': 'uipath.connector.uipath-uipath-dataservice.query-multiple-entity-records', 'Category': 'connector.68054', 'DisplayName': 'Query Multiple Entity Records', 'Description': 'Retrieves a list of records across multiple Data Fabric entities as per the provided SQL query.'}
+  {'NodeType': 'uipath.connector.uipath-uipath-dataservice.create-entity-record', 'Category': 'connector.68054', 'DisplayName': 'Create Entity Record', 'Description': 'Creates a new record for the selected entity in Data Fabric.'}
+== evaluat
+Success 2
+  {'NodeType': 'uipath.connector.uipath-workable-workable.evaluate-candidate', 'Category': 'connector.8052', 'DisplayName': 'Evaluate Candidate', 'Description': 'Rate candidates by providing a score and comment in Workable.'}
+  {'NodeType': 'uipath.agent.resource.tool.connector.uipath-workable-workable.evaluate-candidate', 'Category': 'agent.tool.connector.8052', 'DisplayName': 'Evaluate Candidate', 'Description': 'Rate candidates by providing a score and comment in Workable.'}
+== context grounding
+Success 6
+  {'NodeType': 'uipath.connector.uipath-uipath-airdk.update-context-grounding-index', 'Category': 'connector.7515', 'DisplayName': 'Update Context Grounding Index', 'Description': "Synchronize the latest data for existing indexes in UiPath's Context Grounding, facilitating AI data management."}
+  {'NodeType': 'uipath.connector.uipath-uipath-airdk.get-deeprag-analysis-by-id', 'Category': 'connector.7515', 'DisplayName': 'Get DeepRAG Analysis by ID', 'Description': 'Activity that retrieves a DeepRAG-generated Context Grounding analysis using the DeepRAG analysis ID returned by an Agent.'}
+  {'NodeType': 'uipath.connector.uipath-uipath-airdk.context-grounding-search', 'Category': 'connector.7515', 'DisplayName': 'Context Grounding Search', 'Description': 'Retrieve similar context from Context Grounding indices or files based on a natural language input or query using UiPath GenAI.'}
+  {'NodeType': 'uipath.agent.resource.tool.connector.uipath-uipath-airdk.update-context-grounding-index', 'Category': 'agent.tool.connector.7515', 'DisplayName': 'Update Context Grounding Index', 'Description': "Synchronize the latest data for existing indexes in UiPath's Context Grounding, facilitating AI data management."}
+  {'NodeType': 'uipath.agent.resource.tool.connector.uipath-uipath-airdk.get-deeprag-analysis-by-id', 'Category': 'agent.tool.connector.7515', 'DisplayName': 'Get DeepRAG Analysis by ID', 'Description': 'Activity that retrieves a DeepRAG-generated Context Grounding analysis using the DeepRAG analysis ID returned by an Agent.'}
+  {'NodeType': 'uipath.agent.resource.tool.connector.uipath-uipath-airdk.context-grounding-search', 'Category': 'agent.tool.connector.7515', 'DisplayName': 'Context Grounding Search', 'Description': 'Retrieve similar context from Context Grounding indices or files based on a natural language input or query using UiPath GenAI.'}
+== agent
+Success 1626
+  {'NodeType': 'uipath.conversational.wait-for-message', 'Category': 'conversational-tools', 'DisplayName': 'Wait for message', 'Description': 'Wait until a message arrives in the conversation. Outputs the latest conversation context, intended for input into a conversational agent.'}
+  {'NodeType': 'uipath.conversational.get-conversation-context', 'Category': 'conversational-tools', 'DisplayName': 'Get conversation context', 'Description': 'Get the latest conversation context, intended for input into a conversational agent'}
+  {'NodeType': 'uipath.agent.autonomous', 'Category': 'agent', 'DisplayName': 'Autonomous agent', 'Description': 'AI agent that completes tasks autonomously'}
+  {'NodeType': 'uipath.agent.conversational', 'Category': 'agent', 'DisplayName': 'Conversational agent', 'Description': 'AI agent for interactive conversations'}
+  {'NodeType': 'uipath.agent.voice', 'Category': 'agent', 'DisplayName': 'Voice agent', 'Description': 'AI agent for real-time voice conversations over calls'}
+  {'NodeType': 'uipath.agent.resource.escalation.coded-action-app', 'Category': 'agent', 'DisplayName': 'Action app escalation', 'Description': 'Escalate to a human for review or action'}
+== hitl
+Success 3
+  {'NodeType': 'uipath.human-in-the-loop.quick-form', 'Category': 'human-task', 'DisplayName': 'Quick Form', 'Description': 'Fast inline approvals with inline debug'}
+  {'NodeType': 'uipath.human-in-the-loop.coded-action-app', 'Category': 'human-task', 'DisplayName': 'Action App', 'Description': 'A customized coded action app service'}
+  {'NodeType': 'uipath.human-in-the-loop.document-validation', 'Category': 'human-task', 'DisplayName': 'Document Validation', 'Description': 'Native or custom validation station for document tasks'}

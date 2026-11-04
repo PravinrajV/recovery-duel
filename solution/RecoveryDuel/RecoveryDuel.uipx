@@ -1,12 +1,12 @@
 {
-  "DocVersion": "1.0.0",
-  "StudioMinVersion": "2025.10.0",
-  "SolutionId": "8673a313-3a15-4827-a6ba-b2b91e94a689",
-  "Projects": [
-    {
-      "Type": "Flow",
-      "ProjectRelativePath": "RecoveryDuel/project.uiproj",
-      "Id": "7fb3fc44-f85a-4ef1-bb27-2350cbf08625"
-    }
-  ]
+    "DocVersion": "1.0.0",
+    "StudioMinVersion": "2025.10.0",
+    "SolutionId": "3f8821e0-173c-40bd-54bb-08df39ae9b2f",
+    "Projects": [
+        {
+            "Type": "Flow",
+            "ProjectRelativePath": "RecoveryDuel/project.uiproj",
+            "Id": "7fb3fc44-f85a-4ef1-bb27-2350cbf08625"
+        }
+    ]
 }

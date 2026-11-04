@@ -1,0 +1,7 @@
+{
+  "Result": "ValidationError",
+  "ErrorCode": "invalid_argument",
+  "Message": "error: too many arguments for 'user'. Expected 0 arguments but got 1.",
+  "Instructions": "Run 'uip user --help' for usage information.",
+  "Retry": "RetryWillNotFix"
+}

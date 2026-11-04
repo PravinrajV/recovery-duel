@@ -1,0 +1,155 @@
+{
+  "Result": "Success",
+  "Code": "Help",
+  "Data": {
+    "Command": "flow",
+    "Description": "Create, debug, and run UiPath Flow projects and jobs.",
+    "Usage": "uip maestro flow [options] [command]",
+    "Arguments": [],
+    "Options": [
+      {
+        "Flags": "-h, --help",
+        "Description": "display help for command"
+      }
+    ],
+    "Subcommands": [
+      {
+        "Name": "compile",
+        "Description": "Compile authored TypeScript to a flow artifact."
+      },
+      {
+        "Name": "check",
+        "Description": "Check a source file for authoring errors before compiling it."
+      },
+      {
+        "Name": "decompile",
+        "Description": "Convert a .flow artifact to authored TypeScript."
+      },
+      {
+        "Name": "merge",
+        "Description": "Merge an edited flow with its original artifact."
+      },
+      {
+        "Name": "init",
+        "Description": "Create a new Flow project with boilerplate files. If run outside an existing solution, a parent '<name>Solution' is scaffolded automatically and the flow project is created inside it. If run inside an existing solution, the project is added to that solution."
+      },
+      {
+        "Name": "pack",
+        "Description": "Pack a Flow project into a .nupkg file"
+      },
+      {
+        "Name": "publish",
+        "Description": "Pack a Flow project and upload the resulting .nupkg to Orchestrator packages"
+      },
+      {
+        "Name": "validate",
+        "Description": "Validate a .flow file (or a project directory containing one) against the Flow schema"
+      },
+      {
+        "Name": "debug",
+        "Description": "Debug a flow project by uploading to Studio Web and running a debug session"
+      },
+      {
+        "Name": "debug-instance",
+        "Description": "Manage Flow debug instance operations"
+      },
+      {
+        "Name": "eval",
+        "Description": "Manage and run Flow evaluation sets"
+      },
+      {
+        "Name": "migrate",
+        "Description": "Migrate a .flow file to the current workflow and node schema versions"
+      },
+      {
+        "Name": "nodes",
+        "Description": "Manage nodes in a Flow file",
+        "Aliases": [
+          "node"
+        ]
+      },
+      {
+        "Name": "edges",
+        "Description": "Manage edges in a Flow file",
+        "Aliases": [
+          "edge"
+        ]
+      },
+      {
+        "Name": "bindings",
+        "Description": "Manage bindings in a Flow file",
+        "Aliases": [
+          "binding"
+        ]
+      },
+      {
+        "Name": "process",
+        "Description": "Manage Flow processes"
+      },
+      {
+        "Name": "jobs",
+        "Description": "Manage Flow jobs",
+        "Aliases": [
+          "job"
+        ]
+      },
+      {
+        "Name": "registry",
+        "Description": "Browse and search the maestro flow node registry to discover available activities and connectors (OOTB + authenticated). Use 'pull' to sync, 'search' to find nodes, 'get' to inspect a node's full input/output schema."
+      },
+      {
+        "Name": "instance",
+        "Description": "Manage Flow process instances"
+      },
+      {
+        "Name": "processes",
+        "Description": "Manage Flow process summaries"
+      },
+      {
+        "Name": "hitl",
+        "Description": "Add HITL (Human-in-the-Loop) nodes to a Flow file"
+      },
+      {
+        "Name": "incident",
+        "Description": "Manage Flow incidents"
+      },
+      {
+        "Name": "format",
+        "Description": "Format a .flow file by auto-laying out nodes to prevent overlaps and arrange in a clean flow"
+      },
+      {
+        "Name": "variables",
+        "Description": "Manage variables in a Flow file",
+        "Aliases": [
+          "variable"
+        ]
+      },
+      {
+        "Name": "help",
+        "Description": "display help for command"
+      }
+    ],
+    "GlobalOptions": [
+      {
+        "Flags": "--output <table|json|yaml|plain|markdown>",
+        "Description": "Output format (default: json)"
+      },
+      {
+        "Flags": "--output-filter <expression>",
+        "Description": "JMESPath expression applied to the Data field of the response envelope"
+      },
+      {
+        "Flags": "--log-level <debug|info|warn|error>",
+        "Description": "Log level threshold (default: warn)"
+      },
+      {
+        "Flags": "--log-file <path>",
+        "Description": "Write logs to file instead of stderr"
+      },
+      {
+        "Flags": "--profile <name>",
+        "Description": "Use a named login profile"
+      }
+    ]
+  }
+}
