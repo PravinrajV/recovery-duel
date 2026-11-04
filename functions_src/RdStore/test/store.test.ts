@@ -1,0 +1,10 @@
+import { appendEntry } from "../functions/_store.ts";
+import assert from "node:assert/strict";
+const e = { run_id: "r1", claim_id: "CLM-00017", status: "SETTLED", amount: 11050, tier: "SPECIALIST", approval: "APPROVED", rounds: 5, at: "2026-11-04T08:00:00Z" };
+const base = JSON.stringify({ schema: "recovery-duel/ledger@1", synthetic: true, entries: [] });
+const a = appendEntry(base, e); assert.equal(a.count, 1); assert.equal(a.doc.schema, "recovery-duel/ledger@1");
+const b = appendEntry(JSON.stringify(a.doc), e); assert.equal(b.count, 1); assert.equal(b.added, false);
+const c = appendEntry(JSON.stringify(a.doc), { ...e, claim_id: "CLM-00002" }); assert.equal(c.count, 2);
+assert.equal(appendEntry(null, e).count, 1);
+assert.throws(() => appendEntry(base, { ...e, run_id: "" }));
+console.log("store fn tests 5/5 pass");

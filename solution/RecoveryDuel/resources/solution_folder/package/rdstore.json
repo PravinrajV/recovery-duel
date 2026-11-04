@@ -1,0 +1,32 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "rdstore",
+    "kind": "package",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "isOverridable": true,
+    "dependencies": [],
+    "runtimeDependencies": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "fileName": "rdstore.1.0.1.nupkg",
+      "fileReference": "rdstore_1.0.1",
+      "name": "rdstore"
+    },
+    "locks": [],
+    "key": "rdstore:1.0.1",
+    "files": [
+      {
+        "key": "rdstore_1.0.1",
+        "name": "rdstore.1.0.1.nupkg",
+        "url": "https://cloud.uipath.com/pvincent/Prod/orchestrator_/odata/Processes/UiPath.Server.Configuration.OData.DownloadPackage(key='rdstore:1.0.1')?feedId=66eb46eb-4fb1-463b-bc28-dfdf86c3adf5",
+        "kind": "Package",
+        "version": "1.0.1"
+      }
+    ]
+  }
+}

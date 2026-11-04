@@ -1,0 +1,57 @@
+{
+  "$schema": "https://cloud.uipath.com/draft/2024-12/entry-point",
+  "$id": "entry-points.json",
+  "entryPoints": [
+    {
+      "filePath": "content/functions/store.ts",
+      "uniqueId": "e5c16231-28a4-428c-b5ce-379d4eaa2457",
+      "type": "function",
+      "input": {
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string",
+            "enum": [
+              "load",
+              "append"
+            ]
+          },
+          "entryJson": {
+            "type": "string"
+          },
+          "errorHandlingEnabled": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "op"
+        ],
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean"
+          },
+          "claimsJson": {
+            "type": "string"
+          },
+          "configJson": {
+            "type": "string"
+          },
+          "ledgerCount": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "ok",
+          "claimsJson",
+          "configJson",
+          "ledgerCount"
+        ],
+        "additionalProperties": false
+      }
+    }
+  ]
+}

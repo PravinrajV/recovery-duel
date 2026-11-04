@@ -1,0 +1,50 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "rdstore",
+    "kind": "process",
+    "type": "function",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "isOverridable": true,
+    "dependencies": [
+      {
+        "kind": "Package",
+        "name": "rdstore"
+      }
+    ],
+    "runtimeDependencies": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "type": "Function",
+      "environmentVariables": "",
+      "name": "rdstore",
+      "package": {
+        "name": "rdstore",
+        "key": "rdstore:1.0.1"
+      },
+      "packageName": "rdstore",
+      "packageVersion": "1.0.1",
+      "entryPointUniqueId": "e5c16231-28a4-428c-b5ce-379d4eaa2457",
+      "entryPointName": "content/functions/store.ts",
+      "inputArgumentsSchemaV2": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"op\": {\n      \"type\": \"string\",\n      \"enum\": [\n        \"load\",\n        \"append\"\n      ]\n    },\n    \"entryJson\": {\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\n    \"op\"\n  ],\n  \"additionalProperties\": false\n}",
+      "outputArgumentsSchemaV2": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"ok\": {\n      \"type\": \"boolean\"\n    },\n    \"claimsJson\": {\n      \"type\": \"string\"\n    },\n    \"configJson\": {\n      \"type\": \"string\"\n    },\n    \"ledgerCount\": {\n      \"type\": \"number\"\n    }\n  },\n  \"required\": [\n    \"ok\",\n    \"claimsJson\",\n    \"configJson\",\n    \"ledgerCount\"\n  ],\n  \"additionalProperties\": false\n}",
+      "hiddenForAttendedUser": false,
+      "alwaysRunning": false,
+      "autoStartProcess": false,
+      "targetFrameworkValue": "Portable",
+      "retentionAction": "Delete",
+      "retentionPeriod": 30,
+      "staleRetentionAction": "Delete",
+      "staleRetentionPeriod": 180,
+      "entryPoints": "[{\"UniqueId\":\"e5c16231-28a4-428c-b5ce-379d4eaa2457\",\"Path\":\"content/functions/store.ts\",\"DisplayName\":null,\"InputArguments\":\"{\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"properties\\\": {\\n    \\\"op\\\": {\\n      \\\"type\\\": \\\"string\\\",\\n      \\\"enum\\\": [\\n        \\\"load\\\",\\n        \\\"append\\\"\\n      ]\\n    },\\n    \\\"entryJson\\\": {\\n      \\\"type\\\": \\\"string\\\"\\n    }\\n  },\\n  \\\"required\\\": [\\n    \\\"op\\\"\\n  ],\\n  \\\"additionalProperties\\\": false\\n}\",\"OutputArguments\":\"{\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"properties\\\": {\\n    \\\"ok\\\": {\\n      \\\"type\\\": \\\"boolean\\\"\\n    },\\n    \\\"claimsJson\\\": {\\n      \\\"type\\\": \\\"string\\\"\\n    },\\n    \\\"configJson\\\": {\\n      \\\"type\\\": \\\"string\\\"\\n    },\\n    \\\"ledgerCount\\\": {\\n      \\\"type\\\": \\\"number\\\"\\n    }\\n  },\\n  \\\"required\\\": [\\n    \\\"ok\\\",\\n    \\\"claimsJson\\\",\\n    \\\"configJson\\\",\\n    \\\"ledgerCount\\\"\\n  ],\\n  \\\"additionalProperties\\\": false\\n}\",\"Type\":10,\"TargetRuntime\":null,\"ContentRoot\":null,\"DataVariation\":null,\"Id\":4213002}]",
+      "tags": []
+    },
+    "locks": [],
+    "key": "47e4e47a-863f-49ad-a307-c1a756e6b974",
+    "files": []
+  }
+}

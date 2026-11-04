@@ -1,7 +1,12 @@
 // Recovery Duel: intake -> evidence loop -> rules ranking (T6/T9 skeleton).
 // Authored per uipath-maestro-flow skill; Script node bodies embed rules/rules.js verbatim.
-import { flow, manual, script, http, input, v, js, lit, types, inlineAgent, hitl } from "@uipath/maestro-builder-sdk";
+import { flow, manual, script, http, input, v, js, lit, types, inlineAgent, hitl, publishedFunction, ran } from "@uipath/maestro-builder-sdk";
 import { readFileSync } from "node:fs";
+
+// T7c: Orchestrator storage bucket access goes through the published Coded Function `rdstore`
+// (functions_src/RdStore), because the Flow catalog has no storage-bucket node.
+const STORE = { key: "47e4e47a-863f-49ad-a307-c1a756e6b974", name: "rdstore", folderPath: "Default" };
+const STORE_RETURNS = { ok: "boolean", claimsJson: "string", configJson: "string", ledgerCount: "number" } as const;
 
 const RULES = readFileSync(new URL("../../../../rules/rules.js", import.meta.url), "utf8")
   .replace(/^if \(typeof module.*$/m, "");
@@ -10,20 +15,37 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
   .schemaVersion("1.9")
   .name("RecoveryDuel")
   .trigger(manual(), { version: "1.0" })
-  .input({ claims: types.array, asOf: types.string, killSwitch: types.boolean, counterparty: types.object })
-  .output({ ranked: types.array, summary: types.object, evidence: types.object, liability: types.object, negotiation: types.object })
+  .input({ claims: types.array, asOf: types.string, killSwitch: types.boolean, counterparty: types.object, source: types.string, claimIds: types.array, runId: types.string })
+  .output({ ranked: types.array, summary: types.object, evidence: types.object, liability: types.object, negotiation: types.object, store: types.object })
   .var("assessed", types.array, [])
   .var("neg", types.object, {})
   .var("approval", types.object, {})
+  .var("store", types.object, { source: "input", loaded: false })
+  .var("ledger", types.object, { ok: false, ledgerCount: null })
+  .branch("fromBucket", js`$vars.start.output.source === "bucket"`,
+    (t) => t.label("Read claims + config from bucket").step("loadStore", publishedFunction({ ...STORE, inputs: { op: "load" }, returns: STORE_RETURNS }))
+      .onError((h) => h.step("storeLoadFailed", script({
+        code: 'return { source: "input", loaded: false, error: "bucket load failed, using trigger input" };', returns: "object" }),
+        { updates: { store: js`$vars.storeLoadFailed.output` } }).stepToRef("intake"))
+      .step("parseStore", script({
+        code: `const c = JSON.parse($vars.loadStore.output.claimsJson || "{}"); const cfg = JSON.parse($vars.loadStore.output.configJson || "{}");
+          const ids = $vars.start.output.claimIds || [];
+          const all = Array.isArray(c) ? c : (c.claims || []);
+          const claims = ids.length ? all.filter(x => ids.indexOf(x.claim_id) >= 0) : all;
+          return { source: "bucket", loaded: true, claims, total_in_bucket: all.length, kill_switch: cfg.kill_switch || {}, guardrails: cfg.guardrails || {} };`,
+        returns: "object" }), { updates: { store: js`$vars.parseStore.output` } }),
+    (f) => f.label("Use trigger input"))
   .step("intake", script({
     code: `
-      const rows = $vars.start.output.claims || [];
-      if ($vars.start.output.killSwitch) return { items: [], stopped: true };
-      const items = rows.filter(c => c && c.claim_id).map(c => ({
+      const st = $vars.store || {}; const ks = st.kill_switch || {};
+      const rows = st.loaded ? (st.claims || []) : ($vars.start.output.claims || []);
+      const paused = ks.paused_states || [];
+      if ($vars.start.output.killSwitch || ks.global) return { items: [], stopped: true, claims: [] };
+      const items = rows.filter(c => c && c.claim_id && paused.indexOf(c.state) < 0).map(c => ({
         ...c, paid_amount: Number(c.paid_amount), deductible: Number(c.deductible),
         insured_fault_pct: Number(c.insured_fault_pct) }));
-      return { items, stopped: false };`,
-    returns: { items: "array", stopped: "boolean" },
+      return { items, stopped: false, claims: rows, negotiation_paused: !!ks.negotiation };`,
+    returns: { items: "array", stopped: "boolean", claims: "array", negotiation_paused: "boolean" },
   }))
   .loop("eachClaim", js`$vars.intake.output.items`, (body) => body
     .step("getRecalls", http({
@@ -55,13 +77,18 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
   }))
   .step("pickTop", script({
     code: `const top = ($vars.rank.output.ranked || []).find(a => a.status === "PURSUE") || null;
-      const c = top ? ($vars.start.output.claims || []).find(x => x.claim_id === top.claim_id) || {} : {};
+      const c = top ? ($vars.intake.output.claims || []).find(x => x.claim_id === top.claim_id) || {} : {};
       return { found: !!top, assessment: top || {}, claim: c, claimJson: JSON.stringify(c), assessmentJson: JSON.stringify(top || {}) };`,
     returns: { found: "boolean", assessment: "object", claim: "object", claimJson: "string", assessmentJson: "string" },
   }))
   .branch("noCase", js`!$vars.pickTop.output.found`,
-    (t) => t.label("No claim qualifies").return({ ranked: js`$vars.rank.output.ranked`, summary: js`$vars.rank.output.summary`,
-      evidence: js`({})`, liability: js`({})`, negotiation: js`({ status: "NO_CASE", simulated_counterparty: true, history: [] })` }))
+    (t) => t.label("No claim qualifies")
+      .branch("noCaseLedger", js`($vars.store || {}).loaded === true`, (y) => y.step("ledgerNoCase", publishedFunction({ ...STORE, inputs: { op: "append", entryJson: js`JSON.stringify({ run_id: $vars.start.output.runId || ("run-" + new Date().toISOString()), claim_id: ($vars.pickTop.output.assessment || {}).claim_id || "NONE", status: ($vars.intake.output.stopped ? "KILL_SWITCH" : "NO_CASE"), amount: 0, tier: "NONE", approval: "NOT_REQUIRED", rounds: 0, demand: 0, floor: 0, source: ($vars.store || {}).source || "input", simulated_counterparty: true, synthetic: true, at: new Date().toISOString() })` }, returns: STORE_RETURNS }), { updates: { ledger: js`$vars.ledgerNoCase.output` } })
+        .onError((h) => h.step("ledgerNoCaseFailed", script({ code: 'return { ok: false, ledgerCount: null };', returns: "object" }), { updates: { ledger: js`$vars.ledgerNoCaseFailed.output` } }).stepToRef("noCaseEnd")))
+      .step("noCaseEnd", script({ code: 'const l = $vars.ledger || {}; return { ledger_ok: !!l.ok, ledger_count: l.ok ? l.ledgerCount : null };', returns: "object" }))
+      .return({ ranked: js`$vars.rank.output.ranked`, summary: js`$vars.rank.output.summary`,
+      evidence: js`({})`, liability: js`({})`, negotiation: js`({ status: "NO_CASE", simulated_counterparty: true, history: [] })`,
+      store: js`Object.assign({ source: ($vars.store || {}).source || "input", ledger_appended: ($vars.store || {}).loaded === true }, $vars.noCaseEnd.output)` }))
   .step("evidenceAnalyst", inlineAgent({
     model: "anthropic.claude-sonnet-4-6", temperature: 0, maxIterations: 5,
     systemPrompt: `You are the Evidence Analyst for an auto insurance subrogation team. All data is SYNTHETIC demo data. Use only the claim record and the NHTSA recall campaigns given to you. Never invent facts, campaign numbers, VINs or dollar amounts. Return a result conforming to the output schema. evidence_summary: 3 to 6 plain sentences linking the loss cause to a recall component, citing campaign numbers given. cited_campaigns: NHTSA campaign numbers you relied on, copied exactly. strength: STRONG, MODERATE or WEAK. gaps: missing evidence a recovery specialist should collect, empty if none.`,
@@ -174,5 +201,8 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
       return { negotiation: Object.assign(clean($vars.neg), { approval: clean($vars.approval) }), evidence: clean($vars.evidenceAnalyst.output || {}), liability: clean($vars.liabilityAssessor.output || {}) };`,
     returns: { negotiation: "object", evidence: "object", liability: "object" },
   }))
-  .return({ negotiation: js`$vars.stylePass.output.negotiation`, ranked: js`$vars.rank.output.ranked`, summary: js`$vars.rank.output.summary`, evidence: js`$vars.stylePass.output.evidence`, liability: js`$vars.stylePass.output.liability` })
+  .branch("mainLedger", js`($vars.store || {}).loaded === true`, (y) => y.step("ledgerAppend", publishedFunction({ ...STORE, inputs: { op: "append", entryJson: js`JSON.stringify({ run_id: $vars.start.output.runId || ("run-" + new Date().toISOString()), claim_id: $vars.neg.claim_id || "NONE", status: $vars.neg.status, amount: Number($vars.neg.settled_amount) || 0, tier: $vars.neg.tier || "NONE", approval: ($vars.approval || {}).decision || "NONE", rounds: Number($vars.neg.round) || 0, demand: Number($vars.neg.demand) || 0, floor: Number($vars.neg.floor) || 0, source: ($vars.store || {}).source || "input", simulated_counterparty: true, synthetic: true, at: new Date().toISOString() })` }, returns: STORE_RETURNS }), { updates: { ledger: js`$vars.ledgerAppend.output` } })
+      .onError((h) => h.step("ledgerAppendFailed", script({ code: 'return { ok: false, ledgerCount: null };', returns: "object" }), { updates: { ledger: js`$vars.ledgerAppendFailed.output` } }).stepToRef("storeOut")))
+  .step("storeOut", script({ code: 'const st = $vars.store || {}; const l = ($vars.ledger && $vars.ledger.ok) ? $vars.ledger : null; return { source: st.source || "input", loaded: !!st.loaded, total_in_bucket: st.total_in_bucket || null, ledger_appended: !!(l && l.ok), ledger_count: l ? l.ledgerCount : null };', returns: "object" }))
+  .return({ store: js`$vars.storeOut.output`, negotiation: js`$vars.stylePass.output.negotiation`, ranked: js`$vars.rank.output.ranked`, summary: js`$vars.rank.output.summary`, evidence: js`$vars.stylePass.output.evidence`, liability: js`$vars.stylePass.output.liability` })
   .build();

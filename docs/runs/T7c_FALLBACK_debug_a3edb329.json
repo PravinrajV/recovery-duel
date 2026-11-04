@@ -1,0 +1,1614 @@
+{
+  "Result": "Success",
+  "Code": "FlowDebug",
+  "Data": {
+    "jobKey": "a3edb329-8291-438b-8458-feb1cc7ddf7d",
+    "instanceId": "a3edb329-8291-438b-8458-feb1cc7ddf7d",
+    "runId": "01a1a58e-91f9-7967-91e6-2ccc6c797ee5",
+    "folderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+    "finalStatus": "Completed",
+    "entryPoint": "start",
+    "solutionId": "3f8821e0-173c-40bd-54bb-08df39ae9b2f",
+    "studioWebUrl": "https://cloud.uipath.com/pvincent/studio_/designer/daf7bc15-77cd-47a1-b42d-80dd3cd1d5f4?solutionId=3f8821e0-173c-40bd-54bb-08df39ae9b2f",
+    "elementExecutions": [
+      {
+        "elementId": "start",
+        "elementType": "StartEvent",
+        "status": "Completed",
+        "startedAt": "2026-11-04T07:55:48.3094948Z",
+        "completedAt": "2026-11-04T07:55:48.4865999Z"
+      },
+      {
+        "elementId": "fromBucket",
+        "elementType": "InclusiveGateway",
+        "status": "Completed",
+        "startedAt": "2026-11-04T07:55:48.5755409Z",
+        "completedAt": "2026-11-04T07:55:48.6628381Z"
+      },
+      {
+        "elementId": "loadStore",
+        "elementType": "ServiceTask",
+        "status": "Failed",
+        "startedAt": "2026-11-04T07:55:48.7409147Z"
+      },
+      {
+        "elementId": "BoundaryEvent_loadStore_Error",
+        "elementType": "BoundaryEvent",
+        "status": "Completed",
+        "startedAt": "2026-11-04T07:56:07.3802139Z",
+        "completedAt": "2026-11-04T07:56:07.517174Z"
+      },
+      {
+        "elementId": "storeLoadFailed",
+        "elementType": "ScriptTask",
+        "status": "Completed",
+        "startedAt": "2026-11-04T07:56:07.6094087Z",
+        "completedAt": "2026-11-04T07:56:07.7782051Z"
+      },
+      {
+        "elementId": "intake",
+        "elementType": "ScriptTask",
+        "status": "Completed",
+        "startedAt": "2026-11-04T07:56:07.8688786Z",
+        "completedAt": "2026-11-04T07:56:08.0362921Z"
+      },
+      {
+        "elementId": "eachClaim",
+        "elementType": "SubProcess",
+        "status": "Completed",
+        "startedAt": "2026-11-04T07:56:08.1584093Z",
+        "completedAt": "2026-11-04T07:56:08.1584093Z"
+      },
+      {
+        "elementId": "rank",
+        "elementType": "ScriptTask",
+        "status": "Completed",
+        "startedAt": "2026-11-04T07:56:08.2409538Z",
+        "completedAt": "2026-11-04T07:56:08.4160741Z"
+      },
+      {
+        "elementId": "pickTop",
+        "elementType": "ScriptTask",
+        "status": "Completed",
+        "startedAt": "2026-11-04T07:56:08.5228771Z",
+        "completedAt": "2026-11-04T07:56:08.7821475Z"
+      },
+      {
+        "elementId": "noCase",
+        "elementType": "InclusiveGateway",
+        "status": "Completed",
+        "startedAt": "2026-11-04T07:56:08.8895827Z",
+        "completedAt": "2026-11-04T07:56:08.9657827Z"
+      },
+      {
+        "elementId": "noCaseLedger",
+        "elementType": "InclusiveGateway",
+        "status": "Completed",
+        "startedAt": "2026-11-04T07:56:09.0416377Z",
+        "completedAt": "2026-11-04T07:56:09.1425598Z"
+      },
+      {
+        "elementId": "noCaseEnd",
+        "elementType": "ScriptTask",
+        "status": "Completed",
+        "startedAt": "2026-11-04T07:56:09.2193447Z",
+        "completedAt": "2026-11-04T07:56:09.3990803Z"
+      },
+      {
+        "elementId": "end",
+        "elementType": "EndEvent",
+        "status": "Completed",
+        "startedAt": "2026-11-04T07:56:09.5584544Z",
+        "completedAt": "2026-11-04T07:56:09.7194051Z"
+      }
+    ],
+    "variables": {
+      "elements": [
+        {
+          "elementId": "start",
+          "elementRunId": "78ace38b-0e29-454f-9963-c2fd50be04a9",
+          "isMarker": false,
+          "inputs": {},
+          "inputDefinitions": {},
+          "outputs": {}
+        },
+        {
+          "elementId": "loadStore",
+          "elementRunId": "27721135-f4a6-436f-a4e6-c23d824bac54",
+          "isMarker": false,
+          "inputs": {
+            "JobArguments": {
+              "op": "load",
+              "errorHandlingEnabled": true
+            }
+          },
+          "inputDefinitions": {},
+          "outputs": {
+            "Error": {
+              "code": "JsCodedFunction.ValidationFailed",
+              "message": "Failure in the Orchestrator Job",
+              "detail": "must NOT have additional properties",
+              "category": "User",
+              "status": 502,
+              "response": null,
+              "element": null
+            }
+          }
+        },
+        {
+          "elementId": "BoundaryEvent_loadStore_Error",
+          "elementRunId": "e79a2f71-61f0-4e45-8b2b-4a263bea0ae6",
+          "isMarker": false,
+          "inputs": {},
+          "inputDefinitions": {},
+          "outputs": {}
+        },
+        {
+          "elementId": "storeLoadFailed",
+          "elementRunId": "5e7503bf-fdae-4fc5-a1de-bb1a04770a68",
+          "isMarker": false,
+          "inputs": {
+            "args": {
+              "vars": {
+                "ledger": {
+                  "ok": false,
+                  "ledgerCount": null
+                },
+                "assess.output": null,
+                "liability": null,
+                "managerReviewNo.output": null,
+                "markNeedsData.output": null,
+                "specialistReview.output": null,
+                "specialistReviewNo.error": null,
+                "carrierAgent.output": null,
+                "noApproval.output": null,
+                "loadStore.error": {
+                  "code": "JsCodedFunction.ValidationFailed",
+                  "message": "Failure in the Orchestrator Job",
+                  "detail": "must NOT have additional properties",
+                  "category": "User",
+                  "status": 502,
+                  "response": null,
+                  "element": "loadStore"
+                },
+                "end2.ledger": null,
+                "autoApprove.output": null,
+                "end.neg": null,
+                "assess.error": null,
+                "liabilityAssessor.error": null,
+                "storeValue": {
+                  "source": "input",
+                  "loaded": false
+                },
+                "pickTop.output": null,
+                "end2.summary": null,
+                "evidence": null,
+                "specialistReview.status": null,
+                "killSwitch": false,
+                "ledgerNoCase.output": null,
+                "start.output.counterparty": {
+                  "persona": "cooperative",
+                  "reservation_price": 2000
+                },
+                "start.output.asOf": "2026-11-04",
+                "assessed": [],
+                "specialistReviewNo.output": null,
+                "nextClaim.output": null,
+                "asOf": "2026-11-04",
+                "end.summary": null,
+                "end.evidence": null,
+                "roundCtx.output": null,
+                "pickTop.error": null,
+                "noCaseEnd.output": null,
+                "parseStore.output": null,
+                "parseStore.error": null,
+                "negInit.error": null,
+                "end2.storeValue": null,
+                "ranked": null,
+                "end2.neg": null,
+                "start.output.claimIds": [
+                  "CLM-00039"
+                ],
+                "negotiation": null,
+                "approvalCtx.output": null,
+                "store": {
+                  "source": "input",
+                  "loaded": false
+                },
+                "rank.error": null,
+                "stylePass.output": null,
+                "managerReview.output": null,
+                "negotiator.output": null,
+                "end.approval": null,
+                "response": null,
+                "runId": "T7c-bucket-1",
+                "stylePass.error": null,
+                "markNeedsData.error": null,
+                "guardCounter.output": null,
+                "managerReviewNo.error": null,
+                "noCaseEnd.error": null,
+                "end2.ranked": null,
+                "counterparty": {
+                  "persona": "cooperative",
+                  "reservation_price": 2000
+                },
+                "carrierAgent.error": null,
+                "end2.approval": null,
+                "claimIds": [
+                  "CLM-00039"
+                ],
+                "negCtx.output": null,
+                "managerReview.status": null,
+                "autoApprove.error": null,
+                "approvalCtx.error": null,
+                "ledgerAppend.error": null,
+                "end.ranked": null,
+                "start.output.source": "bucket",
+                "judgeOffer.output": null,
+                "end2.evidence": null,
+                "eachClaim.error": null,
+                "end.store": null,
+                "intake.output": null,
+                "ledgerNoCase.error": null,
+                "nextClaim.error": null,
+                "end2.liability": null,
+                "storeOut.output": null,
+                "source": "bucket",
+                "liabilityAssessor.output": null,
+                "end2.store": null,
+                "start.output.claims": [],
+                "neg": {},
+                "getRecalls.error": null,
+                "roundCtx.error": null,
+                "ledgerAppend.output": null,
+                "end.negotiation": null,
+                "end.assessed": null,
+                "end2.negotiation": null,
+                "end.liability": null,
+                "approval": {},
+                "guardCounter.error": null,
+                "claims": [],
+                "start.output.killSwitch": false,
+                "summary": null,
+                "ledgerNoCaseFailed.error": null,
+                "end2.assessed": null,
+                "error": null,
+                "storeLoadFailed.output": null,
+                "managerReviewOk.error": null,
+                "specialistReviewOk.output": null,
+                "getRecalls.output": null,
+                "rank.output": null,
+                "eachClaim.output": null,
+                "negotiator.error": null,
+                "start.output.runId": "T7c-bucket-1",
+                "storeOut.error": null,
+                "end.storeValue": null,
+                "ledgerAppendFailed.error": null,
+                "negInit.output": null,
+                "specialistReviewOk.error": null,
+                "loadStore.output": {
+                  "Error": {
+                    "code": "JsCodedFunction.ValidationFailed",
+                    "message": "Failure in the Orchestrator Job",
+                    "detail": "must NOT have additional properties",
+                    "category": "User",
+                    "status": 502,
+                    "response": null,
+                    "element": "loadStore"
+                  }
+                },
+                "duel.error": null,
+                "negCtx.error": null,
+                "ledgerAppendFailed.output": null,
+                "judgeOffer.error": null,
+                "ledgerNoCaseFailed.output": null,
+                "evidenceAnalyst.output": null,
+                "end.ledger": null,
+                "noApproval.error": null,
+                "managerReviewOk.output": null,
+                "intake.error": null,
+                "storeLoadFailed.error": null,
+                "evidenceAnalyst.error": null
+              },
+              "metadata": {
+                "ProcessKey": null,
+                "InstanceId": "a3edb329-8291-438b-8458-feb1cc7ddf7d",
+                "ElementCount": {
+                  "fromBucket": 1,
+                  "loadStore": 1,
+                  "start": 1
+                },
+                "ExternalId": "50264105",
+                "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e"
+              }
+            }
+          },
+          "inputDefinitions": {},
+          "outputs": {
+            "response": {
+              "source": "input",
+              "loaded": false,
+              "error": "bucket load failed, using trigger input"
+            }
+          }
+        },
+        {
+          "elementId": "intake",
+          "elementRunId": "a1b24664-ad0b-49dc-993c-0a61e15f2891",
+          "isMarker": false,
+          "inputs": {
+            "args": {
+              "vars": {
+                "ledger": {
+                  "ok": false,
+                  "ledgerCount": null
+                },
+                "assess.output": null,
+                "liability": null,
+                "managerReviewNo.output": null,
+                "markNeedsData.output": null,
+                "specialistReview.output": null,
+                "specialistReviewNo.error": null,
+                "carrierAgent.output": null,
+                "noApproval.output": null,
+                "loadStore.error": {
+                  "code": "JsCodedFunction.ValidationFailed",
+                  "message": "Failure in the Orchestrator Job",
+                  "detail": "must NOT have additional properties",
+                  "category": "User",
+                  "status": 502,
+                  "response": null,
+                  "element": "loadStore"
+                },
+                "end2.ledger": null,
+                "autoApprove.output": null,
+                "end.neg": null,
+                "assess.error": null,
+                "liabilityAssessor.error": null,
+                "storeValue": {
+                  "source": "input",
+                  "loaded": false,
+                  "error": "bucket load failed, using trigger input"
+                },
+                "pickTop.output": null,
+                "end2.summary": null,
+                "evidence": null,
+                "specialistReview.status": null,
+                "killSwitch": false,
+                "ledgerNoCase.output": null,
+                "start.output.counterparty": {
+                  "persona": "cooperative",
+                  "reservation_price": 2000
+                },
+                "start.output.asOf": "2026-11-04",
+                "assessed": [],
+                "specialistReviewNo.output": null,
+                "nextClaim.output": null,
+                "asOf": "2026-11-04",
+                "end.summary": null,
+                "end.evidence": null,
+                "roundCtx.output": null,
+                "pickTop.error": null,
+                "noCaseEnd.output": null,
+                "parseStore.output": null,
+                "parseStore.error": null,
+                "negInit.error": null,
+                "end2.storeValue": null,
+                "ranked": null,
+                "end2.neg": null,
+                "start.output.claimIds": [
+                  "CLM-00039"
+                ],
+                "negotiation": null,
+                "approvalCtx.output": null,
+                "store": {
+                  "source": "input",
+                  "loaded": false
+                },
+                "rank.error": null,
+                "stylePass.output": null,
+                "managerReview.output": null,
+                "negotiator.output": null,
+                "end.approval": null,
+                "response": null,
+                "runId": "T7c-bucket-1",
+                "stylePass.error": null,
+                "markNeedsData.error": null,
+                "guardCounter.output": null,
+                "managerReviewNo.error": null,
+                "noCaseEnd.error": null,
+                "end2.ranked": null,
+                "counterparty": {
+                  "persona": "cooperative",
+                  "reservation_price": 2000
+                },
+                "carrierAgent.error": null,
+                "end2.approval": null,
+                "claimIds": [
+                  "CLM-00039"
+                ],
+                "negCtx.output": null,
+                "managerReview.status": null,
+                "autoApprove.error": null,
+                "approvalCtx.error": null,
+                "ledgerAppend.error": null,
+                "end.ranked": null,
+                "start.output.source": "bucket",
+                "judgeOffer.output": null,
+                "end2.evidence": null,
+                "eachClaim.error": null,
+                "end.store": null,
+                "intake.output": null,
+                "ledgerNoCase.error": null,
+                "nextClaim.error": null,
+                "end2.liability": null,
+                "storeOut.output": null,
+                "source": "bucket",
+                "liabilityAssessor.output": null,
+                "end2.store": null,
+                "start.output.claims": [],
+                "neg": {},
+                "getRecalls.error": null,
+                "roundCtx.error": null,
+                "ledgerAppend.output": null,
+                "end.negotiation": null,
+                "end.assessed": null,
+                "end2.negotiation": null,
+                "end.liability": null,
+                "approval": {},
+                "guardCounter.error": null,
+                "claims": [],
+                "start.output.killSwitch": false,
+                "summary": null,
+                "ledgerNoCaseFailed.error": null,
+                "end2.assessed": null,
+                "error": null,
+                "storeLoadFailed.output": {
+                  "source": "input",
+                  "loaded": false,
+                  "error": "bucket load failed, using trigger input"
+                },
+                "managerReviewOk.error": null,
+                "specialistReviewOk.output": null,
+                "getRecalls.output": null,
+                "rank.output": null,
+                "eachClaim.output": null,
+                "negotiator.error": null,
+                "start.output.runId": "T7c-bucket-1",
+                "storeOut.error": null,
+                "end.storeValue": null,
+                "ledgerAppendFailed.error": null,
+                "negInit.output": null,
+                "specialistReviewOk.error": null,
+                "loadStore.output": {
+                  "Error": {
+                    "code": "JsCodedFunction.ValidationFailed",
+                    "message": "Failure in the Orchestrator Job",
+                    "detail": "must NOT have additional properties",
+                    "category": "User",
+                    "status": 502,
+                    "response": null,
+                    "element": "loadStore"
+                  }
+                },
+                "duel.error": null,
+                "negCtx.error": null,
+                "ledgerAppendFailed.output": null,
+                "judgeOffer.error": null,
+                "ledgerNoCaseFailed.output": null,
+                "evidenceAnalyst.output": null,
+                "end.ledger": null,
+                "noApproval.error": null,
+                "managerReviewOk.output": null,
+                "intake.error": null,
+                "storeLoadFailed.error": null,
+                "evidenceAnalyst.error": null
+              },
+              "metadata": {
+                "ProcessKey": null,
+                "InstanceId": "a3edb329-8291-438b-8458-feb1cc7ddf7d",
+                "ElementCount": {
+                  "fromBucket": 1,
+                  "loadStore": 2,
+                  "start": 1
+                },
+                "ExternalId": "50264105",
+                "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e"
+              }
+            }
+          },
+          "inputDefinitions": {},
+          "outputs": {
+            "response": {
+              "items": [],
+              "stopped": false,
+              "claims": [],
+              "negotiation_paused": false
+            }
+          }
+        },
+        {
+          "elementId": "rank",
+          "elementRunId": "c0bfa9f5-e3e6-407d-90af-97cdea3d2aa4",
+          "isMarker": false,
+          "inputs": {
+            "args": {
+              "vars": {
+                "ledger": {
+                  "ok": false,
+                  "ledgerCount": null
+                },
+                "assess.output": null,
+                "liability": null,
+                "managerReviewNo.output": null,
+                "markNeedsData.output": null,
+                "specialistReview.output": null,
+                "specialistReviewNo.error": null,
+                "carrierAgent.output": null,
+                "noApproval.output": null,
+                "loadStore.error": {
+                  "code": "JsCodedFunction.ValidationFailed",
+                  "message": "Failure in the Orchestrator Job",
+                  "detail": "must NOT have additional properties",
+                  "category": "User",
+                  "status": 502,
+                  "response": null,
+                  "element": "loadStore"
+                },
+                "end2.ledger": null,
+                "autoApprove.output": null,
+                "end.neg": null,
+                "assess.error": null,
+                "liabilityAssessor.error": null,
+                "storeValue": {
+                  "source": "input",
+                  "loaded": false,
+                  "error": "bucket load failed, using trigger input"
+                },
+                "pickTop.output": null,
+                "end2.summary": null,
+                "evidence": null,
+                "specialistReview.status": null,
+                "killSwitch": false,
+                "ledgerNoCase.output": null,
+                "start.output.counterparty": {
+                  "persona": "cooperative",
+                  "reservation_price": 2000
+                },
+                "start.output.asOf": "2026-11-04",
+                "assessed": [],
+                "specialistReviewNo.output": null,
+                "nextClaim.output": null,
+                "asOf": "2026-11-04",
+                "end.summary": null,
+                "end.evidence": null,
+                "roundCtx.output": null,
+                "pickTop.error": null,
+                "noCaseEnd.output": null,
+                "parseStore.output": null,
+                "parseStore.error": null,
+                "negInit.error": null,
+                "end2.storeValue": null,
+                "ranked": null,
+                "end2.neg": null,
+                "start.output.claimIds": [
+                  "CLM-00039"
+                ],
+                "negotiation": null,
+                "approvalCtx.output": null,
+                "store": {
+                  "source": "input",
+                  "loaded": false
+                },
+                "rank.error": null,
+                "stylePass.output": null,
+                "managerReview.output": null,
+                "negotiator.output": null,
+                "end.approval": null,
+                "response": null,
+                "runId": "T7c-bucket-1",
+                "stylePass.error": null,
+                "markNeedsData.error": null,
+                "guardCounter.output": null,
+                "managerReviewNo.error": null,
+                "noCaseEnd.error": null,
+                "end2.ranked": null,
+                "counterparty": {
+                  "persona": "cooperative",
+                  "reservation_price": 2000
+                },
+                "carrierAgent.error": null,
+                "end2.approval": null,
+                "claimIds": [
+                  "CLM-00039"
+                ],
+                "negCtx.output": null,
+                "managerReview.status": null,
+                "autoApprove.error": null,
+                "approvalCtx.error": null,
+                "ledgerAppend.error": null,
+                "end.ranked": null,
+                "start.output.source": "bucket",
+                "judgeOffer.output": null,
+                "end2.evidence": null,
+                "eachClaim.error": null,
+                "end.store": null,
+                "intake.output": {
+                  "items": [],
+                  "stopped": false,
+                  "claims": [],
+                  "negotiation_paused": false
+                },
+                "ledgerNoCase.error": null,
+                "nextClaim.error": null,
+                "end2.liability": null,
+                "storeOut.output": null,
+                "source": "bucket",
+                "liabilityAssessor.output": null,
+                "end2.store": null,
+                "start.output.claims": [],
+                "neg": {},
+                "getRecalls.error": null,
+                "roundCtx.error": null,
+                "ledgerAppend.output": null,
+                "end.negotiation": null,
+                "end.assessed": null,
+                "end2.negotiation": null,
+                "end.liability": null,
+                "approval": {},
+                "guardCounter.error": null,
+                "claims": [],
+                "start.output.killSwitch": false,
+                "summary": null,
+                "ledgerNoCaseFailed.error": null,
+                "end2.assessed": null,
+                "error": null,
+                "storeLoadFailed.output": {
+                  "source": "input",
+                  "loaded": false,
+                  "error": "bucket load failed, using trigger input"
+                },
+                "managerReviewOk.error": null,
+                "specialistReviewOk.output": null,
+                "getRecalls.output": null,
+                "rank.output": null,
+                "eachClaim.output": null,
+                "negotiator.error": null,
+                "start.output.runId": "T7c-bucket-1",
+                "storeOut.error": null,
+                "end.storeValue": null,
+                "ledgerAppendFailed.error": null,
+                "negInit.output": null,
+                "specialistReviewOk.error": null,
+                "loadStore.output": {
+                  "Error": {
+                    "code": "JsCodedFunction.ValidationFailed",
+                    "message": "Failure in the Orchestrator Job",
+                    "detail": "must NOT have additional properties",
+                    "category": "User",
+                    "status": 502,
+                    "response": null,
+                    "element": "loadStore"
+                  }
+                },
+                "duel.error": null,
+                "negCtx.error": null,
+                "ledgerAppendFailed.output": null,
+                "judgeOffer.error": null,
+                "ledgerNoCaseFailed.output": null,
+                "evidenceAnalyst.output": null,
+                "end.ledger": null,
+                "noApproval.error": null,
+                "managerReviewOk.output": null,
+                "intake.error": null,
+                "storeLoadFailed.error": null,
+                "evidenceAnalyst.error": null
+              },
+              "metadata": {
+                "ProcessKey": null,
+                "InstanceId": "a3edb329-8291-438b-8458-feb1cc7ddf7d",
+                "ElementCount": {
+                  "fromBucket": 1,
+                  "intake": 1,
+                  "loadStore": 2,
+                  "start": 1,
+                  "storeLoadFailed": 1
+                },
+                "ExternalId": "50264105",
+                "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e"
+              }
+            }
+          },
+          "inputDefinitions": {},
+          "outputs": {
+            "response": {
+              "ranked": [],
+              "summary": {
+                "total": 0,
+                "pursue": 0,
+                "needs_data": 0,
+                "sol_expired": 0,
+                "barred": 0,
+                "no_case": 0,
+                "pipeline_demand": 0
+              }
+            }
+          }
+        },
+        {
+          "elementId": "pickTop",
+          "elementRunId": "eb26d313-3a48-432b-aa09-3f7a06a11252",
+          "isMarker": false,
+          "inputs": {
+            "args": {
+              "vars": {
+                "ledger": {
+                  "ok": false,
+                  "ledgerCount": null
+                },
+                "assess.output": null,
+                "liability": null,
+                "managerReviewNo.output": null,
+                "markNeedsData.output": null,
+                "specialistReview.output": null,
+                "specialistReviewNo.error": null,
+                "carrierAgent.output": null,
+                "noApproval.output": null,
+                "loadStore.error": {
+                  "code": "JsCodedFunction.ValidationFailed",
+                  "message": "Failure in the Orchestrator Job",
+                  "detail": "must NOT have additional properties",
+                  "category": "User",
+                  "status": 502,
+                  "response": null,
+                  "element": "loadStore"
+                },
+                "end2.ledger": null,
+                "autoApprove.output": null,
+                "end.neg": null,
+                "assess.error": null,
+                "liabilityAssessor.error": null,
+                "storeValue": {
+                  "source": "input",
+                  "loaded": false,
+                  "error": "bucket load failed, using trigger input"
+                },
+                "pickTop.output": null,
+                "end2.summary": null,
+                "evidence": null,
+                "specialistReview.status": null,
+                "killSwitch": false,
+                "ledgerNoCase.output": null,
+                "start.output.counterparty": {
+                  "persona": "cooperative",
+                  "reservation_price": 2000
+                },
+                "start.output.asOf": "2026-11-04",
+                "assessed": [],
+                "specialistReviewNo.output": null,
+                "nextClaim.output": null,
+                "asOf": "2026-11-04",
+                "end.summary": null,
+                "end.evidence": null,
+                "roundCtx.output": null,
+                "pickTop.error": null,
+                "noCaseEnd.output": null,
+                "parseStore.output": null,
+                "parseStore.error": null,
+                "negInit.error": null,
+                "end2.storeValue": null,
+                "ranked": null,
+                "end2.neg": null,
+                "start.output.claimIds": [
+                  "CLM-00039"
+                ],
+                "negotiation": null,
+                "approvalCtx.output": null,
+                "store": {
+                  "source": "input",
+                  "loaded": false
+                },
+                "rank.error": null,
+                "stylePass.output": null,
+                "managerReview.output": null,
+                "negotiator.output": null,
+                "end.approval": null,
+                "response": null,
+                "runId": "T7c-bucket-1",
+                "stylePass.error": null,
+                "markNeedsData.error": null,
+                "guardCounter.output": null,
+                "managerReviewNo.error": null,
+                "noCaseEnd.error": null,
+                "end2.ranked": null,
+                "counterparty": {
+                  "persona": "cooperative",
+                  "reservation_price": 2000
+                },
+                "carrierAgent.error": null,
+                "end2.approval": null,
+                "claimIds": [
+                  "CLM-00039"
+                ],
+                "negCtx.output": null,
+                "managerReview.status": null,
+                "autoApprove.error": null,
+                "approvalCtx.error": null,
+                "ledgerAppend.error": null,
+                "end.ranked": null,
+                "start.output.source": "bucket",
+                "judgeOffer.output": null,
+                "end2.evidence": null,
+                "eachClaim.error": null,
+                "end.store": null,
+                "intake.output": {
+                  "items": [],
+                  "stopped": false,
+                  "claims": [],
+                  "negotiation_paused": false
+                },
+                "ledgerNoCase.error": null,
+                "nextClaim.error": null,
+                "end2.liability": null,
+                "storeOut.output": null,
+                "source": "bucket",
+                "liabilityAssessor.output": null,
+                "end2.store": null,
+                "start.output.claims": [],
+                "neg": {},
+                "getRecalls.error": null,
+                "roundCtx.error": null,
+                "ledgerAppend.output": null,
+                "end.negotiation": null,
+                "end.assessed": null,
+                "end2.negotiation": null,
+                "end.liability": null,
+                "approval": {},
+                "guardCounter.error": null,
+                "claims": [],
+                "start.output.killSwitch": false,
+                "summary": null,
+                "ledgerNoCaseFailed.error": null,
+                "end2.assessed": null,
+                "error": null,
+                "storeLoadFailed.output": {
+                  "source": "input",
+                  "loaded": false,
+                  "error": "bucket load failed, using trigger input"
+                },
+                "managerReviewOk.error": null,
+                "specialistReviewOk.output": null,
+                "getRecalls.output": null,
+                "rank.output": {
+                  "ranked": [],
+                  "summary": {
+                    "total": 0,
+                    "pursue": 0,
+                    "needs_data": 0,
+                    "sol_expired": 0,
+                    "barred": 0,
+                    "no_case": 0,
+                    "pipeline_demand": 0
+                  }
+                },
+                "eachClaim.output": null,
+                "negotiator.error": null,
+                "start.output.runId": "T7c-bucket-1",
+                "storeOut.error": null,
+                "end.storeValue": null,
+                "ledgerAppendFailed.error": null,
+                "negInit.output": null,
+                "specialistReviewOk.error": null,
+                "loadStore.output": {
+                  "Error": {
+                    "code": "JsCodedFunction.ValidationFailed",
+                    "message": "Failure in the Orchestrator Job",
+                    "detail": "must NOT have additional properties",
+                    "category": "User",
+                    "status": 502,
+                    "response": null,
+                    "element": "loadStore"
+                  }
+                },
+                "duel.error": null,
+                "negCtx.error": null,
+                "ledgerAppendFailed.output": null,
+                "judgeOffer.error": null,
+                "ledgerNoCaseFailed.output": null,
+                "evidenceAnalyst.output": null,
+                "end.ledger": null,
+                "noApproval.error": null,
+                "managerReviewOk.output": null,
+                "intake.error": null,
+                "storeLoadFailed.error": null,
+                "evidenceAnalyst.error": null
+              },
+              "metadata": {
+                "ProcessKey": null,
+                "InstanceId": "a3edb329-8291-438b-8458-feb1cc7ddf7d",
+                "ElementCount": {
+                  "eachClaim": 1,
+                  "fromBucket": 1,
+                  "intake": 1,
+                  "loadStore": 2,
+                  "start": 1,
+                  "storeLoadFailed": 1
+                },
+                "ExternalId": "50264105",
+                "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e"
+              }
+            }
+          },
+          "inputDefinitions": {},
+          "outputs": {
+            "response": {
+              "found": false,
+              "assessment": {},
+              "claim": {},
+              "claimJson": "{}",
+              "assessmentJson": "{}"
+            }
+          }
+        },
+        {
+          "elementId": "noCaseEnd",
+          "elementRunId": "2096fc0c-f5a9-4993-b46d-68e1725b8650",
+          "isMarker": false,
+          "inputs": {
+            "args": {
+              "vars": {
+                "ledger": {
+                  "ok": false,
+                  "ledgerCount": null
+                },
+                "assess.output": null,
+                "liability": null,
+                "managerReviewNo.output": null,
+                "markNeedsData.output": null,
+                "specialistReview.output": null,
+                "specialistReviewNo.error": null,
+                "carrierAgent.output": null,
+                "noApproval.output": null,
+                "loadStore.error": {
+                  "code": "JsCodedFunction.ValidationFailed",
+                  "message": "Failure in the Orchestrator Job",
+                  "detail": "must NOT have additional properties",
+                  "category": "User",
+                  "status": 502,
+                  "response": null,
+                  "element": "loadStore"
+                },
+                "end2.ledger": null,
+                "autoApprove.output": null,
+                "end.neg": null,
+                "assess.error": null,
+                "liabilityAssessor.error": null,
+                "storeValue": {
+                  "source": "input",
+                  "loaded": false,
+                  "error": "bucket load failed, using trigger input"
+                },
+                "pickTop.output": {
+                  "found": false,
+                  "assessment": {},
+                  "claim": {},
+                  "claimJson": "{}",
+                  "assessmentJson": "{}"
+                },
+                "end2.summary": null,
+                "evidence": null,
+                "specialistReview.status": null,
+                "killSwitch": false,
+                "ledgerNoCase.output": null,
+                "start.output.counterparty": {
+                  "persona": "cooperative",
+                  "reservation_price": 2000
+                },
+                "start.output.asOf": "2026-11-04",
+                "assessed": [],
+                "specialistReviewNo.output": null,
+                "nextClaim.output": null,
+                "asOf": "2026-11-04",
+                "end.summary": null,
+                "end.evidence": null,
+                "roundCtx.output": null,
+                "pickTop.error": null,
+                "noCaseEnd.output": null,
+                "parseStore.output": null,
+                "parseStore.error": null,
+                "negInit.error": null,
+                "end2.storeValue": null,
+                "ranked": null,
+                "end2.neg": null,
+                "start.output.claimIds": [
+                  "CLM-00039"
+                ],
+                "negotiation": null,
+                "approvalCtx.output": null,
+                "store": {
+                  "source": "input",
+                  "loaded": false
+                },
+                "rank.error": null,
+                "stylePass.output": null,
+                "managerReview.output": null,
+                "negotiator.output": null,
+                "end.approval": null,
+                "response": null,
+                "runId": "T7c-bucket-1",
+                "stylePass.error": null,
+                "markNeedsData.error": null,
+                "guardCounter.output": null,
+                "managerReviewNo.error": null,
+                "noCaseEnd.error": null,
+                "end2.ranked": null,
+                "counterparty": {
+                  "persona": "cooperative",
+                  "reservation_price": 2000
+                },
+                "carrierAgent.error": null,
+                "end2.approval": null,
+                "claimIds": [
+                  "CLM-00039"
+                ],
+                "negCtx.output": null,
+                "managerReview.status": null,
+                "autoApprove.error": null,
+                "approvalCtx.error": null,
+                "ledgerAppend.error": null,
+                "end.ranked": null,
+                "start.output.source": "bucket",
+                "judgeOffer.output": null,
+                "end2.evidence": null,
+                "eachClaim.error": null,
+                "end.store": null,
+                "intake.output": {
+                  "items": [],
+                  "stopped": false,
+                  "claims": [],
+                  "negotiation_paused": false
+                },
+                "ledgerNoCase.error": null,
+                "nextClaim.error": null,
+                "end2.liability": null,
+                "storeOut.output": null,
+                "source": "bucket",
+                "liabilityAssessor.output": null,
+                "end2.store": null,
+                "start.output.claims": [],
+                "neg": {},
+                "getRecalls.error": null,
+                "roundCtx.error": null,
+                "ledgerAppend.output": null,
+                "end.negotiation": null,
+                "end.assessed": null,
+                "end2.negotiation": null,
+                "end.liability": null,
+                "approval": {},
+                "guardCounter.error": null,
+                "claims": [],
+                "start.output.killSwitch": false,
+                "summary": null,
+                "ledgerNoCaseFailed.error": null,
+                "end2.assessed": null,
+                "error": null,
+                "storeLoadFailed.output": {
+                  "source": "input",
+                  "loaded": false,
+                  "error": "bucket load failed, using trigger input"
+                },
+                "managerReviewOk.error": null,
+                "specialistReviewOk.output": null,
+                "getRecalls.output": null,
+                "rank.output": {
+                  "ranked": [],
+                  "summary": {
+                    "total": 0,
+                    "pursue": 0,
+                    "needs_data": 0,
+                    "sol_expired": 0,
+                    "barred": 0,
+                    "no_case": 0,
+                    "pipeline_demand": 0
+                  }
+                },
+                "eachClaim.output": null,
+                "negotiator.error": null,
+                "start.output.runId": "T7c-bucket-1",
+                "storeOut.error": null,
+                "end.storeValue": null,
+                "ledgerAppendFailed.error": null,
+                "negInit.output": null,
+                "specialistReviewOk.error": null,
+                "loadStore.output": {
+                  "Error": {
+                    "code": "JsCodedFunction.ValidationFailed",
+                    "message": "Failure in the Orchestrator Job",
+                    "detail": "must NOT have additional properties",
+                    "category": "User",
+                    "status": 502,
+                    "response": null,
+                    "element": "loadStore"
+                  }
+                },
+                "duel.error": null,
+                "negCtx.error": null,
+                "ledgerAppendFailed.output": null,
+                "judgeOffer.error": null,
+                "ledgerNoCaseFailed.output": null,
+                "evidenceAnalyst.output": null,
+                "end.ledger": null,
+                "noApproval.error": null,
+                "managerReviewOk.output": null,
+                "intake.error": null,
+                "storeLoadFailed.error": null,
+                "evidenceAnalyst.error": null
+              },
+              "metadata": {
+                "ProcessKey": null,
+                "InstanceId": "a3edb329-8291-438b-8458-feb1cc7ddf7d",
+                "ElementCount": {
+                  "eachClaim": 1,
+                  "fromBucket": 1,
+                  "intake": 1,
+                  "loadStore": 2,
+                  "noCase": 1,
+                  "pickTop": 1,
+                  "rank": 1,
+                  "start": 1,
+                  "storeLoadFailed": 1
+                },
+                "ExternalId": "50264105",
+                "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e"
+              }
+            }
+          },
+          "inputDefinitions": {},
+          "outputs": {
+            "response": {
+              "ledger_ok": false,
+              "ledger_count": null
+            }
+          }
+        },
+        {
+          "elementId": "end",
+          "elementRunId": "8fb0802f-51cd-470f-8d03-917c945cfc52",
+          "isMarker": false,
+          "inputs": {},
+          "inputDefinitions": {},
+          "outputs": {}
+        }
+      ],
+      "globals": {
+        "loadStore.error": {
+          "code": "JsCodedFunction.ValidationFailed",
+          "message": "Failure in the Orchestrator Job",
+          "detail": "must NOT have additional properties",
+          "category": "User",
+          "status": 502,
+          "response": null,
+          "element": "loadStore"
+        },
+        "autoApprove.error": null,
+        "approvalCtx.error": null,
+        "specialistReview.output": null,
+        "pickTop.error": null,
+        "liabilityAssessor.output": null,
+        "storeOut.error": null,
+        "ledgerAppend.error": null,
+        "noApproval.error": null,
+        "ledgerAppendFailed.output": null,
+        "eachClaim.output": null,
+        "intake.error": null,
+        "ledgerNoCase.output": null,
+        "start.output.runId": "T7c-bucket-1",
+        "stylePass.output": null,
+        "managerReviewOk.error": null,
+        "autoApprove.output": null,
+        "ledgerNoCase.error": null,
+        "summary": {
+          "total": 0,
+          "pursue": 0,
+          "needs_data": 0,
+          "sol_expired": 0,
+          "barred": 0,
+          "no_case": 0,
+          "pipeline_demand": 0
+        },
+        "managerReviewNo.error": null,
+        "start.output.claimIds": [
+          "CLM-00039"
+        ],
+        "parseStore.error": null,
+        "pickTop.output": {
+          "found": false,
+          "assessment": {},
+          "claim": {},
+          "claimJson": "{}",
+          "assessmentJson": "{}"
+        },
+        "start.output.claims": [],
+        "ranked": [],
+        "ledger": {
+          "ok": false,
+          "ledgerCount": null
+        },
+        "specialistReviewOk.error": null,
+        "neg": {},
+        "evidence": {},
+        "ledgerAppendFailed.error": null,
+        "negInit.error": null,
+        "specialistReview.status": null,
+        "ledgerNoCaseFailed.output": null,
+        "noApproval.output": null,
+        "storeLoadFailed.output": {
+          "source": "input",
+          "loaded": false,
+          "error": "bucket load failed, using trigger input"
+        },
+        "specialistReviewNo.output": null,
+        "parseStore.output": null,
+        "noCaseEnd.output": {
+          "ledger_ok": false,
+          "ledger_count": null
+        },
+        "noCaseEnd.error": null,
+        "liability": {},
+        "storeOut.output": null,
+        "evidenceAnalyst.output": null,
+        "negotiation": {
+          "status": "NO_CASE",
+          "simulated_counterparty": true,
+          "history": []
+        },
+        "loadStore.output": {
+          "Error": {
+            "code": "JsCodedFunction.ValidationFailed",
+            "message": "Failure in the Orchestrator Job",
+            "detail": "must NOT have additional properties",
+            "category": "User",
+            "status": 502,
+            "response": null,
+            "element": "loadStore"
+          }
+        },
+        "managerReviewNo.output": null,
+        "intake.output": {
+          "items": [],
+          "stopped": false,
+          "claims": [],
+          "negotiation_paused": false
+        },
+        "specialistReviewNo.error": null,
+        "start.output.asOf": "2026-11-04",
+        "ledgerNoCaseFailed.error": null,
+        "start.output.killSwitch": false,
+        "approval": {},
+        "evidenceAnalyst.error": null,
+        "managerReviewOk.output": null,
+        "storeLoadFailed.error": null,
+        "ledgerAppend.output": null,
+        "start.output.counterparty": {
+          "persona": "cooperative",
+          "reservation_price": 2000
+        },
+        "start.output.source": "bucket",
+        "storeValue": {
+          "source": "input",
+          "loaded": false,
+          "error": "bucket load failed, using trigger input"
+        },
+        "rank.output": {
+          "ranked": [],
+          "summary": {
+            "total": 0,
+            "pursue": 0,
+            "needs_data": 0,
+            "sol_expired": 0,
+            "barred": 0,
+            "no_case": 0,
+            "pipeline_demand": 0
+          }
+        },
+        "managerReview.output": null,
+        "managerReview.status": null,
+        "liabilityAssessor.error": null,
+        "negInit.output": null,
+        "store": {
+          "source": "input",
+          "ledger_appended": false,
+          "ledger_ok": false,
+          "ledger_count": null
+        },
+        "assessed": [],
+        "stylePass.error": null,
+        "approvalCtx.output": null,
+        "rank.error": null,
+        "specialistReviewOk.output": null
+      },
+      "instanceId": "a3edb329-8291-438b-8458-feb1cc7ddf7d",
+      "workflowId": "a3edb329-8291-438b-8458-feb1cc7ddf7d/BpmnGenericWorkflow",
+      "parentElementId": null,
+      "globalDefinitions": {
+        "loadStore.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "autoApprove.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "approvalCtx.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "specialistReview.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "pickTop.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "liabilityAssessor.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "storeOut.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "ledgerAppend.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "noApproval.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "ledgerAppendFailed.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "eachClaim.output": {
+          "name": "output",
+          "type": "array"
+        },
+        "intake.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "ledgerNoCase.output": {
+          "name": "output",
+          "type": "jsonSchema"
+        },
+        "start.output.runId": {
+          "name": "runId",
+          "type": "string"
+        },
+        "stylePass.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "managerReviewOk.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "autoApprove.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "ledgerNoCase.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "summary": {
+          "name": "summary",
+          "type": "object"
+        },
+        "managerReviewNo.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "start.output.claimIds": {
+          "name": "claimIds",
+          "type": "array"
+        },
+        "parseStore.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "pickTop.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "start.output.claims": {
+          "name": "claims",
+          "type": "array"
+        },
+        "ranked": {
+          "name": "ranked",
+          "type": "array"
+        },
+        "ledger": {
+          "name": "ledger",
+          "type": "object"
+        },
+        "specialistReviewOk.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "neg": {
+          "name": "neg",
+          "type": "object"
+        },
+        "evidence": {
+          "name": "evidence",
+          "type": "object"
+        },
+        "ledgerAppendFailed.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "negInit.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "specialistReview.status": {
+          "name": "status",
+          "type": "string"
+        },
+        "ledgerNoCaseFailed.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "noApproval.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "storeLoadFailed.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "specialistReviewNo.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "parseStore.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "noCaseEnd.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "noCaseEnd.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "liability": {
+          "name": "liability",
+          "type": "object"
+        },
+        "storeOut.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "evidenceAnalyst.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "negotiation": {
+          "name": "negotiation",
+          "type": "object"
+        },
+        "loadStore.output": {
+          "name": "output",
+          "type": "jsonSchema"
+        },
+        "managerReviewNo.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "intake.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "specialistReviewNo.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "start.output.asOf": {
+          "name": "asOf",
+          "type": "string"
+        },
+        "ledgerNoCaseFailed.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "start.output.killSwitch": {
+          "name": "killSwitch",
+          "type": "boolean"
+        },
+        "approval": {
+          "name": "approval",
+          "type": "object"
+        },
+        "evidenceAnalyst.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "managerReviewOk.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "storeLoadFailed.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "ledgerAppend.output": {
+          "name": "output",
+          "type": "jsonSchema"
+        },
+        "start.output.counterparty": {
+          "name": "counterparty",
+          "type": "object"
+        },
+        "start.output.source": {
+          "name": "source",
+          "type": "string"
+        },
+        "storeValue": {
+          "name": "storeValue",
+          "type": "object"
+        },
+        "rank.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "managerReview.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "managerReview.status": {
+          "name": "status",
+          "type": "string"
+        },
+        "liabilityAssessor.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "negInit.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "store": {
+          "name": "store",
+          "type": "object"
+        },
+        "assessed": {
+          "name": "assessed",
+          "type": "array"
+        },
+        "stylePass.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "approvalCtx.output": {
+          "name": "output",
+          "type": "object"
+        },
+        "rank.error": {
+          "name": "error",
+          "type": "object"
+        },
+        "specialistReviewOk.output": {
+          "name": "output",
+          "type": "object"
+        }
+      }
+    }
+  },
+  "Instructions": "Debug completed with status: Completed"
+}

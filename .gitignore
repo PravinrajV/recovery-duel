@@ -13,3 +13,4 @@ __pycache__/
 *.pyc
 .flow-sdk/connectors/
 .flow-sdk/connectors-local/
+solution/RecoveryDuel/userProfile/

@@ -1,0 +1,12 @@
+{
+  "name": "rdstore",
+  "version": "1.0.2",
+  "type": "module",
+  "devDependencies": {
+    "@uipath/coded-functions-js-sdk": "^0.6.2",
+    "typescript": "^5.7.0"
+  },
+  "dependencies": {
+    "@uipath/uipath-typescript": "^1.8.3"
+  }
+}

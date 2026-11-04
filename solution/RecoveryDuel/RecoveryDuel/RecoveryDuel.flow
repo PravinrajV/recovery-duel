@@ -41,12 +41,266 @@
       "inputs": {}
     },
     {
+      "id": "fromBucket",
+      "type": "core.logic.decision",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 544,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "fromBucket",
+        "icon": "trending-up-down"
+      },
+      "model": {
+        "type": "bpmn:InclusiveGateway"
+      },
+      "inputs": {
+        "trueLabel": "Read claims + config from bucket",
+        "falseLabel": "Use trigger input",
+        "expression": "$vars.start.output.source === \"bucket\""
+      }
+    },
+    {
+      "id": "loadStore",
+      "type": "uipath.core.function.47e4e47a-863f-49ad-a307-c1a756e6b974",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 832,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "loadStore",
+        "icon": "function"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "source": {
+            "type": "literal",
+            "expression": "=this",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean"
+              },
+              "claimsJson": {
+                "type": "string"
+              },
+              "configJson": {
+                "type": "string"
+              },
+              "ledgerCount": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the node fails",
+          "source": {
+            "type": "literal",
+            "expression": "=Error",
+            "fieldType": "string"
+          },
+          "var": "error"
+        }
+      },
+      "inputs": {
+        "op": "load",
+        "errorHandlingEnabled": true
+      }
+    },
+    {
+      "id": "storeLoadFailed",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 1120,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "storeLoadFailed",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output"
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "inputs": {
+        "script": "return { source: \"input\", loaded: false, error: \"bucket load failed, using trigger input\" };"
+      }
+    },
+    {
+      "id": "parseStore",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 1408,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "parseStore",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output"
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "inputs": {
+        "script": "const c = JSON.parse($vars.loadStore.output.claimsJson || \"{}\"); const cfg = JSON.parse($vars.loadStore.output.configJson || \"{}\");\n          const ids = $vars.start.output.claimIds || [];\n          const all = Array.isArray(c) ? c : (c.claims || []);\n          const claims = ids.length ? all.filter(x => ids.indexOf(x.claim_id) >= 0) : all;\n          return { source: \"bucket\", loaded: true, claims, total_in_bucket: all.length, kill_switch: cfg.kill_switch || {}, guardrails: cfg.guardrails || {} };"
+      }
+    },
+    {
       "id": "intake",
       "type": "core.action.script",
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 544,
+          "x": 1696,
           "y": 144
         },
         "size": {
@@ -77,6 +331,12 @@
               "type": "array"
             },
             "stopped": {
+              "type": "boolean"
+            },
+            "claims": {
+              "type": "array"
+            },
+            "negotiation_paused": {
               "type": "boolean"
             }
           }
@@ -127,7 +387,7 @@
         }
       },
       "inputs": {
-        "script": "\n      const rows = $vars.start.output.claims || [];\n      if ($vars.start.output.killSwitch) return { items: [], stopped: true };\n      const items = rows.filter(c => c && c.claim_id).map(c => ({\n        ...c, paid_amount: Number(c.paid_amount), deductible: Number(c.deductible),\n        insured_fault_pct: Number(c.insured_fault_pct) }));\n      return { items, stopped: false };"
+        "script": "\n      const st = $vars.storeValue || {}; const ks = st.kill_switch || {};\n      const rows = st.loaded ? (st.claims || []) : ($vars.start.output.claims || []);\n      const paused = ks.paused_states || [];\n      if ($vars.start.output.killSwitch || ks.global) return { items: [], stopped: true, claims: [] };\n      const items = rows.filter(c => c && c.claim_id && paused.indexOf(c.state) < 0).map(c => ({\n        ...c, paid_amount: Number(c.paid_amount), deductible: Number(c.deductible),\n        insured_fault_pct: Number(c.insured_fault_pct) }));\n      return { items, stopped: false, claims: rows, negotiation_paused: !!ks.negotiation };"
       }
     },
     {
@@ -136,7 +396,7 @@
       "typeVersion": "2.4",
       "ui": {
         "position": {
-          "x": 832,
+          "x": 1984,
           "y": 144
         },
         "size": {
@@ -258,7 +518,7 @@
       "typeVersion": "2.3",
       "ui": {
         "position": {
-          "x": 1120,
+          "x": 2272,
           "y": 304
         },
         "size": {
@@ -794,7 +1054,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 1408,
+          "x": 2560,
           "y": 304
         },
         "size": {
@@ -882,7 +1142,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 1696,
+          "x": 2848,
           "y": 304
         },
         "size": {
@@ -970,7 +1230,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 1984,
+          "x": 3136,
           "y": 304
         },
         "size": {
@@ -1053,7 +1313,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 2272,
+          "x": 3424,
           "y": 144
         },
         "size": {
@@ -1143,7 +1403,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 2560,
+          "x": 3712,
           "y": 144
         },
         "size": {
@@ -1233,7 +1493,7 @@
         }
       },
       "inputs": {
-        "script": "const top = ($vars.rank.output.ranked || []).find(a => a.status === \"PURSUE\") || null;\n      const c = top ? ($vars.start.output.claims || []).find(x => x.claim_id === top.claim_id) || {} : {};\n      return { found: !!top, assessment: top || {}, claim: c, claimJson: JSON.stringify(c), assessmentJson: JSON.stringify(top || {}) };"
+        "script": "const top = ($vars.rank.output.ranked || []).find(a => a.status === \"PURSUE\") || null;\n      const c = top ? ($vars.intake.output.claims || []).find(x => x.claim_id === top.claim_id) || {} : {};\n      return { found: !!top, assessment: top || {}, claim: c, claimJson: JSON.stringify(c), assessmentJson: JSON.stringify(top || {}) };"
       }
     },
     {
@@ -1242,7 +1502,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 2848,
+          "x": 4000,
           "y": 144
         },
         "size": {
@@ -1265,12 +1525,271 @@
       }
     },
     {
+      "id": "noCaseLedger",
+      "type": "core.logic.decision",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 4288,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "noCaseLedger",
+        "icon": "trending-up-down"
+      },
+      "model": {
+        "type": "bpmn:InclusiveGateway"
+      },
+      "inputs": {
+        "trueLabel": "True",
+        "falseLabel": "False",
+        "expression": "($vars.storeValue || {}).loaded === true"
+      }
+    },
+    {
+      "id": "ledgerNoCase",
+      "type": "uipath.core.function.47e4e47a-863f-49ad-a307-c1a756e6b974",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 4576,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "ledgerNoCase",
+        "icon": "function"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "source": {
+            "type": "literal",
+            "expression": "=this",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean"
+              },
+              "claimsJson": {
+                "type": "string"
+              },
+              "configJson": {
+                "type": "string"
+              },
+              "ledgerCount": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the node fails",
+          "source": {
+            "type": "literal",
+            "expression": "=Error",
+            "fieldType": "string"
+          },
+          "var": "error"
+        }
+      },
+      "inputs": {
+        "op": "append",
+        "entryJson": {
+          "type": "jsExpression",
+          "expression": "JSON.stringify({ run_id: $vars.start.output.runId || (\"run-\" + new Date().toISOString()), claim_id: ($vars.pickTop.output.assessment || {}).claim_id || \"NONE\", status: ($vars.intake.output.stopped ? \"KILL_SWITCH\" : \"NO_CASE\"), amount: 0, tier: \"NONE\", approval: \"NOT_REQUIRED\", rounds: 0, demand: 0, floor: 0, source: ($vars.storeValue || {}).source || \"input\", simulated_counterparty: true, synthetic: true, at: new Date().toISOString() })",
+          "fieldType": "string"
+        },
+        "errorHandlingEnabled": true
+      }
+    },
+    {
+      "id": "ledgerNoCaseFailed",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 4864,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "ledgerNoCaseFailed",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output"
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "inputs": {
+        "script": "return { ok: false, ledgerCount: null };"
+      }
+    },
+    {
+      "id": "noCaseEnd",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 5152,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "noCaseEnd",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output"
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "inputs": {
+        "script": "const l = $vars.ledger || {}; return { ledger_ok: !!l.ok, ledger_count: l.ok ? l.ledgerCount : null };"
+      }
+    },
+    {
       "id": "end",
       "type": "core.control.end",
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 3136,
+          "x": 5440,
           "y": 144
         },
         "size": {
@@ -1338,6 +1857,26 @@
           },
           "var": "negotiation"
         },
+        "store": {
+          "type": "object",
+          "description": "",
+          "source": {
+            "type": "jsExpression",
+            "expression": "Object.assign({ source: ($vars.storeValue || {}).source || \"input\", ledger_appended: ($vars.storeValue || {}).loaded === true }, $vars.noCaseEnd.output)",
+            "fieldType": "object"
+          },
+          "var": "store"
+        },
+        "storeValue": {
+          "type": "object",
+          "description": "",
+          "source": {
+            "type": "jsExpression",
+            "expression": "$vars.storeValue",
+            "fieldType": "object"
+          },
+          "var": "storeValue"
+        },
         "assessed": {
           "type": "array",
           "description": "",
@@ -1367,6 +1906,16 @@
             "fieldType": "object"
           },
           "var": "approval"
+        },
+        "ledger": {
+          "type": "object",
+          "description": "",
+          "source": {
+            "type": "jsExpression",
+            "expression": "$vars.ledger",
+            "fieldType": "object"
+          },
+          "var": "ledger"
         }
       }
     },
@@ -1376,7 +1925,7 @@
       "typeVersion": "1.4",
       "ui": {
         "position": {
-          "x": 3424,
+          "x": 5728,
           "y": 144
         },
         "size": {
@@ -1508,7 +2057,7 @@
       "typeVersion": "1.4",
       "ui": {
         "position": {
-          "x": 3712,
+          "x": 6016,
           "y": 144
         },
         "size": {
@@ -1645,7 +2194,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 4000,
+          "x": 6304,
           "y": 144
         },
         "size": {
@@ -1732,7 +2281,7 @@
       "typeVersion": "1.0",
       "ui": {
         "position": {
-          "x": 4288,
+          "x": 6592,
           "y": 144
         },
         "size": {
@@ -1806,7 +2355,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 4576,
+          "x": 6880,
           "y": 304
         },
         "size": {
@@ -1912,7 +2461,7 @@
       "typeVersion": "1.4",
       "ui": {
         "position": {
-          "x": 4864,
+          "x": 7168,
           "y": 304
         },
         "size": {
@@ -2053,7 +2602,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 5152,
+          "x": 7456,
           "y": 304
         },
         "size": {
@@ -2141,7 +2690,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 5440,
+          "x": 7744,
           "y": 304
         },
         "size": {
@@ -2170,7 +2719,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 5728,
+          "x": 8032,
           "y": 304
         },
         "size": {
@@ -2273,7 +2822,7 @@
       "typeVersion": "1.4",
       "ui": {
         "position": {
-          "x": 6016,
+          "x": 8320,
           "y": 304
         },
         "size": {
@@ -2412,7 +2961,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 6304,
+          "x": 8608,
           "y": 304
         },
         "size": {
@@ -2500,7 +3049,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 6592,
+          "x": 8896,
           "y": 144
         },
         "size": {
@@ -2599,7 +3148,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 6880,
+          "x": 9184,
           "y": 144
         },
         "size": {
@@ -2642,7 +3191,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 7168,
+          "x": 9472,
           "y": 144
         },
         "size": {
@@ -2735,7 +3284,7 @@
       "typeVersion": "1.0",
       "ui": {
         "position": {
-          "x": 7456,
+          "x": 9760,
           "y": 144
         },
         "size": {
@@ -2871,7 +3420,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 7744,
+          "x": 10048,
           "y": 144
         },
         "size": {
@@ -2964,7 +3513,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 8032,
+          "x": 10336,
           "y": 144
         },
         "size": {
@@ -3057,7 +3606,7 @@
       "typeVersion": "1.0",
       "ui": {
         "position": {
-          "x": 8320,
+          "x": 10624,
           "y": 144
         },
         "size": {
@@ -3193,7 +3742,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 8608,
+          "x": 10912,
           "y": 144
         },
         "size": {
@@ -3286,7 +3835,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 8896,
+          "x": 11200,
           "y": 144
         },
         "size": {
@@ -3379,7 +3928,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 9184,
+          "x": 11488,
           "y": 144
         },
         "size": {
@@ -3472,7 +4021,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 9472,
+          "x": 11776,
           "y": 144
         },
         "size": {
@@ -3560,12 +4109,271 @@
       }
     },
     {
+      "id": "mainLedger",
+      "type": "core.logic.decision",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 12064,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "mainLedger",
+        "icon": "trending-up-down"
+      },
+      "model": {
+        "type": "bpmn:InclusiveGateway"
+      },
+      "inputs": {
+        "trueLabel": "True",
+        "falseLabel": "False",
+        "expression": "($vars.storeValue || {}).loaded === true"
+      }
+    },
+    {
+      "id": "ledgerAppend",
+      "type": "uipath.core.function.47e4e47a-863f-49ad-a307-c1a756e6b974",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 12352,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "ledgerAppend",
+        "icon": "function"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "source": {
+            "type": "literal",
+            "expression": "=this",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean"
+              },
+              "claimsJson": {
+                "type": "string"
+              },
+              "configJson": {
+                "type": "string"
+              },
+              "ledgerCount": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the node fails",
+          "source": {
+            "type": "literal",
+            "expression": "=Error",
+            "fieldType": "string"
+          },
+          "var": "error"
+        }
+      },
+      "inputs": {
+        "op": "append",
+        "entryJson": {
+          "type": "jsExpression",
+          "expression": "JSON.stringify({ run_id: $vars.start.output.runId || (\"run-\" + new Date().toISOString()), claim_id: $vars.neg.claim_id || \"NONE\", status: $vars.neg.status, amount: Number($vars.neg.settled_amount) || 0, tier: $vars.neg.tier || \"NONE\", approval: ($vars.approval || {}).decision || \"NONE\", rounds: Number($vars.neg.round) || 0, demand: Number($vars.neg.demand) || 0, floor: Number($vars.neg.floor) || 0, source: ($vars.storeValue || {}).source || \"input\", simulated_counterparty: true, synthetic: true, at: new Date().toISOString() })",
+          "fieldType": "string"
+        },
+        "errorHandlingEnabled": true
+      }
+    },
+    {
+      "id": "ledgerAppendFailed",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 12640,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "ledgerAppendFailed",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output"
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "inputs": {
+        "script": "return { ok: false, ledgerCount: null };"
+      }
+    },
+    {
+      "id": "storeOut",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 12928,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "storeOut",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output"
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "inputs": {
+        "script": "const st = $vars.storeValue || {}; const l = ($vars.ledger && $vars.ledger.ok) ? $vars.ledger : null; return { source: st.source || \"input\", loaded: !!st.loaded, total_in_bucket: st.total_in_bucket || null, ledger_appended: !!(l && l.ok), ledger_count: l ? l.ledgerCount : null };"
+      }
+    },
+    {
       "id": "end2",
       "type": "core.control.end",
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 9760,
+          "x": 13216,
           "y": 144
         },
         "size": {
@@ -3633,6 +4441,26 @@
           },
           "var": "negotiation"
         },
+        "store": {
+          "type": "object",
+          "description": "",
+          "source": {
+            "type": "jsExpression",
+            "expression": "$vars.storeOut.output",
+            "fieldType": "object"
+          },
+          "var": "store"
+        },
+        "storeValue": {
+          "type": "object",
+          "description": "",
+          "source": {
+            "type": "jsExpression",
+            "expression": "$vars.storeValue",
+            "fieldType": "object"
+          },
+          "var": "storeValue"
+        },
         "assessed": {
           "type": "array",
           "description": "",
@@ -3662,6 +4490,16 @@
             "fieldType": "object"
           },
           "var": "approval"
+        },
+        "ledger": {
+          "type": "object",
+          "description": "",
+          "source": {
+            "type": "jsExpression",
+            "expression": "$vars.ledger",
+            "fieldType": "object"
+          },
+          "var": "ledger"
         }
       }
     }
@@ -3671,294 +4509,420 @@
       "id": "edge_0",
       "sourceNodeId": "start",
       "sourcePort": "output",
-      "targetNodeId": "intake",
+      "targetNodeId": "fromBucket",
       "targetPort": "input"
     },
     {
       "id": "edge_1",
+      "sourceNodeId": "fromBucket",
+      "sourcePort": "true",
+      "targetNodeId": "loadStore",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_2",
+      "sourceNodeId": "loadStore",
+      "sourcePort": "error",
+      "targetNodeId": "storeLoadFailed",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_3",
+      "sourceNodeId": "loadStore",
+      "sourcePort": "output",
+      "targetNodeId": "parseStore",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_4",
+      "sourceNodeId": "parseStore",
+      "sourcePort": "success",
+      "targetNodeId": "intake",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_5",
+      "sourceNodeId": "fromBucket",
+      "sourcePort": "false",
+      "targetNodeId": "intake",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_6",
       "sourceNodeId": "intake",
       "sourcePort": "success",
       "targetNodeId": "eachClaim",
       "targetPort": "input"
     },
     {
-      "id": "edge_2",
+      "id": "edge_7",
       "sourceNodeId": "eachClaim",
       "sourcePort": "start",
       "targetNodeId": "getRecalls",
       "targetPort": "input"
     },
     {
-      "id": "edge_3",
+      "id": "edge_8",
       "sourceNodeId": "getRecalls",
       "sourcePort": "error",
       "targetNodeId": "markNeedsData",
       "targetPort": "input"
     },
     {
-      "id": "edge_4",
+      "id": "edge_9",
       "sourceNodeId": "getRecalls",
       "sourcePort": "default",
       "targetNodeId": "assess",
       "targetPort": "input"
     },
     {
-      "id": "edge_5",
+      "id": "edge_10",
       "sourceNodeId": "assess",
       "sourcePort": "success",
       "targetNodeId": "nextClaim",
       "targetPort": "input"
     },
     {
-      "id": "edge_6",
+      "id": "edge_11",
       "sourceNodeId": "nextClaim",
       "sourcePort": "success",
       "targetNodeId": "eachClaim",
       "targetPort": "continue"
     },
     {
-      "id": "edge_7",
+      "id": "edge_12",
       "sourceNodeId": "eachClaim",
       "sourcePort": "success",
       "targetNodeId": "rank",
       "targetPort": "input"
     },
     {
-      "id": "edge_8",
+      "id": "edge_13",
       "sourceNodeId": "rank",
       "sourcePort": "success",
       "targetNodeId": "pickTop",
       "targetPort": "input"
     },
     {
-      "id": "edge_9",
+      "id": "edge_14",
       "sourceNodeId": "pickTop",
       "sourcePort": "success",
       "targetNodeId": "noCase",
       "targetPort": "input"
     },
     {
-      "id": "edge_10",
+      "id": "edge_15",
       "sourceNodeId": "noCase",
       "sourcePort": "true",
+      "targetNodeId": "noCaseLedger",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_16",
+      "sourceNodeId": "noCaseLedger",
+      "sourcePort": "true",
+      "targetNodeId": "ledgerNoCase",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_17",
+      "sourceNodeId": "ledgerNoCase",
+      "sourcePort": "error",
+      "targetNodeId": "ledgerNoCaseFailed",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_18",
+      "sourceNodeId": "ledgerNoCase",
+      "sourcePort": "output",
+      "targetNodeId": "noCaseEnd",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_19",
+      "sourceNodeId": "noCaseLedger",
+      "sourcePort": "false",
+      "targetNodeId": "noCaseEnd",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_20",
+      "sourceNodeId": "noCaseEnd",
+      "sourcePort": "success",
       "targetNodeId": "end",
       "targetPort": "input"
     },
     {
-      "id": "edge_11",
+      "id": "edge_21",
       "sourceNodeId": "noCase",
       "sourcePort": "false",
       "targetNodeId": "evidenceAnalyst",
       "targetPort": "input"
     },
     {
-      "id": "edge_12",
+      "id": "edge_22",
       "sourceNodeId": "evidenceAnalyst",
       "sourcePort": "success",
       "targetNodeId": "liabilityAssessor",
       "targetPort": "input"
     },
     {
-      "id": "edge_13",
+      "id": "edge_23",
       "sourceNodeId": "liabilityAssessor",
       "sourcePort": "success",
       "targetNodeId": "negInit",
       "targetPort": "input"
     },
     {
-      "id": "edge_14",
+      "id": "edge_24",
       "sourceNodeId": "negInit",
       "sourcePort": "success",
       "targetNodeId": "duel",
       "targetPort": "input"
     },
     {
-      "id": "edge_15",
+      "id": "edge_25",
       "sourceNodeId": "duel",
       "sourcePort": "start",
       "targetNodeId": "roundCtx",
       "targetPort": "input"
     },
     {
-      "id": "edge_16",
+      "id": "edge_26",
       "sourceNodeId": "roundCtx",
       "sourcePort": "success",
       "targetNodeId": "carrierAgent",
       "targetPort": "input"
     },
     {
-      "id": "edge_17",
+      "id": "edge_27",
       "sourceNodeId": "carrierAgent",
       "sourcePort": "success",
       "targetNodeId": "judgeOffer",
       "targetPort": "input"
     },
     {
-      "id": "edge_18",
+      "id": "edge_28",
       "sourceNodeId": "judgeOffer",
       "sourcePort": "success",
       "targetNodeId": "closed",
       "targetPort": "input"
     },
     {
-      "id": "edge_19",
+      "id": "edge_29",
       "sourceNodeId": "closed",
       "sourcePort": "true",
       "targetNodeId": "duel",
       "targetPort": "break"
     },
     {
-      "id": "edge_20",
+      "id": "edge_30",
       "sourceNodeId": "closed",
       "sourcePort": "false",
       "targetNodeId": "negCtx",
       "targetPort": "input"
     },
     {
-      "id": "edge_21",
+      "id": "edge_31",
       "sourceNodeId": "negCtx",
       "sourcePort": "success",
       "targetNodeId": "negotiator",
       "targetPort": "input"
     },
     {
-      "id": "edge_22",
+      "id": "edge_32",
       "sourceNodeId": "negotiator",
       "sourcePort": "success",
       "targetNodeId": "guardCounter",
       "targetPort": "input"
     },
     {
-      "id": "edge_23",
+      "id": "edge_33",
       "sourceNodeId": "guardCounter",
       "sourcePort": "success",
       "targetNodeId": "duel",
       "targetPort": "continue"
     },
     {
-      "id": "edge_24",
+      "id": "edge_34",
       "sourceNodeId": "duel",
       "sourcePort": "success",
       "targetNodeId": "approvalCtx",
       "targetPort": "input"
     },
     {
-      "id": "edge_25",
+      "id": "edge_35",
       "sourceNodeId": "approvalCtx",
       "sourcePort": "success",
       "targetNodeId": "approvalTier",
       "targetPort": "input"
     },
     {
-      "id": "edge_26",
+      "id": "edge_36",
       "sourceNodeId": "approvalTier",
       "sourcePort": "case-case_1",
       "targetNodeId": "autoApprove",
       "targetPort": "input"
     },
     {
-      "id": "edge_27",
+      "id": "edge_37",
       "sourceNodeId": "approvalTier",
       "sourcePort": "case-case_2",
       "targetNodeId": "specialistReview",
       "targetPort": "input"
     },
     {
-      "id": "edge_28",
+      "id": "edge_38",
       "sourceNodeId": "specialistReview",
       "sourcePort": "outcome-approve",
       "targetNodeId": "specialistReviewOk",
       "targetPort": "input"
     },
     {
-      "id": "edge_29",
+      "id": "edge_39",
       "sourceNodeId": "specialistReview",
       "sourcePort": "outcome-reject",
       "targetNodeId": "specialistReviewNo",
       "targetPort": "input"
     },
     {
-      "id": "edge_30",
+      "id": "edge_40",
       "sourceNodeId": "approvalTier",
       "sourcePort": "case-case_3",
       "targetNodeId": "managerReview",
       "targetPort": "input"
     },
     {
-      "id": "edge_31",
+      "id": "edge_41",
       "sourceNodeId": "managerReview",
       "sourcePort": "outcome-approve",
       "targetNodeId": "managerReviewOk",
       "targetPort": "input"
     },
     {
-      "id": "edge_32",
+      "id": "edge_42",
       "sourceNodeId": "managerReview",
       "sourcePort": "outcome-reject",
       "targetNodeId": "managerReviewNo",
       "targetPort": "input"
     },
     {
-      "id": "edge_33",
+      "id": "edge_43",
       "sourceNodeId": "approvalTier",
       "sourcePort": "default",
       "targetNodeId": "noApproval",
       "targetPort": "input"
     },
     {
-      "id": "edge_34",
+      "id": "edge_44",
       "sourceNodeId": "autoApprove",
       "sourcePort": "success",
       "targetNodeId": "stylePass",
       "targetPort": "input"
     },
     {
-      "id": "edge_35",
+      "id": "edge_45",
       "sourceNodeId": "specialistReviewOk",
       "sourcePort": "success",
       "targetNodeId": "stylePass",
       "targetPort": "input"
     },
     {
-      "id": "edge_36",
+      "id": "edge_46",
       "sourceNodeId": "specialistReviewNo",
       "sourcePort": "success",
       "targetNodeId": "stylePass",
       "targetPort": "input"
     },
     {
-      "id": "edge_37",
+      "id": "edge_47",
       "sourceNodeId": "managerReviewOk",
       "sourcePort": "success",
       "targetNodeId": "stylePass",
       "targetPort": "input"
     },
     {
-      "id": "edge_38",
+      "id": "edge_48",
       "sourceNodeId": "managerReviewNo",
       "sourcePort": "success",
       "targetNodeId": "stylePass",
       "targetPort": "input"
     },
     {
-      "id": "edge_39",
+      "id": "edge_49",
       "sourceNodeId": "noApproval",
       "sourcePort": "success",
       "targetNodeId": "stylePass",
       "targetPort": "input"
     },
     {
-      "id": "edge_40",
+      "id": "edge_50",
       "sourceNodeId": "stylePass",
+      "sourcePort": "success",
+      "targetNodeId": "mainLedger",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_51",
+      "sourceNodeId": "mainLedger",
+      "sourcePort": "true",
+      "targetNodeId": "ledgerAppend",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_52",
+      "sourceNodeId": "ledgerAppend",
+      "sourcePort": "error",
+      "targetNodeId": "ledgerAppendFailed",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_53",
+      "sourceNodeId": "ledgerAppend",
+      "sourcePort": "output",
+      "targetNodeId": "storeOut",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_54",
+      "sourceNodeId": "mainLedger",
+      "sourcePort": "false",
+      "targetNodeId": "storeOut",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_55",
+      "sourceNodeId": "storeOut",
       "sourcePort": "success",
       "targetNodeId": "end2",
       "targetPort": "input"
     },
     {
-      "id": "edge_41",
+      "id": "edge_56",
+      "sourceNodeId": "storeLoadFailed",
+      "sourcePort": "success",
+      "targetNodeId": "intake",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_57",
       "sourceNodeId": "markNeedsData",
       "sourcePort": "success",
       "targetNodeId": "nextClaim",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_58",
+      "sourceNodeId": "ledgerNoCaseFailed",
+      "sourcePort": "success",
+      "targetNodeId": "noCaseEnd",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_59",
+      "sourceNodeId": "ledgerAppendFailed",
+      "sourcePort": "success",
+      "targetNodeId": "storeOut",
       "targetPort": "input"
     }
   ],
@@ -4020,6 +4984,256 @@
             }
           ]
         }
+      }
+    },
+    {
+      "nodeType": "core.logic.decision",
+      "version": "1.0.0",
+      "category": "control-flow",
+      "tags": [
+        "control-flow",
+        "if",
+        "loop",
+        "switch"
+      ],
+      "sortOrder": 20,
+      "display": {
+        "label": "Decision",
+        "icon": "trending-up-down",
+        "iconBackground": "linear-gradient(225deg, #FAFAFB 0%, #ECEDEF 100%)",
+        "iconBackgroundDark": "linear-gradient(225deg, #526069 0%, rgba(50, 60, 66, 0.6) 100%)"
+      },
+      "handleConfiguration": [
+        {
+          "position": "left",
+          "handles": [
+            {
+              "id": "input",
+              "type": "target",
+              "handleType": "input"
+            }
+          ],
+          "visible": true
+        },
+        {
+          "position": "right",
+          "handles": [
+            {
+              "id": "true",
+              "type": "source",
+              "handleType": "output",
+              "label": "{inputs.trueLabel}",
+              "constraints": {
+                "minConnections": 1
+              }
+            },
+            {
+              "id": "false",
+              "type": "source",
+              "handleType": "output",
+              "label": "{inputs.falseLabel}",
+              "constraints": {
+                "minConnections": 1
+              }
+            }
+          ],
+          "visible": true
+        }
+      ],
+      "model": {
+        "type": "bpmn:InclusiveGateway"
+      },
+      "inputDefinition": {
+        "type": "object",
+        "properties": {
+          "expression": {
+            "type": "string",
+            "minLength": 1,
+            "errorMessage": "A condition expression is required"
+          },
+          "trueLabel": {
+            "type": "string"
+          },
+          "falseLabel": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "expression"
+        ]
+      },
+      "inputDefaults": {
+        "trueLabel": "True",
+        "falseLabel": "False"
+      },
+      "form": {
+        "id": "decision-properties",
+        "title": "Decision configuration",
+        "sections": [
+          {
+            "id": "condition",
+            "title": "Condition",
+            "fields": [
+              {
+                "name": "inputs.expression",
+                "type": "custom",
+                "component": "script-editor",
+                "componentProps": {
+                  "language": "javascript",
+                  "returnType": "boolean",
+                  "minHeight": 100,
+                  "placeholder": "e.g., $vars.data.status === \"approved\" && $vars.data.amount > 1000"
+                },
+                "label": "Expression",
+                "description": "JavaScript expression that evaluates to true or false"
+              },
+              {
+                "name": "inputs.trueLabel",
+                "type": "text",
+                "label": "True branch label",
+                "description": "Label shown when condition is true"
+              },
+              {
+                "name": "inputs.falseLabel",
+                "type": "text",
+                "label": "False branch label",
+                "description": "Label shown when condition is false"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeType": "uipath.core.function.47e4e47a-863f-49ad-a307-c1a756e6b974",
+      "version": "1.0.0",
+      "category": "function",
+      "description": "(Default)",
+      "tags": [],
+      "sortOrder": 650,
+      "supportsErrorHandling": true,
+      "display": {
+        "label": "rdstore",
+        "icon": "function"
+      },
+      "handleConfiguration": [
+        {
+          "position": "left",
+          "handles": [
+            {
+              "id": "input",
+              "type": "target",
+              "handleType": "input"
+            }
+          ]
+        },
+        {
+          "position": "right",
+          "handles": [
+            {
+              "id": "output",
+              "type": "source",
+              "handleType": "output"
+            },
+            {
+              "id": "error",
+              "label": "Error",
+              "type": "source",
+              "handleType": "output",
+              "visible": "{inputs.errorHandlingEnabled}",
+              "constraints": {
+                "maxConnections": 1
+              }
+            }
+          ]
+        }
+      ],
+      "model": {
+        "type": "bpmn:ServiceTask",
+        "serviceType": "Orchestrator.ExecuteFunctionAsync",
+        "version": "v2",
+        "section": "Published",
+        "listingVersion": "1.0.0",
+        "bindings": {
+          "resource": "process",
+          "resourceSubType": "Function",
+          "resourceKey": "Default.rdstore",
+          "orchestratorType": "function",
+          "values": [
+            {
+              "name": "name",
+              "propertyAttribute": "name",
+              "default": "rdstore"
+            },
+            {
+              "name": "folderPath",
+              "propertyAttribute": "folderPath",
+              "default": "Default"
+            }
+          ]
+        },
+        "context": [
+          {
+            "name": "name",
+            "type": "string",
+            "value": "<bindings.name>"
+          },
+          {
+            "name": "folderPath",
+            "type": "string",
+            "value": "<bindings.folderPath>"
+          },
+          {
+            "name": "_label",
+            "type": "string",
+            "value": "rdstore"
+          }
+        ]
+      },
+      "inputDefinition": {
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string"
+          },
+          "entryJson": {
+            "type": "string"
+          }
+        }
+      },
+      "inputDefaults": {},
+      "outputDefinition": {
+        "output": {
+          "type": "object",
+          "source": "=this",
+          "var": "output",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean"
+              },
+              "claimsJson": {
+                "type": "string"
+              },
+              "configJson": {
+                "type": "string"
+              },
+              "ledgerCount": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the node fails",
+          "source": "=Error",
+          "var": "error"
+        }
+      },
+      "debug": {
+        "runtime": "bpmnEngine"
       }
     },
     {
@@ -5067,124 +6281,6 @@
       }
     },
     {
-      "nodeType": "core.logic.decision",
-      "version": "1.0.0",
-      "category": "control-flow",
-      "tags": [
-        "control-flow",
-        "if",
-        "loop",
-        "switch"
-      ],
-      "sortOrder": 20,
-      "display": {
-        "label": "Decision",
-        "icon": "trending-up-down",
-        "iconBackground": "linear-gradient(225deg, #FAFAFB 0%, #ECEDEF 100%)",
-        "iconBackgroundDark": "linear-gradient(225deg, #526069 0%, rgba(50, 60, 66, 0.6) 100%)"
-      },
-      "handleConfiguration": [
-        {
-          "position": "left",
-          "handles": [
-            {
-              "id": "input",
-              "type": "target",
-              "handleType": "input"
-            }
-          ],
-          "visible": true
-        },
-        {
-          "position": "right",
-          "handles": [
-            {
-              "id": "true",
-              "type": "source",
-              "handleType": "output",
-              "label": "{inputs.trueLabel}",
-              "constraints": {
-                "minConnections": 1
-              }
-            },
-            {
-              "id": "false",
-              "type": "source",
-              "handleType": "output",
-              "label": "{inputs.falseLabel}",
-              "constraints": {
-                "minConnections": 1
-              }
-            }
-          ],
-          "visible": true
-        }
-      ],
-      "model": {
-        "type": "bpmn:InclusiveGateway"
-      },
-      "inputDefinition": {
-        "type": "object",
-        "properties": {
-          "expression": {
-            "type": "string",
-            "minLength": 1,
-            "errorMessage": "A condition expression is required"
-          },
-          "trueLabel": {
-            "type": "string"
-          },
-          "falseLabel": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "expression"
-        ]
-      },
-      "inputDefaults": {
-        "trueLabel": "True",
-        "falseLabel": "False"
-      },
-      "form": {
-        "id": "decision-properties",
-        "title": "Decision configuration",
-        "sections": [
-          {
-            "id": "condition",
-            "title": "Condition",
-            "fields": [
-              {
-                "name": "inputs.expression",
-                "type": "custom",
-                "component": "script-editor",
-                "componentProps": {
-                  "language": "javascript",
-                  "returnType": "boolean",
-                  "minHeight": 100,
-                  "placeholder": "e.g., $vars.data.status === \"approved\" && $vars.data.amount > 1000"
-                },
-                "label": "Expression",
-                "description": "JavaScript expression that evaluates to true or false"
-              },
-              {
-                "name": "inputs.trueLabel",
-                "type": "text",
-                "label": "True branch label",
-                "description": "Label shown when condition is true"
-              },
-              {
-                "name": "inputs.falseLabel",
-                "type": "text",
-                "label": "False branch label",
-                "description": "Label shown when condition is false"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
       "nodeType": "core.control.end",
       "version": "1.0.0",
       "category": "control-flow",
@@ -6072,6 +7168,27 @@
         "triggerNodeId": "start"
       },
       {
+        "id": "source",
+        "name": "source",
+        "direction": "in",
+        "type": "string",
+        "triggerNodeId": "start"
+      },
+      {
+        "id": "claimIds",
+        "name": "claimIds",
+        "direction": "in",
+        "type": "array",
+        "triggerNodeId": "start"
+      },
+      {
+        "id": "runId",
+        "name": "runId",
+        "direction": "in",
+        "type": "string",
+        "triggerNodeId": "start"
+      },
+      {
         "id": "ranked",
         "name": "ranked",
         "direction": "out",
@@ -6102,6 +7219,26 @@
         "type": "object"
       },
       {
+        "id": "store",
+        "name": "store",
+        "direction": "out",
+        "type": "object",
+        "defaultValue": {
+          "source": "input",
+          "loaded": false
+        }
+      },
+      {
+        "id": "storeValue",
+        "name": "storeValue",
+        "direction": "inout",
+        "type": "object",
+        "defaultValue": {
+          "source": "input",
+          "loaded": false
+        }
+      },
+      {
         "id": "assessed",
         "name": "assessed",
         "direction": "inout",
@@ -6121,6 +7258,16 @@
         "direction": "inout",
         "type": "object",
         "defaultValue": {}
+      },
+      {
+        "id": "ledger",
+        "name": "ledger",
+        "direction": "inout",
+        "type": "object",
+        "defaultValue": {
+          "ok": false,
+          "ledgerCount": null
+        }
       }
     ],
     "nodes": [
@@ -6131,6 +7278,144 @@
         "binding": {
           "nodeId": "start",
           "outputId": "output"
+        }
+      },
+      {
+        "id": "loadStore.output",
+        "type": "object",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "ok": {
+              "type": "boolean"
+            },
+            "claimsJson": {
+              "type": "string"
+            },
+            "configJson": {
+              "type": "string"
+            },
+            "ledgerCount": {
+              "type": "number"
+            }
+          }
+        },
+        "binding": {
+          "nodeId": "loadStore",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "loadStore.error",
+        "type": "object",
+        "description": "Error information if the node fails",
+        "binding": {
+          "nodeId": "loadStore",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "storeLoadFailed.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "storeLoadFailed",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "storeLoadFailed.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "storeLoadFailed",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "parseStore.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "parseStore",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "parseStore.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "parseStore",
+          "outputId": "error"
         }
       },
       {
@@ -6577,6 +7862,144 @@
         }
       },
       {
+        "id": "ledgerNoCase.output",
+        "type": "object",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "ok": {
+              "type": "boolean"
+            },
+            "claimsJson": {
+              "type": "string"
+            },
+            "configJson": {
+              "type": "string"
+            },
+            "ledgerCount": {
+              "type": "number"
+            }
+          }
+        },
+        "binding": {
+          "nodeId": "ledgerNoCase",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "ledgerNoCase.error",
+        "type": "object",
+        "description": "Error information if the node fails",
+        "binding": {
+          "nodeId": "ledgerNoCase",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "ledgerNoCaseFailed.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "ledgerNoCaseFailed",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "ledgerNoCaseFailed.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "ledgerNoCaseFailed",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "noCaseEnd.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "noCaseEnd",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "noCaseEnd.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "noCaseEnd",
+          "outputId": "error"
+        }
+      },
+      {
         "id": "end.ranked",
         "type": "array",
         "description": "",
@@ -6622,6 +8045,24 @@
         }
       },
       {
+        "id": "end.store",
+        "type": "object",
+        "description": "",
+        "binding": {
+          "nodeId": "end",
+          "outputId": "store"
+        }
+      },
+      {
+        "id": "end.storeValue",
+        "type": "object",
+        "description": "",
+        "binding": {
+          "nodeId": "end",
+          "outputId": "storeValue"
+        }
+      },
+      {
         "id": "end.assessed",
         "type": "array",
         "description": "",
@@ -6646,6 +8087,15 @@
         "binding": {
           "nodeId": "end",
           "outputId": "approval"
+        }
+      },
+      {
+        "id": "end.ledger",
+        "type": "object",
+        "description": "",
+        "binding": {
+          "nodeId": "end",
+          "outputId": "ledger"
         }
       },
       {
@@ -7671,6 +9121,144 @@
         }
       },
       {
+        "id": "ledgerAppend.output",
+        "type": "object",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "ok": {
+              "type": "boolean"
+            },
+            "claimsJson": {
+              "type": "string"
+            },
+            "configJson": {
+              "type": "string"
+            },
+            "ledgerCount": {
+              "type": "number"
+            }
+          }
+        },
+        "binding": {
+          "nodeId": "ledgerAppend",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "ledgerAppend.error",
+        "type": "object",
+        "description": "Error information if the node fails",
+        "binding": {
+          "nodeId": "ledgerAppend",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "ledgerAppendFailed.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "ledgerAppendFailed",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "ledgerAppendFailed.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "ledgerAppendFailed",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "storeOut.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "storeOut",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "storeOut.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "storeOut",
+          "outputId": "error"
+        }
+      },
+      {
         "id": "end2.ranked",
         "type": "array",
         "description": "",
@@ -7716,6 +9304,24 @@
         }
       },
       {
+        "id": "end2.store",
+        "type": "object",
+        "description": "",
+        "binding": {
+          "nodeId": "end2",
+          "outputId": "store"
+        }
+      },
+      {
+        "id": "end2.storeValue",
+        "type": "object",
+        "description": "",
+        "binding": {
+          "nodeId": "end2",
+          "outputId": "storeValue"
+        }
+      },
+      {
         "id": "end2.assessed",
         "type": "array",
         "description": "",
@@ -7741,9 +9347,38 @@
           "nodeId": "end2",
           "outputId": "approval"
         }
+      },
+      {
+        "id": "end2.ledger",
+        "type": "object",
+        "description": "",
+        "binding": {
+          "nodeId": "end2",
+          "outputId": "ledger"
+        }
       }
     ],
     "variableUpdates": {
+      "storeLoadFailed": [
+        {
+          "variableId": "storeValue",
+          "expression": {
+            "type": "jsExpression",
+            "expression": "$vars.storeLoadFailed.output",
+            "fieldType": "object"
+          }
+        }
+      ],
+      "parseStore": [
+        {
+          "variableId": "storeValue",
+          "expression": {
+            "type": "jsExpression",
+            "expression": "$vars.parseStore.output",
+            "fieldType": "object"
+          }
+        }
+      ],
       "markNeedsData": [
         {
           "variableId": "assessed",
@@ -7761,6 +9396,26 @@
             "type": "jsExpression",
             "expression": "$vars.assess.output.list",
             "fieldType": "array"
+          }
+        }
+      ],
+      "ledgerNoCase": [
+        {
+          "variableId": "ledger",
+          "expression": {
+            "type": "jsExpression",
+            "expression": "$vars.ledgerNoCase.output",
+            "fieldType": "object"
+          }
+        }
+      ],
+      "ledgerNoCaseFailed": [
+        {
+          "variableId": "ledger",
+          "expression": {
+            "type": "jsExpression",
+            "expression": "$vars.ledgerNoCaseFailed.output",
+            "fieldType": "object"
           }
         }
       ],
@@ -7863,11 +9518,51 @@
             "fieldType": "object"
           }
         }
+      ],
+      "ledgerAppend": [
+        {
+          "variableId": "ledger",
+          "expression": {
+            "type": "jsExpression",
+            "expression": "$vars.ledgerAppend.output",
+            "fieldType": "object"
+          }
+        }
+      ],
+      "ledgerAppendFailed": [
+        {
+          "variableId": "ledger",
+          "expression": {
+            "type": "jsExpression",
+            "expression": "$vars.ledgerAppendFailed.output",
+            "fieldType": "object"
+          }
+        }
       ]
     }
   },
   "subflows": {},
   "bindings": [
+    {
+      "id": "bRdstoreName",
+      "name": "name",
+      "type": "string",
+      "resource": "process",
+      "resourceKey": "Default.rdstore",
+      "default": "rdstore",
+      "propertyAttribute": "name",
+      "resourceSubType": "Function"
+    },
+    {
+      "id": "bRdstoreFolderPath",
+      "name": "folderPath",
+      "type": "string",
+      "resource": "process",
+      "resourceKey": "Default.rdstore",
+      "default": "Default",
+      "propertyAttribute": "folderPath",
+      "resourceSubType": "Function"
+    },
     {
       "id": "bUipathuipathhttpConnection",
       "name": "uipath-uipath-http connection",
