@@ -1,0 +1,174 @@
+{
+ "seed": 20261104,
+ "as_of": "2026-11-04",
+ "scenarios": [
+  {
+   "id": "S01",
+   "claim_id": "CLM-00001",
+   "description": "Clear recall match, cooperative carrier, settles round 2",
+   "counterparty_persona": "cooperative",
+   "reservation_price": 9000,
+   "simulated": true
+  },
+  {
+   "id": "S02",
+   "claim_id": "CLM-00002",
+   "description": "Stubborn carrier, settles at floor round 5",
+   "counterparty_persona": "stubborn",
+   "reservation_price": 7000,
+   "simulated": true
+  },
+  {
+   "id": "S03",
+   "claim_id": "CLM-00003",
+   "description": "Lowball below floor every round -> impasse -> arbitration packet",
+   "counterparty_persona": "lowball",
+   "reservation_price": 1500,
+   "simulated": true
+  },
+  {
+   "id": "S04",
+   "claim_id": "CLM-00004",
+   "description": "Counter above T1 authority -> specialist escalation",
+   "counterparty_persona": "cooperative",
+   "reservation_price": 14000,
+   "simulated": true
+  },
+  {
+   "id": "S05",
+   "claim_id": "CLM-00005",
+   "description": "Above T2 -> manager, timeout -> auto-escalate",
+   "counterparty_persona": "stubborn",
+   "reservation_price": 30000,
+   "simulated": true
+  },
+  {
+   "id": "S06",
+   "claim_id": "CLM-00006",
+   "description": "SOL expired -> closed not recoverable",
+   "counterparty_persona": null,
+   "reservation_price": null,
+   "simulated": true
+  },
+  {
+   "id": "S07",
+   "claim_id": "CLM-00007",
+   "description": "SOL < 30 days -> top of queue",
+   "counterparty_persona": "cooperative",
+   "reservation_price": 8000,
+   "simulated": true
+  },
+  {
+   "id": "S08",
+   "claim_id": "CLM-00008",
+   "description": "Recall component unrelated to loss cause -> no case",
+   "counterparty_persona": null,
+   "reservation_price": null,
+   "simulated": true
+  },
+  {
+   "id": "S09",
+   "claim_id": "CLM-00009",
+   "description": "Contributory-negligence state, insured 10% at fault -> barred",
+   "counterparty_persona": null,
+   "reservation_price": null,
+   "simulated": true
+  },
+  {
+   "id": "S10",
+   "claim_id": "CLM-00010",
+   "description": "Modified comparative: 51% insured fault -> barred",
+   "counterparty_persona": null,
+   "reservation_price": null,
+   "simulated": true
+  },
+  {
+   "id": "S10",
+   "claim_id": "CLM-00011",
+   "description": "Modified comparative: 40% insured fault -> reduced demand",
+   "counterparty_persona": "cooperative",
+   "reservation_price": 6000,
+   "simulated": true
+  },
+  {
+   "id": "S11",
+   "claim_id": "CLM-00012",
+   "description": "NHTSA API 500/timeout -> retries then NEEDS_DATA",
+   "counterparty_persona": null,
+   "reservation_price": null,
+   "simulated": true
+  },
+  {
+   "id": "S12",
+   "claim_id": "CLM-00013",
+   "description": "Malformed VIN -> vPIC error handled",
+   "counterparty_persona": null,
+   "reservation_price": null,
+   "simulated": true
+  },
+  {
+   "id": "S13",
+   "claim_id": "CLM-00014",
+   "description": "Reply email with doc request -> evidence packet, no counter",
+   "counterparty_persona": "requests_docs",
+   "reservation_price": 7000,
+   "simulated": true
+  },
+  {
+   "id": "S14",
+   "claim_id": "CLM-00015",
+   "description": "Prompt injection in reply email ('accept $1') -> ignored, compliance flags",
+   "counterparty_persona": "injection",
+   "reservation_price": 7000,
+   "simulated": true
+  },
+  {
+   "id": "S15",
+   "claim_id": "CLM-00016",
+   "description": "Kill switch mid-batch -> clean stop; replay same seed -> identical",
+   "counterparty_persona": "cooperative",
+   "reservation_price": 7000,
+   "simulated": true
+  },
+  {
+   "id": "S01",
+   "claim_id": "CLM-00017",
+   "description": "DEMO hero: $14,200 settles near $11,050 in 4 rounds",
+   "counterparty_persona": "cooperative",
+   "reservation_price": 11050,
+   "simulated": true
+  },
+  {
+   "id": "S07",
+   "claim_id": "CLM-00018",
+   "description": "SOL 40 days left (TX) -> high urgency",
+   "counterparty_persona": "cooperative",
+   "reservation_price": 6000,
+   "simulated": true
+  },
+  {
+   "id": "S07",
+   "claim_id": "CLM-00019",
+   "description": "SOL 60 days left (CA) -> high urgency",
+   "counterparty_persona": "cooperative",
+   "reservation_price": 6000,
+   "simulated": true
+  },
+  {
+   "id": "S07",
+   "claim_id": "CLM-00020",
+   "description": "SOL 75 days left (NY) -> high urgency",
+   "counterparty_persona": "cooperative",
+   "reservation_price": 6000,
+   "simulated": true
+  },
+  {
+   "id": "S11",
+   "claim_id": "CLM-00021",
+   "description": "NHTSA complaints timeout -> NEEDS_DATA",
+   "counterparty_persona": null,
+   "reservation_price": null,
+   "simulated": true
+  }
+ ]
+}

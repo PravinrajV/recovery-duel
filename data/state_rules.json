@@ -1,0 +1,30 @@
+{
+ "status": "ILLUSTRATIVE, UNVERIFIED, not legal advice",
+ "rules": {
+  "CA": {
+   "sol_years": 3,
+   "doctrine": "pure_comparative",
+   "bar_at_pct": null
+  },
+  "NY": {
+   "sol_years": 3,
+   "doctrine": "pure_comparative",
+   "bar_at_pct": null
+  },
+  "TX": {
+   "sol_years": 2,
+   "doctrine": "modified_51",
+   "bar_at_pct": 51
+  },
+  "FL": {
+   "sol_years": 4,
+   "doctrine": "modified_51",
+   "bar_at_pct": 51
+  },
+  "VA": {
+   "sol_years": 5,
+   "doctrine": "contributory",
+   "bar_at_pct": 1
+  }
+ }
+}

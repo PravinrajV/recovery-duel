@@ -1,0 +1,15 @@
+# secrets and local config
+.env
+.env.*
+*.pem
+*.key
+**/.uipath/
+**/auth*.json
+# build output
+*.nupkg
+out/
+node_modules/
+__pycache__/
+*.pyc
+.flow-sdk/connectors/
+.flow-sdk/connectors-local/

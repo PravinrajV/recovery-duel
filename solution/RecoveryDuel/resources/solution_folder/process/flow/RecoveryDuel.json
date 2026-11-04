@@ -1,0 +1,38 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "RecoveryDuel",
+    "kind": "process",
+    "type": "flow",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "projectKey": "7fb3fc44-f85a-4ef1-bb27-2350cbf08625",
+    "dependencies": [
+      {
+        "kind": "package",
+        "name": "RecoveryDuel"
+      }
+    ],
+    "runtimeDependencies": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "type": "Flow",
+      "name": "RecoveryDuel",
+      "package": {
+        "key": "0c5b38c0-2b5b-4c7d-9c8e-0d4099b3a8f5"
+      },
+      "inputArguments": "{}",
+      "targetFrameworkValue": "Portable",
+      "retentionAction": "Delete",
+      "retentionPeriod": 30,
+      "staleRetentionAction": "Delete",
+      "staleRetentionPeriod": 180
+    },
+    "locks": [],
+    "key": "27836966-14a8-4aed-9800-405e3336bf73",
+    "files": []
+  }
+}

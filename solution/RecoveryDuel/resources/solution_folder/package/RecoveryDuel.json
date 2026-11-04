@@ -1,0 +1,22 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "RecoveryDuel",
+    "kind": "package",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "projectKey": "7fb3fc44-f85a-4ef1-bb27-2350cbf08625",
+    "dependencies": [],
+    "runtimeDependencies": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "name": "RecoveryDuel"
+    },
+    "locks": [],
+    "key": "0c5b38c0-2b5b-4c7d-9c8e-0d4099b3a8f5",
+    "files": []
+  }
+}
