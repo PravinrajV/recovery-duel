@@ -1,0 +1,2724 @@
+{
+ "Result": "Success",
+ "Code": "FlowDebug",
+ "Data": {
+  "jobKey": "27bb38d4-c8ac-4857-b73c-d85c62896735",
+  "instanceId": "27bb38d4-c8ac-4857-b73c-d85c62896735",
+  "runId": "01a1a5a2-11c3-74d1-97ec-026872e46d53",
+  "folderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+  "finalStatus": "Completed",
+  "entryPoint": "start",
+  "solutionId": "3f8821e0-173c-40bd-54bb-08df39ae9b2f",
+  "studioWebUrl": "https://cloud.uipath.com/pvincent/studio_/designer/daf7bc15-77cd-47a1-b42d-80dd3cd1d5f4?solutionId=3f8821e0-173c-40bd-54bb-08df39ae9b2f",
+  "elementExecutions": [
+   {
+    "elementId": "start",
+    "elementType": "StartEvent",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:17:06.224657Z",
+    "completedAt": "2026-11-04T08:17:06.4080103Z"
+   },
+   {
+    "elementId": "fromBucket",
+    "elementType": "InclusiveGateway",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:17:06.4997345Z",
+    "completedAt": "2026-11-04T08:17:06.5902438Z"
+   },
+   {
+    "elementId": "intake",
+    "elementType": "ScriptTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:17:06.7075329Z",
+    "completedAt": "2026-11-04T08:17:06.9164088Z"
+   },
+   {
+    "elementId": "eachClaim",
+    "elementType": "SubProcess",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:17:07.0304249Z",
+    "completedAt": "2026-11-04T08:17:09.9657122Z"
+   },
+   {
+    "elementId": "getRecalls",
+    "elementType": "SubProcess",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:17:07.3744959Z",
+    "completedAt": "2026-11-04T08:17:08.8554075Z"
+   },
+   {
+    "elementId": "_Implicit_StartEvent_getRecalls",
+    "elementType": "StartEvent",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:17:07.5609983Z",
+    "completedAt": "2026-11-04T08:17:07.6974274Z"
+   },
+   {
+    "elementId": "_Implicit_HttpTask_getRecalls",
+    "elementType": "SendTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:17:07.7838928Z",
+    "completedAt": "2026-11-04T08:17:08.3965648Z"
+   },
+   {
+    "elementId": "_Implicit_EndEvent_Default_getRecalls",
+    "elementType": "EndEvent",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:17:08.4848768Z",
+    "completedAt": "2026-11-04T08:17:08.6235949Z"
+   },
+   {
+    "elementId": "_Implicit_PostSubprocessGateway_getRecalls",
+    "elementType": "ExclusiveGateway",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:17:08.9464587Z",
+    "completedAt": "2026-11-04T08:17:09.0265516Z"
+   },
+   {
+    "elementId": "assess",
+    "elementType": "ScriptTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:17:09.1176295Z",
+    "completedAt": "2026-11-04T08:17:09.3143569Z"
+   },
+   {
+    "elementId": "nextClaim",
+    "elementType": "ScriptTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:17:09.3975421Z",
+    "completedAt": "2026-11-04T08:17:09.562615Z"
+   },
+   {
+    "elementId": "rank",
+    "elementType": "ScriptTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:17:10.0530278Z",
+    "completedAt": "2026-11-04T08:17:10.2272677Z"
+   },
+   {
+    "elementId": "pickTop",
+    "elementType": "ScriptTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:17:10.3210164Z",
+    "completedAt": "2026-11-04T08:17:10.4932713Z"
+   },
+   {
+    "elementId": "noCase",
+    "elementType": "InclusiveGateway",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:17:10.5845783Z",
+    "completedAt": "2026-11-04T08:17:10.7037427Z"
+   },
+   {
+    "elementId": "noCaseLedger",
+    "elementType": "InclusiveGateway",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:17:10.7934472Z",
+    "completedAt": "2026-11-04T08:17:10.8811277Z"
+   },
+   {
+    "elementId": "noCaseEnd",
+    "elementType": "ScriptTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:17:10.9706084Z",
+    "completedAt": "2026-11-04T08:17:11.1402335Z"
+   },
+   {
+    "elementId": "end",
+    "elementType": "EndEvent",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:17:11.258474Z",
+    "completedAt": "2026-11-04T08:17:11.4515494Z"
+   }
+  ],
+  "variables": {
+   "elements": [
+    {
+     "elementId": "start",
+     "elementRunId": "6b5480e7-3468-49be-9425-0eabc358e7c9",
+     "isMarker": false,
+     "inputs": {},
+     "inputDefinitions": {},
+     "outputs": {}
+    },
+    {
+     "elementId": "intake",
+     "elementRunId": "2b18bb87-3829-4a34-a446-3e05d852c43d",
+     "isMarker": false,
+     "inputs": {
+      "args": {
+       "vars": {
+        "ledger": {
+         "ok": false,
+         "ledgerCount": null
+        },
+        "assess.output": null,
+        "liability": null,
+        "managerReviewNo.output": null,
+        "markNeedsData.output": null,
+        "specialistReview.output": null,
+        "specialistReviewNo.error": null,
+        "carrierAgent.output": null,
+        "noApproval.output": null,
+        "loadStore.error": null,
+        "end2.ledger": null,
+        "autoApprove.output": null,
+        "end.neg": null,
+        "assess.error": null,
+        "liabilityAssessor.error": null,
+        "storeValue": {
+         "source": "input",
+         "loaded": false
+        },
+        "pickTop.output": null,
+        "end2.summary": null,
+        "evidence": null,
+        "specialistReview.status": null,
+        "end.roi": null,
+        "killSwitch": false,
+        "ledgerNoCase.output": null,
+        "start.output.counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 5000
+        },
+        "start.output.asOf": "2026-11-04",
+        "assessed": [],
+        "specialistReviewNo.output": null,
+        "book.error": null,
+        "nextClaim.output": null,
+        "asOf": "2026-11-04",
+        "end.summary": null,
+        "end.evidence": null,
+        "end2.roi": null,
+        "roundCtx.output": null,
+        "pickTop.error": null,
+        "noCaseEnd.output": null,
+        "parseStore.output": null,
+        "parseStore.error": null,
+        "negInit.error": null,
+        "end2.storeValue": null,
+        "ranked": null,
+        "end2.neg": null,
+        "start.output.claimIds": null,
+        "negotiation": null,
+        "approvalCtx.output": null,
+        "store": {
+         "source": "input",
+         "loaded": false
+        },
+        "rank.error": null,
+        "stylePass.output": null,
+        "managerReview.output": null,
+        "negotiator.output": null,
+        "end.approval": null,
+        "response": null,
+        "runId": "T15-S09",
+        "stylePass.error": null,
+        "markNeedsData.error": null,
+        "guardCounter.output": null,
+        "managerReviewNo.error": null,
+        "end2.ranked": null,
+        "noCaseEnd.error": null,
+        "counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 5000
+        },
+        "carrierAgent.error": null,
+        "end2.approval": null,
+        "claimIds": null,
+        "negCtx.output": null,
+        "managerReview.status": null,
+        "autoApprove.error": null,
+        "approvalCtx.error": null,
+        "ledgerAppend.error": null,
+        "end.ranked": null,
+        "book.output": null,
+        "start.output.source": "input",
+        "judgeOffer.output": null,
+        "end2.evidence": null,
+        "eachClaim.error": null,
+        "end.store": null,
+        "intake.output": null,
+        "ledgerNoCase.error": null,
+        "end2.liability": null,
+        "nextClaim.error": null,
+        "storeOut.output": null,
+        "source": "input",
+        "liabilityAssessor.output": null,
+        "end2.store": null,
+        "start.output.claims": [
+         {
+          "claim_id": "CLM-00009",
+          "scenario": "S09",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00009 (synthetic)",
+          "state": "VA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK3KB639493",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-14",
+          "loss_cause": "brake_failure_rear_end",
+          "paid_amount": "30300",
+          "deductible": "1000",
+          "insured_fault_pct": "10",
+          "matched_recall": "21V890000",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #9876. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+          "sol_days_left": "1626"
+         }
+        ],
+        "neg": {},
+        "getRecalls.error": null,
+        "roundCtx.error": null,
+        "ledgerAppend.output": null,
+        "roi": null,
+        "end.negotiation": null,
+        "end.assessed": null,
+        "end2.negotiation": null,
+        "end.liability": null,
+        "approval": {},
+        "guardCounter.error": null,
+        "claims": [
+         {
+          "claim_id": "CLM-00009",
+          "scenario": "S09",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00009 (synthetic)",
+          "state": "VA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK3KB639493",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-14",
+          "loss_cause": "brake_failure_rear_end",
+          "paid_amount": "30300",
+          "deductible": "1000",
+          "insured_fault_pct": "10",
+          "matched_recall": "21V890000",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #9876. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+          "sol_days_left": "1626"
+         }
+        ],
+        "start.output.killSwitch": false,
+        "summary": null,
+        "ledgerNoCaseFailed.error": null,
+        "end2.assessed": null,
+        "error": null,
+        "storeLoadFailed.output": null,
+        "managerReviewOk.error": null,
+        "specialistReviewOk.output": null,
+        "getRecalls.output": null,
+        "rank.output": null,
+        "eachClaim.output": null,
+        "negotiator.error": null,
+        "start.output.runId": "T15-S09",
+        "storeOut.error": null,
+        "end.storeValue": null,
+        "ledgerAppendFailed.error": null,
+        "negInit.output": null,
+        "specialistReviewOk.error": null,
+        "loadStore.output": null,
+        "duel.error": null,
+        "negCtx.error": null,
+        "ledgerAppendFailed.output": null,
+        "judgeOffer.error": null,
+        "ledgerNoCaseFailed.output": null,
+        "evidenceAnalyst.output": null,
+        "end.ledger": null,
+        "noApproval.error": null,
+        "intake.error": null,
+        "managerReviewOk.output": null,
+        "storeLoadFailed.error": null,
+        "evidenceAnalyst.error": null
+       },
+       "metadata": {
+        "ExternalId": "66581204",
+        "InstanceId": "27bb38d4-c8ac-4857-b73c-d85c62896735",
+        "ElementCount": {
+         "start": 1
+        },
+        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+        "ProcessKey": null
+       }
+      }
+     },
+     "inputDefinitions": {},
+     "outputs": {
+      "response": {
+       "items": [
+        {
+         "claim_id": "CLM-00009",
+         "scenario": "S09",
+         "synthetic": "true",
+         "policyholder": "Policyholder 00009 (synthetic)",
+         "state": "VA",
+         "make": "TOYOTA",
+         "model": "CAMRY",
+         "model_year": "2019",
+         "vin": "4T1B11HK3KB639493",
+         "loss_date": "2026-04-18",
+         "closed_date": "2026-05-14",
+         "loss_cause": "brake_failure_rear_end",
+         "paid_amount": 30300,
+         "deductible": 1000,
+         "insured_fault_pct": 10,
+         "matched_recall": "21V890000",
+         "data_status": "OK",
+         "police_report": "[SYNTHETIC] Officer #9876. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+         "sol_days_left": "1626"
+        }
+       ],
+       "stopped": false,
+       "claims": [
+        {
+         "claim_id": "CLM-00009",
+         "scenario": "S09",
+         "synthetic": "true",
+         "policyholder": "Policyholder 00009 (synthetic)",
+         "state": "VA",
+         "make": "TOYOTA",
+         "model": "CAMRY",
+         "model_year": "2019",
+         "vin": "4T1B11HK3KB639493",
+         "loss_date": "2026-04-18",
+         "closed_date": "2026-05-14",
+         "loss_cause": "brake_failure_rear_end",
+         "paid_amount": "30300",
+         "deductible": "1000",
+         "insured_fault_pct": "10",
+         "matched_recall": "21V890000",
+         "data_status": "OK",
+         "police_report": "[SYNTHETIC] Officer #9876. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+         "sol_days_left": "1626"
+        }
+       ],
+       "negotiation_paused": false
+      }
+     }
+    },
+    {
+     "elementId": "eachClaim",
+     "elementRunId": "75b8d488-e4c9-40ea-b150-157e3e2ea0ca",
+     "isMarker": true,
+     "inputs": {},
+     "inputDefinitions": {},
+     "outputs": {
+      "assess.output": {
+       "list": [
+        {
+         "claim_id": "CLM-00009",
+         "sol": {
+          "known": true,
+          "days_left": 1626,
+          "expired": false,
+          "deadline_ms": 1934236800000
+         },
+         "negligence": {
+          "doctrine": "contributory",
+          "insured_fault_pct": 10,
+          "barred": true,
+          "factor": 0
+         },
+         "recall": {
+          "match": true,
+          "campaign": "21V890000",
+          "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+         },
+         "gross": 31300,
+         "status": "BARRED_NEGLIGENCE",
+         "score": 0
+        }
+       ]
+      },
+      "getRecalls.error": null,
+      "markNeedsData.error": null,
+      "nextClaim.error": null,
+      "nextClaim.output": 1,
+      "getRecalls.output": {
+       "code": 200,
+       "headers": {
+        "x-amzn-RequestId": "07c4cb3e-bbeb-4d23-898b-ac5c583ab730",
+        "x-amzn-Remapped-Connection": "keep-alive",
+        "x-amz-apigw-id": "GTmAuHYgIAMFg9Q=",
+        "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+        "x-amzn-Remapped-Date": "Wed, 04 Nov 2026 08:17:08 GMT",
+        "Date": "Wed, 04 Nov 2026 08:17:08 GMT",
+        "Connection": "keep-alive",
+        "Set-Cookie": "AWSALB=7ZQwvVo/4U0281vJSJ2pPmKUbAspQRbqNO44IGT4tWc2IZdDq1Eb0BOWlM7OOal/CYZDTECIA3Z9usJBPMIYgj3Wrx8c6UmRHxbV05f7Jca/CL6SLANwo2y3iMPy; Expires=Wed, 11 Nov 2026 08:17:08 GMT; Path=/, AWSALBCORS=7ZQwvVo/4U0281vJSJ2pPmKUbAspQRbqNO44IGT4tWc2IZdDq1Eb0BOWlM7OOal/CYZDTECIA3Z9usJBPMIYgj3Wrx8c6UmRHxbV05f7Jca/CL6SLANwo2y3iMPy; Expires=Wed, 11 Nov 2026 08:17:08 GMT; Path=/; SameSite=None",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "SAMEORIGIN",
+        "Strict-Transport-Security": "max-age=31536000 ; includeSubDomains ; preload"
+       },
+       "body": {
+        "Count": 6,
+        "Message": "Results returned successfully",
+        "results": [
+         {
+          "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+          "NHTSACampaignNumber": "20V682000",
+          "parkIt": false,
+          "parkOutSide": false,
+          "overTheAirUpdate": false,
+          "ReportReceivedDate": "04/11/2020",
+          "Component": "FUEL SYSTEM, GASOLINE:DELIVERY:FUEL PUMP",
+          "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018-2019 4Runner, 2019-2020 Avalon, 2019 Corolla Hatchback, 2017-2019 Highlander, 2018-2020 Camry, 2020 Corolla, 2018-2019 Land Cruiser, 2017-2020 Tacoma, 2019-2020 RAV4, 2019-2020 Sequoia, 2017-2020 Sienna, 2019-2020 Tundra, 2018-2020 Lexus ES350, 2017 Lexus GS200t, 2017-2019 Lexus GS350, 2019 Lexus GS300, 2018-2020 Lexus LC500h, 2019-2020 Lexus LS500, 2018-2019 Lexus GX460, 2017 Lexus IS200t, 2019 Lexus IS300, 2019 Lexus IS350, 2018-2020 Lexus LC500, 2018 Lexus LS500, 2019 Lexus LS500h, 2018-2019 Lexus LX570, 2017 Lexus RC200t, 2019 Lexus RC300, RC350, 2017 and 2019-2020 Lexus RX350, 2018-2020 RX350L, 2019 Lexus UX200, 2018-2019 Lexus NX300 vehicles.  The low-pressure fuel pump inside the fuel tank may fail.",
+          "Consequence": "If the fuel pump fails, the engine can stall while driving, increasing the risk of a crash.",
+          "Remedy": "Toyota will notify owners, and dealers will replace the fuel pump assembly with an improved one, free of charge.  Owners of specific models were notified that remedy parts were available starting January 21, 2021.  Owners of other models will be notified as remedy parts become available.  Remedy parts should be available for all affected vehicles by late March 2021.  Owners may contact Toyota customer service at 1-888-270-9371 or Lexus customer service at 1-800-255-3987.  Note: This recall is an expansion of recall 20V-012.  Toyota's number for this recall is 20TA02.  Lexus' number for this recall is 20LA01.",
+          "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+          "ModelYear": "2019",
+          "Make": "TOYOTA",
+          "Model": "CAMRY"
+         },
+         {
+          "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+          "NHTSACampaignNumber": "21V890000",
+          "parkIt": false,
+          "parkOutSide": false,
+          "overTheAirUpdate": false,
+          "ReportReceivedDate": "17/11/2021",
+          "Component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM",
+          "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018-2019 Camry vehicles.  The vane cap inside the vacuum pump may break, causing the pump to fail, which could result in a sudden loss of braking assist.",
+          "Consequence": "A sudden loss of braking assist can increase the risk of a crash.",
+          "Remedy": "Dealers will repair or replace the vacuum pump, as necessary, free of charge.  Owner notification letters were mailed May 16, 2022.  Owners may contact Toyota customer service at 1-800-331-4331.",
+          "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.nhtsa.gov.",
+          "ModelYear": "2019",
+          "Make": "TOYOTA",
+          "Model": "CAMRY"
+         },
+         {
+          "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+          "NHTSACampaignNumber": "20V012000",
+          "parkIt": false,
+          "parkOutSide": false,
+          "overTheAirUpdate": false,
+          "ReportReceivedDate": "13/01/2020",
+          "Component": "FUEL SYSTEM, GASOLINE:DELIVERY:FUEL PUMP",
+          "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) recalled certain 2018-2019 4Runner, Highlander, Camry, Land Cruiser, Sequoia, Sienna, Tacoma and Tundra, and Lexus RC 300, RC 350, GS 350, GX 460, IS 300, LC 500, LS 500, LX 570, RX 350L, and 2019 Toyota Avalon and Corolla, and certain Lexus NX 300, and ES 350 vehicles on January 13, 2020. \r\nOn March 4, 2020, Toyota expanded the recall to include certain 2014-2015 Toyota 4Runner and Land Cruiser, 2018 Avalon, Corolla, 2014 FJ Cruiser, 2017 Sienna and Lexus 2018 ES 350, 2018-2019 GS 300, 2013-2014 GS350, 2014-2015 GX 460, IS 350 and LX 570, 2014 IS F, 2018-2019 IS 350, LC 500H and LS 500H, 2013-2015 LS 460, 2015 NX 200T and RC350, 2017 RC 200T and RX 350.  Toyota also removed the 2018-2019 Toyota 4Runner and Land Cruiser and 2018-2019 Lexus GX 460 and LX 570 and 2019 NX300 from inclusion in this recall.  On March 19, 2020, Toyota expanded the recall to include 2015 Lexus GS350 vehicles.  The low-pressure fuel pump inside the fuel tank may fail.",
+          "Consequence": "If the fuel pump fails, the engine can stall while driving, increasing the risk of a crash.",
+          "Remedy": "Toyota will notify owners, and dealers will replace the fuel pump, free of charge.  The recall began May 4, 2020.  Owners may contact Toyota customer service at 1-888-270-9371 or Lexus customer service at 1-800-255-3987.  Toyota's numbers for this recall are 20TB02 and 20TA02 for Toyota vehicles and 20LB01 and 20LA01 for Lexus vehicles.",
+          "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+          "ModelYear": "2019",
+          "Make": "TOYOTA",
+          "Model": "CAMRY"
+         },
+         {
+          "Manufacturer": "Southeast Toyota Distributors, LLC",
+          "NHTSACampaignNumber": "19V503000",
+          "parkIt": false,
+          "parkOutSide": false,
+          "overTheAirUpdate": false,
+          "ReportReceivedDate": "28/06/2019",
+          "Component": "EQUIPMENT:OTHER:LABELS",
+          "Summary": "Southeast Toyota Distributors, LLC (SET) is recalling certain 2017-2019 Toyota Camry, Corolla, Rav4, Sienna, and Yaris iA vehicles equipped with factory-installed floor mats.  The load carrying capacity modification label may be incorrect.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 110, \"Tire Selection and Rims.\"",
+          "Consequence": "An incorrect label may lead to unintentionally overloading the vehicle, increasing the risk of a crash.",
+          "Remedy": "SET will notify owners and provide a corrected label for placement over the inaccurate label, free of charge.  The recall began August 23, 2019.  Owners may contact Toyota customer service at 1-888-270-9371.  SET's number for this recall is SET19A.",
+          "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+          "ModelYear": "2019",
+          "Make": "TOYOTA",
+          "Model": "CAMRY"
+         },
+         {
+          "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+          "NHTSACampaignNumber": "19V567000",
+          "parkIt": false,
+          "parkOutSide": false,
+          "overTheAirUpdate": false,
+          "ReportReceivedDate": "01/08/2019",
+          "Component": "AIR BAGS:SENSOR:OCCUPANT CLASSIFICATION",
+          "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2019 Camry vehicles. The Occupant Classification System (OCS) may have been improperly calibrated, which may prevent the proper deployment of the front passenger air bag and knee air bag, in the event of a crash.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 208, \"Occupant Crash Protection.\"",
+          "Consequence": "In the event of a crash, if the air bags do not deploy as designed, the front seat passenger has an increased risk of an injury.",
+          "Remedy": "Toyota will notify owners, and dealers will recalibrate the OCS, free of charge.  The recall began August 27, 2019.  Owners may contact Toyota customer service at 1-888-270-9371.  Toyota's number for this recall is K0M.",
+          "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+          "ModelYear": "2019",
+          "Make": "TOYOTA",
+          "Model": "CAMRY"
+         },
+         {
+          "Manufacturer": "Gulf States Toyota, Inc.",
+          "NHTSACampaignNumber": "19V244000",
+          "parkIt": false,
+          "parkOutSide": false,
+          "overTheAirUpdate": false,
+          "ReportReceivedDate": "27/03/2019",
+          "Component": "EQUIPMENT:OTHER:LABELS",
+          "Summary": "Gulf States Toyota (GST) is recalling certain 2019 C-HR, 4Runner, Avalon, Avalon Hybrid, Camry, Camry Hybrid, Highlander, Land Cruiser, Prius, RAV4, Sequoia, Tacoma, Sienna, Tundra and Yaris vehicles.  The text on the load capacity label may become illegible.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 110, \"Tire Selection and Rims.\"",
+          "Consequence": "If the driver cannot read the label, they may unknowingly overload the vehicle, increasing the risk of a crash.",
+          "Remedy": "GST will notify owners, and dealers will provide corrected load carrying capacity modification labels, free of charge.  The recall began May 24, 2019.  Owners may contact GST customer service at 1-800-444-1074.  GST's number for this recall is 19R1.",
+          "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+          "ModelYear": "2019",
+          "Make": "TOYOTA",
+          "Model": "CAMRY"
+         }
+        ]
+       }
+      },
+      "assessed": [
+       {
+        "claim_id": "CLM-00009",
+        "sol": {
+         "known": true,
+         "days_left": 1626,
+         "expired": false,
+         "deadline_ms": 1934236800000
+        },
+        "negligence": {
+         "doctrine": "contributory",
+         "insured_fault_pct": 10,
+         "barred": true,
+         "factor": 0
+        },
+        "recall": {
+         "match": true,
+         "campaign": "21V890000",
+         "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+        },
+        "gross": 31300,
+        "status": "BARRED_NEGLIGENCE",
+        "score": 0
+       }
+      ],
+      "assess.error": null,
+      "markNeedsData.output": null
+     }
+    },
+    {
+     "elementId": "rank",
+     "elementRunId": "9b70e926-4476-4f51-961b-863967f25a21",
+     "isMarker": false,
+     "inputs": {
+      "args": {
+       "vars": {
+        "ledger": {
+         "ok": false,
+         "ledgerCount": null
+        },
+        "assess.output": {
+         "list": [
+          {
+           "claim_id": "CLM-00009",
+           "sol": {
+            "known": true,
+            "days_left": 1626,
+            "expired": false,
+            "deadline_ms": 1934236800000
+           },
+           "negligence": {
+            "doctrine": "contributory",
+            "insured_fault_pct": 10,
+            "barred": true,
+            "factor": 0
+           },
+           "recall": {
+            "match": true,
+            "campaign": "21V890000",
+            "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+           },
+           "gross": 31300,
+           "status": "BARRED_NEGLIGENCE",
+           "score": 0
+          }
+         ]
+        },
+        "liability": null,
+        "managerReviewNo.output": null,
+        "markNeedsData.output": null,
+        "specialistReview.output": null,
+        "specialistReviewNo.error": null,
+        "carrierAgent.output": null,
+        "noApproval.output": null,
+        "loadStore.error": null,
+        "end2.ledger": null,
+        "autoApprove.output": null,
+        "end.neg": null,
+        "assess.error": null,
+        "liabilityAssessor.error": null,
+        "storeValue": {
+         "source": "input",
+         "loaded": false
+        },
+        "pickTop.output": null,
+        "end2.summary": null,
+        "evidence": null,
+        "specialistReview.status": null,
+        "end.roi": null,
+        "killSwitch": false,
+        "ledgerNoCase.output": null,
+        "start.output.counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 5000
+        },
+        "start.output.asOf": "2026-11-04",
+        "assessed": [
+         {
+          "claim_id": "CLM-00009",
+          "sol": {
+           "known": true,
+           "days_left": 1626,
+           "expired": false,
+           "deadline_ms": 1934236800000
+          },
+          "negligence": {
+           "doctrine": "contributory",
+           "insured_fault_pct": 10,
+           "barred": true,
+           "factor": 0
+          },
+          "recall": {
+           "match": true,
+           "campaign": "21V890000",
+           "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+          },
+          "gross": 31300,
+          "status": "BARRED_NEGLIGENCE",
+          "score": 0
+         }
+        ],
+        "specialistReviewNo.output": null,
+        "book.error": null,
+        "nextClaim.output": 1,
+        "asOf": "2026-11-04",
+        "end.summary": null,
+        "end.evidence": null,
+        "end2.roi": null,
+        "roundCtx.output": null,
+        "pickTop.error": null,
+        "noCaseEnd.output": null,
+        "parseStore.output": null,
+        "parseStore.error": null,
+        "negInit.error": null,
+        "end2.storeValue": null,
+        "ranked": null,
+        "end2.neg": null,
+        "start.output.claimIds": null,
+        "negotiation": null,
+        "approvalCtx.output": null,
+        "store": {
+         "source": "input",
+         "loaded": false
+        },
+        "rank.error": null,
+        "stylePass.output": null,
+        "managerReview.output": null,
+        "negotiator.output": null,
+        "end.approval": null,
+        "response": null,
+        "runId": "T15-S09",
+        "stylePass.error": null,
+        "markNeedsData.error": null,
+        "guardCounter.output": null,
+        "managerReviewNo.error": null,
+        "end2.ranked": null,
+        "noCaseEnd.error": null,
+        "counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 5000
+        },
+        "carrierAgent.error": null,
+        "end2.approval": null,
+        "claimIds": null,
+        "negCtx.output": null,
+        "managerReview.status": null,
+        "autoApprove.error": null,
+        "approvalCtx.error": null,
+        "ledgerAppend.error": null,
+        "end.ranked": null,
+        "book.output": null,
+        "start.output.source": "input",
+        "judgeOffer.output": null,
+        "end2.evidence": null,
+        "eachClaim.error": null,
+        "end.store": null,
+        "intake.output": {
+         "items": [
+          {
+           "claim_id": "CLM-00009",
+           "scenario": "S09",
+           "synthetic": "true",
+           "policyholder": "Policyholder 00009 (synthetic)",
+           "state": "VA",
+           "make": "TOYOTA",
+           "model": "CAMRY",
+           "model_year": "2019",
+           "vin": "4T1B11HK3KB639493",
+           "loss_date": "2026-04-18",
+           "closed_date": "2026-05-14",
+           "loss_cause": "brake_failure_rear_end",
+           "paid_amount": 30300,
+           "deductible": 1000,
+           "insured_fault_pct": 10,
+           "matched_recall": "21V890000",
+           "data_status": "OK",
+           "police_report": "[SYNTHETIC] Officer #9876. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+           "sol_days_left": "1626"
+          }
+         ],
+         "stopped": false,
+         "claims": [
+          {
+           "claim_id": "CLM-00009",
+           "scenario": "S09",
+           "synthetic": "true",
+           "policyholder": "Policyholder 00009 (synthetic)",
+           "state": "VA",
+           "make": "TOYOTA",
+           "model": "CAMRY",
+           "model_year": "2019",
+           "vin": "4T1B11HK3KB639493",
+           "loss_date": "2026-04-18",
+           "closed_date": "2026-05-14",
+           "loss_cause": "brake_failure_rear_end",
+           "paid_amount": "30300",
+           "deductible": "1000",
+           "insured_fault_pct": "10",
+           "matched_recall": "21V890000",
+           "data_status": "OK",
+           "police_report": "[SYNTHETIC] Officer #9876. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+           "sol_days_left": "1626"
+          }
+         ],
+         "negotiation_paused": false
+        },
+        "ledgerNoCase.error": null,
+        "end2.liability": null,
+        "nextClaim.error": null,
+        "storeOut.output": null,
+        "source": "input",
+        "liabilityAssessor.output": null,
+        "end2.store": null,
+        "start.output.claims": [
+         {
+          "claim_id": "CLM-00009",
+          "scenario": "S09",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00009 (synthetic)",
+          "state": "VA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK3KB639493",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-14",
+          "loss_cause": "brake_failure_rear_end",
+          "paid_amount": "30300",
+          "deductible": "1000",
+          "insured_fault_pct": "10",
+          "matched_recall": "21V890000",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #9876. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+          "sol_days_left": "1626"
+         }
+        ],
+        "neg": {},
+        "getRecalls.error": null,
+        "roundCtx.error": null,
+        "ledgerAppend.output": null,
+        "roi": null,
+        "end.negotiation": null,
+        "end.assessed": null,
+        "end2.negotiation": null,
+        "end.liability": null,
+        "approval": {},
+        "guardCounter.error": null,
+        "claims": [
+         {
+          "claim_id": "CLM-00009",
+          "scenario": "S09",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00009 (synthetic)",
+          "state": "VA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK3KB639493",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-14",
+          "loss_cause": "brake_failure_rear_end",
+          "paid_amount": "30300",
+          "deductible": "1000",
+          "insured_fault_pct": "10",
+          "matched_recall": "21V890000",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #9876. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+          "sol_days_left": "1626"
+         }
+        ],
+        "start.output.killSwitch": false,
+        "summary": null,
+        "ledgerNoCaseFailed.error": null,
+        "end2.assessed": null,
+        "error": null,
+        "storeLoadFailed.output": null,
+        "managerReviewOk.error": null,
+        "specialistReviewOk.output": null,
+        "getRecalls.output": {
+         "code": 200,
+         "headers": {
+          "x-amzn-RequestId": "07c4cb3e-bbeb-4d23-898b-ac5c583ab730",
+          "x-amzn-Remapped-Connection": "keep-alive",
+          "x-amz-apigw-id": "GTmAuHYgIAMFg9Q=",
+          "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+          "x-amzn-Remapped-Date": "Wed, 04 Nov 2026 08:17:08 GMT",
+          "Date": "Wed, 04 Nov 2026 08:17:08 GMT",
+          "Connection": "keep-alive",
+          "Set-Cookie": "AWSALB=7ZQwvVo/4U0281vJSJ2pPmKUbAspQRbqNO44IGT4tWc2IZdDq1Eb0BOWlM7OOal/CYZDTECIA3Z9usJBPMIYgj3Wrx8c6UmRHxbV05f7Jca/CL6SLANwo2y3iMPy; Expires=Wed, 11 Nov 2026 08:17:08 GMT; Path=/, AWSALBCORS=7ZQwvVo/4U0281vJSJ2pPmKUbAspQRbqNO44IGT4tWc2IZdDq1Eb0BOWlM7OOal/CYZDTECIA3Z9usJBPMIYgj3Wrx8c6UmRHxbV05f7Jca/CL6SLANwo2y3iMPy; Expires=Wed, 11 Nov 2026 08:17:08 GMT; Path=/; SameSite=None",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "SAMEORIGIN",
+          "Strict-Transport-Security": "max-age=31536000 ; includeSubDomains ; preload"
+         },
+         "body": {
+          "Count": 6,
+          "Message": "Results returned successfully",
+          "results": [
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "20V682000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "04/11/2020",
+            "Component": "FUEL SYSTEM, GASOLINE:DELIVERY:FUEL PUMP",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018-2019 4Runner, 2019-2020 Avalon, 2019 Corolla Hatchback, 2017-2019 Highlander, 2018-2020 Camry, 2020 Corolla, 2018-2019 Land Cruiser, 2017-2020 Tacoma, 2019-2020 RAV4, 2019-2020 Sequoia, 2017-2020 Sienna, 2019-2020 Tundra, 2018-2020 Lexus ES350, 2017 Lexus GS200t, 2017-2019 Lexus GS350, 2019 Lexus GS300, 2018-2020 Lexus LC500h, 2019-2020 Lexus LS500, 2018-2019 Lexus GX460, 2017 Lexus IS200t, 2019 Lexus IS300, 2019 Lexus IS350, 2018-2020 Lexus LC500, 2018 Lexus LS500, 2019 Lexus LS500h, 2018-2019 Lexus LX570, 2017 Lexus RC200t, 2019 Lexus RC300, RC350, 2017 and 2019-2020 Lexus RX350, 2018-2020 RX350L, 2019 Lexus UX200, 2018-2019 Lexus NX300 vehicles.  The low-pressure fuel pump inside the fuel tank may fail.",
+            "Consequence": "If the fuel pump fails, the engine can stall while driving, increasing the risk of a crash.",
+            "Remedy": "Toyota will notify owners, and dealers will replace the fuel pump assembly with an improved one, free of charge.  Owners of specific models were notified that remedy parts were available starting January 21, 2021.  Owners of other models will be notified as remedy parts become available.  Remedy parts should be available for all affected vehicles by late March 2021.  Owners may contact Toyota customer service at 1-888-270-9371 or Lexus customer service at 1-800-255-3987.  Note: This recall is an expansion of recall 20V-012.  Toyota's number for this recall is 20TA02.  Lexus' number for this recall is 20LA01.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "21V890000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "17/11/2021",
+            "Component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018-2019 Camry vehicles.  The vane cap inside the vacuum pump may break, causing the pump to fail, which could result in a sudden loss of braking assist.",
+            "Consequence": "A sudden loss of braking assist can increase the risk of a crash.",
+            "Remedy": "Dealers will repair or replace the vacuum pump, as necessary, free of charge.  Owner notification letters were mailed May 16, 2022.  Owners may contact Toyota customer service at 1-800-331-4331.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.nhtsa.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "20V012000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "13/01/2020",
+            "Component": "FUEL SYSTEM, GASOLINE:DELIVERY:FUEL PUMP",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) recalled certain 2018-2019 4Runner, Highlander, Camry, Land Cruiser, Sequoia, Sienna, Tacoma and Tundra, and Lexus RC 300, RC 350, GS 350, GX 460, IS 300, LC 500, LS 500, LX 570, RX 350L, and 2019 Toyota Avalon and Corolla, and certain Lexus NX 300, and ES 350 vehicles on January 13, 2020. \r\nOn March 4, 2020, Toyota expanded the recall to include certain 2014-2015 Toyota 4Runner and Land Cruiser, 2018 Avalon, Corolla, 2014 FJ Cruiser, 2017 Sienna and Lexus 2018 ES 350, 2018-2019 GS 300, 2013-2014 GS350, 2014-2015 GX 460, IS 350 and LX 570, 2014 IS F, 2018-2019 IS 350, LC 500H and LS 500H, 2013-2015 LS 460, 2015 NX 200T and RC350, 2017 RC 200T and RX 350.  Toyota also removed the 2018-2019 Toyota 4Runner and Land Cruiser and 2018-2019 Lexus GX 460 and LX 570 and 2019 NX300 from inclusion in this recall.  On March 19, 2020, Toyota expanded the recall to include 2015 Lexus GS350 vehicles.  The low-pressure fuel pump inside the fuel tank may fail.",
+            "Consequence": "If the fuel pump fails, the engine can stall while driving, increasing the risk of a crash.",
+            "Remedy": "Toyota will notify owners, and dealers will replace the fuel pump, free of charge.  The recall began May 4, 2020.  Owners may contact Toyota customer service at 1-888-270-9371 or Lexus customer service at 1-800-255-3987.  Toyota's numbers for this recall are 20TB02 and 20TA02 for Toyota vehicles and 20LB01 and 20LA01 for Lexus vehicles.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Southeast Toyota Distributors, LLC",
+            "NHTSACampaignNumber": "19V503000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "28/06/2019",
+            "Component": "EQUIPMENT:OTHER:LABELS",
+            "Summary": "Southeast Toyota Distributors, LLC (SET) is recalling certain 2017-2019 Toyota Camry, Corolla, Rav4, Sienna, and Yaris iA vehicles equipped with factory-installed floor mats.  The load carrying capacity modification label may be incorrect.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 110, \"Tire Selection and Rims.\"",
+            "Consequence": "An incorrect label may lead to unintentionally overloading the vehicle, increasing the risk of a crash.",
+            "Remedy": "SET will notify owners and provide a corrected label for placement over the inaccurate label, free of charge.  The recall began August 23, 2019.  Owners may contact Toyota customer service at 1-888-270-9371.  SET's number for this recall is SET19A.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "19V567000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "01/08/2019",
+            "Component": "AIR BAGS:SENSOR:OCCUPANT CLASSIFICATION",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2019 Camry vehicles. The Occupant Classification System (OCS) may have been improperly calibrated, which may prevent the proper deployment of the front passenger air bag and knee air bag, in the event of a crash.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 208, \"Occupant Crash Protection.\"",
+            "Consequence": "In the event of a crash, if the air bags do not deploy as designed, the front seat passenger has an increased risk of an injury.",
+            "Remedy": "Toyota will notify owners, and dealers will recalibrate the OCS, free of charge.  The recall began August 27, 2019.  Owners may contact Toyota customer service at 1-888-270-9371.  Toyota's number for this recall is K0M.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Gulf States Toyota, Inc.",
+            "NHTSACampaignNumber": "19V244000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "27/03/2019",
+            "Component": "EQUIPMENT:OTHER:LABELS",
+            "Summary": "Gulf States Toyota (GST) is recalling certain 2019 C-HR, 4Runner, Avalon, Avalon Hybrid, Camry, Camry Hybrid, Highlander, Land Cruiser, Prius, RAV4, Sequoia, Tacoma, Sienna, Tundra and Yaris vehicles.  The text on the load capacity label may become illegible.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 110, \"Tire Selection and Rims.\"",
+            "Consequence": "If the driver cannot read the label, they may unknowingly overload the vehicle, increasing the risk of a crash.",
+            "Remedy": "GST will notify owners, and dealers will provide corrected load carrying capacity modification labels, free of charge.  The recall began May 24, 2019.  Owners may contact GST customer service at 1-800-444-1074.  GST's number for this recall is 19R1.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           }
+          ]
+         }
+        },
+        "rank.output": null,
+        "eachClaim.output": [
+         {
+          "markNeedsData": {
+           "output": null
+          },
+          "assess": {
+           "output": {
+            "list": [
+             {
+              "claim_id": "CLM-00009",
+              "sol": {
+               "known": true,
+               "days_left": 1626,
+               "expired": false,
+               "deadline_ms": 1934236800000
+              },
+              "negligence": {
+               "doctrine": "contributory",
+               "insured_fault_pct": 10,
+               "barred": true,
+               "factor": 0
+              },
+              "recall": {
+               "match": true,
+               "campaign": "21V890000",
+               "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+              },
+              "gross": 31300,
+              "status": "BARRED_NEGLIGENCE",
+              "score": 0
+             }
+            ]
+           }
+          },
+          "nextClaim": {
+           "output": 1
+          }
+         }
+        ],
+        "negotiator.error": null,
+        "start.output.runId": "T15-S09",
+        "storeOut.error": null,
+        "end.storeValue": null,
+        "ledgerAppendFailed.error": null,
+        "negInit.output": null,
+        "specialistReviewOk.error": null,
+        "loadStore.output": null,
+        "duel.error": null,
+        "negCtx.error": null,
+        "ledgerAppendFailed.output": null,
+        "judgeOffer.error": null,
+        "ledgerNoCaseFailed.output": null,
+        "evidenceAnalyst.output": null,
+        "end.ledger": null,
+        "noApproval.error": null,
+        "intake.error": null,
+        "managerReviewOk.output": null,
+        "storeLoadFailed.error": null,
+        "evidenceAnalyst.error": null
+       },
+       "metadata": {
+        "ExternalId": "66581204",
+        "InstanceId": "27bb38d4-c8ac-4857-b73c-d85c62896735",
+        "ElementCount": {
+         "fromBucket": 1,
+         "intake": 1,
+         "start": 1
+        },
+        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+        "ProcessKey": null
+       }
+      }
+     },
+     "inputDefinitions": {},
+     "outputs": {
+      "response": {
+       "ranked": [
+        {
+         "claim_id": "CLM-00009",
+         "sol": {
+          "known": true,
+          "days_left": 1626,
+          "expired": false,
+          "deadline_ms": 1934236800000
+         },
+         "negligence": {
+          "doctrine": "contributory",
+          "insured_fault_pct": 10,
+          "barred": true,
+          "factor": 0
+         },
+         "recall": {
+          "match": true,
+          "campaign": "21V890000",
+          "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+         },
+         "gross": 31300,
+         "status": "BARRED_NEGLIGENCE",
+         "score": 0
+        }
+       ],
+       "summary": {
+        "total": 1,
+        "pursue": 0,
+        "needs_data": 0,
+        "sol_expired": 0,
+        "barred": 1,
+        "no_case": 0,
+        "pipeline_demand": 0
+       }
+      }
+     }
+    },
+    {
+     "elementId": "pickTop",
+     "elementRunId": "cfaa237b-3701-44ad-9f99-611315548d3c",
+     "isMarker": false,
+     "inputs": {
+      "args": {
+       "vars": {
+        "ledger": {
+         "ok": false,
+         "ledgerCount": null
+        },
+        "assess.output": {
+         "list": [
+          {
+           "claim_id": "CLM-00009",
+           "sol": {
+            "known": true,
+            "days_left": 1626,
+            "expired": false,
+            "deadline_ms": 1934236800000
+           },
+           "negligence": {
+            "doctrine": "contributory",
+            "insured_fault_pct": 10,
+            "barred": true,
+            "factor": 0
+           },
+           "recall": {
+            "match": true,
+            "campaign": "21V890000",
+            "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+           },
+           "gross": 31300,
+           "status": "BARRED_NEGLIGENCE",
+           "score": 0
+          }
+         ]
+        },
+        "liability": null,
+        "managerReviewNo.output": null,
+        "markNeedsData.output": null,
+        "specialistReview.output": null,
+        "specialistReviewNo.error": null,
+        "carrierAgent.output": null,
+        "noApproval.output": null,
+        "loadStore.error": null,
+        "end2.ledger": null,
+        "autoApprove.output": null,
+        "end.neg": null,
+        "assess.error": null,
+        "liabilityAssessor.error": null,
+        "storeValue": {
+         "source": "input",
+         "loaded": false
+        },
+        "pickTop.output": null,
+        "end2.summary": null,
+        "evidence": null,
+        "specialistReview.status": null,
+        "end.roi": null,
+        "killSwitch": false,
+        "ledgerNoCase.output": null,
+        "start.output.counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 5000
+        },
+        "start.output.asOf": "2026-11-04",
+        "assessed": [
+         {
+          "claim_id": "CLM-00009",
+          "sol": {
+           "known": true,
+           "days_left": 1626,
+           "expired": false,
+           "deadline_ms": 1934236800000
+          },
+          "negligence": {
+           "doctrine": "contributory",
+           "insured_fault_pct": 10,
+           "barred": true,
+           "factor": 0
+          },
+          "recall": {
+           "match": true,
+           "campaign": "21V890000",
+           "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+          },
+          "gross": 31300,
+          "status": "BARRED_NEGLIGENCE",
+          "score": 0
+         }
+        ],
+        "specialistReviewNo.output": null,
+        "book.error": null,
+        "nextClaim.output": 1,
+        "asOf": "2026-11-04",
+        "end.summary": null,
+        "end.evidence": null,
+        "end2.roi": null,
+        "roundCtx.output": null,
+        "pickTop.error": null,
+        "noCaseEnd.output": null,
+        "parseStore.output": null,
+        "parseStore.error": null,
+        "negInit.error": null,
+        "end2.storeValue": null,
+        "ranked": null,
+        "end2.neg": null,
+        "start.output.claimIds": null,
+        "negotiation": null,
+        "approvalCtx.output": null,
+        "store": {
+         "source": "input",
+         "loaded": false
+        },
+        "rank.error": null,
+        "stylePass.output": null,
+        "managerReview.output": null,
+        "negotiator.output": null,
+        "end.approval": null,
+        "response": null,
+        "runId": "T15-S09",
+        "stylePass.error": null,
+        "markNeedsData.error": null,
+        "guardCounter.output": null,
+        "managerReviewNo.error": null,
+        "end2.ranked": null,
+        "noCaseEnd.error": null,
+        "counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 5000
+        },
+        "carrierAgent.error": null,
+        "end2.approval": null,
+        "claimIds": null,
+        "negCtx.output": null,
+        "managerReview.status": null,
+        "autoApprove.error": null,
+        "approvalCtx.error": null,
+        "ledgerAppend.error": null,
+        "end.ranked": null,
+        "book.output": null,
+        "start.output.source": "input",
+        "judgeOffer.output": null,
+        "end2.evidence": null,
+        "eachClaim.error": null,
+        "end.store": null,
+        "intake.output": {
+         "items": [
+          {
+           "claim_id": "CLM-00009",
+           "scenario": "S09",
+           "synthetic": "true",
+           "policyholder": "Policyholder 00009 (synthetic)",
+           "state": "VA",
+           "make": "TOYOTA",
+           "model": "CAMRY",
+           "model_year": "2019",
+           "vin": "4T1B11HK3KB639493",
+           "loss_date": "2026-04-18",
+           "closed_date": "2026-05-14",
+           "loss_cause": "brake_failure_rear_end",
+           "paid_amount": 30300,
+           "deductible": 1000,
+           "insured_fault_pct": 10,
+           "matched_recall": "21V890000",
+           "data_status": "OK",
+           "police_report": "[SYNTHETIC] Officer #9876. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+           "sol_days_left": "1626"
+          }
+         ],
+         "stopped": false,
+         "claims": [
+          {
+           "claim_id": "CLM-00009",
+           "scenario": "S09",
+           "synthetic": "true",
+           "policyholder": "Policyholder 00009 (synthetic)",
+           "state": "VA",
+           "make": "TOYOTA",
+           "model": "CAMRY",
+           "model_year": "2019",
+           "vin": "4T1B11HK3KB639493",
+           "loss_date": "2026-04-18",
+           "closed_date": "2026-05-14",
+           "loss_cause": "brake_failure_rear_end",
+           "paid_amount": "30300",
+           "deductible": "1000",
+           "insured_fault_pct": "10",
+           "matched_recall": "21V890000",
+           "data_status": "OK",
+           "police_report": "[SYNTHETIC] Officer #9876. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+           "sol_days_left": "1626"
+          }
+         ],
+         "negotiation_paused": false
+        },
+        "ledgerNoCase.error": null,
+        "end2.liability": null,
+        "nextClaim.error": null,
+        "storeOut.output": null,
+        "source": "input",
+        "liabilityAssessor.output": null,
+        "end2.store": null,
+        "start.output.claims": [
+         {
+          "claim_id": "CLM-00009",
+          "scenario": "S09",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00009 (synthetic)",
+          "state": "VA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK3KB639493",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-14",
+          "loss_cause": "brake_failure_rear_end",
+          "paid_amount": "30300",
+          "deductible": "1000",
+          "insured_fault_pct": "10",
+          "matched_recall": "21V890000",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #9876. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+          "sol_days_left": "1626"
+         }
+        ],
+        "neg": {},
+        "getRecalls.error": null,
+        "roundCtx.error": null,
+        "ledgerAppend.output": null,
+        "roi": null,
+        "end.negotiation": null,
+        "end.assessed": null,
+        "end2.negotiation": null,
+        "end.liability": null,
+        "approval": {},
+        "guardCounter.error": null,
+        "claims": [
+         {
+          "claim_id": "CLM-00009",
+          "scenario": "S09",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00009 (synthetic)",
+          "state": "VA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK3KB639493",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-14",
+          "loss_cause": "brake_failure_rear_end",
+          "paid_amount": "30300",
+          "deductible": "1000",
+          "insured_fault_pct": "10",
+          "matched_recall": "21V890000",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #9876. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+          "sol_days_left": "1626"
+         }
+        ],
+        "start.output.killSwitch": false,
+        "summary": null,
+        "ledgerNoCaseFailed.error": null,
+        "end2.assessed": null,
+        "error": null,
+        "storeLoadFailed.output": null,
+        "managerReviewOk.error": null,
+        "specialistReviewOk.output": null,
+        "getRecalls.output": {
+         "code": 200,
+         "headers": {
+          "x-amzn-RequestId": "07c4cb3e-bbeb-4d23-898b-ac5c583ab730",
+          "x-amzn-Remapped-Connection": "keep-alive",
+          "x-amz-apigw-id": "GTmAuHYgIAMFg9Q=",
+          "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+          "x-amzn-Remapped-Date": "Wed, 04 Nov 2026 08:17:08 GMT",
+          "Date": "Wed, 04 Nov 2026 08:17:08 GMT",
+          "Connection": "keep-alive",
+          "Set-Cookie": "AWSALB=7ZQwvVo/4U0281vJSJ2pPmKUbAspQRbqNO44IGT4tWc2IZdDq1Eb0BOWlM7OOal/CYZDTECIA3Z9usJBPMIYgj3Wrx8c6UmRHxbV05f7Jca/CL6SLANwo2y3iMPy; Expires=Wed, 11 Nov 2026 08:17:08 GMT; Path=/, AWSALBCORS=7ZQwvVo/4U0281vJSJ2pPmKUbAspQRbqNO44IGT4tWc2IZdDq1Eb0BOWlM7OOal/CYZDTECIA3Z9usJBPMIYgj3Wrx8c6UmRHxbV05f7Jca/CL6SLANwo2y3iMPy; Expires=Wed, 11 Nov 2026 08:17:08 GMT; Path=/; SameSite=None",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "SAMEORIGIN",
+          "Strict-Transport-Security": "max-age=31536000 ; includeSubDomains ; preload"
+         },
+         "body": {
+          "Count": 6,
+          "Message": "Results returned successfully",
+          "results": [
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "20V682000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "04/11/2020",
+            "Component": "FUEL SYSTEM, GASOLINE:DELIVERY:FUEL PUMP",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018-2019 4Runner, 2019-2020 Avalon, 2019 Corolla Hatchback, 2017-2019 Highlander, 2018-2020 Camry, 2020 Corolla, 2018-2019 Land Cruiser, 2017-2020 Tacoma, 2019-2020 RAV4, 2019-2020 Sequoia, 2017-2020 Sienna, 2019-2020 Tundra, 2018-2020 Lexus ES350, 2017 Lexus GS200t, 2017-2019 Lexus GS350, 2019 Lexus GS300, 2018-2020 Lexus LC500h, 2019-2020 Lexus LS500, 2018-2019 Lexus GX460, 2017 Lexus IS200t, 2019 Lexus IS300, 2019 Lexus IS350, 2018-2020 Lexus LC500, 2018 Lexus LS500, 2019 Lexus LS500h, 2018-2019 Lexus LX570, 2017 Lexus RC200t, 2019 Lexus RC300, RC350, 2017 and 2019-2020 Lexus RX350, 2018-2020 RX350L, 2019 Lexus UX200, 2018-2019 Lexus NX300 vehicles.  The low-pressure fuel pump inside the fuel tank may fail.",
+            "Consequence": "If the fuel pump fails, the engine can stall while driving, increasing the risk of a crash.",
+            "Remedy": "Toyota will notify owners, and dealers will replace the fuel pump assembly with an improved one, free of charge.  Owners of specific models were notified that remedy parts were available starting January 21, 2021.  Owners of other models will be notified as remedy parts become available.  Remedy parts should be available for all affected vehicles by late March 2021.  Owners may contact Toyota customer service at 1-888-270-9371 or Lexus customer service at 1-800-255-3987.  Note: This recall is an expansion of recall 20V-012.  Toyota's number for this recall is 20TA02.  Lexus' number for this recall is 20LA01.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "21V890000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "17/11/2021",
+            "Component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018-2019 Camry vehicles.  The vane cap inside the vacuum pump may break, causing the pump to fail, which could result in a sudden loss of braking assist.",
+            "Consequence": "A sudden loss of braking assist can increase the risk of a crash.",
+            "Remedy": "Dealers will repair or replace the vacuum pump, as necessary, free of charge.  Owner notification letters were mailed May 16, 2022.  Owners may contact Toyota customer service at 1-800-331-4331.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.nhtsa.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "20V012000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "13/01/2020",
+            "Component": "FUEL SYSTEM, GASOLINE:DELIVERY:FUEL PUMP",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) recalled certain 2018-2019 4Runner, Highlander, Camry, Land Cruiser, Sequoia, Sienna, Tacoma and Tundra, and Lexus RC 300, RC 350, GS 350, GX 460, IS 300, LC 500, LS 500, LX 570, RX 350L, and 2019 Toyota Avalon and Corolla, and certain Lexus NX 300, and ES 350 vehicles on January 13, 2020. \r\nOn March 4, 2020, Toyota expanded the recall to include certain 2014-2015 Toyota 4Runner and Land Cruiser, 2018 Avalon, Corolla, 2014 FJ Cruiser, 2017 Sienna and Lexus 2018 ES 350, 2018-2019 GS 300, 2013-2014 GS350, 2014-2015 GX 460, IS 350 and LX 570, 2014 IS F, 2018-2019 IS 350, LC 500H and LS 500H, 2013-2015 LS 460, 2015 NX 200T and RC350, 2017 RC 200T and RX 350.  Toyota also removed the 2018-2019 Toyota 4Runner and Land Cruiser and 2018-2019 Lexus GX 460 and LX 570 and 2019 NX300 from inclusion in this recall.  On March 19, 2020, Toyota expanded the recall to include 2015 Lexus GS350 vehicles.  The low-pressure fuel pump inside the fuel tank may fail.",
+            "Consequence": "If the fuel pump fails, the engine can stall while driving, increasing the risk of a crash.",
+            "Remedy": "Toyota will notify owners, and dealers will replace the fuel pump, free of charge.  The recall began May 4, 2020.  Owners may contact Toyota customer service at 1-888-270-9371 or Lexus customer service at 1-800-255-3987.  Toyota's numbers for this recall are 20TB02 and 20TA02 for Toyota vehicles and 20LB01 and 20LA01 for Lexus vehicles.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Southeast Toyota Distributors, LLC",
+            "NHTSACampaignNumber": "19V503000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "28/06/2019",
+            "Component": "EQUIPMENT:OTHER:LABELS",
+            "Summary": "Southeast Toyota Distributors, LLC (SET) is recalling certain 2017-2019 Toyota Camry, Corolla, Rav4, Sienna, and Yaris iA vehicles equipped with factory-installed floor mats.  The load carrying capacity modification label may be incorrect.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 110, \"Tire Selection and Rims.\"",
+            "Consequence": "An incorrect label may lead to unintentionally overloading the vehicle, increasing the risk of a crash.",
+            "Remedy": "SET will notify owners and provide a corrected label for placement over the inaccurate label, free of charge.  The recall began August 23, 2019.  Owners may contact Toyota customer service at 1-888-270-9371.  SET's number for this recall is SET19A.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "19V567000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "01/08/2019",
+            "Component": "AIR BAGS:SENSOR:OCCUPANT CLASSIFICATION",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2019 Camry vehicles. The Occupant Classification System (OCS) may have been improperly calibrated, which may prevent the proper deployment of the front passenger air bag and knee air bag, in the event of a crash.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 208, \"Occupant Crash Protection.\"",
+            "Consequence": "In the event of a crash, if the air bags do not deploy as designed, the front seat passenger has an increased risk of an injury.",
+            "Remedy": "Toyota will notify owners, and dealers will recalibrate the OCS, free of charge.  The recall began August 27, 2019.  Owners may contact Toyota customer service at 1-888-270-9371.  Toyota's number for this recall is K0M.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Gulf States Toyota, Inc.",
+            "NHTSACampaignNumber": "19V244000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "27/03/2019",
+            "Component": "EQUIPMENT:OTHER:LABELS",
+            "Summary": "Gulf States Toyota (GST) is recalling certain 2019 C-HR, 4Runner, Avalon, Avalon Hybrid, Camry, Camry Hybrid, Highlander, Land Cruiser, Prius, RAV4, Sequoia, Tacoma, Sienna, Tundra and Yaris vehicles.  The text on the load capacity label may become illegible.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 110, \"Tire Selection and Rims.\"",
+            "Consequence": "If the driver cannot read the label, they may unknowingly overload the vehicle, increasing the risk of a crash.",
+            "Remedy": "GST will notify owners, and dealers will provide corrected load carrying capacity modification labels, free of charge.  The recall began May 24, 2019.  Owners may contact GST customer service at 1-800-444-1074.  GST's number for this recall is 19R1.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           }
+          ]
+         }
+        },
+        "rank.output": {
+         "ranked": [
+          {
+           "claim_id": "CLM-00009",
+           "sol": {
+            "known": true,
+            "days_left": 1626,
+            "expired": false,
+            "deadline_ms": 1934236800000
+           },
+           "negligence": {
+            "doctrine": "contributory",
+            "insured_fault_pct": 10,
+            "barred": true,
+            "factor": 0
+           },
+           "recall": {
+            "match": true,
+            "campaign": "21V890000",
+            "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+           },
+           "gross": 31300,
+           "status": "BARRED_NEGLIGENCE",
+           "score": 0
+          }
+         ],
+         "summary": {
+          "total": 1,
+          "pursue": 0,
+          "needs_data": 0,
+          "sol_expired": 0,
+          "barred": 1,
+          "no_case": 0,
+          "pipeline_demand": 0
+         }
+        },
+        "eachClaim.output": [
+         {
+          "markNeedsData": {
+           "output": null
+          },
+          "assess": {
+           "output": {
+            "list": [
+             {
+              "claim_id": "CLM-00009",
+              "sol": {
+               "known": true,
+               "days_left": 1626,
+               "expired": false,
+               "deadline_ms": 1934236800000
+              },
+              "negligence": {
+               "doctrine": "contributory",
+               "insured_fault_pct": 10,
+               "barred": true,
+               "factor": 0
+              },
+              "recall": {
+               "match": true,
+               "campaign": "21V890000",
+               "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+              },
+              "gross": 31300,
+              "status": "BARRED_NEGLIGENCE",
+              "score": 0
+             }
+            ]
+           }
+          },
+          "nextClaim": {
+           "output": 1
+          }
+         }
+        ],
+        "negotiator.error": null,
+        "start.output.runId": "T15-S09",
+        "storeOut.error": null,
+        "end.storeValue": null,
+        "ledgerAppendFailed.error": null,
+        "negInit.output": null,
+        "specialistReviewOk.error": null,
+        "loadStore.output": null,
+        "duel.error": null,
+        "negCtx.error": null,
+        "ledgerAppendFailed.output": null,
+        "judgeOffer.error": null,
+        "ledgerNoCaseFailed.output": null,
+        "evidenceAnalyst.output": null,
+        "end.ledger": null,
+        "noApproval.error": null,
+        "intake.error": null,
+        "managerReviewOk.output": null,
+        "storeLoadFailed.error": null,
+        "evidenceAnalyst.error": null
+       },
+       "metadata": {
+        "ExternalId": "66581204",
+        "InstanceId": "27bb38d4-c8ac-4857-b73c-d85c62896735",
+        "ElementCount": {
+         "eachClaim": 2,
+         "fromBucket": 1,
+         "intake": 1,
+         "start": 1
+        },
+        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+        "ProcessKey": null
+       }
+      }
+     },
+     "inputDefinitions": {},
+     "outputs": {
+      "response": {
+       "found": false,
+       "assessment": {},
+       "claim": {},
+       "claimJson": "{}",
+       "assessmentJson": "{}"
+      }
+     }
+    },
+    {
+     "elementId": "noCaseEnd",
+     "elementRunId": "d6982154-1b81-4699-95e1-1e7d3621e895",
+     "isMarker": false,
+     "inputs": {
+      "args": {
+       "vars": {
+        "ledger": {
+         "ok": false,
+         "ledgerCount": null
+        },
+        "assess.output": {
+         "list": [
+          {
+           "claim_id": "CLM-00009",
+           "sol": {
+            "known": true,
+            "days_left": 1626,
+            "expired": false,
+            "deadline_ms": 1934236800000
+           },
+           "negligence": {
+            "doctrine": "contributory",
+            "insured_fault_pct": 10,
+            "barred": true,
+            "factor": 0
+           },
+           "recall": {
+            "match": true,
+            "campaign": "21V890000",
+            "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+           },
+           "gross": 31300,
+           "status": "BARRED_NEGLIGENCE",
+           "score": 0
+          }
+         ]
+        },
+        "liability": null,
+        "managerReviewNo.output": null,
+        "markNeedsData.output": null,
+        "specialistReview.output": null,
+        "specialistReviewNo.error": null,
+        "carrierAgent.output": null,
+        "noApproval.output": null,
+        "loadStore.error": null,
+        "end2.ledger": null,
+        "autoApprove.output": null,
+        "end.neg": null,
+        "assess.error": null,
+        "liabilityAssessor.error": null,
+        "storeValue": {
+         "source": "input",
+         "loaded": false
+        },
+        "pickTop.output": {
+         "found": false,
+         "assessment": {},
+         "claim": {},
+         "claimJson": "{}",
+         "assessmentJson": "{}"
+        },
+        "end2.summary": null,
+        "evidence": null,
+        "specialistReview.status": null,
+        "end.roi": null,
+        "killSwitch": false,
+        "ledgerNoCase.output": null,
+        "start.output.counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 5000
+        },
+        "start.output.asOf": "2026-11-04",
+        "assessed": [
+         {
+          "claim_id": "CLM-00009",
+          "sol": {
+           "known": true,
+           "days_left": 1626,
+           "expired": false,
+           "deadline_ms": 1934236800000
+          },
+          "negligence": {
+           "doctrine": "contributory",
+           "insured_fault_pct": 10,
+           "barred": true,
+           "factor": 0
+          },
+          "recall": {
+           "match": true,
+           "campaign": "21V890000",
+           "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+          },
+          "gross": 31300,
+          "status": "BARRED_NEGLIGENCE",
+          "score": 0
+         }
+        ],
+        "specialistReviewNo.output": null,
+        "book.error": null,
+        "nextClaim.output": 1,
+        "asOf": "2026-11-04",
+        "end.summary": null,
+        "end.evidence": null,
+        "end2.roi": null,
+        "roundCtx.output": null,
+        "pickTop.error": null,
+        "noCaseEnd.output": null,
+        "parseStore.output": null,
+        "parseStore.error": null,
+        "negInit.error": null,
+        "end2.storeValue": null,
+        "ranked": null,
+        "end2.neg": null,
+        "start.output.claimIds": null,
+        "negotiation": null,
+        "approvalCtx.output": null,
+        "store": {
+         "source": "input",
+         "loaded": false
+        },
+        "rank.error": null,
+        "stylePass.output": null,
+        "managerReview.output": null,
+        "negotiator.output": null,
+        "end.approval": null,
+        "response": null,
+        "runId": "T15-S09",
+        "stylePass.error": null,
+        "markNeedsData.error": null,
+        "guardCounter.output": null,
+        "managerReviewNo.error": null,
+        "end2.ranked": null,
+        "noCaseEnd.error": null,
+        "counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 5000
+        },
+        "carrierAgent.error": null,
+        "end2.approval": null,
+        "claimIds": null,
+        "negCtx.output": null,
+        "managerReview.status": null,
+        "autoApprove.error": null,
+        "approvalCtx.error": null,
+        "ledgerAppend.error": null,
+        "end.ranked": null,
+        "book.output": null,
+        "start.output.source": "input",
+        "judgeOffer.output": null,
+        "end2.evidence": null,
+        "eachClaim.error": null,
+        "end.store": null,
+        "intake.output": {
+         "items": [
+          {
+           "claim_id": "CLM-00009",
+           "scenario": "S09",
+           "synthetic": "true",
+           "policyholder": "Policyholder 00009 (synthetic)",
+           "state": "VA",
+           "make": "TOYOTA",
+           "model": "CAMRY",
+           "model_year": "2019",
+           "vin": "4T1B11HK3KB639493",
+           "loss_date": "2026-04-18",
+           "closed_date": "2026-05-14",
+           "loss_cause": "brake_failure_rear_end",
+           "paid_amount": 30300,
+           "deductible": 1000,
+           "insured_fault_pct": 10,
+           "matched_recall": "21V890000",
+           "data_status": "OK",
+           "police_report": "[SYNTHETIC] Officer #9876. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+           "sol_days_left": "1626"
+          }
+         ],
+         "stopped": false,
+         "claims": [
+          {
+           "claim_id": "CLM-00009",
+           "scenario": "S09",
+           "synthetic": "true",
+           "policyholder": "Policyholder 00009 (synthetic)",
+           "state": "VA",
+           "make": "TOYOTA",
+           "model": "CAMRY",
+           "model_year": "2019",
+           "vin": "4T1B11HK3KB639493",
+           "loss_date": "2026-04-18",
+           "closed_date": "2026-05-14",
+           "loss_cause": "brake_failure_rear_end",
+           "paid_amount": "30300",
+           "deductible": "1000",
+           "insured_fault_pct": "10",
+           "matched_recall": "21V890000",
+           "data_status": "OK",
+           "police_report": "[SYNTHETIC] Officer #9876. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+           "sol_days_left": "1626"
+          }
+         ],
+         "negotiation_paused": false
+        },
+        "ledgerNoCase.error": null,
+        "end2.liability": null,
+        "nextClaim.error": null,
+        "storeOut.output": null,
+        "source": "input",
+        "liabilityAssessor.output": null,
+        "end2.store": null,
+        "start.output.claims": [
+         {
+          "claim_id": "CLM-00009",
+          "scenario": "S09",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00009 (synthetic)",
+          "state": "VA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK3KB639493",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-14",
+          "loss_cause": "brake_failure_rear_end",
+          "paid_amount": "30300",
+          "deductible": "1000",
+          "insured_fault_pct": "10",
+          "matched_recall": "21V890000",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #9876. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+          "sol_days_left": "1626"
+         }
+        ],
+        "neg": {},
+        "getRecalls.error": null,
+        "roundCtx.error": null,
+        "ledgerAppend.output": null,
+        "roi": null,
+        "end.negotiation": null,
+        "end.assessed": null,
+        "end2.negotiation": null,
+        "end.liability": null,
+        "approval": {},
+        "guardCounter.error": null,
+        "claims": [
+         {
+          "claim_id": "CLM-00009",
+          "scenario": "S09",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00009 (synthetic)",
+          "state": "VA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK3KB639493",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-14",
+          "loss_cause": "brake_failure_rear_end",
+          "paid_amount": "30300",
+          "deductible": "1000",
+          "insured_fault_pct": "10",
+          "matched_recall": "21V890000",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #9876. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+          "sol_days_left": "1626"
+         }
+        ],
+        "start.output.killSwitch": false,
+        "summary": null,
+        "ledgerNoCaseFailed.error": null,
+        "end2.assessed": null,
+        "error": null,
+        "storeLoadFailed.output": null,
+        "managerReviewOk.error": null,
+        "specialistReviewOk.output": null,
+        "getRecalls.output": {
+         "code": 200,
+         "headers": {
+          "x-amzn-RequestId": "07c4cb3e-bbeb-4d23-898b-ac5c583ab730",
+          "x-amzn-Remapped-Connection": "keep-alive",
+          "x-amz-apigw-id": "GTmAuHYgIAMFg9Q=",
+          "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+          "x-amzn-Remapped-Date": "Wed, 04 Nov 2026 08:17:08 GMT",
+          "Date": "Wed, 04 Nov 2026 08:17:08 GMT",
+          "Connection": "keep-alive",
+          "Set-Cookie": "AWSALB=7ZQwvVo/4U0281vJSJ2pPmKUbAspQRbqNO44IGT4tWc2IZdDq1Eb0BOWlM7OOal/CYZDTECIA3Z9usJBPMIYgj3Wrx8c6UmRHxbV05f7Jca/CL6SLANwo2y3iMPy; Expires=Wed, 11 Nov 2026 08:17:08 GMT; Path=/, AWSALBCORS=7ZQwvVo/4U0281vJSJ2pPmKUbAspQRbqNO44IGT4tWc2IZdDq1Eb0BOWlM7OOal/CYZDTECIA3Z9usJBPMIYgj3Wrx8c6UmRHxbV05f7Jca/CL6SLANwo2y3iMPy; Expires=Wed, 11 Nov 2026 08:17:08 GMT; Path=/; SameSite=None",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "SAMEORIGIN",
+          "Strict-Transport-Security": "max-age=31536000 ; includeSubDomains ; preload"
+         },
+         "body": {
+          "Count": 6,
+          "Message": "Results returned successfully",
+          "results": [
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "20V682000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "04/11/2020",
+            "Component": "FUEL SYSTEM, GASOLINE:DELIVERY:FUEL PUMP",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018-2019 4Runner, 2019-2020 Avalon, 2019 Corolla Hatchback, 2017-2019 Highlander, 2018-2020 Camry, 2020 Corolla, 2018-2019 Land Cruiser, 2017-2020 Tacoma, 2019-2020 RAV4, 2019-2020 Sequoia, 2017-2020 Sienna, 2019-2020 Tundra, 2018-2020 Lexus ES350, 2017 Lexus GS200t, 2017-2019 Lexus GS350, 2019 Lexus GS300, 2018-2020 Lexus LC500h, 2019-2020 Lexus LS500, 2018-2019 Lexus GX460, 2017 Lexus IS200t, 2019 Lexus IS300, 2019 Lexus IS350, 2018-2020 Lexus LC500, 2018 Lexus LS500, 2019 Lexus LS500h, 2018-2019 Lexus LX570, 2017 Lexus RC200t, 2019 Lexus RC300, RC350, 2017 and 2019-2020 Lexus RX350, 2018-2020 RX350L, 2019 Lexus UX200, 2018-2019 Lexus NX300 vehicles.  The low-pressure fuel pump inside the fuel tank may fail.",
+            "Consequence": "If the fuel pump fails, the engine can stall while driving, increasing the risk of a crash.",
+            "Remedy": "Toyota will notify owners, and dealers will replace the fuel pump assembly with an improved one, free of charge.  Owners of specific models were notified that remedy parts were available starting January 21, 2021.  Owners of other models will be notified as remedy parts become available.  Remedy parts should be available for all affected vehicles by late March 2021.  Owners may contact Toyota customer service at 1-888-270-9371 or Lexus customer service at 1-800-255-3987.  Note: This recall is an expansion of recall 20V-012.  Toyota's number for this recall is 20TA02.  Lexus' number for this recall is 20LA01.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "21V890000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "17/11/2021",
+            "Component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018-2019 Camry vehicles.  The vane cap inside the vacuum pump may break, causing the pump to fail, which could result in a sudden loss of braking assist.",
+            "Consequence": "A sudden loss of braking assist can increase the risk of a crash.",
+            "Remedy": "Dealers will repair or replace the vacuum pump, as necessary, free of charge.  Owner notification letters were mailed May 16, 2022.  Owners may contact Toyota customer service at 1-800-331-4331.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.nhtsa.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "20V012000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "13/01/2020",
+            "Component": "FUEL SYSTEM, GASOLINE:DELIVERY:FUEL PUMP",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) recalled certain 2018-2019 4Runner, Highlander, Camry, Land Cruiser, Sequoia, Sienna, Tacoma and Tundra, and Lexus RC 300, RC 350, GS 350, GX 460, IS 300, LC 500, LS 500, LX 570, RX 350L, and 2019 Toyota Avalon and Corolla, and certain Lexus NX 300, and ES 350 vehicles on January 13, 2020. \r\nOn March 4, 2020, Toyota expanded the recall to include certain 2014-2015 Toyota 4Runner and Land Cruiser, 2018 Avalon, Corolla, 2014 FJ Cruiser, 2017 Sienna and Lexus 2018 ES 350, 2018-2019 GS 300, 2013-2014 GS350, 2014-2015 GX 460, IS 350 and LX 570, 2014 IS F, 2018-2019 IS 350, LC 500H and LS 500H, 2013-2015 LS 460, 2015 NX 200T and RC350, 2017 RC 200T and RX 350.  Toyota also removed the 2018-2019 Toyota 4Runner and Land Cruiser and 2018-2019 Lexus GX 460 and LX 570 and 2019 NX300 from inclusion in this recall.  On March 19, 2020, Toyota expanded the recall to include 2015 Lexus GS350 vehicles.  The low-pressure fuel pump inside the fuel tank may fail.",
+            "Consequence": "If the fuel pump fails, the engine can stall while driving, increasing the risk of a crash.",
+            "Remedy": "Toyota will notify owners, and dealers will replace the fuel pump, free of charge.  The recall began May 4, 2020.  Owners may contact Toyota customer service at 1-888-270-9371 or Lexus customer service at 1-800-255-3987.  Toyota's numbers for this recall are 20TB02 and 20TA02 for Toyota vehicles and 20LB01 and 20LA01 for Lexus vehicles.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Southeast Toyota Distributors, LLC",
+            "NHTSACampaignNumber": "19V503000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "28/06/2019",
+            "Component": "EQUIPMENT:OTHER:LABELS",
+            "Summary": "Southeast Toyota Distributors, LLC (SET) is recalling certain 2017-2019 Toyota Camry, Corolla, Rav4, Sienna, and Yaris iA vehicles equipped with factory-installed floor mats.  The load carrying capacity modification label may be incorrect.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 110, \"Tire Selection and Rims.\"",
+            "Consequence": "An incorrect label may lead to unintentionally overloading the vehicle, increasing the risk of a crash.",
+            "Remedy": "SET will notify owners and provide a corrected label for placement over the inaccurate label, free of charge.  The recall began August 23, 2019.  Owners may contact Toyota customer service at 1-888-270-9371.  SET's number for this recall is SET19A.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "19V567000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "01/08/2019",
+            "Component": "AIR BAGS:SENSOR:OCCUPANT CLASSIFICATION",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2019 Camry vehicles. The Occupant Classification System (OCS) may have been improperly calibrated, which may prevent the proper deployment of the front passenger air bag and knee air bag, in the event of a crash.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 208, \"Occupant Crash Protection.\"",
+            "Consequence": "In the event of a crash, if the air bags do not deploy as designed, the front seat passenger has an increased risk of an injury.",
+            "Remedy": "Toyota will notify owners, and dealers will recalibrate the OCS, free of charge.  The recall began August 27, 2019.  Owners may contact Toyota customer service at 1-888-270-9371.  Toyota's number for this recall is K0M.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Gulf States Toyota, Inc.",
+            "NHTSACampaignNumber": "19V244000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "27/03/2019",
+            "Component": "EQUIPMENT:OTHER:LABELS",
+            "Summary": "Gulf States Toyota (GST) is recalling certain 2019 C-HR, 4Runner, Avalon, Avalon Hybrid, Camry, Camry Hybrid, Highlander, Land Cruiser, Prius, RAV4, Sequoia, Tacoma, Sienna, Tundra and Yaris vehicles.  The text on the load capacity label may become illegible.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 110, \"Tire Selection and Rims.\"",
+            "Consequence": "If the driver cannot read the label, they may unknowingly overload the vehicle, increasing the risk of a crash.",
+            "Remedy": "GST will notify owners, and dealers will provide corrected load carrying capacity modification labels, free of charge.  The recall began May 24, 2019.  Owners may contact GST customer service at 1-800-444-1074.  GST's number for this recall is 19R1.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           }
+          ]
+         }
+        },
+        "rank.output": {
+         "ranked": [
+          {
+           "claim_id": "CLM-00009",
+           "sol": {
+            "known": true,
+            "days_left": 1626,
+            "expired": false,
+            "deadline_ms": 1934236800000
+           },
+           "negligence": {
+            "doctrine": "contributory",
+            "insured_fault_pct": 10,
+            "barred": true,
+            "factor": 0
+           },
+           "recall": {
+            "match": true,
+            "campaign": "21V890000",
+            "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+           },
+           "gross": 31300,
+           "status": "BARRED_NEGLIGENCE",
+           "score": 0
+          }
+         ],
+         "summary": {
+          "total": 1,
+          "pursue": 0,
+          "needs_data": 0,
+          "sol_expired": 0,
+          "barred": 1,
+          "no_case": 0,
+          "pipeline_demand": 0
+         }
+        },
+        "eachClaim.output": [
+         {
+          "markNeedsData": {
+           "output": null
+          },
+          "assess": {
+           "output": {
+            "list": [
+             {
+              "claim_id": "CLM-00009",
+              "sol": {
+               "known": true,
+               "days_left": 1626,
+               "expired": false,
+               "deadline_ms": 1934236800000
+              },
+              "negligence": {
+               "doctrine": "contributory",
+               "insured_fault_pct": 10,
+               "barred": true,
+               "factor": 0
+              },
+              "recall": {
+               "match": true,
+               "campaign": "21V890000",
+               "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+              },
+              "gross": 31300,
+              "status": "BARRED_NEGLIGENCE",
+              "score": 0
+             }
+            ]
+           }
+          },
+          "nextClaim": {
+           "output": 1
+          }
+         }
+        ],
+        "negotiator.error": null,
+        "start.output.runId": "T15-S09",
+        "storeOut.error": null,
+        "end.storeValue": null,
+        "ledgerAppendFailed.error": null,
+        "negInit.output": null,
+        "specialistReviewOk.error": null,
+        "loadStore.output": null,
+        "duel.error": null,
+        "negCtx.error": null,
+        "ledgerAppendFailed.output": null,
+        "judgeOffer.error": null,
+        "ledgerNoCaseFailed.output": null,
+        "evidenceAnalyst.output": null,
+        "end.ledger": null,
+        "noApproval.error": null,
+        "intake.error": null,
+        "managerReviewOk.output": null,
+        "storeLoadFailed.error": null,
+        "evidenceAnalyst.error": null
+       },
+       "metadata": {
+        "ExternalId": "66581204",
+        "InstanceId": "27bb38d4-c8ac-4857-b73c-d85c62896735",
+        "ElementCount": {
+         "eachClaim": 2,
+         "fromBucket": 1,
+         "intake": 1,
+         "noCase": 1,
+         "pickTop": 1,
+         "rank": 1,
+         "start": 1
+        },
+        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+        "ProcessKey": null
+       }
+      }
+     },
+     "inputDefinitions": {},
+     "outputs": {
+      "response": {
+       "ledger_ok": false,
+       "ledger_count": null
+      }
+     }
+    },
+    {
+     "elementId": "end",
+     "elementRunId": "efd201fd-cc40-472f-a13c-daf55451a9ff",
+     "isMarker": false,
+     "inputs": {},
+     "inputDefinitions": {},
+     "outputs": {}
+    }
+   ],
+   "globals": {
+    "loadStore.error": null,
+    "autoApprove.error": null,
+    "approvalCtx.error": null,
+    "specialistReview.output": null,
+    "pickTop.error": null,
+    "liabilityAssessor.output": null,
+    "storeOut.error": null,
+    "ledgerAppend.error": null,
+    "noApproval.error": null,
+    "ledgerAppendFailed.output": null,
+    "eachClaim.output": [
+     {
+      "markNeedsData": {
+       "output": null
+      },
+      "assess": {
+       "output": {
+        "list": [
+         {
+          "claim_id": "CLM-00009",
+          "sol": {
+           "known": true,
+           "days_left": 1626,
+           "expired": false,
+           "deadline_ms": 1934236800000
+          },
+          "negligence": {
+           "doctrine": "contributory",
+           "insured_fault_pct": 10,
+           "barred": true,
+           "factor": 0
+          },
+          "recall": {
+           "match": true,
+           "campaign": "21V890000",
+           "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+          },
+          "gross": 31300,
+          "status": "BARRED_NEGLIGENCE",
+          "score": 0
+         }
+        ]
+       }
+      },
+      "nextClaim": {
+       "output": 1
+      }
+     }
+    ],
+    "intake.error": null,
+    "ledgerNoCase.output": null,
+    "start.output.runId": "T15-S09",
+    "stylePass.output": null,
+    "book.error": null,
+    "managerReviewOk.error": null,
+    "autoApprove.output": null,
+    "ledgerNoCase.error": null,
+    "summary": {
+     "total": 1,
+     "pursue": 0,
+     "needs_data": 0,
+     "sol_expired": 0,
+     "barred": 1,
+     "no_case": 0,
+     "pipeline_demand": 0
+    },
+    "managerReviewNo.error": null,
+    "start.output.claimIds": null,
+    "parseStore.error": null,
+    "roi": {
+     "runs": 1,
+     "approved": 0,
+     "recovered": 0,
+     "refunds": 0,
+     "insurer_net": 0,
+     "reconciles": true
+    },
+    "pickTop.output": {
+     "found": false,
+     "assessment": {},
+     "claim": {},
+     "claimJson": "{}",
+     "assessmentJson": "{}"
+    },
+    "start.output.claims": [
+     {
+      "claim_id": "CLM-00009",
+      "scenario": "S09",
+      "synthetic": "true",
+      "policyholder": "Policyholder 00009 (synthetic)",
+      "state": "VA",
+      "make": "TOYOTA",
+      "model": "CAMRY",
+      "model_year": "2019",
+      "vin": "4T1B11HK3KB639493",
+      "loss_date": "2026-04-18",
+      "closed_date": "2026-05-14",
+      "loss_cause": "brake_failure_rear_end",
+      "paid_amount": "30300",
+      "deductible": "1000",
+      "insured_fault_pct": "10",
+      "matched_recall": "21V890000",
+      "data_status": "OK",
+      "police_report": "[SYNTHETIC] Officer #9876. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+      "sol_days_left": "1626"
+     }
+    ],
+    "ranked": [
+     {
+      "claim_id": "CLM-00009",
+      "sol": {
+       "known": true,
+       "days_left": 1626,
+       "expired": false,
+       "deadline_ms": 1934236800000
+      },
+      "negligence": {
+       "doctrine": "contributory",
+       "insured_fault_pct": 10,
+       "barred": true,
+       "factor": 0
+      },
+      "recall": {
+       "match": true,
+       "campaign": "21V890000",
+       "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+      },
+      "gross": 31300,
+      "status": "BARRED_NEGLIGENCE",
+      "score": 0
+     }
+    ],
+    "ledger": {
+     "ok": false,
+     "ledgerCount": null
+    },
+    "specialistReviewOk.error": null,
+    "book.output": null,
+    "neg": {},
+    "evidence": {},
+    "ledgerAppendFailed.error": null,
+    "negInit.error": null,
+    "specialistReview.status": null,
+    "ledgerNoCaseFailed.output": null,
+    "noApproval.output": null,
+    "storeLoadFailed.output": null,
+    "specialistReviewNo.output": null,
+    "parseStore.output": null,
+    "noCaseEnd.output": {
+     "ledger_ok": false,
+     "ledger_count": null
+    },
+    "noCaseEnd.error": null,
+    "liability": {},
+    "storeOut.output": null,
+    "evidenceAnalyst.output": null,
+    "negotiation": {
+     "status": "NO_CASE",
+     "simulated_counterparty": true,
+     "history": []
+    },
+    "loadStore.output": null,
+    "managerReviewNo.output": null,
+    "intake.output": {
+     "items": [
+      {
+       "claim_id": "CLM-00009",
+       "scenario": "S09",
+       "synthetic": "true",
+       "policyholder": "Policyholder 00009 (synthetic)",
+       "state": "VA",
+       "make": "TOYOTA",
+       "model": "CAMRY",
+       "model_year": "2019",
+       "vin": "4T1B11HK3KB639493",
+       "loss_date": "2026-04-18",
+       "closed_date": "2026-05-14",
+       "loss_cause": "brake_failure_rear_end",
+       "paid_amount": 30300,
+       "deductible": 1000,
+       "insured_fault_pct": 10,
+       "matched_recall": "21V890000",
+       "data_status": "OK",
+       "police_report": "[SYNTHETIC] Officer #9876. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+       "sol_days_left": "1626"
+      }
+     ],
+     "stopped": false,
+     "claims": [
+      {
+       "claim_id": "CLM-00009",
+       "scenario": "S09",
+       "synthetic": "true",
+       "policyholder": "Policyholder 00009 (synthetic)",
+       "state": "VA",
+       "make": "TOYOTA",
+       "model": "CAMRY",
+       "model_year": "2019",
+       "vin": "4T1B11HK3KB639493",
+       "loss_date": "2026-04-18",
+       "closed_date": "2026-05-14",
+       "loss_cause": "brake_failure_rear_end",
+       "paid_amount": "30300",
+       "deductible": "1000",
+       "insured_fault_pct": "10",
+       "matched_recall": "21V890000",
+       "data_status": "OK",
+       "police_report": "[SYNTHETIC] Officer #9876. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+       "sol_days_left": "1626"
+      }
+     ],
+     "negotiation_paused": false
+    },
+    "specialistReviewNo.error": null,
+    "start.output.asOf": "2026-11-04",
+    "ledgerNoCaseFailed.error": null,
+    "start.output.killSwitch": false,
+    "approval": {},
+    "evidenceAnalyst.error": null,
+    "managerReviewOk.output": null,
+    "storeLoadFailed.error": null,
+    "ledgerAppend.output": null,
+    "start.output.counterparty": {
+     "persona": "cooperative",
+     "reservation_price": 5000
+    },
+    "start.output.source": "input",
+    "storeValue": {
+     "source": "input",
+     "loaded": false
+    },
+    "rank.output": {
+     "ranked": [
+      {
+       "claim_id": "CLM-00009",
+       "sol": {
+        "known": true,
+        "days_left": 1626,
+        "expired": false,
+        "deadline_ms": 1934236800000
+       },
+       "negligence": {
+        "doctrine": "contributory",
+        "insured_fault_pct": 10,
+        "barred": true,
+        "factor": 0
+       },
+       "recall": {
+        "match": true,
+        "campaign": "21V890000",
+        "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+       },
+       "gross": 31300,
+       "status": "BARRED_NEGLIGENCE",
+       "score": 0
+      }
+     ],
+     "summary": {
+      "total": 1,
+      "pursue": 0,
+      "needs_data": 0,
+      "sol_expired": 0,
+      "barred": 1,
+      "no_case": 0,
+      "pipeline_demand": 0
+     }
+    },
+    "managerReview.output": null,
+    "managerReview.status": null,
+    "liabilityAssessor.error": null,
+    "negInit.output": null,
+    "store": {
+     "source": "input",
+     "ledger_appended": false,
+     "ledger_ok": false,
+     "ledger_count": null
+    },
+    "assessed": [
+     {
+      "claim_id": "CLM-00009",
+      "sol": {
+       "known": true,
+       "days_left": 1626,
+       "expired": false,
+       "deadline_ms": 1934236800000
+      },
+      "negligence": {
+       "doctrine": "contributory",
+       "insured_fault_pct": 10,
+       "barred": true,
+       "factor": 0
+      },
+      "recall": {
+       "match": true,
+       "campaign": "21V890000",
+       "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+      },
+      "gross": 31300,
+      "status": "BARRED_NEGLIGENCE",
+      "score": 0
+     }
+    ],
+    "stylePass.error": null,
+    "approvalCtx.output": null,
+    "rank.error": null,
+    "specialistReviewOk.output": null
+   },
+   "instanceId": "27bb38d4-c8ac-4857-b73c-d85c62896735",
+   "workflowId": "27bb38d4-c8ac-4857-b73c-d85c62896735/BpmnGenericWorkflow",
+   "parentElementId": null,
+   "globalDefinitions": {
+    "loadStore.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "autoApprove.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "approvalCtx.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "specialistReview.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "pickTop.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "liabilityAssessor.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "storeOut.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "ledgerAppend.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "noApproval.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "ledgerAppendFailed.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "eachClaim.output": {
+     "name": "output",
+     "type": "array"
+    },
+    "intake.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "ledgerNoCase.output": {
+     "name": "output",
+     "type": "jsonSchema"
+    },
+    "start.output.runId": {
+     "name": "runId",
+     "type": "string"
+    },
+    "stylePass.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "book.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "managerReviewOk.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "autoApprove.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "ledgerNoCase.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "summary": {
+     "name": "summary",
+     "type": "object"
+    },
+    "managerReviewNo.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "start.output.claimIds": {
+     "name": "claimIds",
+     "type": "array"
+    },
+    "parseStore.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "roi": {
+     "name": "roi",
+     "type": "object"
+    },
+    "pickTop.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "start.output.claims": {
+     "name": "claims",
+     "type": "array"
+    },
+    "ranked": {
+     "name": "ranked",
+     "type": "array"
+    },
+    "ledger": {
+     "name": "ledger",
+     "type": "object"
+    },
+    "specialistReviewOk.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "book.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "neg": {
+     "name": "neg",
+     "type": "object"
+    },
+    "evidence": {
+     "name": "evidence",
+     "type": "object"
+    },
+    "ledgerAppendFailed.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "negInit.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "specialistReview.status": {
+     "name": "status",
+     "type": "string"
+    },
+    "ledgerNoCaseFailed.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "noApproval.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "storeLoadFailed.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "specialistReviewNo.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "parseStore.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "noCaseEnd.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "noCaseEnd.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "liability": {
+     "name": "liability",
+     "type": "object"
+    },
+    "storeOut.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "evidenceAnalyst.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "negotiation": {
+     "name": "negotiation",
+     "type": "object"
+    },
+    "loadStore.output": {
+     "name": "output",
+     "type": "jsonSchema"
+    },
+    "managerReviewNo.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "intake.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "specialistReviewNo.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "start.output.asOf": {
+     "name": "asOf",
+     "type": "string"
+    },
+    "ledgerNoCaseFailed.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "start.output.killSwitch": {
+     "name": "killSwitch",
+     "type": "boolean"
+    },
+    "approval": {
+     "name": "approval",
+     "type": "object"
+    },
+    "evidenceAnalyst.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "managerReviewOk.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "storeLoadFailed.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "ledgerAppend.output": {
+     "name": "output",
+     "type": "jsonSchema"
+    },
+    "start.output.counterparty": {
+     "name": "counterparty",
+     "type": "object"
+    },
+    "start.output.source": {
+     "name": "source",
+     "type": "string"
+    },
+    "storeValue": {
+     "name": "storeValue",
+     "type": "object"
+    },
+    "rank.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "managerReview.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "managerReview.status": {
+     "name": "status",
+     "type": "string"
+    },
+    "liabilityAssessor.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "negInit.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "store": {
+     "name": "store",
+     "type": "object"
+    },
+    "assessed": {
+     "name": "assessed",
+     "type": "array"
+    },
+    "stylePass.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "approvalCtx.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "rank.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "specialistReviewOk.output": {
+     "name": "output",
+     "type": "object"
+    }
+   }
+  }
+ },
+ "Instructions": "Debug completed with status: Completed"
+}

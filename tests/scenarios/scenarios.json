@@ -1,0 +1,18 @@
+{"note": "T15 tenant harness. SYNTHETIC claims, SIMULATED carrier. Expected rank status comes from rules/rules.js offline (scripts/expected.mjs); expect.neg is the negotiation end state.",
+ "scenarios": [
+  {"id": "S01", "claims": ["CLM-00017"], "persona": "cooperative", "reservation": 11050, "expect": {"top": "CLM-00017", "neg": "SETTLED", "approve": "Approve"}},
+  {"id": "S02", "claims": ["CLM-00002"], "persona": "stubborn", "reservation": 9000, "expect": {"top": "CLM-00002", "neg": "SETTLED", "approve": "Approve"}},
+  {"id": "S03", "claims": ["CLM-00003"], "persona": "lowball", "reservation": 1500, "expect": {"top": "CLM-00003", "neg": "IMPASSE"}},
+  {"id": "S04", "claims": ["CLM-00004"], "persona": "cooperative", "reservation": 14000, "expect": {"top": "CLM-00004", "neg": "SETTLED", "tier": "SPECIALIST", "approve": "Approve"}},
+  {"id": "S05", "claims": ["CLM-00005"], "persona": "stubborn", "reservation": 30000, "expect": {"top": "CLM-00005", "neg": "SETTLED", "tier": "MANAGER", "approve": "Reject"}},
+  {"id": "S06", "claims": ["CLM-00006"], "persona": "cooperative", "reservation": 5000, "expect": {"top": null, "neg": "NO_CASE"}},
+  {"id": "S07", "claims": ["CLM-00001", "CLM-00020", "CLM-00007"], "persona": "cooperative", "reservation": 30000, "expect": {"top": "CLM-00007", "neg": "SETTLED", "approve": "Approve"}},
+  {"id": "S08", "claims": ["CLM-00008"], "persona": "cooperative", "reservation": 5000, "expect": {"top": null, "neg": "NO_CASE"}},
+  {"id": "S09", "claims": ["CLM-00009"], "persona": "cooperative", "reservation": 5000, "expect": {"top": null, "neg": "NO_CASE"}},
+  {"id": "S10", "claims": ["CLM-00010", "CLM-00011"], "persona": "cooperative", "reservation": 6000, "expect": {"top": "CLM-00011", "neg": "SETTLED", "approve": "Approve"}},
+  {"id": "S11", "claims": ["CLM-00012", "CLM-00021"], "persona": "cooperative", "reservation": 5000, "expect": {"top": null, "neg": "NO_CASE"}},
+  {"id": "S12", "claims": ["CLM-00013"], "persona": "cooperative", "reservation": 5000, "expect": {"top": null, "neg": "NO_CASE"}},
+  {"id": "S13", "claims": ["CLM-00014"], "persona": "requests_docs", "reservation": 7000, "expect": {"top": "CLM-00014", "neg_in": ["SETTLED", "IMPASSE"], "approve": "Approve", "partial": "doc-request reply path is email (T16)"}},
+  {"id": "S14", "claims": ["CLM-00015"], "persona": "injection", "reservation": 7000, "expect": {"top": "CLM-00015", "neg": "IMPASSE", "partial": "injection via inbound email is T16; here the SIMULATED carrier persona is below floor"}},
+  {"id": "S15", "claims": ["CLM-00016"], "persona": "cooperative", "reservation": 7000, "killSwitch": true, "expect": {"top": null, "neg": "NO_CASE", "stopped": true}}
+ ]}

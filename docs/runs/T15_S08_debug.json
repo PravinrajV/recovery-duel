@@ -1,0 +1,2706 @@
+{
+ "Result": "Success",
+ "Code": "FlowDebug",
+ "Data": {
+  "jobKey": "2561ae35-5cf3-47e8-900c-ce90e5b24a9a",
+  "instanceId": "2561ae35-5cf3-47e8-900c-ce90e5b24a9a",
+  "runId": "01a1a598-c742-7682-af71-b38af4ef824b",
+  "folderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+  "finalStatus": "Completed",
+  "entryPoint": "start",
+  "solutionId": "3f8821e0-173c-40bd-54bb-08df39ae9b2f",
+  "studioWebUrl": "https://cloud.uipath.com/pvincent/studio_/designer/daf7bc15-77cd-47a1-b42d-80dd3cd1d5f4?solutionId=3f8821e0-173c-40bd-54bb-08df39ae9b2f",
+  "elementExecutions": [
+   {
+    "elementId": "start",
+    "elementType": "StartEvent",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:06:57.7341578Z",
+    "completedAt": "2026-11-04T08:06:57.9570539Z"
+   },
+   {
+    "elementId": "fromBucket",
+    "elementType": "InclusiveGateway",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:06:58.0376604Z",
+    "completedAt": "2026-11-04T08:06:58.1264517Z"
+   },
+   {
+    "elementId": "intake",
+    "elementType": "ScriptTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:06:58.2765687Z",
+    "completedAt": "2026-11-04T08:06:58.5136089Z"
+   },
+   {
+    "elementId": "eachClaim",
+    "elementType": "SubProcess",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:06:58.6080234Z",
+    "completedAt": "2026-11-04T08:07:01.6436126Z"
+   },
+   {
+    "elementId": "getRecalls",
+    "elementType": "SubProcess",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:06:58.91911Z",
+    "completedAt": "2026-11-04T08:07:00.4070039Z"
+   },
+   {
+    "elementId": "_Implicit_StartEvent_getRecalls",
+    "elementType": "StartEvent",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:06:59.141194Z",
+    "completedAt": "2026-11-04T08:06:59.2776153Z"
+   },
+   {
+    "elementId": "_Implicit_HttpTask_getRecalls",
+    "elementType": "SendTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:06:59.3688318Z",
+    "completedAt": "2026-11-04T08:06:59.9533021Z"
+   },
+   {
+    "elementId": "_Implicit_EndEvent_Default_getRecalls",
+    "elementType": "EndEvent",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:07:00.0687357Z",
+    "completedAt": "2026-11-04T08:07:00.1934222Z"
+   },
+   {
+    "elementId": "_Implicit_PostSubprocessGateway_getRecalls",
+    "elementType": "ExclusiveGateway",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:07:00.5128723Z",
+    "completedAt": "2026-11-04T08:07:00.5951458Z"
+   },
+   {
+    "elementId": "assess",
+    "elementType": "ScriptTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:07:00.6852407Z",
+    "completedAt": "2026-11-04T08:07:00.8867507Z"
+   },
+   {
+    "elementId": "nextClaim",
+    "elementType": "ScriptTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:07:01.0776796Z",
+    "completedAt": "2026-11-04T08:07:01.2625518Z"
+   },
+   {
+    "elementId": "rank",
+    "elementType": "ScriptTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:07:01.760468Z",
+    "completedAt": "2026-11-04T08:07:01.9293305Z"
+   },
+   {
+    "elementId": "pickTop",
+    "elementType": "ScriptTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:07:02.0729435Z",
+    "completedAt": "2026-11-04T08:07:02.444211Z"
+   },
+   {
+    "elementId": "noCase",
+    "elementType": "InclusiveGateway",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:07:02.5300985Z",
+    "completedAt": "2026-11-04T08:07:02.8539252Z"
+   },
+   {
+    "elementId": "noCaseLedger",
+    "elementType": "InclusiveGateway",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:07:02.9329113Z",
+    "completedAt": "2026-11-04T08:07:03.0110809Z"
+   },
+   {
+    "elementId": "noCaseEnd",
+    "elementType": "ScriptTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:07:03.0954612Z",
+    "completedAt": "2026-11-04T08:07:03.2783039Z"
+   },
+   {
+    "elementId": "end",
+    "elementType": "EndEvent",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:07:03.3611181Z",
+    "completedAt": "2026-11-04T08:07:03.5291384Z"
+   }
+  ],
+  "variables": {
+   "elements": [
+    {
+     "elementId": "start",
+     "elementRunId": "629cd575-5175-48e5-b1d3-c51bd8a25238",
+     "isMarker": false,
+     "inputs": {},
+     "inputDefinitions": {},
+     "outputs": {}
+    },
+    {
+     "elementId": "intake",
+     "elementRunId": "5cf5f3c8-dcdd-4a32-9495-2f9a1f9354c5",
+     "isMarker": false,
+     "inputs": {
+      "args": {
+       "vars": {
+        "ledger": {
+         "ok": false,
+         "ledgerCount": null
+        },
+        "assess.output": null,
+        "liability": null,
+        "managerReviewNo.output": null,
+        "markNeedsData.output": null,
+        "specialistReview.output": null,
+        "specialistReviewNo.error": null,
+        "carrierAgent.output": null,
+        "noApproval.output": null,
+        "loadStore.error": null,
+        "end2.ledger": null,
+        "autoApprove.output": null,
+        "end.neg": null,
+        "assess.error": null,
+        "liabilityAssessor.error": null,
+        "storeValue": {
+         "source": "input",
+         "loaded": false
+        },
+        "pickTop.output": null,
+        "end2.summary": null,
+        "evidence": null,
+        "specialistReview.status": null,
+        "end.roi": null,
+        "killSwitch": false,
+        "ledgerNoCase.output": null,
+        "start.output.counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 5000
+        },
+        "start.output.asOf": "2026-11-04",
+        "assessed": [],
+        "specialistReviewNo.output": null,
+        "book.error": null,
+        "nextClaim.output": null,
+        "asOf": "2026-11-04",
+        "end.summary": null,
+        "end.evidence": null,
+        "roundCtx.output": null,
+        "end2.roi": null,
+        "pickTop.error": null,
+        "noCaseEnd.output": null,
+        "parseStore.output": null,
+        "parseStore.error": null,
+        "negInit.error": null,
+        "end2.storeValue": null,
+        "ranked": null,
+        "end2.neg": null,
+        "start.output.claimIds": null,
+        "negotiation": null,
+        "approvalCtx.output": null,
+        "store": {
+         "source": "input",
+         "loaded": false
+        },
+        "rank.error": null,
+        "stylePass.output": null,
+        "managerReview.output": null,
+        "negotiator.output": null,
+        "end.approval": null,
+        "response": null,
+        "runId": "T15-S08",
+        "stylePass.error": null,
+        "markNeedsData.error": null,
+        "guardCounter.output": null,
+        "managerReviewNo.error": null,
+        "noCaseEnd.error": null,
+        "end2.ranked": null,
+        "counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 5000
+        },
+        "carrierAgent.error": null,
+        "end2.approval": null,
+        "claimIds": null,
+        "negCtx.output": null,
+        "managerReview.status": null,
+        "autoApprove.error": null,
+        "approvalCtx.error": null,
+        "ledgerAppend.error": null,
+        "end.ranked": null,
+        "book.output": null,
+        "start.output.source": "input",
+        "judgeOffer.output": null,
+        "end2.evidence": null,
+        "eachClaim.error": null,
+        "end.store": null,
+        "intake.output": null,
+        "ledgerNoCase.error": null,
+        "end2.liability": null,
+        "nextClaim.error": null,
+        "source": "input",
+        "storeOut.output": null,
+        "liabilityAssessor.output": null,
+        "end2.store": null,
+        "start.output.claims": [
+         {
+          "claim_id": "CLM-00008",
+          "scenario": "S08",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00008 (synthetic)",
+          "state": "CA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK4KG199819",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-26",
+          "loss_cause": "hail_damage",
+          "paid_amount": "16700",
+          "deductible": "500",
+          "insured_fault_pct": "10",
+          "matched_recall": "",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #2540. No collision. Hail damage reported while parked. Estimated other-party fault 90%.",
+          "sol_days_left": "896"
+         }
+        ],
+        "neg": {},
+        "getRecalls.error": null,
+        "roundCtx.error": null,
+        "ledgerAppend.output": null,
+        "roi": null,
+        "end.negotiation": null,
+        "end.assessed": null,
+        "end2.negotiation": null,
+        "end.liability": null,
+        "approval": {},
+        "guardCounter.error": null,
+        "claims": [
+         {
+          "claim_id": "CLM-00008",
+          "scenario": "S08",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00008 (synthetic)",
+          "state": "CA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK4KG199819",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-26",
+          "loss_cause": "hail_damage",
+          "paid_amount": "16700",
+          "deductible": "500",
+          "insured_fault_pct": "10",
+          "matched_recall": "",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #2540. No collision. Hail damage reported while parked. Estimated other-party fault 90%.",
+          "sol_days_left": "896"
+         }
+        ],
+        "start.output.killSwitch": false,
+        "summary": null,
+        "ledgerNoCaseFailed.error": null,
+        "end2.assessed": null,
+        "error": null,
+        "storeLoadFailed.output": null,
+        "managerReviewOk.error": null,
+        "specialistReviewOk.output": null,
+        "getRecalls.output": null,
+        "rank.output": null,
+        "eachClaim.output": null,
+        "negotiator.error": null,
+        "start.output.runId": "T15-S08",
+        "storeOut.error": null,
+        "end.storeValue": null,
+        "ledgerAppendFailed.error": null,
+        "negInit.output": null,
+        "specialistReviewOk.error": null,
+        "loadStore.output": null,
+        "duel.error": null,
+        "negCtx.error": null,
+        "ledgerAppendFailed.output": null,
+        "judgeOffer.error": null,
+        "ledgerNoCaseFailed.output": null,
+        "evidenceAnalyst.output": null,
+        "end.ledger": null,
+        "noApproval.error": null,
+        "intake.error": null,
+        "managerReviewOk.output": null,
+        "storeLoadFailed.error": null,
+        "evidenceAnalyst.error": null
+       },
+       "metadata": {
+        "ElementCount": {
+         "start": 1
+        },
+        "ExternalId": "27158581",
+        "ProcessKey": null,
+        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+        "InstanceId": "2561ae35-5cf3-47e8-900c-ce90e5b24a9a"
+       }
+      }
+     },
+     "inputDefinitions": {},
+     "outputs": {
+      "response": {
+       "items": [
+        {
+         "claim_id": "CLM-00008",
+         "scenario": "S08",
+         "synthetic": "true",
+         "policyholder": "Policyholder 00008 (synthetic)",
+         "state": "CA",
+         "make": "TOYOTA",
+         "model": "CAMRY",
+         "model_year": "2019",
+         "vin": "4T1B11HK4KG199819",
+         "loss_date": "2026-04-18",
+         "closed_date": "2026-05-26",
+         "loss_cause": "hail_damage",
+         "paid_amount": 16700,
+         "deductible": 500,
+         "insured_fault_pct": 10,
+         "matched_recall": "",
+         "data_status": "OK",
+         "police_report": "[SYNTHETIC] Officer #2540. No collision. Hail damage reported while parked. Estimated other-party fault 90%.",
+         "sol_days_left": "896"
+        }
+       ],
+       "stopped": false,
+       "claims": [
+        {
+         "claim_id": "CLM-00008",
+         "scenario": "S08",
+         "synthetic": "true",
+         "policyholder": "Policyholder 00008 (synthetic)",
+         "state": "CA",
+         "make": "TOYOTA",
+         "model": "CAMRY",
+         "model_year": "2019",
+         "vin": "4T1B11HK4KG199819",
+         "loss_date": "2026-04-18",
+         "closed_date": "2026-05-26",
+         "loss_cause": "hail_damage",
+         "paid_amount": "16700",
+         "deductible": "500",
+         "insured_fault_pct": "10",
+         "matched_recall": "",
+         "data_status": "OK",
+         "police_report": "[SYNTHETIC] Officer #2540. No collision. Hail damage reported while parked. Estimated other-party fault 90%.",
+         "sol_days_left": "896"
+        }
+       ],
+       "negotiation_paused": false
+      }
+     }
+    },
+    {
+     "elementId": "eachClaim",
+     "elementRunId": "e889a36c-c9f7-480b-a38c-832f84417d3b",
+     "isMarker": true,
+     "inputs": {},
+     "inputDefinitions": {},
+     "outputs": {
+      "assess.output": {
+       "list": [
+        {
+         "claim_id": "CLM-00008",
+         "sol": {
+          "known": true,
+          "days_left": 896,
+          "expired": false,
+          "deadline_ms": 1871164800000
+         },
+         "negligence": {
+          "doctrine": "pure_comparative",
+          "insured_fault_pct": 10,
+          "barred": false,
+          "factor": 0.9
+         },
+         "recall": {
+          "match": false,
+          "reason": "loss cause not recall-related"
+         },
+         "gross": 17200,
+         "status": "NO_CASE",
+         "score": 0
+        }
+       ]
+      },
+      "markNeedsData.error": null,
+      "assessed": [
+       {
+        "claim_id": "CLM-00008",
+        "sol": {
+         "known": true,
+         "days_left": 896,
+         "expired": false,
+         "deadline_ms": 1871164800000
+        },
+        "negligence": {
+         "doctrine": "pure_comparative",
+         "insured_fault_pct": 10,
+         "barred": false,
+         "factor": 0.9
+        },
+        "recall": {
+         "match": false,
+         "reason": "loss cause not recall-related"
+        },
+        "gross": 17200,
+        "status": "NO_CASE",
+        "score": 0
+       }
+      ],
+      "nextClaim.output": 1,
+      "nextClaim.error": null,
+      "getRecalls.output": {
+       "code": 200,
+       "headers": {
+        "x-amzn-RequestId": "9ee8548a-cd33-421b-8ac8-7c4b7f86f752",
+        "x-amzn-Remapped-Connection": "keep-alive",
+        "x-amz-apigw-id": "GTkhqG5ioAMFajQ=",
+        "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+        "x-amzn-Remapped-Date": "Wed, 04 Nov 2026 08:06:59 GMT",
+        "Date": "Wed, 04 Nov 2026 08:06:59 GMT",
+        "Connection": "keep-alive",
+        "Set-Cookie": "AWSALB=G9y7VcbFdBIIjLKkbxCYyQ4ZpNmXrx/c6/fQ7lZdFhJxExvA4pjShVR/1IOoEyPi3tTzgXTnzOIOdM7jZOz5UzVmAcPqXLQ51WpN549Wy4xTF3Zkxr+j+61Tr2xp; Expires=Wed, 11 Nov 2026 08:06:59 GMT; Path=/, AWSALBCORS=G9y7VcbFdBIIjLKkbxCYyQ4ZpNmXrx/c6/fQ7lZdFhJxExvA4pjShVR/1IOoEyPi3tTzgXTnzOIOdM7jZOz5UzVmAcPqXLQ51WpN549Wy4xTF3Zkxr+j+61Tr2xp; Expires=Wed, 11 Nov 2026 08:06:59 GMT; Path=/; SameSite=None",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "SAMEORIGIN",
+        "Strict-Transport-Security": "max-age=31536000 ; includeSubDomains ; preload"
+       },
+       "body": {
+        "Count": 6,
+        "Message": "Results returned successfully",
+        "results": [
+         {
+          "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+          "NHTSACampaignNumber": "20V682000",
+          "parkIt": false,
+          "parkOutSide": false,
+          "overTheAirUpdate": false,
+          "ReportReceivedDate": "04/11/2020",
+          "Component": "FUEL SYSTEM, GASOLINE:DELIVERY:FUEL PUMP",
+          "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018-2019 4Runner, 2019-2020 Avalon, 2019 Corolla Hatchback, 2017-2019 Highlander, 2018-2020 Camry, 2020 Corolla, 2018-2019 Land Cruiser, 2017-2020 Tacoma, 2019-2020 RAV4, 2019-2020 Sequoia, 2017-2020 Sienna, 2019-2020 Tundra, 2018-2020 Lexus ES350, 2017 Lexus GS200t, 2017-2019 Lexus GS350, 2019 Lexus GS300, 2018-2020 Lexus LC500h, 2019-2020 Lexus LS500, 2018-2019 Lexus GX460, 2017 Lexus IS200t, 2019 Lexus IS300, 2019 Lexus IS350, 2018-2020 Lexus LC500, 2018 Lexus LS500, 2019 Lexus LS500h, 2018-2019 Lexus LX570, 2017 Lexus RC200t, 2019 Lexus RC300, RC350, 2017 and 2019-2020 Lexus RX350, 2018-2020 RX350L, 2019 Lexus UX200, 2018-2019 Lexus NX300 vehicles.  The low-pressure fuel pump inside the fuel tank may fail.",
+          "Consequence": "If the fuel pump fails, the engine can stall while driving, increasing the risk of a crash.",
+          "Remedy": "Toyota will notify owners, and dealers will replace the fuel pump assembly with an improved one, free of charge.  Owners of specific models were notified that remedy parts were available starting January 21, 2021.  Owners of other models will be notified as remedy parts become available.  Remedy parts should be available for all affected vehicles by late March 2021.  Owners may contact Toyota customer service at 1-888-270-9371 or Lexus customer service at 1-800-255-3987.  Note: This recall is an expansion of recall 20V-012.  Toyota's number for this recall is 20TA02.  Lexus' number for this recall is 20LA01.",
+          "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+          "ModelYear": "2019",
+          "Make": "TOYOTA",
+          "Model": "CAMRY"
+         },
+         {
+          "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+          "NHTSACampaignNumber": "21V890000",
+          "parkIt": false,
+          "parkOutSide": false,
+          "overTheAirUpdate": false,
+          "ReportReceivedDate": "17/11/2021",
+          "Component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM",
+          "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018-2019 Camry vehicles.  The vane cap inside the vacuum pump may break, causing the pump to fail, which could result in a sudden loss of braking assist.",
+          "Consequence": "A sudden loss of braking assist can increase the risk of a crash.",
+          "Remedy": "Dealers will repair or replace the vacuum pump, as necessary, free of charge.  Owner notification letters were mailed May 16, 2022.  Owners may contact Toyota customer service at 1-800-331-4331.",
+          "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.nhtsa.gov.",
+          "ModelYear": "2019",
+          "Make": "TOYOTA",
+          "Model": "CAMRY"
+         },
+         {
+          "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+          "NHTSACampaignNumber": "20V012000",
+          "parkIt": false,
+          "parkOutSide": false,
+          "overTheAirUpdate": false,
+          "ReportReceivedDate": "13/01/2020",
+          "Component": "FUEL SYSTEM, GASOLINE:DELIVERY:FUEL PUMP",
+          "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) recalled certain 2018-2019 4Runner, Highlander, Camry, Land Cruiser, Sequoia, Sienna, Tacoma and Tundra, and Lexus RC 300, RC 350, GS 350, GX 460, IS 300, LC 500, LS 500, LX 570, RX 350L, and 2019 Toyota Avalon and Corolla, and certain Lexus NX 300, and ES 350 vehicles on January 13, 2020. \r\nOn March 4, 2020, Toyota expanded the recall to include certain 2014-2015 Toyota 4Runner and Land Cruiser, 2018 Avalon, Corolla, 2014 FJ Cruiser, 2017 Sienna and Lexus 2018 ES 350, 2018-2019 GS 300, 2013-2014 GS350, 2014-2015 GX 460, IS 350 and LX 570, 2014 IS F, 2018-2019 IS 350, LC 500H and LS 500H, 2013-2015 LS 460, 2015 NX 200T and RC350, 2017 RC 200T and RX 350.  Toyota also removed the 2018-2019 Toyota 4Runner and Land Cruiser and 2018-2019 Lexus GX 460 and LX 570 and 2019 NX300 from inclusion in this recall.  On March 19, 2020, Toyota expanded the recall to include 2015 Lexus GS350 vehicles.  The low-pressure fuel pump inside the fuel tank may fail.",
+          "Consequence": "If the fuel pump fails, the engine can stall while driving, increasing the risk of a crash.",
+          "Remedy": "Toyota will notify owners, and dealers will replace the fuel pump, free of charge.  The recall began May 4, 2020.  Owners may contact Toyota customer service at 1-888-270-9371 or Lexus customer service at 1-800-255-3987.  Toyota's numbers for this recall are 20TB02 and 20TA02 for Toyota vehicles and 20LB01 and 20LA01 for Lexus vehicles.",
+          "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+          "ModelYear": "2019",
+          "Make": "TOYOTA",
+          "Model": "CAMRY"
+         },
+         {
+          "Manufacturer": "Southeast Toyota Distributors, LLC",
+          "NHTSACampaignNumber": "19V503000",
+          "parkIt": false,
+          "parkOutSide": false,
+          "overTheAirUpdate": false,
+          "ReportReceivedDate": "28/06/2019",
+          "Component": "EQUIPMENT:OTHER:LABELS",
+          "Summary": "Southeast Toyota Distributors, LLC (SET) is recalling certain 2017-2019 Toyota Camry, Corolla, Rav4, Sienna, and Yaris iA vehicles equipped with factory-installed floor mats.  The load carrying capacity modification label may be incorrect.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 110, \"Tire Selection and Rims.\"",
+          "Consequence": "An incorrect label may lead to unintentionally overloading the vehicle, increasing the risk of a crash.",
+          "Remedy": "SET will notify owners and provide a corrected label for placement over the inaccurate label, free of charge.  The recall began August 23, 2019.  Owners may contact Toyota customer service at 1-888-270-9371.  SET's number for this recall is SET19A.",
+          "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+          "ModelYear": "2019",
+          "Make": "TOYOTA",
+          "Model": "CAMRY"
+         },
+         {
+          "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+          "NHTSACampaignNumber": "19V567000",
+          "parkIt": false,
+          "parkOutSide": false,
+          "overTheAirUpdate": false,
+          "ReportReceivedDate": "01/08/2019",
+          "Component": "AIR BAGS:SENSOR:OCCUPANT CLASSIFICATION",
+          "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2019 Camry vehicles. The Occupant Classification System (OCS) may have been improperly calibrated, which may prevent the proper deployment of the front passenger air bag and knee air bag, in the event of a crash.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 208, \"Occupant Crash Protection.\"",
+          "Consequence": "In the event of a crash, if the air bags do not deploy as designed, the front seat passenger has an increased risk of an injury.",
+          "Remedy": "Toyota will notify owners, and dealers will recalibrate the OCS, free of charge.  The recall began August 27, 2019.  Owners may contact Toyota customer service at 1-888-270-9371.  Toyota's number for this recall is K0M.",
+          "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+          "ModelYear": "2019",
+          "Make": "TOYOTA",
+          "Model": "CAMRY"
+         },
+         {
+          "Manufacturer": "Gulf States Toyota, Inc.",
+          "NHTSACampaignNumber": "19V244000",
+          "parkIt": false,
+          "parkOutSide": false,
+          "overTheAirUpdate": false,
+          "ReportReceivedDate": "27/03/2019",
+          "Component": "EQUIPMENT:OTHER:LABELS",
+          "Summary": "Gulf States Toyota (GST) is recalling certain 2019 C-HR, 4Runner, Avalon, Avalon Hybrid, Camry, Camry Hybrid, Highlander, Land Cruiser, Prius, RAV4, Sequoia, Tacoma, Sienna, Tundra and Yaris vehicles.  The text on the load capacity label may become illegible.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 110, \"Tire Selection and Rims.\"",
+          "Consequence": "If the driver cannot read the label, they may unknowingly overload the vehicle, increasing the risk of a crash.",
+          "Remedy": "GST will notify owners, and dealers will provide corrected load carrying capacity modification labels, free of charge.  The recall began May 24, 2019.  Owners may contact GST customer service at 1-800-444-1074.  GST's number for this recall is 19R1.",
+          "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+          "ModelYear": "2019",
+          "Make": "TOYOTA",
+          "Model": "CAMRY"
+         }
+        ]
+       }
+      },
+      "getRecalls.error": null,
+      "assess.error": null,
+      "markNeedsData.output": null
+     }
+    },
+    {
+     "elementId": "rank",
+     "elementRunId": "7297dad9-e4e2-47bb-8956-0bb4cb752947",
+     "isMarker": false,
+     "inputs": {
+      "args": {
+       "vars": {
+        "ledger": {
+         "ok": false,
+         "ledgerCount": null
+        },
+        "assess.output": {
+         "list": [
+          {
+           "claim_id": "CLM-00008",
+           "sol": {
+            "known": true,
+            "days_left": 896,
+            "expired": false,
+            "deadline_ms": 1871164800000
+           },
+           "negligence": {
+            "doctrine": "pure_comparative",
+            "insured_fault_pct": 10,
+            "barred": false,
+            "factor": 0.9
+           },
+           "recall": {
+            "match": false,
+            "reason": "loss cause not recall-related"
+           },
+           "gross": 17200,
+           "status": "NO_CASE",
+           "score": 0
+          }
+         ]
+        },
+        "liability": null,
+        "managerReviewNo.output": null,
+        "markNeedsData.output": null,
+        "specialistReview.output": null,
+        "specialistReviewNo.error": null,
+        "carrierAgent.output": null,
+        "noApproval.output": null,
+        "loadStore.error": null,
+        "end2.ledger": null,
+        "autoApprove.output": null,
+        "end.neg": null,
+        "assess.error": null,
+        "liabilityAssessor.error": null,
+        "storeValue": {
+         "source": "input",
+         "loaded": false
+        },
+        "pickTop.output": null,
+        "end2.summary": null,
+        "evidence": null,
+        "specialistReview.status": null,
+        "end.roi": null,
+        "killSwitch": false,
+        "ledgerNoCase.output": null,
+        "start.output.counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 5000
+        },
+        "start.output.asOf": "2026-11-04",
+        "assessed": [
+         {
+          "claim_id": "CLM-00008",
+          "sol": {
+           "known": true,
+           "days_left": 896,
+           "expired": false,
+           "deadline_ms": 1871164800000
+          },
+          "negligence": {
+           "doctrine": "pure_comparative",
+           "insured_fault_pct": 10,
+           "barred": false,
+           "factor": 0.9
+          },
+          "recall": {
+           "match": false,
+           "reason": "loss cause not recall-related"
+          },
+          "gross": 17200,
+          "status": "NO_CASE",
+          "score": 0
+         }
+        ],
+        "specialistReviewNo.output": null,
+        "book.error": null,
+        "nextClaim.output": 1,
+        "asOf": "2026-11-04",
+        "end.summary": null,
+        "end.evidence": null,
+        "roundCtx.output": null,
+        "end2.roi": null,
+        "pickTop.error": null,
+        "noCaseEnd.output": null,
+        "parseStore.output": null,
+        "parseStore.error": null,
+        "negInit.error": null,
+        "end2.storeValue": null,
+        "ranked": null,
+        "end2.neg": null,
+        "start.output.claimIds": null,
+        "negotiation": null,
+        "approvalCtx.output": null,
+        "store": {
+         "source": "input",
+         "loaded": false
+        },
+        "rank.error": null,
+        "stylePass.output": null,
+        "managerReview.output": null,
+        "negotiator.output": null,
+        "end.approval": null,
+        "response": null,
+        "runId": "T15-S08",
+        "stylePass.error": null,
+        "markNeedsData.error": null,
+        "guardCounter.output": null,
+        "managerReviewNo.error": null,
+        "noCaseEnd.error": null,
+        "end2.ranked": null,
+        "counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 5000
+        },
+        "carrierAgent.error": null,
+        "end2.approval": null,
+        "claimIds": null,
+        "negCtx.output": null,
+        "managerReview.status": null,
+        "autoApprove.error": null,
+        "approvalCtx.error": null,
+        "ledgerAppend.error": null,
+        "end.ranked": null,
+        "book.output": null,
+        "start.output.source": "input",
+        "judgeOffer.output": null,
+        "end2.evidence": null,
+        "eachClaim.error": null,
+        "end.store": null,
+        "intake.output": {
+         "items": [
+          {
+           "claim_id": "CLM-00008",
+           "scenario": "S08",
+           "synthetic": "true",
+           "policyholder": "Policyholder 00008 (synthetic)",
+           "state": "CA",
+           "make": "TOYOTA",
+           "model": "CAMRY",
+           "model_year": "2019",
+           "vin": "4T1B11HK4KG199819",
+           "loss_date": "2026-04-18",
+           "closed_date": "2026-05-26",
+           "loss_cause": "hail_damage",
+           "paid_amount": 16700,
+           "deductible": 500,
+           "insured_fault_pct": 10,
+           "matched_recall": "",
+           "data_status": "OK",
+           "police_report": "[SYNTHETIC] Officer #2540. No collision. Hail damage reported while parked. Estimated other-party fault 90%.",
+           "sol_days_left": "896"
+          }
+         ],
+         "stopped": false,
+         "claims": [
+          {
+           "claim_id": "CLM-00008",
+           "scenario": "S08",
+           "synthetic": "true",
+           "policyholder": "Policyholder 00008 (synthetic)",
+           "state": "CA",
+           "make": "TOYOTA",
+           "model": "CAMRY",
+           "model_year": "2019",
+           "vin": "4T1B11HK4KG199819",
+           "loss_date": "2026-04-18",
+           "closed_date": "2026-05-26",
+           "loss_cause": "hail_damage",
+           "paid_amount": "16700",
+           "deductible": "500",
+           "insured_fault_pct": "10",
+           "matched_recall": "",
+           "data_status": "OK",
+           "police_report": "[SYNTHETIC] Officer #2540. No collision. Hail damage reported while parked. Estimated other-party fault 90%.",
+           "sol_days_left": "896"
+          }
+         ],
+         "negotiation_paused": false
+        },
+        "ledgerNoCase.error": null,
+        "end2.liability": null,
+        "nextClaim.error": null,
+        "source": "input",
+        "storeOut.output": null,
+        "liabilityAssessor.output": null,
+        "end2.store": null,
+        "start.output.claims": [
+         {
+          "claim_id": "CLM-00008",
+          "scenario": "S08",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00008 (synthetic)",
+          "state": "CA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK4KG199819",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-26",
+          "loss_cause": "hail_damage",
+          "paid_amount": "16700",
+          "deductible": "500",
+          "insured_fault_pct": "10",
+          "matched_recall": "",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #2540. No collision. Hail damage reported while parked. Estimated other-party fault 90%.",
+          "sol_days_left": "896"
+         }
+        ],
+        "neg": {},
+        "getRecalls.error": null,
+        "roundCtx.error": null,
+        "ledgerAppend.output": null,
+        "roi": null,
+        "end.negotiation": null,
+        "end.assessed": null,
+        "end2.negotiation": null,
+        "end.liability": null,
+        "approval": {},
+        "guardCounter.error": null,
+        "claims": [
+         {
+          "claim_id": "CLM-00008",
+          "scenario": "S08",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00008 (synthetic)",
+          "state": "CA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK4KG199819",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-26",
+          "loss_cause": "hail_damage",
+          "paid_amount": "16700",
+          "deductible": "500",
+          "insured_fault_pct": "10",
+          "matched_recall": "",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #2540. No collision. Hail damage reported while parked. Estimated other-party fault 90%.",
+          "sol_days_left": "896"
+         }
+        ],
+        "start.output.killSwitch": false,
+        "summary": null,
+        "ledgerNoCaseFailed.error": null,
+        "end2.assessed": null,
+        "error": null,
+        "storeLoadFailed.output": null,
+        "managerReviewOk.error": null,
+        "specialistReviewOk.output": null,
+        "getRecalls.output": {
+         "code": 200,
+         "headers": {
+          "x-amzn-RequestId": "9ee8548a-cd33-421b-8ac8-7c4b7f86f752",
+          "x-amzn-Remapped-Connection": "keep-alive",
+          "x-amz-apigw-id": "GTkhqG5ioAMFajQ=",
+          "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+          "x-amzn-Remapped-Date": "Wed, 04 Nov 2026 08:06:59 GMT",
+          "Date": "Wed, 04 Nov 2026 08:06:59 GMT",
+          "Connection": "keep-alive",
+          "Set-Cookie": "AWSALB=G9y7VcbFdBIIjLKkbxCYyQ4ZpNmXrx/c6/fQ7lZdFhJxExvA4pjShVR/1IOoEyPi3tTzgXTnzOIOdM7jZOz5UzVmAcPqXLQ51WpN549Wy4xTF3Zkxr+j+61Tr2xp; Expires=Wed, 11 Nov 2026 08:06:59 GMT; Path=/, AWSALBCORS=G9y7VcbFdBIIjLKkbxCYyQ4ZpNmXrx/c6/fQ7lZdFhJxExvA4pjShVR/1IOoEyPi3tTzgXTnzOIOdM7jZOz5UzVmAcPqXLQ51WpN549Wy4xTF3Zkxr+j+61Tr2xp; Expires=Wed, 11 Nov 2026 08:06:59 GMT; Path=/; SameSite=None",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "SAMEORIGIN",
+          "Strict-Transport-Security": "max-age=31536000 ; includeSubDomains ; preload"
+         },
+         "body": {
+          "Count": 6,
+          "Message": "Results returned successfully",
+          "results": [
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "20V682000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "04/11/2020",
+            "Component": "FUEL SYSTEM, GASOLINE:DELIVERY:FUEL PUMP",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018-2019 4Runner, 2019-2020 Avalon, 2019 Corolla Hatchback, 2017-2019 Highlander, 2018-2020 Camry, 2020 Corolla, 2018-2019 Land Cruiser, 2017-2020 Tacoma, 2019-2020 RAV4, 2019-2020 Sequoia, 2017-2020 Sienna, 2019-2020 Tundra, 2018-2020 Lexus ES350, 2017 Lexus GS200t, 2017-2019 Lexus GS350, 2019 Lexus GS300, 2018-2020 Lexus LC500h, 2019-2020 Lexus LS500, 2018-2019 Lexus GX460, 2017 Lexus IS200t, 2019 Lexus IS300, 2019 Lexus IS350, 2018-2020 Lexus LC500, 2018 Lexus LS500, 2019 Lexus LS500h, 2018-2019 Lexus LX570, 2017 Lexus RC200t, 2019 Lexus RC300, RC350, 2017 and 2019-2020 Lexus RX350, 2018-2020 RX350L, 2019 Lexus UX200, 2018-2019 Lexus NX300 vehicles.  The low-pressure fuel pump inside the fuel tank may fail.",
+            "Consequence": "If the fuel pump fails, the engine can stall while driving, increasing the risk of a crash.",
+            "Remedy": "Toyota will notify owners, and dealers will replace the fuel pump assembly with an improved one, free of charge.  Owners of specific models were notified that remedy parts were available starting January 21, 2021.  Owners of other models will be notified as remedy parts become available.  Remedy parts should be available for all affected vehicles by late March 2021.  Owners may contact Toyota customer service at 1-888-270-9371 or Lexus customer service at 1-800-255-3987.  Note: This recall is an expansion of recall 20V-012.  Toyota's number for this recall is 20TA02.  Lexus' number for this recall is 20LA01.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "21V890000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "17/11/2021",
+            "Component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018-2019 Camry vehicles.  The vane cap inside the vacuum pump may break, causing the pump to fail, which could result in a sudden loss of braking assist.",
+            "Consequence": "A sudden loss of braking assist can increase the risk of a crash.",
+            "Remedy": "Dealers will repair or replace the vacuum pump, as necessary, free of charge.  Owner notification letters were mailed May 16, 2022.  Owners may contact Toyota customer service at 1-800-331-4331.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.nhtsa.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "20V012000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "13/01/2020",
+            "Component": "FUEL SYSTEM, GASOLINE:DELIVERY:FUEL PUMP",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) recalled certain 2018-2019 4Runner, Highlander, Camry, Land Cruiser, Sequoia, Sienna, Tacoma and Tundra, and Lexus RC 300, RC 350, GS 350, GX 460, IS 300, LC 500, LS 500, LX 570, RX 350L, and 2019 Toyota Avalon and Corolla, and certain Lexus NX 300, and ES 350 vehicles on January 13, 2020. \r\nOn March 4, 2020, Toyota expanded the recall to include certain 2014-2015 Toyota 4Runner and Land Cruiser, 2018 Avalon, Corolla, 2014 FJ Cruiser, 2017 Sienna and Lexus 2018 ES 350, 2018-2019 GS 300, 2013-2014 GS350, 2014-2015 GX 460, IS 350 and LX 570, 2014 IS F, 2018-2019 IS 350, LC 500H and LS 500H, 2013-2015 LS 460, 2015 NX 200T and RC350, 2017 RC 200T and RX 350.  Toyota also removed the 2018-2019 Toyota 4Runner and Land Cruiser and 2018-2019 Lexus GX 460 and LX 570 and 2019 NX300 from inclusion in this recall.  On March 19, 2020, Toyota expanded the recall to include 2015 Lexus GS350 vehicles.  The low-pressure fuel pump inside the fuel tank may fail.",
+            "Consequence": "If the fuel pump fails, the engine can stall while driving, increasing the risk of a crash.",
+            "Remedy": "Toyota will notify owners, and dealers will replace the fuel pump, free of charge.  The recall began May 4, 2020.  Owners may contact Toyota customer service at 1-888-270-9371 or Lexus customer service at 1-800-255-3987.  Toyota's numbers for this recall are 20TB02 and 20TA02 for Toyota vehicles and 20LB01 and 20LA01 for Lexus vehicles.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Southeast Toyota Distributors, LLC",
+            "NHTSACampaignNumber": "19V503000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "28/06/2019",
+            "Component": "EQUIPMENT:OTHER:LABELS",
+            "Summary": "Southeast Toyota Distributors, LLC (SET) is recalling certain 2017-2019 Toyota Camry, Corolla, Rav4, Sienna, and Yaris iA vehicles equipped with factory-installed floor mats.  The load carrying capacity modification label may be incorrect.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 110, \"Tire Selection and Rims.\"",
+            "Consequence": "An incorrect label may lead to unintentionally overloading the vehicle, increasing the risk of a crash.",
+            "Remedy": "SET will notify owners and provide a corrected label for placement over the inaccurate label, free of charge.  The recall began August 23, 2019.  Owners may contact Toyota customer service at 1-888-270-9371.  SET's number for this recall is SET19A.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "19V567000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "01/08/2019",
+            "Component": "AIR BAGS:SENSOR:OCCUPANT CLASSIFICATION",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2019 Camry vehicles. The Occupant Classification System (OCS) may have been improperly calibrated, which may prevent the proper deployment of the front passenger air bag and knee air bag, in the event of a crash.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 208, \"Occupant Crash Protection.\"",
+            "Consequence": "In the event of a crash, if the air bags do not deploy as designed, the front seat passenger has an increased risk of an injury.",
+            "Remedy": "Toyota will notify owners, and dealers will recalibrate the OCS, free of charge.  The recall began August 27, 2019.  Owners may contact Toyota customer service at 1-888-270-9371.  Toyota's number for this recall is K0M.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Gulf States Toyota, Inc.",
+            "NHTSACampaignNumber": "19V244000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "27/03/2019",
+            "Component": "EQUIPMENT:OTHER:LABELS",
+            "Summary": "Gulf States Toyota (GST) is recalling certain 2019 C-HR, 4Runner, Avalon, Avalon Hybrid, Camry, Camry Hybrid, Highlander, Land Cruiser, Prius, RAV4, Sequoia, Tacoma, Sienna, Tundra and Yaris vehicles.  The text on the load capacity label may become illegible.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 110, \"Tire Selection and Rims.\"",
+            "Consequence": "If the driver cannot read the label, they may unknowingly overload the vehicle, increasing the risk of a crash.",
+            "Remedy": "GST will notify owners, and dealers will provide corrected load carrying capacity modification labels, free of charge.  The recall began May 24, 2019.  Owners may contact GST customer service at 1-800-444-1074.  GST's number for this recall is 19R1.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           }
+          ]
+         }
+        },
+        "rank.output": null,
+        "eachClaim.output": [
+         {
+          "markNeedsData": {
+           "output": null
+          },
+          "assess": {
+           "output": {
+            "list": [
+             {
+              "claim_id": "CLM-00008",
+              "sol": {
+               "known": true,
+               "days_left": 896,
+               "expired": false,
+               "deadline_ms": 1871164800000
+              },
+              "negligence": {
+               "doctrine": "pure_comparative",
+               "insured_fault_pct": 10,
+               "barred": false,
+               "factor": 0.9
+              },
+              "recall": {
+               "match": false,
+               "reason": "loss cause not recall-related"
+              },
+              "gross": 17200,
+              "status": "NO_CASE",
+              "score": 0
+             }
+            ]
+           }
+          },
+          "nextClaim": {
+           "output": 1
+          }
+         }
+        ],
+        "negotiator.error": null,
+        "start.output.runId": "T15-S08",
+        "storeOut.error": null,
+        "end.storeValue": null,
+        "ledgerAppendFailed.error": null,
+        "negInit.output": null,
+        "specialistReviewOk.error": null,
+        "loadStore.output": null,
+        "duel.error": null,
+        "negCtx.error": null,
+        "ledgerAppendFailed.output": null,
+        "judgeOffer.error": null,
+        "ledgerNoCaseFailed.output": null,
+        "evidenceAnalyst.output": null,
+        "end.ledger": null,
+        "noApproval.error": null,
+        "intake.error": null,
+        "managerReviewOk.output": null,
+        "storeLoadFailed.error": null,
+        "evidenceAnalyst.error": null
+       },
+       "metadata": {
+        "ElementCount": {
+         "fromBucket": 1,
+         "intake": 1,
+         "start": 1
+        },
+        "ExternalId": "27158581",
+        "ProcessKey": null,
+        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+        "InstanceId": "2561ae35-5cf3-47e8-900c-ce90e5b24a9a"
+       }
+      }
+     },
+     "inputDefinitions": {},
+     "outputs": {
+      "response": {
+       "ranked": [
+        {
+         "claim_id": "CLM-00008",
+         "sol": {
+          "known": true,
+          "days_left": 896,
+          "expired": false,
+          "deadline_ms": 1871164800000
+         },
+         "negligence": {
+          "doctrine": "pure_comparative",
+          "insured_fault_pct": 10,
+          "barred": false,
+          "factor": 0.9
+         },
+         "recall": {
+          "match": false,
+          "reason": "loss cause not recall-related"
+         },
+         "gross": 17200,
+         "status": "NO_CASE",
+         "score": 0
+        }
+       ],
+       "summary": {
+        "total": 1,
+        "pursue": 0,
+        "needs_data": 0,
+        "sol_expired": 0,
+        "barred": 0,
+        "no_case": 1,
+        "pipeline_demand": 0
+       }
+      }
+     }
+    },
+    {
+     "elementId": "pickTop",
+     "elementRunId": "458e578f-feb1-4ba7-8056-30c3e342525c",
+     "isMarker": false,
+     "inputs": {
+      "args": {
+       "vars": {
+        "ledger": {
+         "ok": false,
+         "ledgerCount": null
+        },
+        "assess.output": {
+         "list": [
+          {
+           "claim_id": "CLM-00008",
+           "sol": {
+            "known": true,
+            "days_left": 896,
+            "expired": false,
+            "deadline_ms": 1871164800000
+           },
+           "negligence": {
+            "doctrine": "pure_comparative",
+            "insured_fault_pct": 10,
+            "barred": false,
+            "factor": 0.9
+           },
+           "recall": {
+            "match": false,
+            "reason": "loss cause not recall-related"
+           },
+           "gross": 17200,
+           "status": "NO_CASE",
+           "score": 0
+          }
+         ]
+        },
+        "liability": null,
+        "managerReviewNo.output": null,
+        "markNeedsData.output": null,
+        "specialistReview.output": null,
+        "specialistReviewNo.error": null,
+        "carrierAgent.output": null,
+        "noApproval.output": null,
+        "loadStore.error": null,
+        "end2.ledger": null,
+        "autoApprove.output": null,
+        "end.neg": null,
+        "assess.error": null,
+        "liabilityAssessor.error": null,
+        "storeValue": {
+         "source": "input",
+         "loaded": false
+        },
+        "pickTop.output": null,
+        "end2.summary": null,
+        "evidence": null,
+        "specialistReview.status": null,
+        "end.roi": null,
+        "killSwitch": false,
+        "ledgerNoCase.output": null,
+        "start.output.counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 5000
+        },
+        "start.output.asOf": "2026-11-04",
+        "assessed": [
+         {
+          "claim_id": "CLM-00008",
+          "sol": {
+           "known": true,
+           "days_left": 896,
+           "expired": false,
+           "deadline_ms": 1871164800000
+          },
+          "negligence": {
+           "doctrine": "pure_comparative",
+           "insured_fault_pct": 10,
+           "barred": false,
+           "factor": 0.9
+          },
+          "recall": {
+           "match": false,
+           "reason": "loss cause not recall-related"
+          },
+          "gross": 17200,
+          "status": "NO_CASE",
+          "score": 0
+         }
+        ],
+        "specialistReviewNo.output": null,
+        "book.error": null,
+        "nextClaim.output": 1,
+        "asOf": "2026-11-04",
+        "end.summary": null,
+        "end.evidence": null,
+        "roundCtx.output": null,
+        "end2.roi": null,
+        "pickTop.error": null,
+        "noCaseEnd.output": null,
+        "parseStore.output": null,
+        "parseStore.error": null,
+        "negInit.error": null,
+        "end2.storeValue": null,
+        "ranked": null,
+        "end2.neg": null,
+        "start.output.claimIds": null,
+        "negotiation": null,
+        "approvalCtx.output": null,
+        "store": {
+         "source": "input",
+         "loaded": false
+        },
+        "rank.error": null,
+        "stylePass.output": null,
+        "managerReview.output": null,
+        "negotiator.output": null,
+        "end.approval": null,
+        "response": null,
+        "runId": "T15-S08",
+        "stylePass.error": null,
+        "markNeedsData.error": null,
+        "guardCounter.output": null,
+        "managerReviewNo.error": null,
+        "noCaseEnd.error": null,
+        "end2.ranked": null,
+        "counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 5000
+        },
+        "carrierAgent.error": null,
+        "end2.approval": null,
+        "claimIds": null,
+        "negCtx.output": null,
+        "managerReview.status": null,
+        "autoApprove.error": null,
+        "approvalCtx.error": null,
+        "ledgerAppend.error": null,
+        "end.ranked": null,
+        "book.output": null,
+        "start.output.source": "input",
+        "judgeOffer.output": null,
+        "end2.evidence": null,
+        "eachClaim.error": null,
+        "end.store": null,
+        "intake.output": {
+         "items": [
+          {
+           "claim_id": "CLM-00008",
+           "scenario": "S08",
+           "synthetic": "true",
+           "policyholder": "Policyholder 00008 (synthetic)",
+           "state": "CA",
+           "make": "TOYOTA",
+           "model": "CAMRY",
+           "model_year": "2019",
+           "vin": "4T1B11HK4KG199819",
+           "loss_date": "2026-04-18",
+           "closed_date": "2026-05-26",
+           "loss_cause": "hail_damage",
+           "paid_amount": 16700,
+           "deductible": 500,
+           "insured_fault_pct": 10,
+           "matched_recall": "",
+           "data_status": "OK",
+           "police_report": "[SYNTHETIC] Officer #2540. No collision. Hail damage reported while parked. Estimated other-party fault 90%.",
+           "sol_days_left": "896"
+          }
+         ],
+         "stopped": false,
+         "claims": [
+          {
+           "claim_id": "CLM-00008",
+           "scenario": "S08",
+           "synthetic": "true",
+           "policyholder": "Policyholder 00008 (synthetic)",
+           "state": "CA",
+           "make": "TOYOTA",
+           "model": "CAMRY",
+           "model_year": "2019",
+           "vin": "4T1B11HK4KG199819",
+           "loss_date": "2026-04-18",
+           "closed_date": "2026-05-26",
+           "loss_cause": "hail_damage",
+           "paid_amount": "16700",
+           "deductible": "500",
+           "insured_fault_pct": "10",
+           "matched_recall": "",
+           "data_status": "OK",
+           "police_report": "[SYNTHETIC] Officer #2540. No collision. Hail damage reported while parked. Estimated other-party fault 90%.",
+           "sol_days_left": "896"
+          }
+         ],
+         "negotiation_paused": false
+        },
+        "ledgerNoCase.error": null,
+        "end2.liability": null,
+        "nextClaim.error": null,
+        "source": "input",
+        "storeOut.output": null,
+        "liabilityAssessor.output": null,
+        "end2.store": null,
+        "start.output.claims": [
+         {
+          "claim_id": "CLM-00008",
+          "scenario": "S08",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00008 (synthetic)",
+          "state": "CA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK4KG199819",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-26",
+          "loss_cause": "hail_damage",
+          "paid_amount": "16700",
+          "deductible": "500",
+          "insured_fault_pct": "10",
+          "matched_recall": "",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #2540. No collision. Hail damage reported while parked. Estimated other-party fault 90%.",
+          "sol_days_left": "896"
+         }
+        ],
+        "neg": {},
+        "getRecalls.error": null,
+        "roundCtx.error": null,
+        "ledgerAppend.output": null,
+        "roi": null,
+        "end.negotiation": null,
+        "end.assessed": null,
+        "end2.negotiation": null,
+        "end.liability": null,
+        "approval": {},
+        "guardCounter.error": null,
+        "claims": [
+         {
+          "claim_id": "CLM-00008",
+          "scenario": "S08",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00008 (synthetic)",
+          "state": "CA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK4KG199819",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-26",
+          "loss_cause": "hail_damage",
+          "paid_amount": "16700",
+          "deductible": "500",
+          "insured_fault_pct": "10",
+          "matched_recall": "",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #2540. No collision. Hail damage reported while parked. Estimated other-party fault 90%.",
+          "sol_days_left": "896"
+         }
+        ],
+        "start.output.killSwitch": false,
+        "summary": null,
+        "ledgerNoCaseFailed.error": null,
+        "end2.assessed": null,
+        "error": null,
+        "storeLoadFailed.output": null,
+        "managerReviewOk.error": null,
+        "specialistReviewOk.output": null,
+        "getRecalls.output": {
+         "code": 200,
+         "headers": {
+          "x-amzn-RequestId": "9ee8548a-cd33-421b-8ac8-7c4b7f86f752",
+          "x-amzn-Remapped-Connection": "keep-alive",
+          "x-amz-apigw-id": "GTkhqG5ioAMFajQ=",
+          "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+          "x-amzn-Remapped-Date": "Wed, 04 Nov 2026 08:06:59 GMT",
+          "Date": "Wed, 04 Nov 2026 08:06:59 GMT",
+          "Connection": "keep-alive",
+          "Set-Cookie": "AWSALB=G9y7VcbFdBIIjLKkbxCYyQ4ZpNmXrx/c6/fQ7lZdFhJxExvA4pjShVR/1IOoEyPi3tTzgXTnzOIOdM7jZOz5UzVmAcPqXLQ51WpN549Wy4xTF3Zkxr+j+61Tr2xp; Expires=Wed, 11 Nov 2026 08:06:59 GMT; Path=/, AWSALBCORS=G9y7VcbFdBIIjLKkbxCYyQ4ZpNmXrx/c6/fQ7lZdFhJxExvA4pjShVR/1IOoEyPi3tTzgXTnzOIOdM7jZOz5UzVmAcPqXLQ51WpN549Wy4xTF3Zkxr+j+61Tr2xp; Expires=Wed, 11 Nov 2026 08:06:59 GMT; Path=/; SameSite=None",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "SAMEORIGIN",
+          "Strict-Transport-Security": "max-age=31536000 ; includeSubDomains ; preload"
+         },
+         "body": {
+          "Count": 6,
+          "Message": "Results returned successfully",
+          "results": [
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "20V682000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "04/11/2020",
+            "Component": "FUEL SYSTEM, GASOLINE:DELIVERY:FUEL PUMP",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018-2019 4Runner, 2019-2020 Avalon, 2019 Corolla Hatchback, 2017-2019 Highlander, 2018-2020 Camry, 2020 Corolla, 2018-2019 Land Cruiser, 2017-2020 Tacoma, 2019-2020 RAV4, 2019-2020 Sequoia, 2017-2020 Sienna, 2019-2020 Tundra, 2018-2020 Lexus ES350, 2017 Lexus GS200t, 2017-2019 Lexus GS350, 2019 Lexus GS300, 2018-2020 Lexus LC500h, 2019-2020 Lexus LS500, 2018-2019 Lexus GX460, 2017 Lexus IS200t, 2019 Lexus IS300, 2019 Lexus IS350, 2018-2020 Lexus LC500, 2018 Lexus LS500, 2019 Lexus LS500h, 2018-2019 Lexus LX570, 2017 Lexus RC200t, 2019 Lexus RC300, RC350, 2017 and 2019-2020 Lexus RX350, 2018-2020 RX350L, 2019 Lexus UX200, 2018-2019 Lexus NX300 vehicles.  The low-pressure fuel pump inside the fuel tank may fail.",
+            "Consequence": "If the fuel pump fails, the engine can stall while driving, increasing the risk of a crash.",
+            "Remedy": "Toyota will notify owners, and dealers will replace the fuel pump assembly with an improved one, free of charge.  Owners of specific models were notified that remedy parts were available starting January 21, 2021.  Owners of other models will be notified as remedy parts become available.  Remedy parts should be available for all affected vehicles by late March 2021.  Owners may contact Toyota customer service at 1-888-270-9371 or Lexus customer service at 1-800-255-3987.  Note: This recall is an expansion of recall 20V-012.  Toyota's number for this recall is 20TA02.  Lexus' number for this recall is 20LA01.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "21V890000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "17/11/2021",
+            "Component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018-2019 Camry vehicles.  The vane cap inside the vacuum pump may break, causing the pump to fail, which could result in a sudden loss of braking assist.",
+            "Consequence": "A sudden loss of braking assist can increase the risk of a crash.",
+            "Remedy": "Dealers will repair or replace the vacuum pump, as necessary, free of charge.  Owner notification letters were mailed May 16, 2022.  Owners may contact Toyota customer service at 1-800-331-4331.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.nhtsa.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "20V012000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "13/01/2020",
+            "Component": "FUEL SYSTEM, GASOLINE:DELIVERY:FUEL PUMP",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) recalled certain 2018-2019 4Runner, Highlander, Camry, Land Cruiser, Sequoia, Sienna, Tacoma and Tundra, and Lexus RC 300, RC 350, GS 350, GX 460, IS 300, LC 500, LS 500, LX 570, RX 350L, and 2019 Toyota Avalon and Corolla, and certain Lexus NX 300, and ES 350 vehicles on January 13, 2020. \r\nOn March 4, 2020, Toyota expanded the recall to include certain 2014-2015 Toyota 4Runner and Land Cruiser, 2018 Avalon, Corolla, 2014 FJ Cruiser, 2017 Sienna and Lexus 2018 ES 350, 2018-2019 GS 300, 2013-2014 GS350, 2014-2015 GX 460, IS 350 and LX 570, 2014 IS F, 2018-2019 IS 350, LC 500H and LS 500H, 2013-2015 LS 460, 2015 NX 200T and RC350, 2017 RC 200T and RX 350.  Toyota also removed the 2018-2019 Toyota 4Runner and Land Cruiser and 2018-2019 Lexus GX 460 and LX 570 and 2019 NX300 from inclusion in this recall.  On March 19, 2020, Toyota expanded the recall to include 2015 Lexus GS350 vehicles.  The low-pressure fuel pump inside the fuel tank may fail.",
+            "Consequence": "If the fuel pump fails, the engine can stall while driving, increasing the risk of a crash.",
+            "Remedy": "Toyota will notify owners, and dealers will replace the fuel pump, free of charge.  The recall began May 4, 2020.  Owners may contact Toyota customer service at 1-888-270-9371 or Lexus customer service at 1-800-255-3987.  Toyota's numbers for this recall are 20TB02 and 20TA02 for Toyota vehicles and 20LB01 and 20LA01 for Lexus vehicles.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Southeast Toyota Distributors, LLC",
+            "NHTSACampaignNumber": "19V503000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "28/06/2019",
+            "Component": "EQUIPMENT:OTHER:LABELS",
+            "Summary": "Southeast Toyota Distributors, LLC (SET) is recalling certain 2017-2019 Toyota Camry, Corolla, Rav4, Sienna, and Yaris iA vehicles equipped with factory-installed floor mats.  The load carrying capacity modification label may be incorrect.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 110, \"Tire Selection and Rims.\"",
+            "Consequence": "An incorrect label may lead to unintentionally overloading the vehicle, increasing the risk of a crash.",
+            "Remedy": "SET will notify owners and provide a corrected label for placement over the inaccurate label, free of charge.  The recall began August 23, 2019.  Owners may contact Toyota customer service at 1-888-270-9371.  SET's number for this recall is SET19A.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "19V567000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "01/08/2019",
+            "Component": "AIR BAGS:SENSOR:OCCUPANT CLASSIFICATION",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2019 Camry vehicles. The Occupant Classification System (OCS) may have been improperly calibrated, which may prevent the proper deployment of the front passenger air bag and knee air bag, in the event of a crash.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 208, \"Occupant Crash Protection.\"",
+            "Consequence": "In the event of a crash, if the air bags do not deploy as designed, the front seat passenger has an increased risk of an injury.",
+            "Remedy": "Toyota will notify owners, and dealers will recalibrate the OCS, free of charge.  The recall began August 27, 2019.  Owners may contact Toyota customer service at 1-888-270-9371.  Toyota's number for this recall is K0M.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Gulf States Toyota, Inc.",
+            "NHTSACampaignNumber": "19V244000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "27/03/2019",
+            "Component": "EQUIPMENT:OTHER:LABELS",
+            "Summary": "Gulf States Toyota (GST) is recalling certain 2019 C-HR, 4Runner, Avalon, Avalon Hybrid, Camry, Camry Hybrid, Highlander, Land Cruiser, Prius, RAV4, Sequoia, Tacoma, Sienna, Tundra and Yaris vehicles.  The text on the load capacity label may become illegible.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 110, \"Tire Selection and Rims.\"",
+            "Consequence": "If the driver cannot read the label, they may unknowingly overload the vehicle, increasing the risk of a crash.",
+            "Remedy": "GST will notify owners, and dealers will provide corrected load carrying capacity modification labels, free of charge.  The recall began May 24, 2019.  Owners may contact GST customer service at 1-800-444-1074.  GST's number for this recall is 19R1.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           }
+          ]
+         }
+        },
+        "rank.output": {
+         "ranked": [
+          {
+           "claim_id": "CLM-00008",
+           "sol": {
+            "known": true,
+            "days_left": 896,
+            "expired": false,
+            "deadline_ms": 1871164800000
+           },
+           "negligence": {
+            "doctrine": "pure_comparative",
+            "insured_fault_pct": 10,
+            "barred": false,
+            "factor": 0.9
+           },
+           "recall": {
+            "match": false,
+            "reason": "loss cause not recall-related"
+           },
+           "gross": 17200,
+           "status": "NO_CASE",
+           "score": 0
+          }
+         ],
+         "summary": {
+          "total": 1,
+          "pursue": 0,
+          "needs_data": 0,
+          "sol_expired": 0,
+          "barred": 0,
+          "no_case": 1,
+          "pipeline_demand": 0
+         }
+        },
+        "eachClaim.output": [
+         {
+          "markNeedsData": {
+           "output": null
+          },
+          "assess": {
+           "output": {
+            "list": [
+             {
+              "claim_id": "CLM-00008",
+              "sol": {
+               "known": true,
+               "days_left": 896,
+               "expired": false,
+               "deadline_ms": 1871164800000
+              },
+              "negligence": {
+               "doctrine": "pure_comparative",
+               "insured_fault_pct": 10,
+               "barred": false,
+               "factor": 0.9
+              },
+              "recall": {
+               "match": false,
+               "reason": "loss cause not recall-related"
+              },
+              "gross": 17200,
+              "status": "NO_CASE",
+              "score": 0
+             }
+            ]
+           }
+          },
+          "nextClaim": {
+           "output": 1
+          }
+         }
+        ],
+        "negotiator.error": null,
+        "start.output.runId": "T15-S08",
+        "storeOut.error": null,
+        "end.storeValue": null,
+        "ledgerAppendFailed.error": null,
+        "negInit.output": null,
+        "specialistReviewOk.error": null,
+        "loadStore.output": null,
+        "duel.error": null,
+        "negCtx.error": null,
+        "ledgerAppendFailed.output": null,
+        "judgeOffer.error": null,
+        "ledgerNoCaseFailed.output": null,
+        "evidenceAnalyst.output": null,
+        "end.ledger": null,
+        "noApproval.error": null,
+        "intake.error": null,
+        "managerReviewOk.output": null,
+        "storeLoadFailed.error": null,
+        "evidenceAnalyst.error": null
+       },
+       "metadata": {
+        "ElementCount": {
+         "eachClaim": 2,
+         "fromBucket": 1,
+         "intake": 1,
+         "start": 1
+        },
+        "ExternalId": "27158581",
+        "ProcessKey": null,
+        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+        "InstanceId": "2561ae35-5cf3-47e8-900c-ce90e5b24a9a"
+       }
+      }
+     },
+     "inputDefinitions": {},
+     "outputs": {
+      "response": {
+       "found": false,
+       "assessment": {},
+       "claim": {},
+       "claimJson": "{}",
+       "assessmentJson": "{}"
+      }
+     }
+    },
+    {
+     "elementId": "noCaseEnd",
+     "elementRunId": "95913d70-34d5-4365-a7a6-882aa17a52d0",
+     "isMarker": false,
+     "inputs": {
+      "args": {
+       "vars": {
+        "ledger": {
+         "ok": false,
+         "ledgerCount": null
+        },
+        "assess.output": {
+         "list": [
+          {
+           "claim_id": "CLM-00008",
+           "sol": {
+            "known": true,
+            "days_left": 896,
+            "expired": false,
+            "deadline_ms": 1871164800000
+           },
+           "negligence": {
+            "doctrine": "pure_comparative",
+            "insured_fault_pct": 10,
+            "barred": false,
+            "factor": 0.9
+           },
+           "recall": {
+            "match": false,
+            "reason": "loss cause not recall-related"
+           },
+           "gross": 17200,
+           "status": "NO_CASE",
+           "score": 0
+          }
+         ]
+        },
+        "liability": null,
+        "managerReviewNo.output": null,
+        "markNeedsData.output": null,
+        "specialistReview.output": null,
+        "specialistReviewNo.error": null,
+        "carrierAgent.output": null,
+        "noApproval.output": null,
+        "loadStore.error": null,
+        "end2.ledger": null,
+        "autoApprove.output": null,
+        "end.neg": null,
+        "assess.error": null,
+        "liabilityAssessor.error": null,
+        "storeValue": {
+         "source": "input",
+         "loaded": false
+        },
+        "pickTop.output": {
+         "found": false,
+         "assessment": {},
+         "claim": {},
+         "claimJson": "{}",
+         "assessmentJson": "{}"
+        },
+        "end2.summary": null,
+        "evidence": null,
+        "specialistReview.status": null,
+        "end.roi": null,
+        "killSwitch": false,
+        "ledgerNoCase.output": null,
+        "start.output.counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 5000
+        },
+        "start.output.asOf": "2026-11-04",
+        "assessed": [
+         {
+          "claim_id": "CLM-00008",
+          "sol": {
+           "known": true,
+           "days_left": 896,
+           "expired": false,
+           "deadline_ms": 1871164800000
+          },
+          "negligence": {
+           "doctrine": "pure_comparative",
+           "insured_fault_pct": 10,
+           "barred": false,
+           "factor": 0.9
+          },
+          "recall": {
+           "match": false,
+           "reason": "loss cause not recall-related"
+          },
+          "gross": 17200,
+          "status": "NO_CASE",
+          "score": 0
+         }
+        ],
+        "specialistReviewNo.output": null,
+        "book.error": null,
+        "nextClaim.output": 1,
+        "asOf": "2026-11-04",
+        "end.summary": null,
+        "end.evidence": null,
+        "roundCtx.output": null,
+        "end2.roi": null,
+        "pickTop.error": null,
+        "noCaseEnd.output": null,
+        "parseStore.output": null,
+        "parseStore.error": null,
+        "negInit.error": null,
+        "end2.storeValue": null,
+        "ranked": null,
+        "end2.neg": null,
+        "start.output.claimIds": null,
+        "negotiation": null,
+        "approvalCtx.output": null,
+        "store": {
+         "source": "input",
+         "loaded": false
+        },
+        "rank.error": null,
+        "stylePass.output": null,
+        "managerReview.output": null,
+        "negotiator.output": null,
+        "end.approval": null,
+        "response": null,
+        "runId": "T15-S08",
+        "stylePass.error": null,
+        "markNeedsData.error": null,
+        "guardCounter.output": null,
+        "managerReviewNo.error": null,
+        "noCaseEnd.error": null,
+        "end2.ranked": null,
+        "counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 5000
+        },
+        "carrierAgent.error": null,
+        "end2.approval": null,
+        "claimIds": null,
+        "negCtx.output": null,
+        "managerReview.status": null,
+        "autoApprove.error": null,
+        "approvalCtx.error": null,
+        "ledgerAppend.error": null,
+        "end.ranked": null,
+        "book.output": null,
+        "start.output.source": "input",
+        "judgeOffer.output": null,
+        "end2.evidence": null,
+        "eachClaim.error": null,
+        "end.store": null,
+        "intake.output": {
+         "items": [
+          {
+           "claim_id": "CLM-00008",
+           "scenario": "S08",
+           "synthetic": "true",
+           "policyholder": "Policyholder 00008 (synthetic)",
+           "state": "CA",
+           "make": "TOYOTA",
+           "model": "CAMRY",
+           "model_year": "2019",
+           "vin": "4T1B11HK4KG199819",
+           "loss_date": "2026-04-18",
+           "closed_date": "2026-05-26",
+           "loss_cause": "hail_damage",
+           "paid_amount": 16700,
+           "deductible": 500,
+           "insured_fault_pct": 10,
+           "matched_recall": "",
+           "data_status": "OK",
+           "police_report": "[SYNTHETIC] Officer #2540. No collision. Hail damage reported while parked. Estimated other-party fault 90%.",
+           "sol_days_left": "896"
+          }
+         ],
+         "stopped": false,
+         "claims": [
+          {
+           "claim_id": "CLM-00008",
+           "scenario": "S08",
+           "synthetic": "true",
+           "policyholder": "Policyholder 00008 (synthetic)",
+           "state": "CA",
+           "make": "TOYOTA",
+           "model": "CAMRY",
+           "model_year": "2019",
+           "vin": "4T1B11HK4KG199819",
+           "loss_date": "2026-04-18",
+           "closed_date": "2026-05-26",
+           "loss_cause": "hail_damage",
+           "paid_amount": "16700",
+           "deductible": "500",
+           "insured_fault_pct": "10",
+           "matched_recall": "",
+           "data_status": "OK",
+           "police_report": "[SYNTHETIC] Officer #2540. No collision. Hail damage reported while parked. Estimated other-party fault 90%.",
+           "sol_days_left": "896"
+          }
+         ],
+         "negotiation_paused": false
+        },
+        "ledgerNoCase.error": null,
+        "end2.liability": null,
+        "nextClaim.error": null,
+        "source": "input",
+        "storeOut.output": null,
+        "liabilityAssessor.output": null,
+        "end2.store": null,
+        "start.output.claims": [
+         {
+          "claim_id": "CLM-00008",
+          "scenario": "S08",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00008 (synthetic)",
+          "state": "CA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK4KG199819",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-26",
+          "loss_cause": "hail_damage",
+          "paid_amount": "16700",
+          "deductible": "500",
+          "insured_fault_pct": "10",
+          "matched_recall": "",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #2540. No collision. Hail damage reported while parked. Estimated other-party fault 90%.",
+          "sol_days_left": "896"
+         }
+        ],
+        "neg": {},
+        "getRecalls.error": null,
+        "roundCtx.error": null,
+        "ledgerAppend.output": null,
+        "roi": null,
+        "end.negotiation": null,
+        "end.assessed": null,
+        "end2.negotiation": null,
+        "end.liability": null,
+        "approval": {},
+        "guardCounter.error": null,
+        "claims": [
+         {
+          "claim_id": "CLM-00008",
+          "scenario": "S08",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00008 (synthetic)",
+          "state": "CA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK4KG199819",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-26",
+          "loss_cause": "hail_damage",
+          "paid_amount": "16700",
+          "deductible": "500",
+          "insured_fault_pct": "10",
+          "matched_recall": "",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #2540. No collision. Hail damage reported while parked. Estimated other-party fault 90%.",
+          "sol_days_left": "896"
+         }
+        ],
+        "start.output.killSwitch": false,
+        "summary": null,
+        "ledgerNoCaseFailed.error": null,
+        "end2.assessed": null,
+        "error": null,
+        "storeLoadFailed.output": null,
+        "managerReviewOk.error": null,
+        "specialistReviewOk.output": null,
+        "getRecalls.output": {
+         "code": 200,
+         "headers": {
+          "x-amzn-RequestId": "9ee8548a-cd33-421b-8ac8-7c4b7f86f752",
+          "x-amzn-Remapped-Connection": "keep-alive",
+          "x-amz-apigw-id": "GTkhqG5ioAMFajQ=",
+          "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+          "x-amzn-Remapped-Date": "Wed, 04 Nov 2026 08:06:59 GMT",
+          "Date": "Wed, 04 Nov 2026 08:06:59 GMT",
+          "Connection": "keep-alive",
+          "Set-Cookie": "AWSALB=G9y7VcbFdBIIjLKkbxCYyQ4ZpNmXrx/c6/fQ7lZdFhJxExvA4pjShVR/1IOoEyPi3tTzgXTnzOIOdM7jZOz5UzVmAcPqXLQ51WpN549Wy4xTF3Zkxr+j+61Tr2xp; Expires=Wed, 11 Nov 2026 08:06:59 GMT; Path=/, AWSALBCORS=G9y7VcbFdBIIjLKkbxCYyQ4ZpNmXrx/c6/fQ7lZdFhJxExvA4pjShVR/1IOoEyPi3tTzgXTnzOIOdM7jZOz5UzVmAcPqXLQ51WpN549Wy4xTF3Zkxr+j+61Tr2xp; Expires=Wed, 11 Nov 2026 08:06:59 GMT; Path=/; SameSite=None",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "SAMEORIGIN",
+          "Strict-Transport-Security": "max-age=31536000 ; includeSubDomains ; preload"
+         },
+         "body": {
+          "Count": 6,
+          "Message": "Results returned successfully",
+          "results": [
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "20V682000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "04/11/2020",
+            "Component": "FUEL SYSTEM, GASOLINE:DELIVERY:FUEL PUMP",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018-2019 4Runner, 2019-2020 Avalon, 2019 Corolla Hatchback, 2017-2019 Highlander, 2018-2020 Camry, 2020 Corolla, 2018-2019 Land Cruiser, 2017-2020 Tacoma, 2019-2020 RAV4, 2019-2020 Sequoia, 2017-2020 Sienna, 2019-2020 Tundra, 2018-2020 Lexus ES350, 2017 Lexus GS200t, 2017-2019 Lexus GS350, 2019 Lexus GS300, 2018-2020 Lexus LC500h, 2019-2020 Lexus LS500, 2018-2019 Lexus GX460, 2017 Lexus IS200t, 2019 Lexus IS300, 2019 Lexus IS350, 2018-2020 Lexus LC500, 2018 Lexus LS500, 2019 Lexus LS500h, 2018-2019 Lexus LX570, 2017 Lexus RC200t, 2019 Lexus RC300, RC350, 2017 and 2019-2020 Lexus RX350, 2018-2020 RX350L, 2019 Lexus UX200, 2018-2019 Lexus NX300 vehicles.  The low-pressure fuel pump inside the fuel tank may fail.",
+            "Consequence": "If the fuel pump fails, the engine can stall while driving, increasing the risk of a crash.",
+            "Remedy": "Toyota will notify owners, and dealers will replace the fuel pump assembly with an improved one, free of charge.  Owners of specific models were notified that remedy parts were available starting January 21, 2021.  Owners of other models will be notified as remedy parts become available.  Remedy parts should be available for all affected vehicles by late March 2021.  Owners may contact Toyota customer service at 1-888-270-9371 or Lexus customer service at 1-800-255-3987.  Note: This recall is an expansion of recall 20V-012.  Toyota's number for this recall is 20TA02.  Lexus' number for this recall is 20LA01.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "21V890000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "17/11/2021",
+            "Component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2018-2019 Camry vehicles.  The vane cap inside the vacuum pump may break, causing the pump to fail, which could result in a sudden loss of braking assist.",
+            "Consequence": "A sudden loss of braking assist can increase the risk of a crash.",
+            "Remedy": "Dealers will repair or replace the vacuum pump, as necessary, free of charge.  Owner notification letters were mailed May 16, 2022.  Owners may contact Toyota customer service at 1-800-331-4331.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.nhtsa.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "20V012000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "13/01/2020",
+            "Component": "FUEL SYSTEM, GASOLINE:DELIVERY:FUEL PUMP",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) recalled certain 2018-2019 4Runner, Highlander, Camry, Land Cruiser, Sequoia, Sienna, Tacoma and Tundra, and Lexus RC 300, RC 350, GS 350, GX 460, IS 300, LC 500, LS 500, LX 570, RX 350L, and 2019 Toyota Avalon and Corolla, and certain Lexus NX 300, and ES 350 vehicles on January 13, 2020. \r\nOn March 4, 2020, Toyota expanded the recall to include certain 2014-2015 Toyota 4Runner and Land Cruiser, 2018 Avalon, Corolla, 2014 FJ Cruiser, 2017 Sienna and Lexus 2018 ES 350, 2018-2019 GS 300, 2013-2014 GS350, 2014-2015 GX 460, IS 350 and LX 570, 2014 IS F, 2018-2019 IS 350, LC 500H and LS 500H, 2013-2015 LS 460, 2015 NX 200T and RC350, 2017 RC 200T and RX 350.  Toyota also removed the 2018-2019 Toyota 4Runner and Land Cruiser and 2018-2019 Lexus GX 460 and LX 570 and 2019 NX300 from inclusion in this recall.  On March 19, 2020, Toyota expanded the recall to include 2015 Lexus GS350 vehicles.  The low-pressure fuel pump inside the fuel tank may fail.",
+            "Consequence": "If the fuel pump fails, the engine can stall while driving, increasing the risk of a crash.",
+            "Remedy": "Toyota will notify owners, and dealers will replace the fuel pump, free of charge.  The recall began May 4, 2020.  Owners may contact Toyota customer service at 1-888-270-9371 or Lexus customer service at 1-800-255-3987.  Toyota's numbers for this recall are 20TB02 and 20TA02 for Toyota vehicles and 20LB01 and 20LA01 for Lexus vehicles.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Southeast Toyota Distributors, LLC",
+            "NHTSACampaignNumber": "19V503000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "28/06/2019",
+            "Component": "EQUIPMENT:OTHER:LABELS",
+            "Summary": "Southeast Toyota Distributors, LLC (SET) is recalling certain 2017-2019 Toyota Camry, Corolla, Rav4, Sienna, and Yaris iA vehicles equipped with factory-installed floor mats.  The load carrying capacity modification label may be incorrect.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 110, \"Tire Selection and Rims.\"",
+            "Consequence": "An incorrect label may lead to unintentionally overloading the vehicle, increasing the risk of a crash.",
+            "Remedy": "SET will notify owners and provide a corrected label for placement over the inaccurate label, free of charge.  The recall began August 23, 2019.  Owners may contact Toyota customer service at 1-888-270-9371.  SET's number for this recall is SET19A.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Toyota Motor Engineering & Manufacturing",
+            "NHTSACampaignNumber": "19V567000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "01/08/2019",
+            "Component": "AIR BAGS:SENSOR:OCCUPANT CLASSIFICATION",
+            "Summary": "Toyota Motor Engineering & Manufacturing (Toyota) is recalling certain 2019 Camry vehicles. The Occupant Classification System (OCS) may have been improperly calibrated, which may prevent the proper deployment of the front passenger air bag and knee air bag, in the event of a crash.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 208, \"Occupant Crash Protection.\"",
+            "Consequence": "In the event of a crash, if the air bags do not deploy as designed, the front seat passenger has an increased risk of an injury.",
+            "Remedy": "Toyota will notify owners, and dealers will recalibrate the OCS, free of charge.  The recall began August 27, 2019.  Owners may contact Toyota customer service at 1-888-270-9371.  Toyota's number for this recall is K0M.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           },
+           {
+            "Manufacturer": "Gulf States Toyota, Inc.",
+            "NHTSACampaignNumber": "19V244000",
+            "parkIt": false,
+            "parkOutSide": false,
+            "overTheAirUpdate": false,
+            "ReportReceivedDate": "27/03/2019",
+            "Component": "EQUIPMENT:OTHER:LABELS",
+            "Summary": "Gulf States Toyota (GST) is recalling certain 2019 C-HR, 4Runner, Avalon, Avalon Hybrid, Camry, Camry Hybrid, Highlander, Land Cruiser, Prius, RAV4, Sequoia, Tacoma, Sienna, Tundra and Yaris vehicles.  The text on the load capacity label may become illegible.  As such, these vehicles fail to comply with the requirements of Federal Motor Vehicle Safety Standard (FMVSS) number 110, \"Tire Selection and Rims.\"",
+            "Consequence": "If the driver cannot read the label, they may unknowingly overload the vehicle, increasing the risk of a crash.",
+            "Remedy": "GST will notify owners, and dealers will provide corrected load carrying capacity modification labels, free of charge.  The recall began May 24, 2019.  Owners may contact GST customer service at 1-800-444-1074.  GST's number for this recall is 19R1.",
+            "Notes": "Owners may also contact the National Highway Traffic Safety Administration Vehicle Safety Hotline at 1-888-327-4236 (TTY 1-800-424-9153), or go to www.safercar.gov.",
+            "ModelYear": "2019",
+            "Make": "TOYOTA",
+            "Model": "CAMRY"
+           }
+          ]
+         }
+        },
+        "rank.output": {
+         "ranked": [
+          {
+           "claim_id": "CLM-00008",
+           "sol": {
+            "known": true,
+            "days_left": 896,
+            "expired": false,
+            "deadline_ms": 1871164800000
+           },
+           "negligence": {
+            "doctrine": "pure_comparative",
+            "insured_fault_pct": 10,
+            "barred": false,
+            "factor": 0.9
+           },
+           "recall": {
+            "match": false,
+            "reason": "loss cause not recall-related"
+           },
+           "gross": 17200,
+           "status": "NO_CASE",
+           "score": 0
+          }
+         ],
+         "summary": {
+          "total": 1,
+          "pursue": 0,
+          "needs_data": 0,
+          "sol_expired": 0,
+          "barred": 0,
+          "no_case": 1,
+          "pipeline_demand": 0
+         }
+        },
+        "eachClaim.output": [
+         {
+          "markNeedsData": {
+           "output": null
+          },
+          "assess": {
+           "output": {
+            "list": [
+             {
+              "claim_id": "CLM-00008",
+              "sol": {
+               "known": true,
+               "days_left": 896,
+               "expired": false,
+               "deadline_ms": 1871164800000
+              },
+              "negligence": {
+               "doctrine": "pure_comparative",
+               "insured_fault_pct": 10,
+               "barred": false,
+               "factor": 0.9
+              },
+              "recall": {
+               "match": false,
+               "reason": "loss cause not recall-related"
+              },
+              "gross": 17200,
+              "status": "NO_CASE",
+              "score": 0
+             }
+            ]
+           }
+          },
+          "nextClaim": {
+           "output": 1
+          }
+         }
+        ],
+        "negotiator.error": null,
+        "start.output.runId": "T15-S08",
+        "storeOut.error": null,
+        "end.storeValue": null,
+        "ledgerAppendFailed.error": null,
+        "negInit.output": null,
+        "specialistReviewOk.error": null,
+        "loadStore.output": null,
+        "duel.error": null,
+        "negCtx.error": null,
+        "ledgerAppendFailed.output": null,
+        "judgeOffer.error": null,
+        "ledgerNoCaseFailed.output": null,
+        "evidenceAnalyst.output": null,
+        "end.ledger": null,
+        "noApproval.error": null,
+        "intake.error": null,
+        "managerReviewOk.output": null,
+        "storeLoadFailed.error": null,
+        "evidenceAnalyst.error": null
+       },
+       "metadata": {
+        "ElementCount": {
+         "eachClaim": 2,
+         "fromBucket": 1,
+         "intake": 1,
+         "noCase": 1,
+         "pickTop": 1,
+         "rank": 1,
+         "start": 1
+        },
+        "ExternalId": "27158581",
+        "ProcessKey": null,
+        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+        "InstanceId": "2561ae35-5cf3-47e8-900c-ce90e5b24a9a"
+       }
+      }
+     },
+     "inputDefinitions": {},
+     "outputs": {
+      "response": {
+       "ledger_ok": false,
+       "ledger_count": null
+      }
+     }
+    },
+    {
+     "elementId": "end",
+     "elementRunId": "0f742117-e504-4409-bb48-081bc9377182",
+     "isMarker": false,
+     "inputs": {},
+     "inputDefinitions": {},
+     "outputs": {}
+    }
+   ],
+   "globals": {
+    "approvalCtx.error": null,
+    "loadStore.output": null,
+    "ledgerNoCase.error": null,
+    "ledgerNoCaseFailed.error": null,
+    "parseStore.error": null,
+    "ledgerAppendFailed.error": null,
+    "start.output.claimIds": null,
+    "autoApprove.error": null,
+    "start.output.killSwitch": false,
+    "managerReviewOk.error": null,
+    "storeValue": {
+     "source": "input",
+     "loaded": false
+    },
+    "liability": {},
+    "ledgerAppendFailed.output": null,
+    "storeOut.error": null,
+    "managerReview.output": null,
+    "managerReview.status": null,
+    "negotiation": {
+     "status": "NO_CASE",
+     "simulated_counterparty": true,
+     "history": []
+    },
+    "specialistReviewOk.error": null,
+    "evidenceAnalyst.error": null,
+    "start.output.asOf": "2026-11-04",
+    "loadStore.error": null,
+    "storeOut.output": null,
+    "assessed": [
+     {
+      "claim_id": "CLM-00008",
+      "sol": {
+       "known": true,
+       "days_left": 896,
+       "expired": false,
+       "deadline_ms": 1871164800000
+      },
+      "negligence": {
+       "doctrine": "pure_comparative",
+       "insured_fault_pct": 10,
+       "barred": false,
+       "factor": 0.9
+      },
+      "recall": {
+       "match": false,
+       "reason": "loss cause not recall-related"
+      },
+      "gross": 17200,
+      "status": "NO_CASE",
+      "score": 0
+     }
+    ],
+    "ranked": [
+     {
+      "claim_id": "CLM-00008",
+      "sol": {
+       "known": true,
+       "days_left": 896,
+       "expired": false,
+       "deadline_ms": 1871164800000
+      },
+      "negligence": {
+       "doctrine": "pure_comparative",
+       "insured_fault_pct": 10,
+       "barred": false,
+       "factor": 0.9
+      },
+      "recall": {
+       "match": false,
+       "reason": "loss cause not recall-related"
+      },
+      "gross": 17200,
+      "status": "NO_CASE",
+      "score": 0
+     }
+    ],
+    "evidence": {},
+    "ledgerNoCaseFailed.output": null,
+    "liabilityAssessor.error": null,
+    "ledger": {
+     "ok": false,
+     "ledgerCount": null
+    },
+    "noCaseEnd.output": {
+     "ledger_ok": false,
+     "ledger_count": null
+    },
+    "negInit.output": null,
+    "managerReviewNo.output": null,
+    "managerReviewOk.output": null,
+    "ledgerAppend.output": null,
+    "storeLoadFailed.output": null,
+    "evidenceAnalyst.output": null,
+    "start.output.runId": "T15-S08",
+    "noApproval.error": null,
+    "approvalCtx.output": null,
+    "start.output.source": "input",
+    "intake.error": null,
+    "specialistReview.output": null,
+    "storeLoadFailed.error": null,
+    "store": {
+     "source": "input",
+     "ledger_appended": false,
+     "ledger_ok": false,
+     "ledger_count": null
+    },
+    "start.output.claims": [
+     {
+      "claim_id": "CLM-00008",
+      "scenario": "S08",
+      "synthetic": "true",
+      "policyholder": "Policyholder 00008 (synthetic)",
+      "state": "CA",
+      "make": "TOYOTA",
+      "model": "CAMRY",
+      "model_year": "2019",
+      "vin": "4T1B11HK4KG199819",
+      "loss_date": "2026-04-18",
+      "closed_date": "2026-05-26",
+      "loss_cause": "hail_damage",
+      "paid_amount": "16700",
+      "deductible": "500",
+      "insured_fault_pct": "10",
+      "matched_recall": "",
+      "data_status": "OK",
+      "police_report": "[SYNTHETIC] Officer #2540. No collision. Hail damage reported while parked. Estimated other-party fault 90%.",
+      "sol_days_left": "896"
+     }
+    ],
+    "negInit.error": null,
+    "stylePass.error": null,
+    "specialistReviewNo.output": null,
+    "neg": {},
+    "book.output": null,
+    "roi": {
+     "runs": 1,
+     "approved": 0,
+     "recovered": 0,
+     "refunds": 0,
+     "insurer_net": 0,
+     "reconciles": true
+    },
+    "ledgerAppend.error": null,
+    "managerReviewNo.error": null,
+    "intake.output": {
+     "items": [
+      {
+       "claim_id": "CLM-00008",
+       "scenario": "S08",
+       "synthetic": "true",
+       "policyholder": "Policyholder 00008 (synthetic)",
+       "state": "CA",
+       "make": "TOYOTA",
+       "model": "CAMRY",
+       "model_year": "2019",
+       "vin": "4T1B11HK4KG199819",
+       "loss_date": "2026-04-18",
+       "closed_date": "2026-05-26",
+       "loss_cause": "hail_damage",
+       "paid_amount": 16700,
+       "deductible": 500,
+       "insured_fault_pct": 10,
+       "matched_recall": "",
+       "data_status": "OK",
+       "police_report": "[SYNTHETIC] Officer #2540. No collision. Hail damage reported while parked. Estimated other-party fault 90%.",
+       "sol_days_left": "896"
+      }
+     ],
+     "stopped": false,
+     "claims": [
+      {
+       "claim_id": "CLM-00008",
+       "scenario": "S08",
+       "synthetic": "true",
+       "policyholder": "Policyholder 00008 (synthetic)",
+       "state": "CA",
+       "make": "TOYOTA",
+       "model": "CAMRY",
+       "model_year": "2019",
+       "vin": "4T1B11HK4KG199819",
+       "loss_date": "2026-04-18",
+       "closed_date": "2026-05-26",
+       "loss_cause": "hail_damage",
+       "paid_amount": "16700",
+       "deductible": "500",
+       "insured_fault_pct": "10",
+       "matched_recall": "",
+       "data_status": "OK",
+       "police_report": "[SYNTHETIC] Officer #2540. No collision. Hail damage reported while parked. Estimated other-party fault 90%.",
+       "sol_days_left": "896"
+      }
+     ],
+     "negotiation_paused": false
+    },
+    "noCaseEnd.error": null,
+    "autoApprove.output": null,
+    "approval": {},
+    "book.error": null,
+    "pickTop.output": {
+     "found": false,
+     "assessment": {},
+     "claim": {},
+     "claimJson": "{}",
+     "assessmentJson": "{}"
+    },
+    "ledgerNoCase.output": null,
+    "specialistReviewNo.error": null,
+    "liabilityAssessor.output": null,
+    "stylePass.output": null,
+    "rank.error": null,
+    "pickTop.error": null,
+    "specialistReviewOk.output": null,
+    "start.output.counterparty": {
+     "persona": "cooperative",
+     "reservation_price": 5000
+    },
+    "eachClaim.output": [
+     {
+      "markNeedsData": {
+       "output": null
+      },
+      "assess": {
+       "output": {
+        "list": [
+         {
+          "claim_id": "CLM-00008",
+          "sol": {
+           "known": true,
+           "days_left": 896,
+           "expired": false,
+           "deadline_ms": 1871164800000
+          },
+          "negligence": {
+           "doctrine": "pure_comparative",
+           "insured_fault_pct": 10,
+           "barred": false,
+           "factor": 0.9
+          },
+          "recall": {
+           "match": false,
+           "reason": "loss cause not recall-related"
+          },
+          "gross": 17200,
+          "status": "NO_CASE",
+          "score": 0
+         }
+        ]
+       }
+      },
+      "nextClaim": {
+       "output": 1
+      }
+     }
+    ],
+    "noApproval.output": null,
+    "specialistReview.status": null,
+    "parseStore.output": null,
+    "rank.output": {
+     "ranked": [
+      {
+       "claim_id": "CLM-00008",
+       "sol": {
+        "known": true,
+        "days_left": 896,
+        "expired": false,
+        "deadline_ms": 1871164800000
+       },
+       "negligence": {
+        "doctrine": "pure_comparative",
+        "insured_fault_pct": 10,
+        "barred": false,
+        "factor": 0.9
+       },
+       "recall": {
+        "match": false,
+        "reason": "loss cause not recall-related"
+       },
+       "gross": 17200,
+       "status": "NO_CASE",
+       "score": 0
+      }
+     ],
+     "summary": {
+      "total": 1,
+      "pursue": 0,
+      "needs_data": 0,
+      "sol_expired": 0,
+      "barred": 0,
+      "no_case": 1,
+      "pipeline_demand": 0
+     }
+    },
+    "summary": {
+     "total": 1,
+     "pursue": 0,
+     "needs_data": 0,
+     "sol_expired": 0,
+     "barred": 0,
+     "no_case": 1,
+     "pipeline_demand": 0
+    }
+   },
+   "instanceId": "2561ae35-5cf3-47e8-900c-ce90e5b24a9a",
+   "workflowId": "2561ae35-5cf3-47e8-900c-ce90e5b24a9a/BpmnGenericWorkflow",
+   "parentElementId": null,
+   "globalDefinitions": {
+    "approvalCtx.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "loadStore.output": {
+     "name": "output",
+     "type": "jsonSchema"
+    },
+    "ledgerNoCase.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "ledgerNoCaseFailed.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "parseStore.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "ledgerAppendFailed.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "start.output.claimIds": {
+     "name": "claimIds",
+     "type": "array"
+    },
+    "autoApprove.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "start.output.killSwitch": {
+     "name": "killSwitch",
+     "type": "boolean"
+    },
+    "managerReviewOk.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "storeValue": {
+     "name": "storeValue",
+     "type": "object"
+    },
+    "liability": {
+     "name": "liability",
+     "type": "object"
+    },
+    "ledgerAppendFailed.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "storeOut.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "managerReview.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "managerReview.status": {
+     "name": "status",
+     "type": "string"
+    },
+    "negotiation": {
+     "name": "negotiation",
+     "type": "object"
+    },
+    "specialistReviewOk.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "evidenceAnalyst.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "start.output.asOf": {
+     "name": "asOf",
+     "type": "string"
+    },
+    "loadStore.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "storeOut.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "assessed": {
+     "name": "assessed",
+     "type": "array"
+    },
+    "ranked": {
+     "name": "ranked",
+     "type": "array"
+    },
+    "evidence": {
+     "name": "evidence",
+     "type": "object"
+    },
+    "ledgerNoCaseFailed.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "liabilityAssessor.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "ledger": {
+     "name": "ledger",
+     "type": "object"
+    },
+    "noCaseEnd.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "negInit.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "managerReviewNo.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "managerReviewOk.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "ledgerAppend.output": {
+     "name": "output",
+     "type": "jsonSchema"
+    },
+    "storeLoadFailed.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "evidenceAnalyst.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "start.output.runId": {
+     "name": "runId",
+     "type": "string"
+    },
+    "noApproval.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "approvalCtx.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "start.output.source": {
+     "name": "source",
+     "type": "string"
+    },
+    "intake.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "specialistReview.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "storeLoadFailed.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "store": {
+     "name": "store",
+     "type": "object"
+    },
+    "start.output.claims": {
+     "name": "claims",
+     "type": "array"
+    },
+    "negInit.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "stylePass.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "specialistReviewNo.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "neg": {
+     "name": "neg",
+     "type": "object"
+    },
+    "book.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "roi": {
+     "name": "roi",
+     "type": "object"
+    },
+    "ledgerAppend.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "managerReviewNo.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "intake.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "noCaseEnd.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "autoApprove.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "approval": {
+     "name": "approval",
+     "type": "object"
+    },
+    "book.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "pickTop.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "ledgerNoCase.output": {
+     "name": "output",
+     "type": "jsonSchema"
+    },
+    "specialistReviewNo.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "liabilityAssessor.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "stylePass.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "rank.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "pickTop.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "specialistReviewOk.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "start.output.counterparty": {
+     "name": "counterparty",
+     "type": "object"
+    },
+    "eachClaim.output": {
+     "name": "output",
+     "type": "array"
+    },
+    "noApproval.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "specialistReview.status": {
+     "name": "status",
+     "type": "string"
+    },
+    "parseStore.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "rank.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "summary": {
+     "name": "summary",
+     "type": "object"
+    }
+   }
+  }
+ },
+ "Instructions": "Debug completed with status: Completed"
+}

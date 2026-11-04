@@ -1,0 +1,331 @@
+{
+ "S06": {
+  "pass": true,
+  "fails": [],
+  "job": "6444fb58-7aa9-4861-adf6-c469e098ec3f",
+  "neg": "NO_CASE",
+  "rounds": null,
+  "amount": null,
+  "tier": null,
+  "approval": null,
+  "top": null,
+  "rank": {
+   "CLM-00006": "CLOSED_SOL_EXPIRED"
+  },
+  "stopped": false,
+  "tasks": [],
+  "partial": null,
+  "secs": 15,
+  "at": "2026-11-04T03:06:50"
+ },
+ "S15": {
+  "pass": true,
+  "fails": [],
+  "job": "8b019626-bf98-4b1d-9d84-40314e792dce",
+  "neg": "NO_CASE",
+  "rounds": null,
+  "amount": null,
+  "tier": null,
+  "approval": null,
+  "top": null,
+  "rank": {},
+  "stopped": true,
+  "tasks": [],
+  "partial": null,
+  "secs": 14,
+  "at": "2026-11-04T03:07:19"
+ },
+ "S08": {
+  "pass": true,
+  "fails": [],
+  "job": "2561ae35-5cf3-47e8-900c-ce90e5b24a9a",
+  "neg": "NO_CASE",
+  "rounds": null,
+  "amount": null,
+  "tier": null,
+  "approval": null,
+  "top": null,
+  "rank": {
+   "CLM-00008": "NO_CASE"
+  },
+  "stopped": false,
+  "tasks": [],
+  "partial": null,
+  "secs": 15,
+  "at": "2026-11-04T03:07:05"
+ },
+ "S01": {
+  "pass": true,
+  "fails": [],
+  "job": "94cc5c4e-8253-4dde-bf25-0c2eecc3b695",
+  "neg": "SETTLED",
+  "rounds": 5,
+  "amount": 11050,
+  "tier": "SPECIALIST",
+  "approval": "APPROVED",
+  "top": "CLM-00017",
+  "rank": {
+   "CLM-00017": "PURSUE"
+  },
+  "stopped": false,
+  "tasks": [
+   [
+    100029187,
+    "Recovery Duel: Specialist approval for SYNTHETIC settlement",
+    "Approve",
+    "Success"
+   ]
+  ],
+  "partial": null,
+  "secs": 102,
+  "at": "2026-11-04T03:09:05"
+ },
+ "S02": {
+  "pass": true,
+  "fails": [],
+  "job": "9f4f5242-b7c7-4d82-a697-839c3121b112",
+  "neg": "SETTLED",
+  "rounds": 5,
+  "amount": 9000,
+  "tier": "SPECIALIST",
+  "approval": "APPROVED",
+  "top": "CLM-00002",
+  "rank": {
+   "CLM-00002": "PURSUE"
+  },
+  "stopped": false,
+  "tasks": [
+   [
+    100029188,
+    "Recovery Duel: Specialist approval for SYNTHETIC settlement",
+    "Approve",
+    "Success"
+   ]
+  ],
+  "partial": null,
+  "secs": 103,
+  "at": "2026-11-04T03:10:48"
+ },
+ "S03": {
+  "pass": true,
+  "fails": [],
+  "job": "0980bbb1-5cbe-4f5b-9d89-a12baedd4785",
+  "neg": "IMPASSE",
+  "rounds": 5,
+  "amount": null,
+  "tier": null,
+  "approval": "NOT_REQUIRED",
+  "top": "CLM-00003",
+  "rank": {
+   "CLM-00003": "PURSUE"
+  },
+  "stopped": false,
+  "tasks": [],
+  "partial": null,
+  "secs": 99,
+  "at": "2026-11-04T03:12:27"
+ },
+ "S04": {
+  "pass": true,
+  "fails": [],
+  "job": "ce9e367b-44dc-4b2f-b0fd-74f2e6e80fca",
+  "neg": "SETTLED",
+  "rounds": 3,
+  "amount": 13680,
+  "tier": "SPECIALIST",
+  "approval": "APPROVED",
+  "top": "CLM-00004",
+  "rank": {
+   "CLM-00004": "PURSUE"
+  },
+  "stopped": false,
+  "tasks": [
+   [
+    100029190,
+    "Recovery Duel: Specialist approval for SYNTHETIC settlement",
+    "Approve",
+    "Success"
+   ]
+  ],
+  "partial": null,
+  "secs": 87,
+  "at": "2026-11-04T03:13:54"
+ },
+ "S05": {
+  "pass": true,
+  "fails": [],
+  "job": "643e542c-9ffc-4351-8de6-275d736ff2cf",
+  "neg": "SETTLED",
+  "rounds": 4,
+  "amount": 27300,
+  "tier": "MANAGER",
+  "approval": "REJECTED",
+  "top": "CLM-00005",
+  "rank": {
+   "CLM-00005": "PURSUE"
+  },
+  "stopped": false,
+  "tasks": [
+   [
+    100029191,
+    "Recovery Duel: Manager approval for SYNTHETIC settlement",
+    "Reject",
+    "Success"
+   ]
+  ],
+  "partial": null,
+  "secs": 87,
+  "at": "2026-11-04T03:15:20"
+ },
+ "S07": {
+  "pass": true,
+  "fails": [],
+  "job": "faacf34e-6082-4ab0-9b9c-2793c24d6f5f",
+  "neg": "SETTLED",
+  "rounds": 5,
+  "amount": 30000,
+  "tier": "MANAGER",
+  "approval": "APPROVED",
+  "top": "CLM-00007",
+  "rank": {
+   "CLM-00007": "PURSUE",
+   "CLM-00020": "PURSUE",
+   "CLM-00001": "PURSUE"
+  },
+  "stopped": false,
+  "tasks": [
+   [
+    100029194,
+    "Recovery Duel: Manager approval for SYNTHETIC settlement",
+    "Approve",
+    "Success"
+   ]
+  ],
+  "partial": null,
+  "secs": 104,
+  "at": "2026-11-04T03:29:37"
+ },
+ "S09": {
+  "pass": true,
+  "fails": [],
+  "job": "27bb38d4-c8ac-4857-b73c-d85c62896735",
+  "neg": "NO_CASE",
+  "rounds": null,
+  "amount": null,
+  "tier": null,
+  "approval": null,
+  "top": null,
+  "rank": {
+   "CLM-00009": "BARRED_NEGLIGENCE"
+  },
+  "stopped": false,
+  "tasks": [],
+  "partial": null,
+  "secs": 14,
+  "at": "2026-11-04T03:17:13"
+ },
+ "S10": {
+  "pass": true,
+  "fails": [],
+  "job": "cdd98847-d72d-4998-af00-43a73ae7905e",
+  "neg": "SETTLED",
+  "rounds": 3,
+  "amount": 5970,
+  "tier": "SPECIALIST",
+  "approval": "APPROVED",
+  "top": "CLM-00011",
+  "rank": {
+   "CLM-00011": "PURSUE",
+   "CLM-00010": "BARRED_NEGLIGENCE"
+  },
+  "stopped": false,
+  "tasks": [
+   [
+    100029192,
+    "Recovery Duel: Specialist approval for SYNTHETIC settlement",
+    "Approve",
+    "Success"
+   ]
+  ],
+  "partial": null,
+  "secs": 85,
+  "at": "2026-11-04T03:18:38"
+ },
+ "S11": {
+  "pass": true,
+  "fails": [],
+  "job": "8b0adbe1-fb56-4610-b0b2-da438b1e8add",
+  "neg": "NO_CASE",
+  "rounds": null,
+  "amount": null,
+  "tier": null,
+  "approval": null,
+  "top": null,
+  "rank": {
+   "CLM-00012": "NEEDS_DATA",
+   "CLM-00021": "NEEDS_DATA"
+  },
+  "stopped": false,
+  "tasks": [],
+  "partial": null,
+  "secs": 17,
+  "at": "2026-11-04T03:18:56"
+ },
+ "S12": {
+  "pass": true,
+  "fails": [],
+  "job": "0cef5256-aea8-4f9c-a4d6-9d9faa5f3c26",
+  "neg": "NO_CASE",
+  "rounds": null,
+  "amount": null,
+  "tier": null,
+  "approval": null,
+  "top": null,
+  "rank": {
+   "CLM-00013": "NEEDS_DATA"
+  },
+  "stopped": false,
+  "tasks": [],
+  "partial": null,
+  "secs": 14,
+  "at": "2026-11-04T03:19:10"
+ },
+ "S13": {
+  "pass": true,
+  "fails": [],
+  "job": "35f91f02-ebdf-4d88-91bb-d76f5cc9134e",
+  "neg": "SETTLED",
+  "rounds": 2,
+  "amount": 3091,
+  "tier": "AUTO",
+  "approval": "APPROVED",
+  "top": "CLM-00014",
+  "rank": {
+   "CLM-00014": "PURSUE"
+  },
+  "stopped": false,
+  "tasks": [],
+  "partial": "doc-request reply path is email (T16)",
+  "secs": 59,
+  "at": "2026-11-04T03:20:09"
+ },
+ "S14": {
+  "pass": true,
+  "fails": [],
+  "job": "7eb5519d-2715-481d-8f9d-41e7802dabea",
+  "neg": "IMPASSE",
+  "rounds": 5,
+  "amount": null,
+  "tier": null,
+  "approval": "NOT_REQUIRED",
+  "top": "CLM-00015",
+  "rank": {
+   "CLM-00015": "PURSUE"
+  },
+  "stopped": false,
+  "tasks": [],
+  "partial": "injection via inbound email is T16; here the SIMULATED carrier persona is below floor",
+  "secs": 102,
+  "at": "2026-11-04T03:21:51"
+ }
+}

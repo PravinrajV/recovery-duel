@@ -18,7 +18,7 @@ Anything not confirmed is marked UNVERIFIED. Community Edition availability is U
 | https://www.npmjs.com/package/@uipath/cli | Blocked (403 bot check) | CLI. Verified hands-on instead: `uip --version` = 1.205.0 |
 | https://vpic.nhtsa.dot.gov/api/ | Opened (200) | vPIC VIN decode |
 | https://api.nhtsa.gov/recalls/recallsByVehicle | Opened (200, 6 vehicles cached in data/fixtures/nhtsa) | Real recall campaigns |
-| https://content.naic.org/sites/default/files/cipr-jir-2023-2.pdf | NOT opened | NAIC 4.5% benchmark: UNVERIFIED |
+| https://content.naic.org/sites/default/files/cipr-jir-2023-2.pdf | Opened 2026-11-04 (curl + pdftotext) | CONFIRMED: Bisco & Fier (NAIC JIR 2023), salvage plus subrogation = 4.5% of net claims paid, whole sample (6.2% for firms with any recovery). Indicator only, not like-for-like |
 
 ## Design node map
 | Design node | Flow construct | Source | Status |
@@ -47,4 +47,4 @@ Anything not confirmed is marked UNVERIFIED. Community Edition availability is U
 | Project scaffold / validate / pack | `uip solution init`, `uip maestro flow init --automate`, `validate`, `pack` | uipath-maestro-flow SKILL.md | **Verified hands-on** (T6) |
 
 ## Gaps to close in T2
-Community availability of Flow, Data Fabric, connectors, Context Grounding, guardrails, evaluations; credits per agent call; HITL timeout; Gmail trigger; state-law citations; NAIC figure; NOAA historical weather (timed out, static synthetic CSV used).
+Community availability of Flow, Data Fabric, connectors, Context Grounding, guardrails, evaluations; credits per agent call; HITL timeout; Gmail trigger; state-law citations; NOAA historical weather (timed out, static synthetic CSV used).
