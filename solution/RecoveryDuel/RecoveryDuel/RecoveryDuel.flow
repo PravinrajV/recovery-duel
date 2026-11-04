@@ -7,16 +7,1265 @@
       "id": "start",
       "type": "core.trigger.manual",
       "typeVersion": "1.0",
+      "ui": {
+        "position": {
+          "x": 256,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
       "display": {
-        "label": "Manual trigger"
+        "label": "Manual trigger",
+        "icon": "play"
+      },
+      "model": {
+        "type": "bpmn:StartEvent",
+        "entryPointId": true
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "Data passed when manually triggering the process.",
+          "source": {
+            "type": "literal",
+            "expression": "null",
+            "fieldType": "string"
+          },
+          "var": "output"
+        }
+      },
+      "inputs": {}
+    },
+    {
+      "id": "intake",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 544,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "intake",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "properties": {
+            "items": {
+              "type": "array"
+            },
+            "stopped": {
+              "type": "boolean"
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
       },
       "inputs": {
-        "entryPointId": "6f1bd46d-fd45-4aee-80ed-187fc226db30",
-        "isDefaultEntryPoint": true
+        "script": "\n      const rows = $vars.start.output.claims || [];\n      if ($vars.start.output.killSwitch) return { items: [], stopped: true };\n      const items = rows.filter(c => c && c.claim_id).map(c => ({\n        ...c, paid_amount: Number(c.paid_amount), deductible: Number(c.deductible),\n        insured_fault_pct: Number(c.insured_fault_pct) }));\n      return { items, stopped: false };"
+      }
+    },
+    {
+      "id": "eachClaim",
+      "type": "core.logic.loop",
+      "typeVersion": "2.4",
+      "ui": {
+        "position": {
+          "x": 832,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "eachClaim",
+        "icon": "repeat"
+      },
+      "model": {
+        "type": "bpmn:SubProcess"
+      },
+      "outputs": {
+        "currentItem": {
+          "type": "any",
+          "description": "The current item being iterated in the loop",
+          "source": {
+            "type": "literal",
+            "expression": "=loopContext.currentItem",
+            "fieldType": "string"
+          },
+          "var": "currentItem",
+          "scope": "internal"
+        },
+        "currentIteration": {
+          "type": "number",
+          "description": "The current iteration number (1-based)",
+          "source": {
+            "type": "literal",
+            "expression": "=loopContext.currentIteration",
+            "fieldType": "string"
+          },
+          "var": "currentIteration",
+          "scope": "internal"
+        },
+        "collection": {
+          "type": "array",
+          "description": "The collection being iterated over",
+          "source": {
+            "type": "literal",
+            "expression": "=loopContext.collection",
+            "fieldType": "string"
+          },
+          "var": "collection",
+          "scope": "internal"
+        },
+        "output": {
+          "type": "array",
+          "description": "Aggregated results from all loop iterations",
+          "source": {
+            "type": "literal",
+            "expression": "=loopContext.output",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "scope": "external"
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the node fails",
+          "source": {
+            "type": "literal",
+            "expression": "=Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "inputs": {
+        "collection": {
+          "type": "jsExpression",
+          "expression": "$vars.intake.output.items",
+          "fieldType": "array"
+        },
+        "parallel": false,
+        "breakEnabled": false
+      }
+    },
+    {
+      "id": "getRecalls",
+      "type": "core.action.http.v2",
+      "typeVersion": "2.3",
+      "ui": {
+        "position": {
+          "x": 1120,
+          "y": 304
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "getRecalls",
+        "icon": "app-window"
+      },
+      "model": {
+        "type": "bpmn:ServiceTask",
+        "serviceType": "Intsvc.UnifiedHttpRequest",
+        "context": [
+          {
+            "name": "connectorKey",
+            "type": "string",
+            "value": "uipath-uipath-http"
+          },
+          {
+            "name": "objectName",
+            "type": "string",
+            "value": "http-request"
+          },
+          {
+            "name": "connection",
+            "type": "string",
+            "value": "<bindings.uipath-uipath-http connection>"
+          },
+          {
+            "name": "folderKey",
+            "type": "string",
+            "value": "<bindings.FolderKey>"
+          },
+          {
+            "name": "activityConfigurationVersion",
+            "type": "string",
+            "value": "v1"
+          },
+          {
+            "name": "metadata",
+            "body": {
+              "telemetryData": {
+                "connectorKey": "uipath-uipath-http",
+                "connectorName": "HTTP Request"
+              },
+              "inputMetadata": {},
+              "errorState": {
+                "hasError": true
+              }
+            },
+            "type": "json"
+          }
+        ],
+        "expansion": {
+          "processLevelVariables": [
+            {
+              "id": "getRecalls.output",
+              "name": "output",
+              "type": "jsonSchema",
+              "elementId": "getRecalls",
+              "custom": true
+            },
+            {
+              "condition": "hasEdgeFromHandle('error')",
+              "id": "getRecalls.error",
+              "name": "error",
+              "type": "jsonSchema",
+              "elementId": "getRecalls",
+              "custom": true
+            }
+          ],
+          "nodes": [
+            {
+              "id": "getRecalls",
+              "type": "bpmn:SubProcess",
+              "replaceOriginal": true,
+              "data": {
+                "label": "{node.data.label}",
+                "isExpanded": true,
+                "model": {
+                  "serviceType": "BPMN.Variables",
+                  "subprocessVariables": {
+                    "inputOutputs": [
+                      {
+                        "id": "response",
+                        "name": "response",
+                        "type": "jsonSchema",
+                        "variableType": "inputOutput"
+                      },
+                      {
+                        "id": "error",
+                        "name": "error",
+                        "type": "jsonSchema",
+                        "variableType": "inputOutput"
+                      }
+                    ]
+                  },
+                  "outputs": [
+                    {
+                      "name": "output",
+                      "type": "jsonSchema",
+                      "source": "=vars.response",
+                      "var": "getRecalls.output",
+                      "custom": true
+                    },
+                    {
+                      "name": "error",
+                      "type": "jsonSchema",
+                      "source": "=vars.error",
+                      "var": "getRecalls.error",
+                      "custom": true
+                    }
+                  ]
+                }
+              },
+              "nodes": [
+                {
+                  "id": "_Implicit_StartEvent_getRecalls",
+                  "type": "bpmn:StartEvent",
+                  "parentId": "getRecalls",
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "data": {
+                    "label": "HTTP Request Start"
+                  }
+                },
+                {
+                  "id": "_Implicit_HttpTask_getRecalls",
+                  "type": "bpmn:SendTask",
+                  "parentId": "getRecalls",
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "propagate": {
+                    "detail": true,
+                    "retry": {
+                      "condition": "node.data.inputs.retryCount > 0",
+                      "maxRetryCount": "node.data.inputs.retryCount",
+                      "retryBackoff": "node.data.inputs.timeout",
+                      "retryBackoffDefault": "PT1S",
+                      "retryAllErrors": "true",
+                      "retryBackoffType": "Static"
+                    }
+                  },
+                  "data": {
+                    "label": "{node.data.label}",
+                    "model": {
+                      "serviceType": "Intsvc.UnifiedHttpRequest",
+                      "context": [
+                        {
+                          "name": "connectorKey",
+                          "type": "string",
+                          "value": "uipath-uipath-http"
+                        },
+                        {
+                          "name": "objectName",
+                          "type": "string",
+                          "value": "http-request"
+                        },
+                        {
+                          "name": "connection",
+                          "type": "string",
+                          "value": "<bindings.uipath-uipath-http connection>"
+                        },
+                        {
+                          "name": "folderKey",
+                          "type": "string",
+                          "value": "<bindings.FolderKey>"
+                        },
+                        {
+                          "name": "activityConfigurationVersion",
+                          "type": "string",
+                          "value": "v1"
+                        },
+                        {
+                          "name": "metadata",
+                          "body": {
+                            "telemetryData": {
+                              "connectorKey": "uipath-uipath-http",
+                              "connectorName": "HTTP Request"
+                            },
+                            "inputMetadata": {},
+                            "errorState": {
+                              "hasError": true
+                            }
+                          },
+                          "type": "json"
+                        }
+                      ],
+                      "outputs": [
+                        {
+                          "name": "response",
+                          "type": "json",
+                          "source": "=response",
+                          "var": "response",
+                          "internal": true
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "id": "_Implicit_Gateway_getRecalls",
+                  "type": "bpmn:ExclusiveGateway",
+                  "parentId": "getRecalls",
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "condition": "node.data.inputs.branches.length > 0",
+                  "data": {
+                    "label": "Response branch",
+                    "defaultFlowId": "_Implicit_Edge__Implicit_Gateway_getRecalls__Implicit_EndEvent_Default_getRecalls"
+                  }
+                },
+                {
+                  "forEach": "node.data.inputs.branches",
+                  "id": "_Implicit_EndEvent_{branchName}_getRecalls",
+                  "type": "bpmn:EndEvent",
+                  "parentId": "getRecalls",
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "data": {
+                    "label": "{branch.name}"
+                  }
+                },
+                {
+                  "id": "_Implicit_EndEvent_Default_getRecalls",
+                  "type": "bpmn:EndEvent",
+                  "parentId": "getRecalls",
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "data": {
+                    "label": "Default"
+                  }
+                },
+                {
+                  "condition": "hasEdgeFromHandle('error')",
+                  "id": "_Implicit_EndEvent_Failure_getRecalls",
+                  "type": "bpmn:EndEvent",
+                  "parentId": "getRecalls",
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "data": {
+                    "label": "Failure",
+                    "model": {
+                      "serviceType": "BPMN.Variables",
+                      "outputs": [
+                        {
+                          "name": "error",
+                          "type": "boolean",
+                          "source": "=true",
+                          "var": "error",
+                          "internal": true
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "condition": "hasEdgeFromHandle('error')",
+                  "id": "_Implicit_BoundaryError_getRecalls",
+                  "type": "bpmn:BoundaryEvent",
+                  "parentId": "getRecalls",
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "data": {
+                    "label": "Error",
+                    "cancelActivity": false,
+                    "attachedToId": "_Implicit_HttpTask_getRecalls",
+                    "eventDefinition": {
+                      "type": "bpmn:ErrorEventDefinition",
+                      "id": "_Implicit_BoundaryError_getRecalls_Error"
+                    },
+                    "model": {
+                      "outputs": [
+                        {
+                          "name": "Error",
+                          "type": "jsonSchema",
+                          "source": "=Error",
+                          "var": "response",
+                          "internal": true
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "edges": [
+                {
+                  "id": "_Implicit_Edge__Implicit_StartEvent_getRecalls__Implicit_HttpTask_getRecalls",
+                  "source": "_Implicit_StartEvent_getRecalls",
+                  "target": "_Implicit_HttpTask_getRecalls",
+                  "type": "bpmn:SequenceFlow",
+                  "data": {}
+                },
+                {
+                  "condition": "node.data.inputs.branches.length === 0",
+                  "id": "_Implicit_Edge__Implicit_HttpTask_getRecalls__Implicit_EndEvent_Default_getRecalls",
+                  "source": "_Implicit_HttpTask_getRecalls",
+                  "target": "_Implicit_EndEvent_Default_getRecalls",
+                  "type": "bpmn:SequenceFlow",
+                  "data": {}
+                },
+                {
+                  "condition": "node.data.inputs.branches.length > 0",
+                  "id": "_Implicit_Edge__Implicit_HttpTask_getRecalls__Implicit_Gateway_getRecalls",
+                  "source": "_Implicit_HttpTask_getRecalls",
+                  "target": "_Implicit_Gateway_getRecalls",
+                  "type": "bpmn:SequenceFlow",
+                  "data": {}
+                },
+                {
+                  "forEach": "node.data.inputs.branches",
+                  "condition": "node.data.inputs.branches.length > 0",
+                  "id": "_Implicit_Edge__Implicit_Gateway_getRecalls__Implicit_EndEvent_{branchName}_getRecalls",
+                  "source": "_Implicit_Gateway_getRecalls",
+                  "target": "_Implicit_EndEvent_{branchName}_getRecalls",
+                  "type": "bpmn:SequenceFlow",
+                  "data": {
+                    "conditionExpression": "{branch.conditionExpression}",
+                    "label": "{branch.name}"
+                  }
+                },
+                {
+                  "condition": "node.data.inputs.branches.length > 0",
+                  "id": "_Implicit_Edge__Implicit_Gateway_getRecalls__Implicit_EndEvent_Default_getRecalls",
+                  "source": "_Implicit_Gateway_getRecalls",
+                  "target": "_Implicit_EndEvent_Default_getRecalls",
+                  "type": "bpmn:SequenceFlow",
+                  "data": {
+                    "label": "Default"
+                  }
+                },
+                {
+                  "condition": "hasEdgeFromHandle('error')",
+                  "id": "_Implicit_Edge__Implicit_BoundaryError_getRecalls__Implicit_EndEvent_Failure_getRecalls",
+                  "source": "_Implicit_BoundaryError_getRecalls",
+                  "target": "_Implicit_EndEvent_Failure_getRecalls",
+                  "type": "bpmn:SequenceFlow",
+                  "data": {}
+                }
+              ]
+            },
+            {
+              "id": "_Implicit_PostSubprocessGateway_getRecalls",
+              "type": "bpmn:ExclusiveGateway",
+              "condition": "(node.data.inputs.branches.length > 0 || hasEdgeFromHandle('error')) && originalEdges.length > 0",
+              "parentId": null,
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "data": {
+                "label": "Post-Subprocess Branch"
+              }
+            }
+          ],
+          "edges": [
+            {
+              "condition": "(node.data.inputs.branches.length > 0 || hasEdgeFromHandle('error')) && originalEdges.length > 0",
+              "id": "_Implicit_Edge_getRecalls__Implicit_PostSubprocessGateway_getRecalls",
+              "source": "getRecalls",
+              "target": "_Implicit_PostSubprocessGateway_getRecalls",
+              "type": "bpmn:SequenceFlow",
+              "data": {}
+            },
+            {
+              "forEach": "node.data.inputs.branches",
+              "condition": "node.data.inputs.branches.length > 0",
+              "matchOriginalEdgeByHandle": "branch-{branch.id}",
+              "preserveEdgeId": true,
+              "source": "_Implicit_PostSubprocessGateway_getRecalls",
+              "type": "bpmn:SequenceFlow",
+              "data": {
+                "conditionExpression": "{branch.conditionExpression}",
+                "label": "{branch.name}"
+              }
+            },
+            {
+              "condition": "node.data.inputs.branches.length > 0 || hasEdgeFromHandle('error')",
+              "matchOriginalEdgeByHandle": "default",
+              "preserveEdgeId": true,
+              "source": "_Implicit_PostSubprocessGateway_getRecalls",
+              "type": "bpmn:SequenceFlow",
+              "data": {
+                "label": "Default"
+              }
+            },
+            {
+              "condition": "hasEdgeFromHandle('error')",
+              "matchOriginalEdgeByHandle": "error",
+              "preserveEdgeId": true,
+              "source": "_Implicit_PostSubprocessGateway_getRecalls",
+              "type": "bpmn:SequenceFlow",
+              "data": {
+                "conditionExpression": "=js:vars.getRecalls.error || vars.getRecalls.output?.statusCode >= 400",
+                "label": "Error"
+              }
+            },
+            {
+              "condition": "node.data.inputs.branches.length === 0 && !hasEdgeFromHandle('error')",
+              "matchOriginalEdgeByHandle": "default",
+              "preserveEdgeId": true,
+              "source": "getRecalls",
+              "type": "bpmn:SequenceFlow"
+            }
+          ]
+        }
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "HTTP response object",
+          "source": {
+            "type": "literal",
+            "expression": "=response",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "properties": {
+            "body": {
+              "type": "object",
+              "description": "Response body, deserialized by Integration Service",
+              "properties": {
+                "results": {
+                  "type": "array"
+                }
+              }
+            },
+            "statusCode": {
+              "type": "number",
+              "description": "HTTP status code of the response"
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the node fails",
+          "source": {
+            "type": "literal",
+            "expression": "=Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "parentId": "eachClaim",
+      "inputs": {
+        "branches": [],
+        "timeout": "PT30S",
+        "retryCount": 2,
+        "detail": {
+          "connector": "uipath-uipath-http",
+          "connectionId": "ImplicitConnection",
+          "connectionResourceId": null,
+          "connectionFolderKey": null,
+          "method": "POST",
+          "endpoint": "/http-request",
+          "bodyParameters": {
+            "authentication": "manual",
+            "method": "GET",
+            "url": "=js:\"https://api.nhtsa.gov/recalls/recallsByVehicle?make=\" + encodeURIComponent($vars.eachClaim.currentItem.make) + \"&model=\" + encodeURIComponent($vars.eachClaim.currentItem.model) + \"&modelYear=\" + $vars.eachClaim.currentItem.model_year"
+          },
+          "configuration": "=jsonString:{\"essentialConfiguration\":{\"instanceParameters\":{\"connectorKey\":\"uipath-uipath-http\",\"objectName\":\"http-request\",\"httpMethod\":\"POST\",\"activityType\":\"Curated\",\"version\":\"1.0.0\"},\"objectName\":\"http-request\",\"operation\":\"create\",\"packageVersion\":\"1.0.0\",\"httpMethod\":\"POST\",\"path\":\"/http-request\",\"unifiedTypesCompatible\":true,\"savedJitInputFieldId\":\"in_http-request\"}}",
+          "uiPathActivityTypeId": "5c4cc855-b42a-37e6-b910-de8588998fce",
+          "errorState": {
+            "issues": []
+          },
+          "telemetryData": {
+            "connectorKey": "uipath-uipath-http",
+            "connectorName": "HTTP",
+            "operationType": "create",
+            "objectName": "http-request",
+            "objectDisplayName": "HTTP Request",
+            "primaryKeyName": ""
+          }
+        },
+        "errorHandlingEnabled": true
+      }
+    },
+    {
+      "id": "markNeedsData",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 1408,
+          "y": 304
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "markNeedsData",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "properties": {
+            "list": {
+              "type": "array"
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "parentId": "eachClaim",
+      "inputs": {
+        "script": "const c = $vars.eachClaim.currentItem;\n        return { list: ($vars.assessed || []).concat([{ claim_id: c.claim_id, status: \"NEEDS_DATA\", score: 0 }]) };"
+      }
+    },
+    {
+      "id": "assess",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 1696,
+          "y": 304
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "assess",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "properties": {
+            "list": {
+              "type": "array"
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "parentId": "eachClaim",
+      "inputs": {
+        "script": "// Recovery Duel deterministic rules engine (T9).\n// ES2020, no require/fetch/Intl/Date-locale: safe for UiPath Flow Script nodes.\n// Embedded into Script node bodies by the flow source; also loadable from Node for tests.\n// State law values are ILLUSTRATIVE and UNVERIFIED, not legal advice.\nvar RD = (function () {\n  var STATE_RULES = {\n    CA: { sol_years: 3, doctrine: 'pure_comparative' },\n    NY: { sol_years: 3, doctrine: 'pure_comparative' },\n    TX: { sol_years: 2, doctrine: 'modified_51' },\n    FL: { sol_years: 4, doctrine: 'modified_51' },\n    VA: { sol_years: 5, doctrine: 'contributory' }\n  };\n  var CAUSE_COMPONENT = {\n    brake_failure_rear_end: 'SERVICE BRAKES', engine_stall_fuel_pump: 'FUEL SYSTEM',\n    tire_blowout: 'TIRES', headlight_failure_night_collision: 'EXTERIOR LIGHTING',\n    airbag_nondeploy: 'AIR BAGS', hail_damage: null, deer_strike: null, parking_lot_backing: null\n  };\n  var G = { MAX_ROUNDS: 5, MIN_CONCESSION_PCT: 0.03, FLOOR_PCT: 0.70, AUTO_MAX: 5000, SPECIALIST_MAX: 25000 };\n  var DAY = 86400000;\n  function ymd(s) { var p = String(s).split('-').map(Number); return Date.UTC(p[0], p[1] - 1, p[2]); }\n  function addYears(s, n) { var p = String(s).split('-').map(Number); return Date.UTC(p[0] + n, p[1] - 1, p[2]); }\n\n  function sol(claim, asOf) {\n    var r = STATE_RULES[claim.state];\n    if (!r) return { known: false, days_left: null, expired: null };\n    var d = Math.round((addYears(claim.loss_date, r.sol_years) - ymd(asOf)) / DAY);\n    return { known: true, days_left: d, expired: d < 0, deadline_ms: addYears(claim.loss_date, r.sol_years) };\n  }\n  function negligence(claim) {\n    var r = STATE_RULES[claim.state] || { doctrine: 'unknown' };\n    var f = Number(claim.insured_fault_pct) || 0;\n    var barred = false, factor = 1 - f / 100;\n    if (r.doctrine === 'contributory') barred = f > 0;\n    else if (r.doctrine === 'modified_51') barred = f >= 51;\n    else if (r.doctrine !== 'pure_comparative') barred = true;\n    if (barred) factor = 0;\n    return { doctrine: r.doctrine, insured_fault_pct: f, barred: barred, factor: factor };\n  }\n  function recallMatch(claim, recalls) {\n    var kw = CAUSE_COMPONENT[claim.loss_cause];\n    if (!kw) return { match: false, reason: 'loss cause not recall-related' };\n    var list = recalls || [];\n    for (var i = 0; i < list.length; i++) {\n      var c = String(list[i].Component || '').toUpperCase();\n      if (c.indexOf(kw) === 0) return { match: true, campaign: list[i].NHTSACampaignNumber, component: c };\n    }\n    return { match: false, reason: 'no recall component matches ' + kw };\n  }\n  function assess(claim, recalls, asOf) {\n    if (claim.data_status && claim.data_status !== 'OK')\n      return { claim_id: claim.claim_id, status: 'NEEDS_DATA', score: 0 };\n    var s = sol(claim, asOf), n = negligence(claim), m = recallMatch(claim, recalls);\n    var gross = Number(claim.paid_amount) + Number(claim.deductible);\n    var base = { claim_id: claim.claim_id, sol: s, negligence: n, recall: m, gross: gross };\n    if (!s.known) return Object.assign(base, { status: 'NEEDS_DATA', score: 0 });\n    if (s.expired) return Object.assign(base, { status: 'CLOSED_SOL_EXPIRED', score: 0 });\n    if (!m.match) return Object.assign(base, { status: 'NO_CASE', score: 0 });\n    if (n.barred) return Object.assign(base, { status: 'BARRED_NEGLIGENCE', score: 0 });\n    var demand = Math.round(gross * n.factor);\n    var pRecovery = 0.9 * n.factor;                       // recall match + liability share\n    var urgency = s.days_left < 30 ? 3 : s.days_left < 90 ? 2 : 1;\n    return Object.assign(base, { status: 'PURSUE', demand: demand, floor: Math.round(demand * G.FLOOR_PCT),\n      p_recovery: Math.round(pRecovery * 100) / 100, urgency: urgency,\n      score: Math.round(pRecovery * demand * urgency) });\n  }\n  function rank(assessed) {\n    return assessed.slice().sort(function (a, b) {\n      return (b.score - a.score) || String(a.claim_id).localeCompare(String(b.claim_id));\n    });\n  }\n  function authorityTier(amount) {\n    return amount <= G.AUTO_MAX ? 'AUTO' : amount <= G.SPECIALIST_MAX ? 'SPECIALIST' : 'MANAGER';\n  }\n  // Guardrail check on a counter proposed by the Negotiator agent. Script decides, not the agent.\n  function checkCounter(st, proposed) {\n    var v = [];\n    if (st.round >= G.MAX_ROUNDS) v.push('MAX_ROUNDS');\n    if (proposed < st.floor) v.push('BELOW_FLOOR');\n    if (proposed > st.last_ask) v.push('ASK_INCREASED');\n    var conc = st.last_ask - proposed;\n    if (conc > 0 && conc < st.last_ask * G.MIN_CONCESSION_PCT && proposed !== st.floor) v.push('CONCESSION_TOO_SMALL');\n    var fixed = Math.min(st.last_ask, Math.max(st.floor, proposed));\n    if (v.indexOf('CONCESSION_TOO_SMALL') >= 0) fixed = Math.max(st.floor, Math.round(st.last_ask * (1 - G.MIN_CONCESSION_PCT)));\n    return { ok: v.length === 0, violations: v, enforced: fixed };\n  }\n  // Accept/settle decision on a carrier offer.\n  function evaluateOffer(st, offer) {\n    var n = Number(offer);\n    if (!isFinite(n) || n <= 0) return { action: 'IGNORE_INVALID' };\n    if (n >= st.last_ask * (1 - G.MIN_CONCESSION_PCT)) return { action: 'ACCEPT', amount: n, tier: authorityTier(n) };\n    if (st.round >= G.MAX_ROUNDS) return n >= st.floor ? { action: 'ACCEPT', amount: n, tier: authorityTier(n) } : { action: 'IMPASSE' };\n    return { action: 'COUNTER' };\n  }\n  return { STATE_RULES: STATE_RULES, CAUSE_COMPONENT: CAUSE_COMPONENT, GUARDRAILS: G, sol: sol,\n    negligence: negligence, recallMatch: recallMatch, assess: assess, rank: rank,\n    authorityTier: authorityTier, checkCounter: checkCounter, evaluateOffer: evaluateOffer };\n})();\n\n\n        const c = $vars.eachClaim.currentItem;\n        const a = RD.assess(c, $vars.getRecalls.output.body.results || [], $vars.start.output.asOf);\n        return { list: ($vars.assessed || []).concat([a]) };"
+      }
+    },
+    {
+      "id": "nextClaim",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 1984,
+          "y": 304
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "nextClaim",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "number",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output"
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "parentId": "eachClaim",
+      "inputs": {
+        "script": "return ($vars.assessed || []).length;"
+      }
+    },
+    {
+      "id": "rank",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 2272,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "rank",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "properties": {
+            "ranked": {
+              "type": "array"
+            },
+            "summary": {
+              "type": "object"
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "inputs": {
+        "script": "// Recovery Duel deterministic rules engine (T9).\n// ES2020, no require/fetch/Intl/Date-locale: safe for UiPath Flow Script nodes.\n// Embedded into Script node bodies by the flow source; also loadable from Node for tests.\n// State law values are ILLUSTRATIVE and UNVERIFIED, not legal advice.\nvar RD = (function () {\n  var STATE_RULES = {\n    CA: { sol_years: 3, doctrine: 'pure_comparative' },\n    NY: { sol_years: 3, doctrine: 'pure_comparative' },\n    TX: { sol_years: 2, doctrine: 'modified_51' },\n    FL: { sol_years: 4, doctrine: 'modified_51' },\n    VA: { sol_years: 5, doctrine: 'contributory' }\n  };\n  var CAUSE_COMPONENT = {\n    brake_failure_rear_end: 'SERVICE BRAKES', engine_stall_fuel_pump: 'FUEL SYSTEM',\n    tire_blowout: 'TIRES', headlight_failure_night_collision: 'EXTERIOR LIGHTING',\n    airbag_nondeploy: 'AIR BAGS', hail_damage: null, deer_strike: null, parking_lot_backing: null\n  };\n  var G = { MAX_ROUNDS: 5, MIN_CONCESSION_PCT: 0.03, FLOOR_PCT: 0.70, AUTO_MAX: 5000, SPECIALIST_MAX: 25000 };\n  var DAY = 86400000;\n  function ymd(s) { var p = String(s).split('-').map(Number); return Date.UTC(p[0], p[1] - 1, p[2]); }\n  function addYears(s, n) { var p = String(s).split('-').map(Number); return Date.UTC(p[0] + n, p[1] - 1, p[2]); }\n\n  function sol(claim, asOf) {\n    var r = STATE_RULES[claim.state];\n    if (!r) return { known: false, days_left: null, expired: null };\n    var d = Math.round((addYears(claim.loss_date, r.sol_years) - ymd(asOf)) / DAY);\n    return { known: true, days_left: d, expired: d < 0, deadline_ms: addYears(claim.loss_date, r.sol_years) };\n  }\n  function negligence(claim) {\n    var r = STATE_RULES[claim.state] || { doctrine: 'unknown' };\n    var f = Number(claim.insured_fault_pct) || 0;\n    var barred = false, factor = 1 - f / 100;\n    if (r.doctrine === 'contributory') barred = f > 0;\n    else if (r.doctrine === 'modified_51') barred = f >= 51;\n    else if (r.doctrine !== 'pure_comparative') barred = true;\n    if (barred) factor = 0;\n    return { doctrine: r.doctrine, insured_fault_pct: f, barred: barred, factor: factor };\n  }\n  function recallMatch(claim, recalls) {\n    var kw = CAUSE_COMPONENT[claim.loss_cause];\n    if (!kw) return { match: false, reason: 'loss cause not recall-related' };\n    var list = recalls || [];\n    for (var i = 0; i < list.length; i++) {\n      var c = String(list[i].Component || '').toUpperCase();\n      if (c.indexOf(kw) === 0) return { match: true, campaign: list[i].NHTSACampaignNumber, component: c };\n    }\n    return { match: false, reason: 'no recall component matches ' + kw };\n  }\n  function assess(claim, recalls, asOf) {\n    if (claim.data_status && claim.data_status !== 'OK')\n      return { claim_id: claim.claim_id, status: 'NEEDS_DATA', score: 0 };\n    var s = sol(claim, asOf), n = negligence(claim), m = recallMatch(claim, recalls);\n    var gross = Number(claim.paid_amount) + Number(claim.deductible);\n    var base = { claim_id: claim.claim_id, sol: s, negligence: n, recall: m, gross: gross };\n    if (!s.known) return Object.assign(base, { status: 'NEEDS_DATA', score: 0 });\n    if (s.expired) return Object.assign(base, { status: 'CLOSED_SOL_EXPIRED', score: 0 });\n    if (!m.match) return Object.assign(base, { status: 'NO_CASE', score: 0 });\n    if (n.barred) return Object.assign(base, { status: 'BARRED_NEGLIGENCE', score: 0 });\n    var demand = Math.round(gross * n.factor);\n    var pRecovery = 0.9 * n.factor;                       // recall match + liability share\n    var urgency = s.days_left < 30 ? 3 : s.days_left < 90 ? 2 : 1;\n    return Object.assign(base, { status: 'PURSUE', demand: demand, floor: Math.round(demand * G.FLOOR_PCT),\n      p_recovery: Math.round(pRecovery * 100) / 100, urgency: urgency,\n      score: Math.round(pRecovery * demand * urgency) });\n  }\n  function rank(assessed) {\n    return assessed.slice().sort(function (a, b) {\n      return (b.score - a.score) || String(a.claim_id).localeCompare(String(b.claim_id));\n    });\n  }\n  function authorityTier(amount) {\n    return amount <= G.AUTO_MAX ? 'AUTO' : amount <= G.SPECIALIST_MAX ? 'SPECIALIST' : 'MANAGER';\n  }\n  // Guardrail check on a counter proposed by the Negotiator agent. Script decides, not the agent.\n  function checkCounter(st, proposed) {\n    var v = [];\n    if (st.round >= G.MAX_ROUNDS) v.push('MAX_ROUNDS');\n    if (proposed < st.floor) v.push('BELOW_FLOOR');\n    if (proposed > st.last_ask) v.push('ASK_INCREASED');\n    var conc = st.last_ask - proposed;\n    if (conc > 0 && conc < st.last_ask * G.MIN_CONCESSION_PCT && proposed !== st.floor) v.push('CONCESSION_TOO_SMALL');\n    var fixed = Math.min(st.last_ask, Math.max(st.floor, proposed));\n    if (v.indexOf('CONCESSION_TOO_SMALL') >= 0) fixed = Math.max(st.floor, Math.round(st.last_ask * (1 - G.MIN_CONCESSION_PCT)));\n    return { ok: v.length === 0, violations: v, enforced: fixed };\n  }\n  // Accept/settle decision on a carrier offer.\n  function evaluateOffer(st, offer) {\n    var n = Number(offer);\n    if (!isFinite(n) || n <= 0) return { action: 'IGNORE_INVALID' };\n    if (n >= st.last_ask * (1 - G.MIN_CONCESSION_PCT)) return { action: 'ACCEPT', amount: n, tier: authorityTier(n) };\n    if (st.round >= G.MAX_ROUNDS) return n >= st.floor ? { action: 'ACCEPT', amount: n, tier: authorityTier(n) } : { action: 'IMPASSE' };\n    return { action: 'COUNTER' };\n  }\n  return { STATE_RULES: STATE_RULES, CAUSE_COMPONENT: CAUSE_COMPONENT, GUARDRAILS: G, sol: sol,\n    negligence: negligence, recallMatch: recallMatch, assess: assess, rank: rank,\n    authorityTier: authorityTier, checkCounter: checkCounter, evaluateOffer: evaluateOffer };\n})();\n\n\n      const ranked = RD.rank($vars.assessed || []);\n      const count = s => ranked.filter(a => a.status === s).length;\n      return { ranked, summary: { total: ranked.length, pursue: count(\"PURSUE\"),\n        needs_data: count(\"NEEDS_DATA\"), sol_expired: count(\"CLOSED_SOL_EXPIRED\"),\n        barred: count(\"BARRED_NEGLIGENCE\"), no_case: count(\"NO_CASE\"),\n        pipeline_demand: ranked.reduce((t, a) => t + (a.demand || 0), 0) } };"
+      }
+    },
+    {
+      "id": "end",
+      "type": "core.control.end",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 2560,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "End",
+        "icon": "circle-check"
+      },
+      "model": {
+        "type": "bpmn:EndEvent"
+      },
+      "inputs": {},
+      "outputs": {
+        "ranked": {
+          "type": "array",
+          "description": "",
+          "source": {
+            "type": "jsExpression",
+            "expression": "$vars.rank.output.ranked",
+            "fieldType": "array"
+          },
+          "var": "ranked"
+        },
+        "summary": {
+          "type": "object",
+          "description": "",
+          "source": {
+            "type": "jsExpression",
+            "expression": "$vars.rank.output.summary",
+            "fieldType": "object"
+          },
+          "var": "summary"
+        },
+        "assessed": {
+          "type": "array",
+          "description": "",
+          "source": {
+            "type": "jsExpression",
+            "expression": "$vars.assessed",
+            "fieldType": "array"
+          },
+          "var": "assessed"
+        }
       }
     }
   ],
-  "edges": [],
+  "edges": [
+    {
+      "id": "edge_0",
+      "sourceNodeId": "start",
+      "sourcePort": "output",
+      "targetNodeId": "intake",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_1",
+      "sourceNodeId": "intake",
+      "sourcePort": "success",
+      "targetNodeId": "eachClaim",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_2",
+      "sourceNodeId": "eachClaim",
+      "sourcePort": "start",
+      "targetNodeId": "getRecalls",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_3",
+      "sourceNodeId": "getRecalls",
+      "sourcePort": "error",
+      "targetNodeId": "markNeedsData",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_4",
+      "sourceNodeId": "getRecalls",
+      "sourcePort": "default",
+      "targetNodeId": "assess",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_5",
+      "sourceNodeId": "assess",
+      "sourcePort": "success",
+      "targetNodeId": "nextClaim",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_6",
+      "sourceNodeId": "nextClaim",
+      "sourcePort": "success",
+      "targetNodeId": "eachClaim",
+      "targetPort": "continue"
+    },
+    {
+      "id": "edge_7",
+      "sourceNodeId": "eachClaim",
+      "sourcePort": "success",
+      "targetNodeId": "rank",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_8",
+      "sourceNodeId": "rank",
+      "sourcePort": "success",
+      "targetNodeId": "end",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_9",
+      "sourceNodeId": "markNeedsData",
+      "sourcePort": "success",
+      "targetNodeId": "nextClaim",
+      "targetPort": "input"
+    }
+  ],
   "definitions": [
     {
       "nodeType": "core.trigger.manual",
@@ -76,16 +1325,1599 @@
           ]
         }
       }
-    }
-  ],
-  "layout": {
-    "nodes": {
-      "start": {
-        "position": {
-          "x": 256,
-          "y": 144
+    },
+    {
+      "nodeType": "core.action.script",
+      "version": "1.0.0",
+      "category": "data-operations",
+      "tags": [
+        "code",
+        "javascript",
+        "python"
+      ],
+      "sortOrder": 35,
+      "supportsErrorHandling": true,
+      "display": {
+        "label": "Script",
+        "icon": "code",
+        "iconBackground": "linear-gradient(225deg, #FAFAFB 0%, #ECEDEF 100%)",
+        "iconBackgroundDark": "linear-gradient(225deg, #526069 0%, rgba(50, 60, 66, 0.6) 100%)"
+      },
+      "handleConfiguration": [
+        {
+          "position": "left",
+          "handles": [
+            {
+              "id": "input",
+              "type": "target",
+              "handleType": "input"
+            }
+          ]
+        },
+        {
+          "position": "right",
+          "handles": [
+            {
+              "id": "success",
+              "type": "source",
+              "handleType": "output"
+            },
+            {
+              "id": "error",
+              "label": "Error",
+              "type": "source",
+              "handleType": "output",
+              "visible": "{inputs.errorHandlingEnabled}",
+              "constraints": {
+                "maxConnections": 1
+              }
+            }
+          ]
         }
+      ],
+      "debug": {
+        "runtime": "bpmnEngine"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "inputDefinition": {
+        "type": "object",
+        "properties": {
+          "script": {
+            "type": "string",
+            "minLength": 1,
+            "errorMessage": "A script function is required",
+            "validationSeverity": "warning"
+          }
+        },
+        "required": [
+          "script"
+        ]
+      },
+      "inputDefaults": {
+        "script": ""
+      },
+      "outputDefinition": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": "=result.response",
+          "var": "output"
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": "=result.Error",
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "form": {
+        "id": "script-properties",
+        "title": "Script configuration",
+        "sections": [
+          {
+            "id": "script",
+            "title": "Script",
+            "collapsible": true,
+            "defaultExpanded": true,
+            "fields": [
+              {
+                "name": "inputs.script",
+                "type": "custom",
+                "component": "script-editor",
+                "componentProps": {
+                  "language": "javascript",
+                  "returnType": "any",
+                  "minHeight": 200,
+                  "placeholder": " // Return an object with your result\nreturn {\n  message: \"Web request response\",\n  data: $vars.httpRequest1.output\n                  };"
+                },
+                "label": "Code",
+                "description": "JavaScript expression that returns a result object"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeType": "core.logic.loop",
+      "supportsErrorHandling": true,
+      "version": "2.4",
+      "category": "control-flow",
+      "description": "Iterate over a collection of items",
+      "tags": [
+        "control-flow",
+        "loop",
+        "iteration"
+      ],
+      "sortOrder": 20,
+      "display": {
+        "label": "Loop",
+        "icon": "repeat",
+        "shape": "container",
+        "description": "Execute a sequence of actions repeatedly for each item in a collection"
+      },
+      "handleConfiguration": [
+        {
+          "position": "left",
+          "boundary": "outer",
+          "handles": [
+            {
+              "id": "input",
+              "type": "target",
+              "handleType": "input"
+            }
+          ]
+        },
+        {
+          "position": "right",
+          "boundary": "outer",
+          "handles": [
+            {
+              "id": "success",
+              "type": "source",
+              "handleType": "output"
+            },
+            {
+              "id": "error",
+              "label": "Error",
+              "type": "source",
+              "handleType": "output",
+              "visible": "{inputs.errorHandlingEnabled}",
+              "constraints": {
+                "maxConnections": 1
+              }
+            }
+          ]
+        },
+        {
+          "position": "left",
+          "boundary": "inner",
+          "handles": [
+            {
+              "id": "start",
+              "label": "start",
+              "type": "source",
+              "handleType": "output"
+            }
+          ]
+        },
+        {
+          "position": "right",
+          "boundary": "inner",
+          "handles": [
+            {
+              "id": "continue",
+              "label": "continue",
+              "type": "target",
+              "handleType": "input"
+            },
+            {
+              "id": "break",
+              "label": "break",
+              "type": "target",
+              "handleType": "input",
+              "visible": "inputs.breakEnabled"
+            }
+          ]
+        }
+      ],
+      "model": {
+        "type": "bpmn:SubProcess"
+      },
+      "inputDefinition": {
+        "type": "object",
+        "properties": {
+          "collection": {
+            "type": "array"
+          },
+          "parallel": {
+            "type": "boolean"
+          },
+          "completionCondition": {
+            "type": "string"
+          },
+          "breakEnabled": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "collection"
+        ]
+      },
+      "inputDefaults": {
+        "collection": [],
+        "parallel": false,
+        "completionCondition": "",
+        "breakEnabled": false
+      },
+      "outputDefinition": {
+        "currentItem": {
+          "type": "any",
+          "description": "The current item being iterated in the loop",
+          "source": "=loopContext.currentItem",
+          "var": "currentItem",
+          "scope": "internal"
+        },
+        "currentIteration": {
+          "type": "number",
+          "description": "The current iteration number (1-based)",
+          "source": "=loopContext.currentIteration",
+          "var": "currentIteration",
+          "scope": "internal"
+        },
+        "collection": {
+          "type": "array",
+          "description": "The collection being iterated over",
+          "source": "=loopContext.collection",
+          "var": "collection",
+          "scope": "internal"
+        },
+        "output": {
+          "type": "array",
+          "description": "Aggregated results from all loop iterations",
+          "source": "=loopContext.output",
+          "var": "output",
+          "scope": "external"
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the node fails",
+          "source": "=Error",
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "form": {
+        "id": "loop-properties",
+        "title": "Loop configuration",
+        "sections": [
+          {
+            "id": "iteration",
+            "title": "Iteration",
+            "fields": [
+              {
+                "name": "inputs.collection",
+                "type": "custom",
+                "component": "code-editor",
+                "label": "Collection",
+                "description": "The loop runs once for each item in this array or collection.",
+                "componentProps": {
+                  "singleLine": true,
+                  "mode": "expression",
+                  "toggleable": false,
+                  "placeholder": "$vars.scriptTask1.output",
+                  "showVariableButton": true,
+                  "language": "javascript",
+                  "expectedType": "array",
+                  "validationMode": "expression"
+                }
+              },
+              {
+                "name": "inputs.parallel",
+                "type": "switch",
+                "label": "Parallel",
+                "description": "The loop runs iterations at the same time."
+              },
+              {
+                "name": "inputs.completionCondition",
+                "type": "custom",
+                "component": "code-editor",
+                "label": "Break on condition",
+                "description": "The loop exits early when this condition becomes true after an iteration completes.",
+                "componentProps": {
+                  "singleLine": true,
+                  "mode": "expression",
+                  "toggleable": false,
+                  "placeholder": "$vars.processedCount >= 5",
+                  "showVariableButton": true,
+                  "alwaysIncludeSelf": true,
+                  "returnType": "boolean",
+                  "validationMode": "expression",
+                  "language": "javascript"
+                }
+              },
+              {
+                "name": "inputs.breakEnabled",
+                "type": "switch",
+                "label": "Show break handle",
+                "description": "Nodes inside the loop can exit through a break handle."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeType": "core.action.http.v2",
+      "version": "2.3",
+      "category": "data-operations",
+      "description": "HTTP request with managed authentication",
+      "tags": [
+        "connector",
+        "http",
+        "api",
+        "rest",
+        "request"
+      ],
+      "sortOrder": 35,
+      "supportsErrorHandling": true,
+      "display": {
+        "label": "HTTP Request",
+        "icon": "app-window"
+      },
+      "handleConfiguration": [
+        {
+          "position": "left",
+          "handles": [
+            {
+              "id": "input",
+              "type": "target",
+              "handleType": "input",
+              "label": ""
+            }
+          ]
+        },
+        {
+          "position": "right",
+          "handles": [
+            {
+              "id": "branch-{item.id}",
+              "type": "source",
+              "handleType": "output",
+              "label": "{item.name}",
+              "repeat": "inputs.branches"
+            },
+            {
+              "id": "default",
+              "type": "source",
+              "handleType": "output",
+              "label": ""
+            },
+            {
+              "id": "error",
+              "label": "Error",
+              "type": "source",
+              "handleType": "output",
+              "visible": "{inputs.errorHandlingEnabled}",
+              "constraints": {
+                "maxConnections": 1
+              }
+            }
+          ],
+          "visible": true
+        }
+      ],
+      "debug": {
+        "runtime": "bpmnEngine"
+      },
+      "model": {
+        "type": "bpmn:ServiceTask",
+        "serviceType": "Intsvc.UnifiedHttpRequest",
+        "context": [
+          {
+            "name": "connectorKey",
+            "type": "string",
+            "value": "uipath-uipath-http"
+          },
+          {
+            "name": "objectName",
+            "type": "string",
+            "value": "http-request"
+          },
+          {
+            "name": "connection",
+            "type": "string",
+            "value": "<bindings.uipath-uipath-http connection>"
+          },
+          {
+            "name": "folderKey",
+            "type": "string",
+            "value": "<bindings.FolderKey>"
+          },
+          {
+            "name": "activityConfigurationVersion",
+            "type": "string",
+            "value": "v1"
+          },
+          {
+            "name": "metadata",
+            "body": {
+              "telemetryData": {
+                "connectorKey": "uipath-uipath-http",
+                "connectorName": "HTTP Request"
+              },
+              "inputMetadata": {},
+              "errorState": {
+                "hasError": true
+              }
+            },
+            "type": "json"
+          }
+        ],
+        "expansion": {
+          "processLevelVariables": [
+            {
+              "id": "{nodeId}.output",
+              "name": "output",
+              "type": "jsonSchema",
+              "elementId": "{nodeId}",
+              "custom": true
+            },
+            {
+              "condition": "hasEdgeFromHandle('error')",
+              "id": "{nodeId}.error",
+              "name": "error",
+              "type": "jsonSchema",
+              "elementId": "{nodeId}",
+              "custom": true
+            }
+          ],
+          "nodes": [
+            {
+              "id": "{nodeId}",
+              "type": "bpmn:SubProcess",
+              "replaceOriginal": true,
+              "data": {
+                "label": "{node.data.label}",
+                "isExpanded": true,
+                "model": {
+                  "serviceType": "BPMN.Variables",
+                  "subprocessVariables": {
+                    "inputOutputs": [
+                      {
+                        "id": "response",
+                        "name": "response",
+                        "type": "jsonSchema",
+                        "variableType": "inputOutput"
+                      },
+                      {
+                        "id": "error",
+                        "name": "error",
+                        "type": "jsonSchema",
+                        "variableType": "inputOutput"
+                      }
+                    ]
+                  },
+                  "outputs": [
+                    {
+                      "name": "output",
+                      "type": "jsonSchema",
+                      "source": "=vars.response",
+                      "var": "{nodeId}.output",
+                      "custom": true
+                    },
+                    {
+                      "name": "error",
+                      "type": "jsonSchema",
+                      "source": "=vars.error",
+                      "var": "{nodeId}.error",
+                      "custom": true
+                    }
+                  ]
+                }
+              },
+              "nodes": [
+                {
+                  "id": "_Implicit_StartEvent_{nodeId}",
+                  "type": "bpmn:StartEvent",
+                  "parentId": "{nodeId}",
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "data": {
+                    "label": "HTTP Request Start"
+                  }
+                },
+                {
+                  "id": "_Implicit_HttpTask_{nodeId}",
+                  "type": "bpmn:SendTask",
+                  "parentId": "{nodeId}",
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "propagate": {
+                    "detail": true,
+                    "retry": {
+                      "condition": "node.data.inputs.retryCount > 0",
+                      "maxRetryCount": "node.data.inputs.retryCount",
+                      "retryBackoff": "node.data.inputs.timeout",
+                      "retryBackoffDefault": "PT1S",
+                      "retryAllErrors": "true",
+                      "retryBackoffType": "Static"
+                    }
+                  },
+                  "data": {
+                    "label": "{node.data.label}",
+                    "model": {
+                      "serviceType": "Intsvc.UnifiedHttpRequest",
+                      "context": [
+                        {
+                          "name": "connectorKey",
+                          "type": "string",
+                          "value": "uipath-uipath-http"
+                        },
+                        {
+                          "name": "objectName",
+                          "type": "string",
+                          "value": "http-request"
+                        },
+                        {
+                          "name": "connection",
+                          "type": "string",
+                          "value": "<bindings.uipath-uipath-http connection>"
+                        },
+                        {
+                          "name": "folderKey",
+                          "type": "string",
+                          "value": "<bindings.FolderKey>"
+                        },
+                        {
+                          "name": "activityConfigurationVersion",
+                          "type": "string",
+                          "value": "v1"
+                        },
+                        {
+                          "name": "metadata",
+                          "body": {
+                            "telemetryData": {
+                              "connectorKey": "uipath-uipath-http",
+                              "connectorName": "HTTP Request"
+                            },
+                            "inputMetadata": {},
+                            "errorState": {
+                              "hasError": true
+                            }
+                          },
+                          "type": "json"
+                        }
+                      ],
+                      "outputs": [
+                        {
+                          "name": "response",
+                          "type": "json",
+                          "source": "=response",
+                          "var": "response",
+                          "internal": true
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "id": "_Implicit_Gateway_{nodeId}",
+                  "type": "bpmn:ExclusiveGateway",
+                  "parentId": "{nodeId}",
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "condition": "node.data.inputs.branches.length > 0",
+                  "data": {
+                    "label": "Response branch",
+                    "defaultFlowId": "_Implicit_Edge__Implicit_Gateway_{nodeId}__Implicit_EndEvent_Default_{nodeId}"
+                  }
+                },
+                {
+                  "forEach": "node.data.inputs.branches",
+                  "id": "_Implicit_EndEvent_{branchName}_{nodeId}",
+                  "type": "bpmn:EndEvent",
+                  "parentId": "{nodeId}",
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "data": {
+                    "label": "{branch.name}"
+                  }
+                },
+                {
+                  "id": "_Implicit_EndEvent_Default_{nodeId}",
+                  "type": "bpmn:EndEvent",
+                  "parentId": "{nodeId}",
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "data": {
+                    "label": "Default"
+                  }
+                },
+                {
+                  "condition": "hasEdgeFromHandle('error')",
+                  "id": "_Implicit_EndEvent_Failure_{nodeId}",
+                  "type": "bpmn:EndEvent",
+                  "parentId": "{nodeId}",
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "data": {
+                    "label": "Failure",
+                    "model": {
+                      "serviceType": "BPMN.Variables",
+                      "outputs": [
+                        {
+                          "name": "error",
+                          "type": "boolean",
+                          "source": "=true",
+                          "var": "error",
+                          "internal": true
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "condition": "hasEdgeFromHandle('error')",
+                  "id": "_Implicit_BoundaryError_{nodeId}",
+                  "type": "bpmn:BoundaryEvent",
+                  "parentId": "{nodeId}",
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "data": {
+                    "label": "Error",
+                    "cancelActivity": false,
+                    "attachedToId": "_Implicit_HttpTask_{nodeId}",
+                    "eventDefinition": {
+                      "type": "bpmn:ErrorEventDefinition",
+                      "id": "_Implicit_BoundaryError_{nodeId}_Error"
+                    },
+                    "model": {
+                      "outputs": [
+                        {
+                          "name": "Error",
+                          "type": "jsonSchema",
+                          "source": "=Error",
+                          "var": "response",
+                          "internal": true
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "edges": [
+                {
+                  "id": "_Implicit_Edge__Implicit_StartEvent_{nodeId}__Implicit_HttpTask_{nodeId}",
+                  "source": "_Implicit_StartEvent_{nodeId}",
+                  "target": "_Implicit_HttpTask_{nodeId}",
+                  "type": "bpmn:SequenceFlow",
+                  "data": {}
+                },
+                {
+                  "condition": "node.data.inputs.branches.length === 0",
+                  "id": "_Implicit_Edge__Implicit_HttpTask_{nodeId}__Implicit_EndEvent_Default_{nodeId}",
+                  "source": "_Implicit_HttpTask_{nodeId}",
+                  "target": "_Implicit_EndEvent_Default_{nodeId}",
+                  "type": "bpmn:SequenceFlow",
+                  "data": {}
+                },
+                {
+                  "condition": "node.data.inputs.branches.length > 0",
+                  "id": "_Implicit_Edge__Implicit_HttpTask_{nodeId}__Implicit_Gateway_{nodeId}",
+                  "source": "_Implicit_HttpTask_{nodeId}",
+                  "target": "_Implicit_Gateway_{nodeId}",
+                  "type": "bpmn:SequenceFlow",
+                  "data": {}
+                },
+                {
+                  "forEach": "node.data.inputs.branches",
+                  "condition": "node.data.inputs.branches.length > 0",
+                  "id": "_Implicit_Edge__Implicit_Gateway_{nodeId}__Implicit_EndEvent_{branchName}_{nodeId}",
+                  "source": "_Implicit_Gateway_{nodeId}",
+                  "target": "_Implicit_EndEvent_{branchName}_{nodeId}",
+                  "type": "bpmn:SequenceFlow",
+                  "data": {
+                    "conditionExpression": "{branch.conditionExpression}",
+                    "label": "{branch.name}"
+                  }
+                },
+                {
+                  "condition": "node.data.inputs.branches.length > 0",
+                  "id": "_Implicit_Edge__Implicit_Gateway_{nodeId}__Implicit_EndEvent_Default_{nodeId}",
+                  "source": "_Implicit_Gateway_{nodeId}",
+                  "target": "_Implicit_EndEvent_Default_{nodeId}",
+                  "type": "bpmn:SequenceFlow",
+                  "data": {
+                    "label": "Default"
+                  }
+                },
+                {
+                  "condition": "hasEdgeFromHandle('error')",
+                  "id": "_Implicit_Edge__Implicit_BoundaryError_{nodeId}__Implicit_EndEvent_Failure_{nodeId}",
+                  "source": "_Implicit_BoundaryError_{nodeId}",
+                  "target": "_Implicit_EndEvent_Failure_{nodeId}",
+                  "type": "bpmn:SequenceFlow",
+                  "data": {}
+                }
+              ]
+            },
+            {
+              "id": "_Implicit_PostSubprocessGateway_{nodeId}",
+              "type": "bpmn:ExclusiveGateway",
+              "condition": "(node.data.inputs.branches.length > 0 || hasEdgeFromHandle('error')) && originalEdges.length > 0",
+              "parentId": null,
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "data": {
+                "label": "Post-Subprocess Branch"
+              }
+            }
+          ],
+          "edges": [
+            {
+              "condition": "(node.data.inputs.branches.length > 0 || hasEdgeFromHandle('error')) && originalEdges.length > 0",
+              "id": "_Implicit_Edge_{nodeId}__Implicit_PostSubprocessGateway_{nodeId}",
+              "source": "{nodeId}",
+              "target": "_Implicit_PostSubprocessGateway_{nodeId}",
+              "type": "bpmn:SequenceFlow",
+              "data": {}
+            },
+            {
+              "forEach": "node.data.inputs.branches",
+              "condition": "node.data.inputs.branches.length > 0",
+              "matchOriginalEdgeByHandle": "branch-{branch.id}",
+              "preserveEdgeId": true,
+              "source": "_Implicit_PostSubprocessGateway_{nodeId}",
+              "type": "bpmn:SequenceFlow",
+              "data": {
+                "conditionExpression": "{branch.conditionExpression}",
+                "label": "{branch.name}"
+              }
+            },
+            {
+              "condition": "node.data.inputs.branches.length > 0 || hasEdgeFromHandle('error')",
+              "matchOriginalEdgeByHandle": "default",
+              "preserveEdgeId": true,
+              "source": "_Implicit_PostSubprocessGateway_{nodeId}",
+              "type": "bpmn:SequenceFlow",
+              "data": {
+                "label": "Default"
+              }
+            },
+            {
+              "condition": "hasEdgeFromHandle('error')",
+              "matchOriginalEdgeByHandle": "error",
+              "preserveEdgeId": true,
+              "source": "_Implicit_PostSubprocessGateway_{nodeId}",
+              "type": "bpmn:SequenceFlow",
+              "data": {
+                "conditionExpression": "=js:vars.{nodeId}.error || vars.{nodeId}.output?.statusCode >= 400",
+                "label": "Error"
+              }
+            },
+            {
+              "condition": "node.data.inputs.branches.length === 0 && !hasEdgeFromHandle('error')",
+              "matchOriginalEdgeByHandle": "default",
+              "preserveEdgeId": true,
+              "source": "{nodeId}",
+              "type": "bpmn:SequenceFlow"
+            }
+          ]
+        }
+      },
+      "inputDefinition": {
+        "type": "object",
+        "properties": {
+          "branches": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "conditionExpression": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "timeout": {
+            "type": "string",
+            "pattern": "^P(?!$)(\\d+Y)?(\\d+M)?(\\d+W)?(\\d+D)?(T(?=\\d)(\\d+H)?(\\d+M)?(\\d+S)?)?$",
+            "errorMessage": {
+              "pattern": "Timeout must be in ISO 8601 duration format (e.g., PT15M, PT1H, P1D)"
+            }
+          },
+          "retryCount": {
+            "type": "number"
+          }
+        }
+      },
+      "inputDefaults": {
+        "branches": [],
+        "timeout": "PT15M",
+        "retryCount": 0
+      },
+      "outputDefinition": {
+        "output": {
+          "type": "object",
+          "description": "HTTP response object",
+          "source": "=response",
+          "var": "output"
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the node fails",
+          "source": "=Error",
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "form": {
+        "id": "http-v2-properties",
+        "title": "HTTP Request",
+        "sections": [
+          {
+            "id": "http-config",
+            "title": "Configuration",
+            "collapsible": true,
+            "defaultExpanded": true,
+            "fields": [
+              {
+                "name": "inputs.dapHttpToolbar",
+                "type": "custom",
+                "component": "dap-http-toolbar",
+                "label": ""
+              },
+              {
+                "label": "",
+                "name": "inputs.detail",
+                "type": "custom",
+                "component": "dap-config",
+                "componentProps": {
+                  "connectorDetail": {
+                    "isAppActivity": false,
+                    "packageId": 196648,
+                    "svgIconUrl": "icons/0dad78c9d04c245b126d8edb4c451aa8a0d395d34731cf5702441f6284c70ccc.svg",
+                    "displayName": "HTTP Request",
+                    "assemblyQualifiedName": "UiPath.IntegrationService.Activities.Runtime.Activities.ConnectorActivity, UiPath.IntegrationService.Activities.Runtime, Version=1.22.0.0, Culture=neutral, PublicKeyToken=null",
+                    "description": "Use HTTP requests to interact with APIs via the selected connector and connection configuration.",
+                    "category": "",
+                    "activityColor": "#E56D5C",
+                    "configuration": "{\"connectorKey\":\"uipath-uipath-http\",\"objectName\":\"http-request\",\"httpMethod\":\"POST\",\"activityType\":\"Curated\",\"version\":\"1.0.0\"}",
+                    "uiPathActivityTypeId": "5c4cc855-b42a-37e6-b910-de8588998fce",
+                    "isExperimental": false,
+                    "helpUrlTemplate": "https://docs.uipath.com/{0}/activities/other/latest/integration-service/uipath-uipath-http-HTTP-Request",
+                    "isEnabled": true,
+                    "targetPlatform": "CrossPlatform",
+                    "isAdvanced": false,
+                    "isRestricted": false,
+                    "tags": [
+                      ""
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": "branches",
+            "title": "Branches",
+            "collapsible": true,
+            "defaultExpanded": false,
+            "fields": [
+              {
+                "name": "inputs.branches",
+                "type": "custom",
+                "component": "http-branch-editor",
+                "label": "Response branches",
+                "description": "Define conditional branches based on response status or properties",
+                "componentProps": {
+                  "expressionValidationFields": [
+                    {
+                      "subPath": "conditionExpression",
+                      "validationMode": "expression",
+                      "expectedType": "boolean"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "advanced",
+            "title": "Advanced",
+            "collapsible": true,
+            "defaultExpanded": false,
+            "fields": [
+              {
+                "name": "inputs.timeout",
+                "type": "text",
+                "label": "Timeout",
+                "description": "ISO 8601 duration format (for example, PT15M for 15 minutes, PT1H for 1 hour)"
+              },
+              {
+                "name": "inputs.retryCount",
+                "type": "number",
+                "label": "Retry count",
+                "description": "Number of times to retry on failure"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeType": "core.control.end",
+      "version": "1.0.0",
+      "category": "control-flow",
+      "tags": [
+        "control-flow",
+        "end",
+        "finish",
+        "complete"
+      ],
+      "sortOrder": 20,
+      "display": {
+        "label": "End",
+        "icon": "circle-check",
+        "shape": "circle"
+      },
+      "handleConfiguration": [
+        {
+          "position": "left",
+          "handles": [
+            {
+              "id": "input",
+              "type": "target",
+              "handleType": "input"
+            }
+          ]
+        }
+      ],
+      "model": {
+        "type": "bpmn:EndEvent"
       }
     }
-  }
+  ],
+  "variables": {
+    "globals": [
+      {
+        "id": "claims",
+        "name": "claims",
+        "direction": "in",
+        "type": "array",
+        "triggerNodeId": "start"
+      },
+      {
+        "id": "asOf",
+        "name": "asOf",
+        "direction": "in",
+        "type": "string",
+        "triggerNodeId": "start"
+      },
+      {
+        "id": "killSwitch",
+        "name": "killSwitch",
+        "direction": "in",
+        "type": "boolean",
+        "triggerNodeId": "start"
+      },
+      {
+        "id": "ranked",
+        "name": "ranked",
+        "direction": "out",
+        "type": "array"
+      },
+      {
+        "id": "summary",
+        "name": "summary",
+        "direction": "out",
+        "type": "object"
+      },
+      {
+        "id": "assessed",
+        "name": "assessed",
+        "direction": "inout",
+        "type": "array",
+        "defaultValue": []
+      }
+    ],
+    "nodes": [
+      {
+        "id": "start.output",
+        "type": "object",
+        "description": "Data passed when manually triggering the process.",
+        "binding": {
+          "nodeId": "start",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "intake.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "intake",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "intake.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "intake",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "eachClaim.currentItem",
+        "type": "any",
+        "description": "The current item being iterated in the loop",
+        "binding": {
+          "nodeId": "eachClaim",
+          "outputId": "currentItem"
+        }
+      },
+      {
+        "id": "eachClaim.currentIteration",
+        "type": "number",
+        "description": "The current iteration number (1-based)",
+        "binding": {
+          "nodeId": "eachClaim",
+          "outputId": "currentIteration"
+        }
+      },
+      {
+        "id": "eachClaim.collection",
+        "type": "array",
+        "description": "The collection being iterated over",
+        "binding": {
+          "nodeId": "eachClaim",
+          "outputId": "collection"
+        }
+      },
+      {
+        "id": "eachClaim.output",
+        "type": "array",
+        "description": "Aggregated results from all loop iterations",
+        "binding": {
+          "nodeId": "eachClaim",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "eachClaim.error",
+        "type": "object",
+        "description": "Error information if the node fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "eachClaim",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "getRecalls.output",
+        "type": "object",
+        "description": "HTTP response object",
+        "binding": {
+          "nodeId": "getRecalls",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "getRecalls.error",
+        "type": "object",
+        "description": "Error information if the node fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "getRecalls",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "markNeedsData.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "markNeedsData",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "markNeedsData.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "markNeedsData",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "assess.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "assess",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "assess.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "assess",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "nextClaim.output",
+        "type": "number",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "nextClaim",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "nextClaim.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "nextClaim",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "rank.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "rank",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "rank.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "rank",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "end.ranked",
+        "type": "array",
+        "description": "",
+        "binding": {
+          "nodeId": "end",
+          "outputId": "ranked"
+        }
+      },
+      {
+        "id": "end.summary",
+        "type": "object",
+        "description": "",
+        "binding": {
+          "nodeId": "end",
+          "outputId": "summary"
+        }
+      },
+      {
+        "id": "end.assessed",
+        "type": "array",
+        "description": "",
+        "binding": {
+          "nodeId": "end",
+          "outputId": "assessed"
+        }
+      }
+    ],
+    "variableUpdates": {
+      "markNeedsData": [
+        {
+          "variableId": "assessed",
+          "expression": {
+            "type": "jsExpression",
+            "expression": "$vars.markNeedsData.output.list",
+            "fieldType": "array"
+          }
+        }
+      ],
+      "assess": [
+        {
+          "variableId": "assessed",
+          "expression": {
+            "type": "jsExpression",
+            "expression": "$vars.assess.output.list",
+            "fieldType": "array"
+          }
+        }
+      ]
+    }
+  },
+  "subflows": {},
+  "bindings": [
+    {
+      "id": "bUipathuipathhttpConnection",
+      "name": "uipath-uipath-http connection",
+      "type": "string",
+      "resource": "connection",
+      "resourceKey": "",
+      "default": "ImplicitConnection",
+      "propertyAttribute": "ConnectionId"
+    },
+    {
+      "id": "bUipathuipathhttpFolderKey",
+      "name": "FolderKey",
+      "type": "string",
+      "resource": "connection",
+      "resourceKey": "",
+      "propertyAttribute": "FolderKey"
+    }
+  ],
+  "solutionId": "",
+  "projectId": ""
 }

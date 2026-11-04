@@ -35,3 +35,6 @@ python3 scripts/gen_data.py      # regenerate data (seed 20261104)
 tests/run.sh                     # unit tests + uip maestro flow validate
 ```
 Needs Python 3.10+ and the UiPath CLI (`npm install -g @uipath/cli`).
+
+## Rules assumption (2026-11-04)
+Per the owner's decision, the rules question was NOT posted to the challenge thread. We assume a clearly labelled simulated counterparty, synthetic data and Preview features are allowed in entries.

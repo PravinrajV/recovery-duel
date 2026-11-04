@@ -27,3 +27,22 @@ Built by Grok Bot (coding agent) for Pravinraj Vincent. Times are America/New_Yo
 - Commands: `uip solution init RecoveryDuel`; `uip maestro flow init RecoveryDuel --automate`; `uip maestro flow validate .../RecoveryDuel.flow` -> Valid.
 - Wrote README (real vs simulated table), `.gitignore`, `tests/run.sh` (unit tests + validate). `tests/run.sh` passes.
 - Not done: `--sdk-source` TypeScript seed (needs `@uipath/maestro-builder-sdk`, not installed yet). Data Fabric tables (plan T6) need tenant login.
+
+## 2026-11-04 02:25 ET | T3 decision
+- Owner: "No need to poat.. assume allowed". Rules question not posted; assume simulated counterparty, synthetic data and Preview features allowed (README updated).
+
+## 2026-11-04 02:30 ET | T0b SDK install (skill: uipath-maestro-flow, SKILL.md "Install the SDK first")
+- `df -h /` -> 28G free. `npm install -g --prefix /home/box/.local @uipath/maestro-builder-sdk` -> 6.73.0, 34 MB.
+
+## 2026-11-04 02:40 ET | T9 rules engine
+- `rules/rules.js`: ES2020, no require/fetch/Intl (per uipath-maestro-flow references/script.md runtime limits). SOL by state, pure/modified-51/contributory, recall-component match, score = P(recovery) x demand x urgency, floor 70%, max 5 rounds, min 3% concession, tiers AUTO<=5k / SPECIALIST<=25k / MANAGER.
+- `tests/test_rules.mjs` (node:test) with a deterministic SIMULATED carrier test double.
+- Run 1: CSV split broke on quoted police reports -> quote-aware parser. Run 2: Flow-safe check matched words in a comment -> strip comments. Run 3: 16/16 pass; SOL matches generator for all 200 claims; demo hero settles $11,050 in 4 rounds.
+- Note: S02 "stubborn settles at floor round 5" -> currently IMPASSE (reservation $7,000 < floor $8,575). Revisit seed or floor in T12.
+
+## 2026-11-04 02:50 ET | T6/T8 flow skeleton (skill: uipath-maestro-flow; refs script.md, loops.md, http.md, error-handling.md)
+- `uip maestro flow decompile RecoveryDuel.flow -o .flow-sdk/RecoveryDuel.flow.ts --no-pipeline`
+- Edited source: manual trigger (inputs claims/asOf/killSwitch) -> intake Script -> loop eachClaim { managed HTTP NHTSA recalls (retry 2) .onError -> markNeedsData -> nextClaim; assess Script embeds rules.js } -> rank Script -> return ranked+summary.
+- `uip maestro flow check --source`: run 1 warned HTTP_V1_RETIRED -> managed: true + onError; run 2 warned NO_RETURN -> stepToRef("nextClaim"); run 3 0 errors 0 warnings.
+- `uip maestro flow compile ... -o RecoveryDuel.flow` (9 nodes, 10 edges); `uip maestro flow format`; `uip maestro flow validate` -> Valid.
+- `uip solution pack` -> authentication_required (needs tenant login). Data Fabric intake, debug run, schedule/webhook triggers deferred to login.
