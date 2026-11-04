@@ -1,0 +1,51 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "rdmail",
+    "kind": "process",
+    "type": "function",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "isOverridable": true,
+    "dependencies": [
+      {
+        "kind": "Package",
+        "name": "rdmail"
+      }
+    ],
+    "runtimeDependencies": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "type": "Function",
+      "environmentVariables": "",
+      "name": "rdmail",
+      "description": "Recovery Duel test-inbox mail (SMTP/IMAP), synthetic demo",
+      "package": {
+        "name": "rdmail",
+        "key": "rdmail:1.0.0"
+      },
+      "packageName": "rdmail",
+      "packageVersion": "1.0.0",
+      "entryPointUniqueId": "838d89c8-0bf3-4d14-a922-7535b9ad68d8",
+      "entryPointName": "content/functions/mail.ts",
+      "inputArgumentsSchemaV2": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"op\": {\n      \"type\": \"string\",\n      \"enum\": [\n        \"send\",\n        \"list\",\n        \"probe\"\n      ]\n    },\n    \"subject\": {\n      \"type\": \"string\"\n    },\n    \"body\": {\n      \"type\": \"string\"\n    },\n    \"claimId\": {\n      \"type\": \"string\"\n    },\n    \"errorHandlingEnabled\": {\n      \"type\": \"boolean\"\n    }\n  },\n  \"required\": [\n    \"op\"\n  ],\n  \"additionalProperties\": false\n}",
+      "outputArgumentsSchemaV2": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"ok\": {\n      \"type\": \"boolean\"\n    },\n    \"to\": {\n      \"type\": \"string\"\n    },\n    \"messageId\": {\n      \"type\": \"string\"\n    },\n    \"count\": {\n      \"type\": \"number\"\n    },\n    \"messagesJson\": {\n      \"type\": \"string\"\n    },\n    \"detail\": {\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\n    \"ok\",\n    \"to\",\n    \"messageId\",\n    \"count\",\n    \"messagesJson\",\n    \"detail\"\n  ],\n  \"additionalProperties\": false\n}",
+      "hiddenForAttendedUser": false,
+      "alwaysRunning": false,
+      "autoStartProcess": false,
+      "targetFrameworkValue": "Portable",
+      "retentionAction": "Delete",
+      "retentionPeriod": 30,
+      "staleRetentionAction": "Delete",
+      "staleRetentionPeriod": 180,
+      "entryPoints": "[{\"UniqueId\":\"838d89c8-0bf3-4d14-a922-7535b9ad68d8\",\"Path\":\"content/functions/mail.ts\",\"DisplayName\":null,\"InputArguments\":\"{\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"properties\\\": {\\n    \\\"op\\\": {\\n      \\\"type\\\": \\\"string\\\",\\n      \\\"enum\\\": [\\n        \\\"send\\\",\\n        \\\"list\\\",\\n        \\\"probe\\\"\\n      ]\\n    },\\n    \\\"subject\\\": {\\n      \\\"type\\\": \\\"string\\\"\\n    },\\n    \\\"body\\\": {\\n      \\\"type\\\": \\\"string\\\"\\n    },\\n    \\\"claimId\\\": {\\n      \\\"type\\\": \\\"string\\\"\\n    },\\n    \\\"errorHandlingEnabled\\\": {\\n      \\\"type\\\": \\\"boolean\\\"\\n    }\\n  },\\n  \\\"required\\\": [\\n    \\\"op\\\"\\n  ],\\n  \\\"additionalProperties\\\": false\\n}\",\"OutputArguments\":\"{\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"properties\\\": {\\n    \\\"ok\\\": {\\n      \\\"type\\\": \\\"boolean\\\"\\n    },\\n    \\\"to\\\": {\\n      \\\"type\\\": \\\"string\\\"\\n    },\\n    \\\"messageId\\\": {\\n      \\\"type\\\": \\\"string\\\"\\n    },\\n    \\\"count\\\": {\\n      \\\"type\\\": \\\"number\\\"\\n    },\\n    \\\"messagesJson\\\": {\\n      \\\"type\\\": \\\"string\\\"\\n    },\\n    \\\"detail\\\": {\\n      \\\"type\\\": \\\"string\\\"\\n    }\\n  },\\n  \\\"required\\\": [\\n    \\\"ok\\\",\\n    \\\"to\\\",\\n    \\\"messageId\\\",\\n    \\\"count\\\",\\n    \\\"messagesJson\\\",\\n    \\\"detail\\\"\\n  ],\\n  \\\"additionalProperties\\\": false\\n}\",\"Type\":10,\"TargetRuntime\":null,\"ContentRoot\":null,\"DataVariation\":null,\"Id\":4216349}]",
+      "tags": []
+    },
+    "locks": [],
+    "key": "6ef74487-131d-4a0f-9f4c-4c0756d80251",
+    "files": []
+  }
+}

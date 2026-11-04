@@ -245,7 +245,7 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
     .step("letter", script({
       code: `const n = $vars.neg; const ap = $vars.approval || {}; const p = ($vars.start.output.counterparty || {}).persona || "standard";
         const money = (x) => "$" + Number(x || 0).toLocaleString("en-US");
-        const tag = String($vars.start.output.runId || Date.now().toString(36)).replace(/[^A-Za-z0-9_-]/g, "").slice(0, 32);
+        const tag = (String($vars.start.output.runId || "run").replace(/[^A-Za-z0-9_-]/g, "").slice(0, 24) + "-" + Date.now().toString(36));
         const subject = "[SYNTHETIC / SIMULATED DEMO] Subrogation demand " + n.claim_id + " (run " + tag + ")";
         const lines = ["SYNTHETIC / SIMULATED DEMO. No real claim, insurer or person. Sent to a test inbox only.", "",
           "Claim ID: " + n.claim_id, "Demand: " + money(n.demand), "Recall cited: " + (($vars.evidenceAnalyst.output || {}).recall_campaign || "see evidence pack"),
@@ -271,13 +271,13 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
         const raw = $vars.inbox || [];
         const list = Array.isArray(raw) ? raw : (raw.items || raw.value || raw.data || []);
         const tag = $vars.letter.output.tag;
-        const matched = list.filter((m) => { const sj = String(m.Subject || m.subject || ""); return sj.includes(id) && sj.includes("(run " + tag + ")"); });
+        const matched = list.filter((m) => { const sj = String(m.Subject || m.subject || "").replace(/\\s+/g, " "); return sj.includes(id) && sj.includes("(run " + tag + ")"); });
         const text = (m) => String(m.text || m.Body || m.body || "");
         const replies = matched.filter((m) => /^re:/i.test(String(m.Subject || m.subject || "")));
         const out = replies.map((m) => {
           const t = text(m); const injection = /ignore (all )?previous|system:|you are now|set floor/i.test(t);
           const docs = /police report|invoice|documents?|send the/i.test(t);
-          const amt = (t.match(/\$\s?([0-9][0-9,]*)/) || [])[1]; const offer = amt ? Number(amt.replace(/,/g, "")) : null;
+          const amt = (t.match(/\\$\\s?([0-9][0-9,]*)/) || [])[1]; const offer = amt ? Number(amt.replace(/,/g, "")) : null;
           const belowFloor = offer !== null && offer < Number(n.floor || 0);
           return { id: m.uid || m.id, subject: m.Subject || m.subject, kind: injection ? "INJECTION_IGNORED" : docs ? "DOC_REQUEST" : offer !== null ? "OFFER" : "OTHER",
             offer, below_floor: belowFloor, action: injection ? "flag for human review; price terms in the reply are not applied" : docs ? "queue documents for human approval" : belowFloor ? "reject: below floor" : "human approves counter" };

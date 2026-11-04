@@ -1,3 +1,4 @@
+import { simpleParser } from "mailparser";
 import { defineFunction, defineSchema, FunctionError, logger, type FunctionContext } from "@uipath/coded-functions-js-sdk";
 import nodemailer from "nodemailer";
 import { ImapFlow } from "imapflow";
@@ -78,9 +79,10 @@ async function main(input: MailInput, ctx: FunctionContext): Promise<MailOutput>
       const uids = (await c.search({ subject: input.claimId! }, { uid: true })) || [];
       const last = (uids as number[]).slice(-20);
       if (last.length) {
-        for await (const m of c.fetch(last, { uid: true, envelope: true, bodyParts: ["TEXT"] }, { uid: true })) {
-          const raw = m.bodyParts?.get("TEXT") || m.bodyParts?.get("text");
-          out.push({ uid: m.uid, subject: m.envelope?.subject || "", from: m.envelope?.from?.[0]?.address || "", date: m.envelope?.date ? new Date(m.envelope.date).toISOString() : "", text: raw ? new TextDecoder().decode(raw).slice(0, 2000) : "" });
+        for await (const m of c.fetch(last, { uid: true, envelope: true, source: true }, { uid: true })) {
+          const p = m.source ? await simpleParser(m.source) : null;
+          const subject = (p?.subject || m.envelope?.subject || "").replace(/\r?\n[ \t]*/g, " ");
+          out.push({ uid: m.uid, subject, from: m.envelope?.from?.[0]?.address || "", date: m.envelope?.date ? new Date(m.envelope.date).toISOString() : "", text: String(p?.text || "").slice(0, 2000) });
         }
       }
     } finally { lock.release(); await c.logout(); }
