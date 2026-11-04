@@ -1,0 +1,1550 @@
+{
+ "Result": "Success",
+ "Code": "FlowDebug",
+ "Data": {
+  "jobKey": "a66d298a-f49f-4142-a5ac-dc9c6e1dba66",
+  "instanceId": "a66d298a-f49f-4142-a5ac-dc9c6e1dba66",
+  "runId": "01a1a5b4-6801-771a-8168-e3043acafc19",
+  "folderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+  "finalStatus": "Completed",
+  "entryPoint": "start",
+  "solutionId": "3f8821e0-173c-40bd-54bb-08df39ae9b2f",
+  "studioWebUrl": "https://cloud.uipath.com/pvincent/studio_/designer/daf7bc15-77cd-47a1-b42d-80dd3cd1d5f4?solutionId=3f8821e0-173c-40bd-54bb-08df39ae9b2f",
+  "elementExecutions": [
+   {
+    "elementId": "start",
+    "elementType": "StartEvent",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:37:08.2041203Z",
+    "completedAt": "2026-11-04T08:37:08.404328Z"
+   },
+   {
+    "elementId": "fromBucket",
+    "elementType": "InclusiveGateway",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:37:08.5100081Z",
+    "completedAt": "2026-11-04T08:37:08.6042401Z"
+   },
+   {
+    "elementId": "intake",
+    "elementType": "ScriptTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:37:08.7207077Z",
+    "completedAt": "2026-11-04T08:37:08.8845833Z"
+   },
+   {
+    "elementId": "eachClaim",
+    "elementType": "SubProcess",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:37:09.0095135Z",
+    "completedAt": "2026-11-04T08:37:09.0095135Z"
+   },
+   {
+    "elementId": "rank",
+    "elementType": "ScriptTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:37:09.1191903Z",
+    "completedAt": "2026-11-04T08:37:09.3171503Z"
+   },
+   {
+    "elementId": "pickTop",
+    "elementType": "ScriptTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:37:09.4279614Z",
+    "completedAt": "2026-11-04T08:37:09.6164855Z"
+   },
+   {
+    "elementId": "noCase",
+    "elementType": "InclusiveGateway",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:37:09.7101886Z",
+    "completedAt": "2026-11-04T08:37:09.8224786Z"
+   },
+   {
+    "elementId": "noCaseLedger",
+    "elementType": "InclusiveGateway",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:37:09.9116863Z",
+    "completedAt": "2026-11-04T08:37:10.0005337Z"
+   },
+   {
+    "elementId": "noCaseEnd",
+    "elementType": "ScriptTask",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:37:10.0794826Z",
+    "completedAt": "2026-11-04T08:37:10.2861268Z"
+   },
+   {
+    "elementId": "end",
+    "elementType": "EndEvent",
+    "status": "Completed",
+    "startedAt": "2026-11-04T08:37:10.3739194Z",
+    "completedAt": "2026-11-04T08:37:10.5340121Z"
+   }
+  ],
+  "variables": {
+   "elements": [
+    {
+     "elementId": "start",
+     "elementRunId": "445a51e3-c2ce-4709-be41-d0cb8ea39a7a",
+     "isMarker": false,
+     "inputs": {},
+     "inputDefinitions": {},
+     "outputs": {}
+    },
+    {
+     "elementId": "intake",
+     "elementRunId": "b0ba2445-2d4c-4e04-9f96-8922887dfdb7",
+     "isMarker": false,
+     "inputs": {
+      "args": {
+       "vars": {
+        "ledger": {
+         "ok": false,
+         "ledgerCount": null
+        },
+        "assess.output": null,
+        "liability": null,
+        "managerReviewNo.output": null,
+        "markNeedsData.output": null,
+        "specialistReview.output": null,
+        "specialistReviewNo.error": null,
+        "carrierAgent.output": null,
+        "noApproval.output": null,
+        "loadStore.error": null,
+        "end2.ledger": null,
+        "autoApprove.output": null,
+        "end2.halt": null,
+        "end.neg": null,
+        "assess.error": null,
+        "liabilityAssessor.error": null,
+        "storeValue": {
+         "source": "input",
+         "loaded": false
+        },
+        "start.output.killNegotiation": null,
+        "evidenceFailed.error": null,
+        "pickTop.output": null,
+        "end2.summary": null,
+        "evidence": null,
+        "specialistReview.status": null,
+        "end.roi": null,
+        "killSwitch": true,
+        "ledgerNoCase.output": null,
+        "start.output.counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 7000
+        },
+        "start.output.asOf": "2026-11-04",
+        "assessed": [],
+        "specialistReviewNo.output": null,
+        "book.error": null,
+        "nextClaim.output": null,
+        "asOf": "2026-11-04",
+        "end.summary": null,
+        "end.evidence": null,
+        "roundCtx.output": null,
+        "end2.roi": null,
+        "pickTop.error": null,
+        "noCaseEnd.output": null,
+        "parseStore.output": null,
+        "parseStore.error": null,
+        "negInit.error": null,
+        "end2.storeValue": null,
+        "ranked": null,
+        "end.halt": null,
+        "end2.neg": null,
+        "start.output.claimIds": null,
+        "negotiation": null,
+        "liabilityFailed.error": null,
+        "approvalCtx.output": null,
+        "store": {
+         "source": "input",
+         "loaded": false
+        },
+        "rank.error": null,
+        "stylePass.output": null,
+        "managerReview.output": null,
+        "negotiator.output": null,
+        "end.approval": null,
+        "response": null,
+        "carrierFailed.output": null,
+        "runId": "T15-S15",
+        "stylePass.error": null,
+        "markNeedsData.error": null,
+        "guardCounter.output": null,
+        "managerReviewNo.error": null,
+        "end2.ranked": null,
+        "noCaseEnd.error": null,
+        "counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 7000
+        },
+        "carrierAgent.error": null,
+        "end2.approval": null,
+        "claimIds": null,
+        "negCtx.output": null,
+        "managerReview.status": null,
+        "autoApprove.error": null,
+        "halt": {},
+        "approvalCtx.error": null,
+        "ledgerAppend.error": null,
+        "end.ranked": null,
+        "book.output": null,
+        "start.output.source": "input",
+        "judgeOffer.output": null,
+        "end2.evidence": null,
+        "eachClaim.error": null,
+        "end.store": null,
+        "intake.output": null,
+        "ledgerNoCase.error": null,
+        "end2.liability": null,
+        "nextClaim.error": null,
+        "source": "input",
+        "storeOut.output": null,
+        "liabilityAssessor.output": null,
+        "end2.store": null,
+        "start.output.claims": [
+         {
+          "claim_id": "CLM-00016",
+          "scenario": "S15",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00016 (synthetic)",
+          "state": "CA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK2KA702024",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-20",
+          "loss_cause": "brake_failure_rear_end",
+          "paid_amount": "9700",
+          "deductible": "500",
+          "insured_fault_pct": "10",
+          "matched_recall": "21V890000",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #5738. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 90%.",
+          "sol_days_left": "896"
+         }
+        ],
+        "neg": {},
+        "getRecalls.error": null,
+        "roundCtx.error": null,
+        "evidenceFailed.output": null,
+        "ledgerAppend.output": null,
+        "roi": null,
+        "end.negotiation": null,
+        "end.assessed": null,
+        "negotiatorFailed.error": null,
+        "end2.negotiation": null,
+        "end.liability": null,
+        "approval": {},
+        "negotiatorFailed.output": null,
+        "guardCounter.error": null,
+        "claims": [
+         {
+          "claim_id": "CLM-00016",
+          "scenario": "S15",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00016 (synthetic)",
+          "state": "CA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK2KA702024",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-20",
+          "loss_cause": "brake_failure_rear_end",
+          "paid_amount": "9700",
+          "deductible": "500",
+          "insured_fault_pct": "10",
+          "matched_recall": "21V890000",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #5738. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 90%.",
+          "sol_days_left": "896"
+         }
+        ],
+        "start.output.killSwitch": true,
+        "summary": null,
+        "ledgerNoCaseFailed.error": null,
+        "end2.assessed": null,
+        "error": null,
+        "carrierFailed.error": null,
+        "storeLoadFailed.output": null,
+        "managerReviewOk.error": null,
+        "specialistReviewOk.output": null,
+        "getRecalls.output": null,
+        "rank.output": null,
+        "eachClaim.output": null,
+        "negotiator.error": null,
+        "killNegotiation": null,
+        "start.output.runId": "T15-S15",
+        "storeOut.error": null,
+        "end.storeValue": null,
+        "ledgerAppendFailed.error": null,
+        "negInit.output": null,
+        "specialistReviewOk.error": null,
+        "loadStore.output": null,
+        "duel.error": null,
+        "negCtx.error": null,
+        "ledgerAppendFailed.output": null,
+        "liabilityFailed.output": null,
+        "judgeOffer.error": null,
+        "ledgerNoCaseFailed.output": null,
+        "evidenceAnalyst.output": null,
+        "end.ledger": null,
+        "noApproval.error": null,
+        "intake.error": null,
+        "managerReviewOk.output": null,
+        "storeLoadFailed.error": null,
+        "evidenceAnalyst.error": null
+       },
+       "metadata": {
+        "ElementCount": {
+         "start": 1
+        },
+        "ExternalId": "92171914",
+        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+        "ProcessKey": null,
+        "InstanceId": "a66d298a-f49f-4142-a5ac-dc9c6e1dba66"
+       }
+      }
+     },
+     "inputDefinitions": {},
+     "outputs": {
+      "response": {
+       "items": [],
+       "stopped": true,
+       "claims": []
+      }
+     }
+    },
+    {
+     "elementId": "rank",
+     "elementRunId": "03a2546d-77cc-4bfa-9b43-50db341733b6",
+     "isMarker": false,
+     "inputs": {
+      "args": {
+       "vars": {
+        "ledger": {
+         "ok": false,
+         "ledgerCount": null
+        },
+        "assess.output": null,
+        "liability": null,
+        "managerReviewNo.output": null,
+        "markNeedsData.output": null,
+        "specialistReview.output": null,
+        "specialistReviewNo.error": null,
+        "carrierAgent.output": null,
+        "noApproval.output": null,
+        "loadStore.error": null,
+        "end2.ledger": null,
+        "autoApprove.output": null,
+        "end2.halt": null,
+        "end.neg": null,
+        "assess.error": null,
+        "liabilityAssessor.error": null,
+        "storeValue": {
+         "source": "input",
+         "loaded": false
+        },
+        "start.output.killNegotiation": null,
+        "evidenceFailed.error": null,
+        "pickTop.output": null,
+        "end2.summary": null,
+        "evidence": null,
+        "specialistReview.status": null,
+        "end.roi": null,
+        "killSwitch": true,
+        "ledgerNoCase.output": null,
+        "start.output.counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 7000
+        },
+        "start.output.asOf": "2026-11-04",
+        "assessed": [],
+        "specialistReviewNo.output": null,
+        "book.error": null,
+        "nextClaim.output": null,
+        "asOf": "2026-11-04",
+        "end.summary": null,
+        "end.evidence": null,
+        "roundCtx.output": null,
+        "end2.roi": null,
+        "pickTop.error": null,
+        "noCaseEnd.output": null,
+        "parseStore.output": null,
+        "parseStore.error": null,
+        "negInit.error": null,
+        "end2.storeValue": null,
+        "ranked": null,
+        "end.halt": null,
+        "end2.neg": null,
+        "start.output.claimIds": null,
+        "negotiation": null,
+        "liabilityFailed.error": null,
+        "approvalCtx.output": null,
+        "store": {
+         "source": "input",
+         "loaded": false
+        },
+        "rank.error": null,
+        "stylePass.output": null,
+        "managerReview.output": null,
+        "negotiator.output": null,
+        "end.approval": null,
+        "response": null,
+        "carrierFailed.output": null,
+        "runId": "T15-S15",
+        "stylePass.error": null,
+        "markNeedsData.error": null,
+        "guardCounter.output": null,
+        "managerReviewNo.error": null,
+        "end2.ranked": null,
+        "noCaseEnd.error": null,
+        "counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 7000
+        },
+        "carrierAgent.error": null,
+        "end2.approval": null,
+        "claimIds": null,
+        "negCtx.output": null,
+        "managerReview.status": null,
+        "autoApprove.error": null,
+        "halt": {},
+        "approvalCtx.error": null,
+        "ledgerAppend.error": null,
+        "end.ranked": null,
+        "book.output": null,
+        "start.output.source": "input",
+        "judgeOffer.output": null,
+        "end2.evidence": null,
+        "eachClaim.error": null,
+        "end.store": null,
+        "intake.output": {
+         "items": [],
+         "stopped": true,
+         "claims": []
+        },
+        "ledgerNoCase.error": null,
+        "end2.liability": null,
+        "nextClaim.error": null,
+        "source": "input",
+        "storeOut.output": null,
+        "liabilityAssessor.output": null,
+        "end2.store": null,
+        "start.output.claims": [
+         {
+          "claim_id": "CLM-00016",
+          "scenario": "S15",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00016 (synthetic)",
+          "state": "CA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK2KA702024",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-20",
+          "loss_cause": "brake_failure_rear_end",
+          "paid_amount": "9700",
+          "deductible": "500",
+          "insured_fault_pct": "10",
+          "matched_recall": "21V890000",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #5738. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 90%.",
+          "sol_days_left": "896"
+         }
+        ],
+        "neg": {},
+        "getRecalls.error": null,
+        "roundCtx.error": null,
+        "evidenceFailed.output": null,
+        "ledgerAppend.output": null,
+        "roi": null,
+        "end.negotiation": null,
+        "end.assessed": null,
+        "negotiatorFailed.error": null,
+        "end2.negotiation": null,
+        "end.liability": null,
+        "approval": {},
+        "negotiatorFailed.output": null,
+        "guardCounter.error": null,
+        "claims": [
+         {
+          "claim_id": "CLM-00016",
+          "scenario": "S15",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00016 (synthetic)",
+          "state": "CA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK2KA702024",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-20",
+          "loss_cause": "brake_failure_rear_end",
+          "paid_amount": "9700",
+          "deductible": "500",
+          "insured_fault_pct": "10",
+          "matched_recall": "21V890000",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #5738. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 90%.",
+          "sol_days_left": "896"
+         }
+        ],
+        "start.output.killSwitch": true,
+        "summary": null,
+        "ledgerNoCaseFailed.error": null,
+        "end2.assessed": null,
+        "error": null,
+        "carrierFailed.error": null,
+        "storeLoadFailed.output": null,
+        "managerReviewOk.error": null,
+        "specialistReviewOk.output": null,
+        "getRecalls.output": null,
+        "rank.output": null,
+        "eachClaim.output": null,
+        "negotiator.error": null,
+        "killNegotiation": null,
+        "start.output.runId": "T15-S15",
+        "storeOut.error": null,
+        "end.storeValue": null,
+        "ledgerAppendFailed.error": null,
+        "negInit.output": null,
+        "specialistReviewOk.error": null,
+        "loadStore.output": null,
+        "duel.error": null,
+        "negCtx.error": null,
+        "ledgerAppendFailed.output": null,
+        "liabilityFailed.output": null,
+        "judgeOffer.error": null,
+        "ledgerNoCaseFailed.output": null,
+        "evidenceAnalyst.output": null,
+        "end.ledger": null,
+        "noApproval.error": null,
+        "intake.error": null,
+        "managerReviewOk.output": null,
+        "storeLoadFailed.error": null,
+        "evidenceAnalyst.error": null
+       },
+       "metadata": {
+        "ElementCount": {
+         "fromBucket": 1,
+         "intake": 1,
+         "start": 1
+        },
+        "ExternalId": "92171914",
+        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+        "ProcessKey": null,
+        "InstanceId": "a66d298a-f49f-4142-a5ac-dc9c6e1dba66"
+       }
+      }
+     },
+     "inputDefinitions": {},
+     "outputs": {
+      "response": {
+       "ranked": [],
+       "summary": {
+        "total": 0,
+        "pursue": 0,
+        "needs_data": 0,
+        "sol_expired": 0,
+        "barred": 0,
+        "no_case": 0,
+        "pipeline_demand": 0
+       }
+      }
+     }
+    },
+    {
+     "elementId": "pickTop",
+     "elementRunId": "f0d4809a-db2d-40e2-9468-00af1cffd30c",
+     "isMarker": false,
+     "inputs": {
+      "args": {
+       "vars": {
+        "ledger": {
+         "ok": false,
+         "ledgerCount": null
+        },
+        "assess.output": null,
+        "liability": null,
+        "managerReviewNo.output": null,
+        "markNeedsData.output": null,
+        "specialistReview.output": null,
+        "specialistReviewNo.error": null,
+        "carrierAgent.output": null,
+        "noApproval.output": null,
+        "loadStore.error": null,
+        "end2.ledger": null,
+        "autoApprove.output": null,
+        "end2.halt": null,
+        "end.neg": null,
+        "assess.error": null,
+        "liabilityAssessor.error": null,
+        "storeValue": {
+         "source": "input",
+         "loaded": false
+        },
+        "start.output.killNegotiation": null,
+        "evidenceFailed.error": null,
+        "pickTop.output": null,
+        "end2.summary": null,
+        "evidence": null,
+        "specialistReview.status": null,
+        "end.roi": null,
+        "killSwitch": true,
+        "ledgerNoCase.output": null,
+        "start.output.counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 7000
+        },
+        "start.output.asOf": "2026-11-04",
+        "assessed": [],
+        "specialistReviewNo.output": null,
+        "book.error": null,
+        "nextClaim.output": null,
+        "asOf": "2026-11-04",
+        "end.summary": null,
+        "end.evidence": null,
+        "roundCtx.output": null,
+        "end2.roi": null,
+        "pickTop.error": null,
+        "noCaseEnd.output": null,
+        "parseStore.output": null,
+        "parseStore.error": null,
+        "negInit.error": null,
+        "end2.storeValue": null,
+        "ranked": null,
+        "end.halt": null,
+        "end2.neg": null,
+        "start.output.claimIds": null,
+        "negotiation": null,
+        "liabilityFailed.error": null,
+        "approvalCtx.output": null,
+        "store": {
+         "source": "input",
+         "loaded": false
+        },
+        "rank.error": null,
+        "stylePass.output": null,
+        "managerReview.output": null,
+        "negotiator.output": null,
+        "end.approval": null,
+        "response": null,
+        "carrierFailed.output": null,
+        "runId": "T15-S15",
+        "stylePass.error": null,
+        "markNeedsData.error": null,
+        "guardCounter.output": null,
+        "managerReviewNo.error": null,
+        "end2.ranked": null,
+        "noCaseEnd.error": null,
+        "counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 7000
+        },
+        "carrierAgent.error": null,
+        "end2.approval": null,
+        "claimIds": null,
+        "negCtx.output": null,
+        "managerReview.status": null,
+        "autoApprove.error": null,
+        "halt": {},
+        "approvalCtx.error": null,
+        "ledgerAppend.error": null,
+        "end.ranked": null,
+        "book.output": null,
+        "start.output.source": "input",
+        "judgeOffer.output": null,
+        "end2.evidence": null,
+        "eachClaim.error": null,
+        "end.store": null,
+        "intake.output": {
+         "items": [],
+         "stopped": true,
+         "claims": []
+        },
+        "ledgerNoCase.error": null,
+        "end2.liability": null,
+        "nextClaim.error": null,
+        "source": "input",
+        "storeOut.output": null,
+        "liabilityAssessor.output": null,
+        "end2.store": null,
+        "start.output.claims": [
+         {
+          "claim_id": "CLM-00016",
+          "scenario": "S15",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00016 (synthetic)",
+          "state": "CA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK2KA702024",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-20",
+          "loss_cause": "brake_failure_rear_end",
+          "paid_amount": "9700",
+          "deductible": "500",
+          "insured_fault_pct": "10",
+          "matched_recall": "21V890000",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #5738. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 90%.",
+          "sol_days_left": "896"
+         }
+        ],
+        "neg": {},
+        "getRecalls.error": null,
+        "roundCtx.error": null,
+        "evidenceFailed.output": null,
+        "ledgerAppend.output": null,
+        "roi": null,
+        "end.negotiation": null,
+        "end.assessed": null,
+        "negotiatorFailed.error": null,
+        "end2.negotiation": null,
+        "end.liability": null,
+        "approval": {},
+        "negotiatorFailed.output": null,
+        "guardCounter.error": null,
+        "claims": [
+         {
+          "claim_id": "CLM-00016",
+          "scenario": "S15",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00016 (synthetic)",
+          "state": "CA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK2KA702024",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-20",
+          "loss_cause": "brake_failure_rear_end",
+          "paid_amount": "9700",
+          "deductible": "500",
+          "insured_fault_pct": "10",
+          "matched_recall": "21V890000",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #5738. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 90%.",
+          "sol_days_left": "896"
+         }
+        ],
+        "start.output.killSwitch": true,
+        "summary": null,
+        "ledgerNoCaseFailed.error": null,
+        "end2.assessed": null,
+        "error": null,
+        "carrierFailed.error": null,
+        "storeLoadFailed.output": null,
+        "managerReviewOk.error": null,
+        "specialistReviewOk.output": null,
+        "getRecalls.output": null,
+        "rank.output": {
+         "ranked": [],
+         "summary": {
+          "total": 0,
+          "pursue": 0,
+          "needs_data": 0,
+          "sol_expired": 0,
+          "barred": 0,
+          "no_case": 0,
+          "pipeline_demand": 0
+         }
+        },
+        "eachClaim.output": null,
+        "negotiator.error": null,
+        "killNegotiation": null,
+        "start.output.runId": "T15-S15",
+        "storeOut.error": null,
+        "end.storeValue": null,
+        "ledgerAppendFailed.error": null,
+        "negInit.output": null,
+        "specialistReviewOk.error": null,
+        "loadStore.output": null,
+        "duel.error": null,
+        "negCtx.error": null,
+        "ledgerAppendFailed.output": null,
+        "liabilityFailed.output": null,
+        "judgeOffer.error": null,
+        "ledgerNoCaseFailed.output": null,
+        "evidenceAnalyst.output": null,
+        "end.ledger": null,
+        "noApproval.error": null,
+        "intake.error": null,
+        "managerReviewOk.output": null,
+        "storeLoadFailed.error": null,
+        "evidenceAnalyst.error": null
+       },
+       "metadata": {
+        "ElementCount": {
+         "eachClaim": 1,
+         "fromBucket": 1,
+         "intake": 1,
+         "start": 1
+        },
+        "ExternalId": "92171914",
+        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+        "ProcessKey": null,
+        "InstanceId": "a66d298a-f49f-4142-a5ac-dc9c6e1dba66"
+       }
+      }
+     },
+     "inputDefinitions": {},
+     "outputs": {
+      "response": {
+       "found": false,
+       "assessment": {},
+       "claim": {},
+       "claimJson": "{}",
+       "assessmentJson": "{}"
+      }
+     }
+    },
+    {
+     "elementId": "noCaseEnd",
+     "elementRunId": "13fb2464-df4d-457c-bd00-956a00bfb275",
+     "isMarker": false,
+     "inputs": {
+      "args": {
+       "vars": {
+        "ledger": {
+         "ok": false,
+         "ledgerCount": null
+        },
+        "assess.output": null,
+        "liability": null,
+        "managerReviewNo.output": null,
+        "markNeedsData.output": null,
+        "specialistReview.output": null,
+        "specialistReviewNo.error": null,
+        "carrierAgent.output": null,
+        "noApproval.output": null,
+        "loadStore.error": null,
+        "end2.ledger": null,
+        "autoApprove.output": null,
+        "end2.halt": null,
+        "end.neg": null,
+        "assess.error": null,
+        "liabilityAssessor.error": null,
+        "storeValue": {
+         "source": "input",
+         "loaded": false
+        },
+        "start.output.killNegotiation": null,
+        "evidenceFailed.error": null,
+        "pickTop.output": {
+         "found": false,
+         "assessment": {},
+         "claim": {},
+         "claimJson": "{}",
+         "assessmentJson": "{}"
+        },
+        "end2.summary": null,
+        "evidence": null,
+        "specialistReview.status": null,
+        "end.roi": null,
+        "killSwitch": true,
+        "ledgerNoCase.output": null,
+        "start.output.counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 7000
+        },
+        "start.output.asOf": "2026-11-04",
+        "assessed": [],
+        "specialistReviewNo.output": null,
+        "book.error": null,
+        "nextClaim.output": null,
+        "asOf": "2026-11-04",
+        "end.summary": null,
+        "end.evidence": null,
+        "roundCtx.output": null,
+        "end2.roi": null,
+        "pickTop.error": null,
+        "noCaseEnd.output": null,
+        "parseStore.output": null,
+        "parseStore.error": null,
+        "negInit.error": null,
+        "end2.storeValue": null,
+        "ranked": null,
+        "end.halt": null,
+        "end2.neg": null,
+        "start.output.claimIds": null,
+        "negotiation": null,
+        "liabilityFailed.error": null,
+        "approvalCtx.output": null,
+        "store": {
+         "source": "input",
+         "loaded": false
+        },
+        "rank.error": null,
+        "stylePass.output": null,
+        "managerReview.output": null,
+        "negotiator.output": null,
+        "end.approval": null,
+        "response": null,
+        "carrierFailed.output": null,
+        "runId": "T15-S15",
+        "stylePass.error": null,
+        "markNeedsData.error": null,
+        "guardCounter.output": null,
+        "managerReviewNo.error": null,
+        "end2.ranked": null,
+        "noCaseEnd.error": null,
+        "counterparty": {
+         "persona": "cooperative",
+         "reservation_price": 7000
+        },
+        "carrierAgent.error": null,
+        "end2.approval": null,
+        "claimIds": null,
+        "negCtx.output": null,
+        "managerReview.status": null,
+        "autoApprove.error": null,
+        "halt": {},
+        "approvalCtx.error": null,
+        "ledgerAppend.error": null,
+        "end.ranked": null,
+        "book.output": null,
+        "start.output.source": "input",
+        "judgeOffer.output": null,
+        "end2.evidence": null,
+        "eachClaim.error": null,
+        "end.store": null,
+        "intake.output": {
+         "items": [],
+         "stopped": true,
+         "claims": []
+        },
+        "ledgerNoCase.error": null,
+        "end2.liability": null,
+        "nextClaim.error": null,
+        "source": "input",
+        "storeOut.output": null,
+        "liabilityAssessor.output": null,
+        "end2.store": null,
+        "start.output.claims": [
+         {
+          "claim_id": "CLM-00016",
+          "scenario": "S15",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00016 (synthetic)",
+          "state": "CA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK2KA702024",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-20",
+          "loss_cause": "brake_failure_rear_end",
+          "paid_amount": "9700",
+          "deductible": "500",
+          "insured_fault_pct": "10",
+          "matched_recall": "21V890000",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #5738. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 90%.",
+          "sol_days_left": "896"
+         }
+        ],
+        "neg": {},
+        "getRecalls.error": null,
+        "roundCtx.error": null,
+        "evidenceFailed.output": null,
+        "ledgerAppend.output": null,
+        "roi": null,
+        "end.negotiation": null,
+        "end.assessed": null,
+        "negotiatorFailed.error": null,
+        "end2.negotiation": null,
+        "end.liability": null,
+        "approval": {},
+        "negotiatorFailed.output": null,
+        "guardCounter.error": null,
+        "claims": [
+         {
+          "claim_id": "CLM-00016",
+          "scenario": "S15",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00016 (synthetic)",
+          "state": "CA",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HK2KA702024",
+          "loss_date": "2026-04-18",
+          "closed_date": "2026-05-20",
+          "loss_cause": "brake_failure_rear_end",
+          "paid_amount": "9700",
+          "deductible": "500",
+          "insured_fault_pct": "10",
+          "matched_recall": "21V890000",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #5738. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 90%.",
+          "sol_days_left": "896"
+         }
+        ],
+        "start.output.killSwitch": true,
+        "summary": null,
+        "ledgerNoCaseFailed.error": null,
+        "end2.assessed": null,
+        "error": null,
+        "carrierFailed.error": null,
+        "storeLoadFailed.output": null,
+        "managerReviewOk.error": null,
+        "specialistReviewOk.output": null,
+        "getRecalls.output": null,
+        "rank.output": {
+         "ranked": [],
+         "summary": {
+          "total": 0,
+          "pursue": 0,
+          "needs_data": 0,
+          "sol_expired": 0,
+          "barred": 0,
+          "no_case": 0,
+          "pipeline_demand": 0
+         }
+        },
+        "eachClaim.output": null,
+        "negotiator.error": null,
+        "killNegotiation": null,
+        "start.output.runId": "T15-S15",
+        "storeOut.error": null,
+        "end.storeValue": null,
+        "ledgerAppendFailed.error": null,
+        "negInit.output": null,
+        "specialistReviewOk.error": null,
+        "loadStore.output": null,
+        "duel.error": null,
+        "negCtx.error": null,
+        "ledgerAppendFailed.output": null,
+        "liabilityFailed.output": null,
+        "judgeOffer.error": null,
+        "ledgerNoCaseFailed.output": null,
+        "evidenceAnalyst.output": null,
+        "end.ledger": null,
+        "noApproval.error": null,
+        "intake.error": null,
+        "managerReviewOk.output": null,
+        "storeLoadFailed.error": null,
+        "evidenceAnalyst.error": null
+       },
+       "metadata": {
+        "ElementCount": {
+         "eachClaim": 1,
+         "fromBucket": 1,
+         "intake": 1,
+         "noCase": 1,
+         "pickTop": 1,
+         "rank": 1,
+         "start": 1
+        },
+        "ExternalId": "92171914",
+        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+        "ProcessKey": null,
+        "InstanceId": "a66d298a-f49f-4142-a5ac-dc9c6e1dba66"
+       }
+      }
+     },
+     "inputDefinitions": {},
+     "outputs": {
+      "response": {
+       "ledger_ok": false,
+       "ledger_count": null
+      }
+     }
+    },
+    {
+     "elementId": "end",
+     "elementRunId": "1339152b-591d-4a8b-87ae-b52bee6cfe9b",
+     "isMarker": false,
+     "inputs": {},
+     "inputDefinitions": {},
+     "outputs": {}
+    }
+   ],
+   "globals": {
+    "storeValue": {
+     "source": "input",
+     "loaded": false
+    },
+    "rank.output": {
+     "ranked": [],
+     "summary": {
+      "total": 0,
+      "pursue": 0,
+      "needs_data": 0,
+      "sol_expired": 0,
+      "barred": 0,
+      "no_case": 0,
+      "pipeline_demand": 0
+     }
+    },
+    "specialistReviewNo.error": null,
+    "negotiation": {
+     "status": "NO_CASE",
+     "simulated_counterparty": true,
+     "history": []
+    },
+    "stylePass.error": null,
+    "negInit.error": null,
+    "managerReviewNo.output": null,
+    "start.output.killSwitch": true,
+    "roi": {
+     "runs": 1,
+     "approved": 0,
+     "recovered": 0,
+     "refunds": 0,
+     "insurer_net": 0,
+     "reconciles": true
+    },
+    "loadStore.output": null,
+    "store": {
+     "source": "input",
+     "ledger_appended": false,
+     "ledger_ok": false,
+     "ledger_count": null
+    },
+    "start.output.source": "input",
+    "storeOut.output": null,
+    "liabilityFailed.output": null,
+    "managerReview.output": null,
+    "book.output": null,
+    "pickTop.output": {
+     "found": false,
+     "assessment": {},
+     "claim": {},
+     "claimJson": "{}",
+     "assessmentJson": "{}"
+    },
+    "evidenceFailed.error": null,
+    "stylePass.output": null,
+    "intake.output": {
+     "items": [],
+     "stopped": true,
+     "claims": []
+    },
+    "negInit.output": null,
+    "ledgerAppend.error": null,
+    "specialistReviewOk.error": null,
+    "start.output.counterparty": {
+     "persona": "cooperative",
+     "reservation_price": 7000
+    },
+    "ledgerNoCaseFailed.error": null,
+    "ledgerAppendFailed.error": null,
+    "approvalCtx.error": null,
+    "intake.error": null,
+    "managerReview.status": null,
+    "eachClaim.output": null,
+    "storeLoadFailed.output": null,
+    "ledgerNoCaseFailed.output": null,
+    "halt": {},
+    "pickTop.error": null,
+    "evidenceAnalyst.output": null,
+    "specialistReviewOk.output": null,
+    "noCaseEnd.error": null,
+    "start.output.asOf": "2026-11-04",
+    "book.error": null,
+    "autoApprove.output": null,
+    "storeOut.error": null,
+    "loadStore.error": null,
+    "evidenceAnalyst.error": null,
+    "start.output.runId": "T15-S15",
+    "approvalCtx.output": null,
+    "evidence": {},
+    "parseStore.error": null,
+    "parseStore.output": null,
+    "ranked": [],
+    "ledgerAppendFailed.output": null,
+    "rank.error": null,
+    "managerReviewOk.output": null,
+    "specialistReview.output": null,
+    "summary": {
+     "total": 0,
+     "pursue": 0,
+     "needs_data": 0,
+     "sol_expired": 0,
+     "barred": 0,
+     "no_case": 0,
+     "pipeline_demand": 0
+    },
+    "start.output.claimIds": null,
+    "specialistReviewNo.output": null,
+    "start.output.killNegotiation": null,
+    "ledgerAppend.output": null,
+    "liabilityFailed.error": null,
+    "managerReviewOk.error": null,
+    "start.output.claims": [
+     {
+      "claim_id": "CLM-00016",
+      "scenario": "S15",
+      "synthetic": "true",
+      "policyholder": "Policyholder 00016 (synthetic)",
+      "state": "CA",
+      "make": "TOYOTA",
+      "model": "CAMRY",
+      "model_year": "2019",
+      "vin": "4T1B11HK2KA702024",
+      "loss_date": "2026-04-18",
+      "closed_date": "2026-05-20",
+      "loss_cause": "brake_failure_rear_end",
+      "paid_amount": "9700",
+      "deductible": "500",
+      "insured_fault_pct": "10",
+      "matched_recall": "21V890000",
+      "data_status": "OK",
+      "police_report": "[SYNTHETIC] Officer #5738. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 90%.",
+      "sol_days_left": "896"
+     }
+    ],
+    "storeLoadFailed.error": null,
+    "approval": {},
+    "noApproval.error": null,
+    "ledger": {
+     "ok": false,
+     "ledgerCount": null
+    },
+    "liability": {},
+    "managerReviewNo.error": null,
+    "ledgerNoCase.error": null,
+    "noApproval.output": null,
+    "assessed": [],
+    "noCaseEnd.output": {
+     "ledger_ok": false,
+     "ledger_count": null
+    },
+    "liabilityAssessor.output": null,
+    "liabilityAssessor.error": null,
+    "ledgerNoCase.output": null,
+    "autoApprove.error": null,
+    "specialistReview.status": null,
+    "evidenceFailed.output": null,
+    "neg": {}
+   },
+   "instanceId": "a66d298a-f49f-4142-a5ac-dc9c6e1dba66",
+   "workflowId": "a66d298a-f49f-4142-a5ac-dc9c6e1dba66/BpmnGenericWorkflow",
+   "parentElementId": null,
+   "globalDefinitions": {
+    "storeValue": {
+     "name": "storeValue",
+     "type": "object"
+    },
+    "rank.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "specialistReviewNo.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "negotiation": {
+     "name": "negotiation",
+     "type": "object"
+    },
+    "stylePass.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "negInit.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "managerReviewNo.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "start.output.killSwitch": {
+     "name": "killSwitch",
+     "type": "boolean"
+    },
+    "roi": {
+     "name": "roi",
+     "type": "object"
+    },
+    "loadStore.output": {
+     "name": "output",
+     "type": "jsonSchema"
+    },
+    "store": {
+     "name": "store",
+     "type": "object"
+    },
+    "start.output.source": {
+     "name": "source",
+     "type": "string"
+    },
+    "storeOut.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "liabilityFailed.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "managerReview.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "book.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "pickTop.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "evidenceFailed.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "stylePass.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "intake.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "negInit.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "ledgerAppend.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "specialistReviewOk.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "start.output.counterparty": {
+     "name": "counterparty",
+     "type": "object"
+    },
+    "ledgerNoCaseFailed.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "ledgerAppendFailed.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "approvalCtx.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "intake.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "managerReview.status": {
+     "name": "status",
+     "type": "string"
+    },
+    "eachClaim.output": {
+     "name": "output",
+     "type": "array"
+    },
+    "storeLoadFailed.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "ledgerNoCaseFailed.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "halt": {
+     "name": "halt",
+     "type": "object"
+    },
+    "pickTop.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "evidenceAnalyst.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "specialistReviewOk.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "noCaseEnd.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "start.output.asOf": {
+     "name": "asOf",
+     "type": "string"
+    },
+    "book.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "autoApprove.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "storeOut.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "loadStore.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "evidenceAnalyst.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "start.output.runId": {
+     "name": "runId",
+     "type": "string"
+    },
+    "approvalCtx.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "evidence": {
+     "name": "evidence",
+     "type": "object"
+    },
+    "parseStore.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "parseStore.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "ranked": {
+     "name": "ranked",
+     "type": "array"
+    },
+    "ledgerAppendFailed.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "rank.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "managerReviewOk.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "specialistReview.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "summary": {
+     "name": "summary",
+     "type": "object"
+    },
+    "start.output.claimIds": {
+     "name": "claimIds",
+     "type": "array"
+    },
+    "specialistReviewNo.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "start.output.killNegotiation": {
+     "name": "killNegotiation",
+     "type": "boolean"
+    },
+    "ledgerAppend.output": {
+     "name": "output",
+     "type": "jsonSchema"
+    },
+    "liabilityFailed.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "managerReviewOk.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "start.output.claims": {
+     "name": "claims",
+     "type": "array"
+    },
+    "storeLoadFailed.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "approval": {
+     "name": "approval",
+     "type": "object"
+    },
+    "noApproval.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "ledger": {
+     "name": "ledger",
+     "type": "object"
+    },
+    "liability": {
+     "name": "liability",
+     "type": "object"
+    },
+    "managerReviewNo.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "ledgerNoCase.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "noApproval.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "assessed": {
+     "name": "assessed",
+     "type": "array"
+    },
+    "noCaseEnd.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "liabilityAssessor.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "liabilityAssessor.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "ledgerNoCase.output": {
+     "name": "output",
+     "type": "jsonSchema"
+    },
+    "autoApprove.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "specialistReview.status": {
+     "name": "status",
+     "type": "string"
+    },
+    "evidenceFailed.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "neg": {
+     "name": "neg",
+     "type": "object"
+    }
+   }
+  }
+ },
+ "Instructions": "Debug completed with status: Completed"
+}

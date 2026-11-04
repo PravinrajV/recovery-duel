@@ -15,13 +15,14 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
   .schemaVersion("1.9")
   .name("RecoveryDuel")
   .trigger(manual(), { version: "1.0" })
-  .input({ claims: types.array, asOf: types.string, killSwitch: types.boolean, counterparty: types.object, source: types.string, claimIds: types.array, runId: types.string })
+  .input({ claims: types.array, asOf: types.string, killSwitch: types.boolean, killNegotiation: types.boolean, counterparty: types.object, source: types.string, claimIds: types.array, runId: types.string })
   .output({ ranked: types.array, summary: types.object, evidence: types.object, liability: types.object, negotiation: types.object, store: types.object, roi: types.object })
   .var("assessed", types.array, [])
   .var("neg", types.object, {})
   .var("approval", types.object, {})
   .var("store", types.object, { source: "input", loaded: false })
   .var("ledger", types.object, { ok: false, ledgerCount: null })
+  .var("halt", types.object, {})
   .branch("fromBucket", js`$vars.start.output.source === "bucket"`,
     (t) => t.label("Read claims + config from bucket").step("loadStore", publishedFunction({ ...STORE, inputs: { op: "load" }, returns: STORE_RETURNS }))
       .onError((h) => h.step("storeLoadFailed", script({
@@ -96,22 +97,29 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
     userPrompt: "SYNTHETIC claim record: {{input.claim}}\nRules engine assessment (includes matched recall campaigns): {{input.assessment}}",
     inputs: { claim: js`$vars.pickTop.output.claimJson`, assessment: js`$vars.pickTop.output.assessmentJson` },
     returns: { evidence_summary: "string", cited_campaigns: "array", strength: "string", gaps: "array" },
-  }))
+  })).onError((h) => h.step("evidenceFailed", script({
+    code: 'return { status: "AGENT_ERROR", step: "evidenceAnalyst", detail: String(' + "$vars.evidenceAnalyst.error ? ($vars.evidenceAnalyst.error.detail || $vars.evidenceAnalyst.error.message) : 'unknown'" + ').slice(0, 300) };',
+    returns: { status: "string", step: "string", detail: "string" } }), { updates: { halt: js`$vars.evidenceFailed.output` } }).stepToRef("negInit"))
   .step("liabilityAssessor", inlineAgent({
     model: "anthropic.claude-sonnet-4-6", temperature: 0, maxIterations: 5,
     systemPrompt: `You are the Liability Assessor for an auto insurance subrogation team. All data is SYNTHETIC demo data. A deterministic rules engine has already computed the statute-of-limitations deadline, the state negligence rule, the recoverable demand and the floor. You must not change those numbers. Your job is to explain, in plain language, who is liable and why, using the evidence memo. Return a result conforming to the output schema. liable_party: the party the recovery is pursued against (for example the vehicle manufacturer or the other driver's carrier). rationale: 3 to 5 plain sentences. agrees_with_rules: true if the evidence supports pursuing at the rules engine demand, else false. risks: arguments the other side is likely to raise.`,
     userPrompt: "Rules engine assessment (authoritative numbers): {{input.assessment}}\nEvidence memo: {{input.evidence}}\nEvidence strength: {{input.strength}}",
     inputs: { assessment: js`$vars.pickTop.output.assessmentJson`, evidence: js`$vars.evidenceAnalyst.output.evidence_summary`, strength: js`$vars.evidenceAnalyst.output.strength` },
     returns: { liable_party: "string", rationale: "string", agrees_with_rules: "boolean", risks: "array" },
-  }))
+  })).onError((h) => h.step("liabilityFailed", script({
+    code: 'return { status: "AGENT_ERROR", step: "liabilityAssessor", detail: String(' + "$vars.liabilityAssessor.error ? ($vars.liabilityAssessor.error.detail || $vars.liabilityAssessor.error.message) : 'unknown'" + ').slice(0, 300) };',
+    returns: { status: "string", step: "string", detail: "string" } }), { updates: { halt: js`$vars.liabilityFailed.output` } }).stepToRef("negInit"))
   .step("negInit", script({
     code: `const a = $vars.pickTop.output.assessment || {};
-      const cp = $vars.start.output.counterparty || {};
+      const cp = $vars.start.output.counterparty || {}; const halt = $vars.halt || {};
+      const paused = !!$vars.start.output.killNegotiation || !!$vars.intake.output.negotiation_paused;
+      const status = !$vars.pickTop.output.found ? "NO_CASE" : halt.status ? "NEEDS_REVIEW_AGENT_ERROR" : paused ? "PAUSED_KILL_SWITCH" : "OPEN";
       return { state: { claim_id: a.claim_id || null, round: 0, floor: a.floor || 0, last_ask: a.demand || 0, demand: a.demand || 0,
         persona: cp.persona || "cooperative", reservation: Number(cp.reservation_price) || Math.round((a.demand || 0) * 0.9),
-        status: $vars.pickTop.output.found ? "OPEN" : "NO_CASE", history: [], rationale: ($vars.liabilityAssessor.output || {}).rationale || "", simulated_counterparty: true } };`,
+        status, halt: halt.status ? halt : null, history: [], rationale: halt.status ? "" : (($vars.liabilityAssessor.output || {}).rationale || ""), simulated_counterparty: true } };`,
     returns: { state: "object" },
   }), { updates: { neg: js`$vars.negInit.output.state` } })
+  .branch("skipDuel", js`$vars.neg.status !== "OPEN"`, (t) => t.label("Kill switch or agent error: no negotiation").stepToRef("approvalCtx"))
   .doWhile("duel", js`$vars.neg.status === "OPEN"`, (body) => body
     .step("roundCtx", script({
       code: `const n = $vars.neg; const r = n.round + 1;
@@ -125,7 +133,9 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
       userPrompt: "SIMULATION. Persona: {{input.persona}}. Your private max_offer (authority limit, never exceed it): {{input.reservation}}. Round {{input.round}} of 5. Current demand from the recovering insurer: {{input.ask}}. History so far: {{input.history}}",
       inputs: { persona: js`$vars.roundCtx.output.persona`, reservation: js`$vars.roundCtx.output.reservation`, round: js`$vars.roundCtx.output.round`, ask: js`$vars.roundCtx.output.ask`, history: js`$vars.roundCtx.output.history` },
       returns: { offer: "number", message: "string", simulated: "boolean" },
-    }))
+    })).onError((h) => h.step("carrierFailed", script({
+      code: 'const n = $vars.neg; return { state: Object.assign({}, n, { status: "NEEDS_REVIEW_AGENT_ERROR", halt: { status: "AGENT_ERROR", step: "carrierAgent", round: n.round } }) };',
+      returns: { state: "object" } }), { updates: { neg: js`$vars.carrierFailed.output.state` } }).break())
     .step("judgeOffer", script({
       code: RULES + `
         const n = $vars.neg; const o = Number($vars.carrierAgent.output.offer);
@@ -149,7 +159,9 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
       userPrompt: "Round {{input.round}} of 5. Our last ask: {{input.ask}}. Our floor: {{input.floor}}. SIMULATED carrier offer: {{input.offer}}. Liability rationale: {{input.rationale}}. History: {{input.history}}",
       inputs: { round: js`$vars.negCtx.output.round`, ask: js`$vars.negCtx.output.ask`, floor: js`$vars.negCtx.output.floor`, offer: js`$vars.negCtx.output.offer`, rationale: js`$vars.negCtx.output.rationale`, history: js`$vars.negCtx.output.history` },
       returns: { counter: "number", message: "string" },
-    }))
+    })).onError((h) => h.step("negotiatorFailed", script({
+      code: 'const n = $vars.neg; return { state: Object.assign({}, n, { status: "NEEDS_REVIEW_AGENT_ERROR", halt: { status: "AGENT_ERROR", step: "negotiator", round: n.round } }) };',
+      returns: { state: "object" } }), { updates: { neg: js`$vars.negotiatorFailed.output.state` } }).break())
     .step("guardCounter", script({
       code: RULES + `
         const n = $vars.neg; const c = RD.checkCounter(n, Number($vars.negotiator.output.counter));
