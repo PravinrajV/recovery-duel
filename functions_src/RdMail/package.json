@@ -1,0 +1,14 @@
+{
+  "name": "rdmail",
+  "version": "1.0.0",
+  "type": "module",
+  "devDependencies": {
+    "@types/nodemailer": "^8.0.2",
+    "@uipath/coded-functions-js-sdk": "^0.6.2",
+    "typescript": "^5.7.0"
+  },
+  "dependencies": {
+    "imapflow": "^2.10.2",
+    "nodemailer": "^10.3.1"
+  }
+}
