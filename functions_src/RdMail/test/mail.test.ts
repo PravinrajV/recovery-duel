@@ -1,0 +1,12 @@
+import { TEST_INBOX, checkOutgoing, claimIdOk, matchByClaim } from "../functions/_mail.ts";
+import assert from "node:assert/strict";
+assert.equal(TEST_INBOX, "recoveryduel@vncntlabs.com");
+assert.equal(checkOutgoing("[SYNTHETIC / SIMULATED DEMO] Subrogation demand CLM-00017", "x"), null);
+assert.equal(checkOutgoing("Re: [SIMULATED CARRIER] Subrogation demand CLM-00017", "x"), null);
+assert.match(String(checkOutgoing("Subrogation demand CLM-00017", "x")), /label/);
+assert.match(String(checkOutgoing("[SYNTHETIC / SIMULATED DEMO] no id", "x")), /claim ID/);
+assert.match(String(checkOutgoing("[SYNTHETIC / SIMULATED DEMO] CLM-00017", "")), /body/);
+assert.ok(claimIdOk("CLM-00013")); assert.ok(!claimIdOk("CLM-1' OR 1")); assert.ok(!claimIdOk(undefined));
+const l = [{ uid: 1, subject: "Re: x CLM-00013", from: "", date: "", text: "" }, { uid: 2, subject: "x CLM-00014", from: "", date: "", text: "" }];
+assert.equal(matchByClaim(l, "CLM-00013").length, 1);
+console.log("mail fn tests 9/9 pass");

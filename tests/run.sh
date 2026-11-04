@@ -7,6 +7,7 @@ python3 tests/test_escalation.py
 python3 tests/test_store.py
 node --test tests/test_rules.mjs tests/test_ledger.mjs tests/test_roi_html.mjs
 node --experimental-strip-types functions_src/RdStore/test/store.test.ts
+node --experimental-strip-types functions_src/RdMail/test/mail.test.ts
 ( cd solution/RecoveryDuel/RecoveryDuel && uip maestro flow check .flow-sdk/RecoveryDuel.flow.ts --source --output json | python3 -c 'import json,sys; d=json.load(sys.stdin)["Data"]; print("flow check:", d["Errors"], "errors", d["Warnings"], "warnings"); sys.exit(0 if d["Errors"]+d["Warnings"]==0 else 1)' \
   && uip maestro flow compile .flow-sdk/RecoveryDuel.flow.ts -o RecoveryDuel.flow --output json >/dev/null )
 uip maestro flow validate solution/RecoveryDuel/RecoveryDuel/RecoveryDuel.flow --output json | python3 -c 'import json,sys; d=json.load(sys.stdin); s=d["Data"]["Status"]; print("flow validate:", s); sys.exit(0 if s=="Valid" else 1)'

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://cloud.uipath.com/draft/2024-12/entry-point",
+  "$id": "entry-points.json",
+  "entryPoints": [
+    {
+      "filePath": "content/functions/mail.ts",
+      "uniqueId": "838d89c8-0bf3-4d14-a922-7535b9ad68d8",
+      "type": "function",
+      "input": {
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string",
+            "enum": [
+              "send",
+              "list",
+              "probe"
+            ]
+          },
+          "subject": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "claimId": {
+            "type": "string"
+          },
+          "errorHandlingEnabled": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "op"
+        ],
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean"
+          },
+          "to": {
+            "type": "string"
+          },
+          "messageId": {
+            "type": "string"
+          },
+          "count": {
+            "type": "number"
+          },
+          "messagesJson": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ok",
+          "to",
+          "messageId",
+          "count",
+          "messagesJson",
+          "detail"
+        ],
+        "additionalProperties": false
+      }
+    }
+  ]
+}
