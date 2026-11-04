@@ -1,0 +1,7 @@
+{
+  "Result": "Failure",
+  "Message": "Error listing entities",
+  "Instructions": "Data Fabric setup is still in progress\nPlease retry after a few minutes. If the issue persists, contact support\nTenant ID: 88e825a9-2d46-4829-8240-38a87f072218",
+  "ErrorCode": "unknown_error",
+  "Retry": "RetryWillNotFix"
+}

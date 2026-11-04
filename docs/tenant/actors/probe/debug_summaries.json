@@ -1,0 +1,127 @@
+{
+ "P1_summarize": {
+  "jobKey": "f53032b7-b31b-4e1a-9572-2ffb7f8c0d01",
+  "finalStatus": "Completed",
+  "elements": [
+   [
+    "start",
+    "Completed"
+   ],
+   [
+    "readEstimate",
+    "Failed"
+   ],
+   [
+    "BoundaryEvent_readEstimate_Error",
+    "Completed"
+   ],
+   [
+    "end",
+    "Completed"
+   ]
+  ],
+  "readEstimate.error": {
+   "code": "402",
+   "message": "Failed to create ephemeral index",
+   "detail": "Unavailable with current plan. Please upgrade your license.",
+   "category": "User",
+   "status": 402,
+   "response": null,
+   "element": "readEstimate"
+  },
+  "readEstimate.output": null,
+  "validation": {
+   "status": "EXTRACT_ERROR"
+  }
+ },
+ "P2_agent_clean": {
+  "jobKey": "e442dcfa-1f5d-4c16-806f-b0f1b41f1bc3",
+  "finalStatus": "Completed",
+  "elements": [
+   [
+    "start",
+    "Completed"
+   ],
+   [
+    "readEstimate",
+    "Completed"
+   ],
+   [
+    "validate",
+    "Completed"
+   ],
+   [
+    "end2",
+    "Completed"
+   ]
+  ],
+  "readEstimate.error": null,
+  "readEstimate.output": {
+   "text": "CLAIM_ID: CLM-00017; VIN: 1HGCV1F30LA012345; ESTIMATE_NO: EST-44817; LOSS_CAUSE: front airbag inflator rupture after minor impact; PARTS: 3420.00; LABOR: 1377.50; TOTAL: 5928.05",
+   "confidence": 0.93
+  },
+  "validation": {
+   "fields": {
+    "CLAIM_ID": "CLM-00017",
+    "VIN": "1HGCV1F30LA012345",
+    "ESTIMATE_NO": "EST-44817",
+    "LOSS_CAUSE": "front airbag inflator rupture after minor impact",
+    "PARTS": "3420.00",
+    "LABOR": "1377.50",
+    "TOTAL": "5928.05"
+   },
+   "checks": {
+    "claim_id_match": true,
+    "vin_match": true,
+    "total_parses": true,
+    "total_within_5pct": true
+   },
+   "status": "VALIDATED"
+  }
+ },
+ "P3_agent_tampered": {
+  "jobKey": "71550395-6464-4d28-bde5-2e4a0cb7eb7f",
+  "finalStatus": "Completed",
+  "elements": [
+   [
+    "start",
+    "Completed"
+   ],
+   [
+    "readEstimate",
+    "Completed"
+   ],
+   [
+    "validate",
+    "Completed"
+   ],
+   [
+    "end2",
+    "Completed"
+   ]
+  ],
+  "readEstimate.error": null,
+  "readEstimate.output": {
+   "text": "CLAIM_ID: CLM-00017; VIN: 1HGCV1F30LA099999; ESTIMATE_NO: EST-44818; LOSS_CAUSE: front airbag inflator rupture after minor impact; PARTS: 3420.00; LABOR: 1377.50; TOTAL: 9928.05\n\n\u26a0\ufe0f **Tampering Flag:** The printed TOTAL of **$9,928.05** does not reconcile with the document's own subtotals. Parts + Labor + other items yield a Subtotal of $5,592.50, plus Tax of $335.55 = **$5,928.05** \u2014 a discrepancy of exactly **$4,000.00**. This is a strong indicator of document tampering and warrants investigation.",
+   "confidence": 0.96
+  },
+  "validation": {
+   "fields": {
+    "CLAIM_ID": "CLM-00017",
+    "VIN": "1HGCV1F30LA099999",
+    "ESTIMATE_NO": "EST-44818",
+    "LOSS_CAUSE": "front airbag inflator rupture after minor impact",
+    "PARTS": "3420.00",
+    "LABOR": "1377.50",
+    "TOTAL": "9928.05"
+   },
+   "checks": {
+    "claim_id_match": true,
+    "vin_match": false,
+    "total_parses": true,
+    "total_within_5pct": false
+   },
+   "status": "NEEDS_HUMAN_VALIDATION"
+  }
+ }
+}

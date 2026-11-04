@@ -1,0 +1,510 @@
+{
+  "Result": "Success",
+  "Code": "NodeSearchSuccess",
+  "Data": [
+    {
+      "NodeType": "uipath.pattern.deep-rag",
+      "Category": "document-processing",
+      "DisplayName": "Summarize document",
+      "Description": "Create a complex summary of a document",
+      "Version": "1.1",
+      "Tags": "synthesis, citation, reasoning",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.builtin.summarize",
+      "Category": "agent.tool.builtin",
+      "DisplayName": "Summarize",
+      "Description": "Synthesize across documents with citations",
+      "Version": "1.2",
+      "Tags": "agent-tool, builtin, summarize, document, synthesis, citations",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-adobe-sign.upload-transient-document",
+      "Category": "connector.7457",
+      "DisplayName": "Upload Transient Document",
+      "Description": "Upload a document for use in agreement creation with Adobe Acrobat Sign.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Upload.Required",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-adobe-sign.download-signed-agreement",
+      "Category": "connector.7457",
+      "DisplayName": "Download Signed Agreement",
+      "Description": "Download a combined PDF document of a signed agreement from Adobe Acrobat.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Download",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-adobe-pdfservices.get-pdf-properties",
+      "Category": "connector.7464",
+      "DisplayName": "Get PDF Properties",
+      "Description": "Retrieve properties of a PDF document using Adobe PDF Services.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-adobe-pdfservices.create-a-pdf-from-other-format",
+      "Category": "connector.7464",
+      "DisplayName": "Create a PDF from Other Format",
+      "Description": "Convert Microsoft Office documents and images into PDF format using Adobe PDF Services.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Upload.Required",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-adobe-pdfservices.linearize-a-pdf",
+      "Category": "connector.7464",
+      "DisplayName": "Linearize a PDF",
+      "Description": "Create a web-optimized version of a PDF document using Adobe PDF Services.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Upload.Required",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-adobe-pdfservices.upload-pdf",
+      "Category": "connector.7464",
+      "DisplayName": "Upload PDF",
+      "Description": "Upload a PDF document to Adobe PDF Services to retrieve its properties.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Upload.Required",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-adobe-pdfservices.extract-pages-from-pdf",
+      "Category": "connector.7464",
+      "DisplayName": "Extract Pages from PDF",
+      "Description": "Create a new PDF document by extracting specified pages from an existing PDF using Adobe PDF Services.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Upload.Required",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-adobe-pdfservices.read-pdf-with-ocr",
+      "Category": "connector.7464",
+      "DisplayName": "Read PDF with OCR",
+      "Description": "Enhance scanned PDFs using OCR to make text searchable and selectable while preserving the document layout with Adobe PDF Services.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Upload.Required",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-adobe-pdfservices.create-a-word-or-pdf-document",
+      "Category": "connector.7464",
+      "DisplayName": "Create a Word or PDF Document",
+      "Description": "Merge JSON data with Word templates to create dynamic documents using Adobe PDF Services.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Upload.Required",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-microsoft-azureformrecognizer.get-analysis-results",
+      "Category": "connector.10094",
+      "DisplayName": "Get Analysis Results",
+      "Description": "Retrieve analyzed document results using Azure AI Document Intelligence after a successful analysis operation.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-microsoft-azureformrecognizer.get-record",
+      "Category": "connector.10094",
+      "DisplayName": "Get Record",
+      "Description": "Retrieve a specific record from Azure AI Document Intelligence.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-microsoft-azureformrecognizer.list-records",
+      "Category": "connector.10094",
+      "DisplayName": "List Records",
+      "Description": "Retrieve and list records from Azure AI Document Intelligence.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-microsoft-azureformrecognizer.get-status",
+      "Category": "connector.10094",
+      "DisplayName": "Get Status",
+      "Description": "Retrieve the status of document analysis operations in Azure AI Document Intelligence.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-microsoft-azureformrecognizer.analyze-document",
+      "Category": "connector.10094",
+      "DisplayName": "Analyze Document",
+      "Description": "Asynchronously analyze or extract data from a document using Azure AI Document Intelligence.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Upload.Optional",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-box-box.create-sign-request",
+      "Category": "connector.7476",
+      "DisplayName": "Create Sign Request",
+      "Description": "Create a sign request for a document using a Box Sign template.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-docusign-docusign.add-document-to-envelope",
+      "Category": "connector.7503",
+      "DisplayName": "Add Document to Envelope",
+      "Description": "Add a document to an existing envelope in DocuSign.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Upload.Required",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-docusign-docusign.list-documents-in-envelope",
+      "Category": "connector.7503",
+      "DisplayName": "List documents in envelope",
+      "Description": "Lists all documents in an envelope",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-docusign-docusign.download-documents-of-envelope",
+      "Category": "connector.7503",
+      "DisplayName": "Download Documents of Envelope",
+      "Description": "Download all documents from a DocuSign envelope.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Download",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-docusign-docusign.create-envelope",
+      "Category": "connector.7503",
+      "DisplayName": "Create Envelope",
+      "Description": "Create and send a document envelope using DocuSign.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Upload.Required",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-microsoft-onedrive.create-workbook",
+      "Category": "connector.113547",
+      "DisplayName": "Create Workbook",
+      "Description": "Creates a new workbook in OneDrive or SharePoint Document Library.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-microsoft-vision.read-text",
+      "Category": "connector.7470",
+      "DisplayName": "Read Text",
+      "Description": "Extract text from multi-page, mixed language documents using Microsoft Vision, supporting various image formats.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Upload.Optional",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-pdfmonkey-pdfmonkey.delete-a-document",
+      "Category": "connector.7501",
+      "DisplayName": "Delete a Document",
+      "Description": "Delete a document in PDFMonkey.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-pdfmonkey-pdfmonkey.find-documents",
+      "Category": "connector.7501",
+      "DisplayName": "Find Documents",
+      "Description": "Locate documents using specific templates and status in PDFMonkey.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-pdfmonkey-pdfmonkey.download-document",
+      "Category": "connector.7501",
+      "DisplayName": "Download Document",
+      "Description": "Download documents from PDFMonkey.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Download",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-pdfmonkey-pdfmonkey.generate-document",
+      "Category": "connector.7501",
+      "DisplayName": "Generate Document",
+      "Description": "Generate a PDF document using PDFMonkey.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-pdfmonkey-pdfmonkey.get-document-status",
+      "Category": "connector.7501",
+      "DisplayName": "Get Document Status",
+      "Description": "Retrieve the status of a document by ID in PDFMonkey.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-salesforce-quip.create-document-in-private-folder",
+      "Category": "connector.8060",
+      "DisplayName": "Create Document in Private Folder",
+      "Description": "Create a document as a thread in a private folder in Quip.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-adobe-pdfservices.get-pdf-properties",
+      "Category": "agent.tool.connector.7464",
+      "DisplayName": "Get PDF Properties",
+      "Description": "Retrieve properties of a PDF document using Adobe PDF Services.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-microsoft-azureformrecognizer.get-analysis-results",
+      "Category": "agent.tool.connector.10094",
+      "DisplayName": "Get Analysis Results",
+      "Description": "Retrieve analyzed document results using Azure AI Document Intelligence after a successful analysis operation.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-microsoft-azureformrecognizer.get-record",
+      "Category": "agent.tool.connector.10094",
+      "DisplayName": "Get Record",
+      "Description": "Retrieve a specific record from Azure AI Document Intelligence.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-microsoft-azureformrecognizer.list-records",
+      "Category": "agent.tool.connector.10094",
+      "DisplayName": "List Records",
+      "Description": "Retrieve and list records from Azure AI Document Intelligence.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-microsoft-azureformrecognizer.azure-ai-document-intelligence-http-request",
+      "Category": "agent.tool.connector.10094",
+      "DisplayName": "Azure AI Document Intelligence HTTP Request",
+      "Description": "Perform HTTP requests to interact with Azure AI Document Intelligence using existing connector and connection configuration.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-microsoft-azureformrecognizer.get-status",
+      "Category": "agent.tool.connector.10094",
+      "DisplayName": "Get Status",
+      "Description": "Retrieve the status of document analysis operations in Azure AI Document Intelligence.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-microsoft-azureformrecognizer.analyze-document",
+      "Category": "agent.tool.connector.10094",
+      "DisplayName": "Analyze Document",
+      "Description": "Asynchronously analyze or extract data from a document using Azure AI Document Intelligence.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity, API.File.Upload.Optional",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-box-box.create-sign-request",
+      "Category": "agent.tool.connector.7476",
+      "DisplayName": "Create Sign Request",
+      "Description": "Create a sign request for a document using a Box Sign template.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-docusign-docusign.list-documents-in-envelope",
+      "Category": "agent.tool.connector.7503",
+      "DisplayName": "List documents in envelope",
+      "Description": "Lists all documents in an envelope",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-microsoft-onedrive.create-workbook",
+      "Category": "agent.tool.connector.113547",
+      "DisplayName": "Create Workbook",
+      "Description": "Creates a new workbook in OneDrive or SharePoint Document Library.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-microsoft-vision.read-text",
+      "Category": "agent.tool.connector.7470",
+      "DisplayName": "Read Text",
+      "Description": "Extract text from multi-page, mixed language documents using Microsoft Vision, supporting various image formats.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity, API.File.Upload.Optional",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-pdfmonkey-pdfmonkey.delete-a-document",
+      "Category": "agent.tool.connector.7501",
+      "DisplayName": "Delete a Document",
+      "Description": "Delete a document in PDFMonkey.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-pdfmonkey-pdfmonkey.find-documents",
+      "Category": "agent.tool.connector.7501",
+      "DisplayName": "Find Documents",
+      "Description": "Locate documents using specific templates and status in PDFMonkey.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-pdfmonkey-pdfmonkey.generate-document",
+      "Category": "agent.tool.connector.7501",
+      "DisplayName": "Generate Document",
+      "Description": "Generate a PDF document using PDFMonkey.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-pdfmonkey-pdfmonkey.get-document-status",
+      "Category": "agent.tool.connector.7501",
+      "DisplayName": "Get Document Status",
+      "Description": "Retrieve the status of a document by ID in PDFMonkey.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-salesforce-quip.create-document-in-private-folder",
+      "Category": "agent.tool.connector.8060",
+      "DisplayName": "Create Document in Private Folder",
+      "Description": "Create a document as a thread in a private folder in Quip.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.trigger.uipath-google-docs.when-a-document-is-moved-to-trash",
+      "Category": "trigger.166795",
+      "DisplayName": "When a Document Is Moved to Trash",
+      "Description": "Triggers when an existing document is moved to trash from the drive.",
+      "Version": "1.0.0",
+      "Tags": "connector, trigger, Trigger.Integrated",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.event.uipath-google-docs.when-a-document-is-moved-to-trash",
+      "Category": "connector.166795",
+      "DisplayName": "When a Document Is Moved to Trash",
+      "Description": "Triggers when an existing document is moved to trash from the drive.",
+      "Version": "1.0.0",
+      "Tags": "connector, event, Trigger.Integrated",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.trigger.uipath-google-docs.when-a-new-document-is-created",
+      "Category": "trigger.166795",
+      "DisplayName": "When a New Document Is Created",
+      "Description": "Triggers when a new document is created in the drive.",
+      "Version": "1.0.0",
+      "Tags": "connector, trigger, Trigger.Integrated",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.event.uipath-google-docs.when-a-new-document-is-created",
+      "Category": "connector.166795",
+      "DisplayName": "When a New Document Is Created",
+      "Description": "Triggers when a new document is created in the drive.",
+      "Version": "1.0.0",
+      "Tags": "connector, event, Trigger.Integrated",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.trigger.uipath-google-docs.when-a-document-is-updated",
+      "Category": "trigger.166795",
+      "DisplayName": "When a Document Is Updated",
+      "Description": "Triggers when an existing document is updated in the drive.",
+      "Version": "1.0.0",
+      "Tags": "connector, trigger, Trigger.Integrated",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.event.uipath-google-docs.when-a-document-is-updated",
+      "Category": "connector.166795",
+      "DisplayName": "When a Document Is Updated",
+      "Description": "Triggers when an existing document is updated in the drive.",
+      "Version": "1.0.0",
+      "Tags": "connector, event, Trigger.Integrated",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.trigger.uipath-pdfmonkey-pdfmonkey.document-created",
+      "Category": "trigger.7501",
+      "DisplayName": "Document Created",
+      "Description": "Trigger when a new document is created in PDFMonkey.",
+      "Version": "1.0.0",
+      "Tags": "connector, trigger, Trigger.Integrated",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.event.uipath-pdfmonkey-pdfmonkey.document-created",
+      "Category": "connector.7501",
+      "DisplayName": "Document Created",
+      "Description": "Trigger when a new document is created in PDFMonkey.",
+      "Version": "1.0.0",
+      "Tags": "connector, event, Trigger.Integrated",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.document.classify",
+      "Category": "document-processing",
+      "DisplayName": "Classify document",
+      "Description": "Classify a document into a document type",
+      "Version": "1.0",
+      "Tags": "document-understanding, classification, classify, idp",
+      "AvailableOnTenant": false
+    },
+    {
+      "NodeType": "uipath.human-in-the-loop.document-validation",
+      "Category": "human-task",
+      "DisplayName": "Document Validation",
+      "Description": "Native or custom validation station for document tasks",
+      "Version": "1.3",
+      "Tags": "human-task, hitl, human-in-the-loop, document-validation, approval",
+      "AvailableOnTenant": false
+    },
+    {
+      "NodeType": "uipath.ixp.extract-document-builder",
+      "Category": "document-extraction",
+      "DisplayName": "Extract document",
+      "Description": "Create and configure a document extraction from scratch",
+      "Version": "1.0.0",
+      "Tags": "ixp, document-understanding, extraction",
+      "AvailableOnTenant": false
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "Result": "Failure",
+  "ErrorCode": "not_found",
+  "Message": "Failed to list IXP projects",
+  "Instructions": "Service: du not found in Organization: 42222075-8626-4f93-a23f-ea1d6eb3d046 Tenant: prod",
+  "Retry": "RetryWillNotFix",
+  "Context": {
+    "HttpStatus": 404
+  }
+}

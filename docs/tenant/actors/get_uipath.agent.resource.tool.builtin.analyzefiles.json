@@ -1,0 +1,176 @@
+{
+  "Result": "Success",
+  "Code": "NodeGetSuccess",
+  "Data": {
+    "Node": {
+      "nodeType": "uipath.agent.resource.tool.builtin.analyzefiles",
+      "version": "1.3",
+      "category": "agent.tool.builtin",
+      "description": "Extract and analyze content from files",
+      "tags": [
+        "agent-tool",
+        "builtin",
+        "analyze",
+        "files",
+        "attachments"
+      ],
+      "sortOrder": 40,
+      "display": {
+        "label": "Analyze Files",
+        "description": "Analyze one or more files with an LLM to extract, synthesize, or answer queries about their content.",
+        "icon": "paperclip",
+        "shape": "circle"
+      },
+      "handleConfiguration": [
+        {
+          "position": "top",
+          "handles": [
+            {
+              "id": "input",
+              "type": "target",
+              "handleType": "artifact",
+              "isDefaultForType": true,
+              "constraints": {
+                "maxConnections": 1,
+                "allowedSources": [
+                  {
+                    "nodeType": "uipath.agent.autonomous",
+                    "handleId": "tool"
+                  },
+                  {
+                    "nodeType": "uipath.agent.conversational",
+                    "handleId": "tool"
+                  },
+                  {
+                    "nodeType": "uipath.agent.voice",
+                    "handleId": "tool"
+                  }
+                ],
+                "validationMessage": "Only Agent's tool handle can connect here"
+              }
+            }
+          ]
+        }
+      ],
+      "inputDefinition": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "itemsDescription": {
+            "type": "object"
+          },
+          "analysisTaskDescription": {
+            "type": "object"
+          },
+          "exampleCalls": {
+            "type": "array"
+          }
+        }
+      },
+      "inputDefaults": {
+        "itemsDescription": {
+          "mode": "prompt",
+          "textValue": "",
+          "promptValue": "Array of files, documents, images, or other attachments to process",
+          "argumentPath": ""
+        },
+        "analysisTaskDescription": {
+          "mode": "prompt",
+          "textValue": "",
+          "promptValue": "The task, question, or instruction for processing the files (e.g., 'summarize this document', 'extract key points', 'what is in this image')",
+          "argumentPath": ""
+        },
+        "exampleCalls": []
+      },
+      "form": {
+        "id": "analyzefiles-tool-form",
+        "title": "Analyze Files",
+        "mode": "onChange",
+        "reValidateMode": "onChange",
+        "sections": [
+          {
+            "id": "analyzefiles-settings",
+            "title": "Settings",
+            "collapsible": false,
+            "defaultExpanded": true,
+            "fields": [
+              {
+                "name": "inputs.description",
+                "type": "custom",
+                "component": "description-textarea",
+                "label": "Description",
+                "placeholder": "Analyze one or more files with an LLM to extract, synthesize, or answer queries about their content."
+              },
+              {
+                "name": "inputs.itemsDescription",
+                "type": "custom",
+                "component": "value-source-field",
+                "label": "Attachments",
+                "componentProps": {
+                  "allowedModes": [
+                    "prompt",
+                    "variable",
+                    "text-builder"
+                  ],
+                  "defaultMode": "prompt",
+                  "defaultPromptValue": "Array of files, documents, images, or other attachments to process",
+                  "expectedType": "file",
+                  "allowFileArray": true,
+                  "staticEditor": "array-list",
+                  "placeholder": "File or attachment reference",
+                  "addButtonLabel": "Add attachment",
+                  "itemLabelPlaceholder": "Attachment name"
+                }
+              },
+              {
+                "name": "inputs.analysisTaskDescription",
+                "type": "custom",
+                "component": "value-source-field",
+                "label": "Analysis Task",
+                "componentProps": {
+                  "allowedModes": [
+                    "prompt",
+                    "variable"
+                  ],
+                  "defaultMode": "prompt",
+                  "defaultPromptValue": "The task, question, or instruction for processing the files (e.g., 'summarize this document', 'extract key points', 'what is in this image')",
+                  "expectedType": "string",
+                  "coerceLegacyStringTo": "promptValue"
+                }
+              }
+            ]
+          },
+          {
+            "id": "simulation-settings",
+            "title": "Simulation settings",
+            "description": "Add example calls for testing",
+            "collapsible": true,
+            "defaultExpanded": false,
+            "fields": [
+              {
+                "name": "inputs.exampleCalls",
+                "type": "custom",
+                "component": "example-calls-editor",
+                "label": "",
+                "componentProps": {
+                  "addButtonLabel": "Add example call",
+                  "toolName": "Analyze Files"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "model": {
+        "source": true
+      },
+      "runtimeConstraints": {
+        "exclude": [
+          "api-function"
+        ]
+      }
+    }
+  }
+}

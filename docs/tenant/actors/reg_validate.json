@@ -1,0 +1,15 @@
+{
+  "Result": "Success",
+  "Code": "NodeSearchSuccess",
+  "Data": [
+    {
+      "NodeType": "uipath.human-in-the-loop.document-validation",
+      "Category": "human-task",
+      "DisplayName": "Document Validation",
+      "Description": "Native or custom validation station for document tasks",
+      "Version": "1.3",
+      "Tags": "human-task, hitl, human-in-the-loop, document-validation, approval",
+      "AvailableOnTenant": false
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "Result": "Success",
+  "Code": "NodeSearchSuccess",
+  "Data": [
+    {
+      "NodeType": "core.logic.decision",
+      "Category": "control-flow",
+      "DisplayName": "Decision",
+      "Description": "Branch on a true or false condition",
+      "Version": "1.3",
+      "Tags": "control-flow, if, loop, switch",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "core.logic.agentic-switch",
+      "Category": "control-flow",
+      "DisplayName": "Agentic Switch",
+      "Description": "Route to one of many branches by a fast model decision",
+      "Version": "1.0",
+      "Tags": "control-flow, switch, agentic, decision, classify, route",
+      "AvailableOnTenant": false
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+ "tenant": "Prod",
+ "provisioned": [],
+ "catalog_subset": [
+  {
+   "Id": "ocr",
+   "Name": "UiPath OCR",
+   "ServiceLicenseStatus": "_0",
+   "ProvisioningMode": "Implicit",
+   "SupportedRegions": [
+    "Europe"
+   ],
+   "DefaultRegion": "Europe",
+   "Entitlement": "NotNeeded",
+   "IsVisible": false,
+   "IsAlwaysProvision": true
+  },
+  {
+   "Id": "dataservice",
+   "Name": "Data Service",
+   "ServiceLicenseStatus": "_0",
+   "ProvisioningMode": "Implicit",
+   "SupportedRegions": [
+    "Europe"
+   ],
+   "DefaultRegion": "Europe",
+   "Entitlement": "DataService.Enabled",
+   "IsVisible": true,
+   "IsAlwaysProvision": true
+  },
+  {
+   "Id": "du",
+   "Name": "Document Understanding",
+   "ServiceLicenseStatus": "_0",
+   "ProvisioningMode": "Implicit",
+   "SupportedRegions": [
+    "Europe"
+   ],
+   "DefaultRegion": "Europe",
+   "Entitlement": "DocumentUnderstanding.Enabled",
+   "IsVisible": true,
+   "IsAlwaysProvision": false
+  },
+  {
+   "Id": "documents",
+   "Name": "UiPath Documents",
+   "ServiceLicenseStatus": "_0",
+   "ProvisioningMode": "Implicit",
+   "SupportedRegions": [
+    "Europe"
+   ],
+   "DefaultRegion": "Europe",
+   "Entitlement": "NotNeeded",
+   "IsVisible": false,
+   "IsAlwaysProvision": true
+  }
+ ],
+ "note": "du (Document Understanding) is in the Europe catalog but NOT provisioned on Prod"
+}

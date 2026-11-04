@@ -1,0 +1,168 @@
+{
+  "Result": "Success",
+  "Code": "NodeSearchSuccess",
+  "Data": [
+    {
+      "NodeType": "uipath.agent.resource.tool.builtin.analyzefiles",
+      "Category": "agent.tool.builtin",
+      "DisplayName": "Analyze Files",
+      "Description": "Extract and analyze content from files",
+      "Version": "1.3",
+      "Tags": "agent-tool, builtin, analyze, files, attachments",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-adobe-pdfservices.extract-pages-from-pdf",
+      "Category": "connector.7464",
+      "DisplayName": "Extract Pages from PDF",
+      "Description": "Extracts the given PDF for a given range",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Upload.Required",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-adobe-pdfservices.extract-pages-from-pdf",
+      "Category": "connector.7464",
+      "DisplayName": "Extract Pages from PDF",
+      "Description": "Create a new PDF document by extracting specified pages from an existing PDF using Adobe PDF Services.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Upload.Required",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-microsoft-azureformrecognizer.analyze-document",
+      "Category": "connector.10094",
+      "DisplayName": "Analyze Document",
+      "Description": "Asynchronously analyze or extract data from a document using Azure AI Document Intelligence.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Upload.Optional",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-google-vision.handwriting-detection",
+      "Category": "connector.7460",
+      "DisplayName": "Handwriting Detection",
+      "Description": "Detect and extract handwritten text from images and files using Google Vision, including language detection.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Upload.Optional",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-google-vision.text-detection",
+      "Category": "connector.7460",
+      "DisplayName": "Text Detection",
+      "Description": "Detect and extract text from images and files using Google Vision, including language detection.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Upload.Optional",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-microsoft-vision.read-text",
+      "Category": "connector.7470",
+      "DisplayName": "Read Text",
+      "Description": "Extract text from multi-page, mixed language documents using Microsoft Vision, supporting various image formats.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Upload.Optional",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-microsoft-vision.ocr",
+      "Category": "connector.7470",
+      "DisplayName": "OCR",
+      "Description": "Extract text from images using Microsoft Vision OCR for formats like JPEG, PNG, GIF, or BMP.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-microsoft-vision.analyze-image",
+      "Category": "connector.7470",
+      "DisplayName": "Analyze Image",
+      "Description": "Extract visual features from images using Microsoft Vision, supporting formats like JPEG, PNG, GIF, and BMP.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Upload.Optional",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-uipath-airdk.web-reader",
+      "Category": "connector.7515",
+      "DisplayName": "Web Reader",
+      "Description": "Extract readable text from a publicly accessible URL and provide it in a structured format.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-microsoft-azureformrecognizer.analyze-document",
+      "Category": "agent.tool.connector.10094",
+      "DisplayName": "Analyze Document",
+      "Description": "Asynchronously analyze or extract data from a document using Azure AI Document Intelligence.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity, API.File.Upload.Optional",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-google-vision.handwriting-detection",
+      "Category": "agent.tool.connector.7460",
+      "DisplayName": "Handwriting Detection",
+      "Description": "Detect and extract handwritten text from images and files using Google Vision, including language detection.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity, API.File.Upload.Optional",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-google-vision.text-detection",
+      "Category": "agent.tool.connector.7460",
+      "DisplayName": "Text Detection",
+      "Description": "Detect and extract text from images and files using Google Vision, including language detection.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity, API.File.Upload.Optional",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-microsoft-vision.read-text",
+      "Category": "agent.tool.connector.7470",
+      "DisplayName": "Read Text",
+      "Description": "Extract text from multi-page, mixed language documents using Microsoft Vision, supporting various image formats.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity, API.File.Upload.Optional",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-microsoft-vision.ocr",
+      "Category": "agent.tool.connector.7470",
+      "DisplayName": "OCR",
+      "Description": "Extract text from images using Microsoft Vision OCR for formats like JPEG, PNG, GIF, or BMP.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-microsoft-vision.analyze-image",
+      "Category": "agent.tool.connector.7470",
+      "DisplayName": "Analyze Image",
+      "Description": "Extract visual features from images using Microsoft Vision, supporting formats like JPEG, PNG, GIF, and BMP.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity, API.File.Upload.Optional",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-uipath-airdk.web-reader",
+      "Category": "agent.tool.connector.7515",
+      "DisplayName": "Web Reader",
+      "Description": "Extract readable text from a publicly accessible URL and provide it in a structured format.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.ixp.extract-document-builder",
+      "Category": "document-extraction",
+      "DisplayName": "Extract document",
+      "Description": "Create and configure a document extraction from scratch",
+      "Version": "1.0.0",
+      "Tags": "ixp, document-understanding, extraction",
+      "AvailableOnTenant": false
+    }
+  ]
+}

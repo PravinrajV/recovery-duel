@@ -1,0 +1,60 @@
+{
+  "Result": "Success",
+  "Code": "NodeSearchSuccess",
+  "Data": [
+    {
+      "NodeType": "uipath.connector.uipath-uipath-airdk.named-entity-recognition",
+      "Category": "connector.7515",
+      "DisplayName": "Named Entity Recognition",
+      "Description": "Identify and classify named entities in a given text string using UiPath's AI capabilities.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-uipath-airdk.image-classification",
+      "Category": "connector.7515",
+      "DisplayName": "Image Classification",
+      "Description": "Classify images using custom categories and descriptions with UiPath Integration Service.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Upload.Optional",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-uipath-airdk.named-entity-recognition",
+      "Category": "agent.tool.connector.7515",
+      "DisplayName": "Named Entity Recognition",
+      "Description": "Identify and classify named entities in a given text string using UiPath's AI capabilities.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-uipath-airdk.image-classification",
+      "Category": "agent.tool.connector.7515",
+      "DisplayName": "Image Classification",
+      "Description": "Classify images using custom categories and descriptions with UiPath Integration Service.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity, API.File.Upload.Optional",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "core.logic.agentic-switch",
+      "Category": "control-flow",
+      "DisplayName": "Agentic Switch",
+      "Description": "Route to one of many branches by a fast model decision",
+      "Version": "1.0",
+      "Tags": "control-flow, switch, agentic, decision, classify, route",
+      "AvailableOnTenant": false
+    },
+    {
+      "NodeType": "uipath.document.classify",
+      "Category": "document-processing",
+      "DisplayName": "Classify document",
+      "Description": "Classify a document into a document type",
+      "Version": "1.0",
+      "Tags": "document-understanding, classification, classify, idp",
+      "AvailableOnTenant": false
+    }
+  ]
+}

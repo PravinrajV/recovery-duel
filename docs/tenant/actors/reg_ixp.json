@@ -1,0 +1,15 @@
+{
+  "Result": "Success",
+  "Code": "NodeSearchSuccess",
+  "Data": [
+    {
+      "NodeType": "uipath.ixp.extract-document-builder",
+      "Category": "document-extraction",
+      "DisplayName": "Extract document",
+      "Description": "Create and configure a document extraction from scratch",
+      "Version": "1.0.0",
+      "Tags": "ixp, document-understanding, extraction",
+      "AvailableOnTenant": false
+    }
+  ]
+}

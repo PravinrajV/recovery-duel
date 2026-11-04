@@ -1,0 +1,168 @@
+{
+  "Result": "Success",
+  "Code": "NodeSearchSuccess",
+  "Data": [
+    {
+      "NodeType": "core.datafabric.read",
+      "Category": "data",
+      "DisplayName": "Query entity records",
+      "Description": "Query one or more entity records from Data Fabric",
+      "Version": "1.4",
+      "Tags": "datafabric, entity, data, read, query",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "core.datafabric.update",
+      "Category": "data",
+      "DisplayName": "Update entity record",
+      "Description": "Update an entity record in Data Fabric",
+      "Version": "1.3",
+      "Tags": "datafabric, entity, data, update, write",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "core.datafabric.delete",
+      "Category": "data",
+      "DisplayName": "Delete entity record",
+      "Description": "Delete an entity record in Data Fabric",
+      "Version": "1.3",
+      "Tags": "datafabric, entity, data, delete, write",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "core.datafabric.create",
+      "Category": "data",
+      "DisplayName": "Create entity record",
+      "Description": "Create an entity record in Data Fabric",
+      "Version": "1.3",
+      "Tags": "datafabric, entity, data, create, insert, write",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-uipath-dataservice.query-multiple-entity-records",
+      "Category": "connector.68054",
+      "DisplayName": "Query Multiple Entity Records",
+      "Description": "Retrieves a list of records across multiple Data Fabric entities as per the provided SQL query.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-uipath-dataservice.create-entity-record",
+      "Category": "connector.68054",
+      "DisplayName": "Create Entity Record",
+      "Description": "Creates a new record for the selected entity in Data Fabric.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-uipath-dataservice.delete-entity-record",
+      "Category": "connector.68054",
+      "DisplayName": "Delete Entity Record",
+      "Description": "Deletes an existing record for the selected entity from Data Fabric.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-uipath-dataservice.upload-file-to-record-field",
+      "Category": "connector.68054",
+      "DisplayName": "Upload File to Record Field",
+      "Description": "Upload a file to a specified field of an entity record in Data Fabric, replacing existing file if any.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity, API.File.Upload.Required",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-uipath-dataservice.get-entity-record-by-id",
+      "Category": "connector.68054",
+      "DisplayName": "Get Entity Record by ID",
+      "Description": "Reads an existing record for the selected entity from Data Fabric.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-uipath-dataservice.query-entity-records",
+      "Category": "connector.68054",
+      "DisplayName": "Query Entity Records",
+      "Description": "Retrieves a list of records for the selected entity from Data Fabric, according to specified filters.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-uipath-dataservice.delete-file-from-record-field",
+      "Category": "connector.68054",
+      "DisplayName": "Delete File from Record Field",
+      "Description": "Deletes a file from a specified field of an entity record in Data Fabric.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-uipath-dataservice.download-file-from-record-field",
+      "Category": "connector.68054",
+      "DisplayName": "Download File from Record Field",
+      "Description": "Downloads a file from a specified field of an entity record in Data Fabric.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-uipath-dataservice.update-entity-record",
+      "Category": "connector.68054",
+      "DisplayName": "Update Entity Record",
+      "Description": "Updates an existing record for the selected entity in Data Fabric.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-uipath-dataservice.delete-file-from-record-field",
+      "Category": "agent.tool.connector.68054",
+      "DisplayName": "Delete File from Record Field",
+      "Description": "Delete a file from a specified field of an entity record in UiPath Data Fabric.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-uipath-dataservice.update-entity-record",
+      "Category": "agent.tool.connector.68054",
+      "DisplayName": "Update Entity Record",
+      "Description": "Updates an existing record in a Data Fabric entity",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-uipath-dataservice.download-file-from-record-field",
+      "Category": "agent.tool.connector.68054",
+      "DisplayName": "Download File from Record Field",
+      "Description": "Download a file from a specified field of an entity record in UiPath Data Fabric.",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-uipath-dataservice.delete-entity-record",
+      "Category": "agent.tool.connector.68054",
+      "DisplayName": "Delete Entity Record",
+      "Description": "Deletes an existing record for the selected entity from Data Fabric",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.agent.resource.tool.connector.uipath-uipath-dataservice.create-entity-record",
+      "Category": "agent.tool.connector.68054",
+      "DisplayName": "Create Entity Record",
+      "Description": "Creates a new record for the selected Entity in Data Fabric",
+      "Version": "1.0.0",
+      "Tags": "agent-tool, connector, activity",
+      "AvailableOnTenant": true
+    }
+  ]
+}

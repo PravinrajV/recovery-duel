@@ -1,0 +1,42 @@
+{
+  "Result": "Success",
+  "Code": "NodeSearchSuccess",
+  "Data": [
+    {
+      "NodeType": "uipath.connector.uipath-microsoft-azure.get-security-rule-list",
+      "Category": "connector.177792",
+      "DisplayName": "Get Security Rule List",
+      "Description": "Gets all security rules in a network security group.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-microsoft-azure.get-security-rule",
+      "Category": "connector.177792",
+      "DisplayName": "Get Security Rule",
+      "Description": "Gets the details of a security rule.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-microsoft-azure.create-security-rule",
+      "Category": "connector.177792",
+      "DisplayName": "Create Security Rule",
+      "Description": "Creates or updates a security rule in a specified network security group.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    },
+    {
+      "NodeType": "uipath.connector.uipath-microsoft-azure.delete-security-rule",
+      "Category": "connector.177792",
+      "DisplayName": "Delete Security Rule",
+      "Description": "Deletes a Security Rule.",
+      "Version": "1.0.0",
+      "Tags": "connector, activity",
+      "AvailableOnTenant": true
+    }
+  ]
+}
