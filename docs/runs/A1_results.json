@@ -1,0 +1,68 @@
+{
+ "S01": {
+  "pass": false,
+  "fails": [
+   "document DOC_ERROR != VALIDATED"
+  ],
+  "job": "c581c7d2-4046-48fd-a58b-bb19ca06bfa9",
+  "neg": "SETTLED",
+  "rounds": 5,
+  "amount": 11050,
+  "tier": "SPECIALIST",
+  "approval": "APPROVED",
+  "top": "CLM-00017",
+  "rank": {
+   "CLM-00017": "PURSUE"
+  },
+  "stopped": false,
+  "tasks": [
+   [
+    100030127,
+    "Recovery Duel: Specialist approval for SYNTHETIC settlement",
+    "Approve",
+    "Success"
+   ]
+  ],
+  "partial": null,
+  "doc": {
+   "status": "DOC_ERROR",
+   "validated_by": "NONE",
+   "failed": [],
+   "injection_flagged": false
+  },
+  "secs": 167,
+  "at": "2026-11-04T18:22:00"
+ },
+ "S04": {
+  "pass": true,
+  "fails": [],
+  "job": "242e4f5c-7a58-4ef6-9369-e25c6d0d97c6",
+  "neg": "SETTLED",
+  "rounds": 2,
+  "amount": 13950,
+  "tier": "SPECIALIST",
+  "approval": "APPROVED",
+  "top": "CLM-00004",
+  "rank": {
+   "CLM-00004": "PURSUE"
+  },
+  "stopped": false,
+  "tasks": [
+   [
+    100030128,
+    "Recovery Duel: Specialist approval for SYNTHETIC settlement",
+    "Approve",
+    "Success"
+   ]
+  ],
+  "partial": null,
+  "doc": {
+   "status": "VALIDATED",
+   "validated_by": "RULES",
+   "failed": [],
+   "injection_flagged": false
+  },
+  "secs": 132,
+  "at": "2026-11-04T18:25:06"
+ }
+}

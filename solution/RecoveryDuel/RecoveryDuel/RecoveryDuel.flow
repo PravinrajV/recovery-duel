@@ -1996,6 +1996,16 @@
             "fieldType": "object"
           },
           "var": "doc"
+        },
+        "estimate": {
+          "type": "file",
+          "description": "",
+          "source": {
+            "type": "jsExpression",
+            "expression": "$vars.estimate",
+            "fieldType": "string"
+          },
+          "var": "estimate"
         }
       }
     },
@@ -2252,9 +2262,9 @@
         "source": "d3b0ba5d-3436-43db-9e07-bf912c772f7b",
         "agentInputVariables": [
           {
-            "id": "docCtx__output__file",
+            "id": "estimate",
             "type": "string",
-            "binding": "=js:$vars.docCtx.output.file"
+            "binding": "=js:$vars.estimate"
           }
         ],
         "agentOutputVariables": [
@@ -6845,6 +6855,16 @@
             "fieldType": "object"
           },
           "var": "doc"
+        },
+        "estimate": {
+          "type": "file",
+          "description": "",
+          "source": {
+            "type": "jsExpression",
+            "expression": "$vars.estimate",
+            "fieldType": "string"
+          },
+          "var": "estimate"
         }
       }
     }
@@ -10493,6 +10513,12 @@
         "defaultValue": {
           "status": "NOT_REACHED"
         }
+      },
+      {
+        "id": "estimate",
+        "name": "estimate",
+        "direction": "inout",
+        "type": "file"
       }
     ],
     "nodes": [
@@ -11393,6 +11419,15 @@
         "binding": {
           "nodeId": "end",
           "outputId": "doc"
+        }
+      },
+      {
+        "id": "end.estimate",
+        "type": "file",
+        "description": "",
+        "binding": {
+          "nodeId": "end",
+          "outputId": "estimate"
         }
       },
       {
@@ -13794,6 +13829,15 @@
           "nodeId": "end2",
           "outputId": "doc"
         }
+      },
+      {
+        "id": "end2.estimate",
+        "type": "file",
+        "description": "",
+        "binding": {
+          "nodeId": "end2",
+          "outputId": "estimate"
+        }
       }
     ],
     "variableUpdates": {
@@ -13864,6 +13908,14 @@
             "type": "jsExpression",
             "expression": "$vars.docCtx.output.doc",
             "fieldType": "object"
+          }
+        },
+        {
+          "variableId": "estimate",
+          "expression": {
+            "type": "jsExpression",
+            "expression": "$vars.start.output.estimateFile",
+            "fieldType": "string"
           }
         }
       ],

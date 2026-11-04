@@ -14,7 +14,39 @@
   "inputSchema": {
     "type": "object",
     "properties": {
-      "docCtx__output__file": {}
+      "estimate": {
+        "$ref": "#/definitions/job-attachment"
+      }
+    },
+    "definitions": {
+      "job-attachment": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "description": "Orchestrator attachment key"
+          },
+          "FullName": {
+            "type": "string",
+            "description": "File name"
+          },
+          "MimeType": {
+            "type": "string",
+            "description": "MIME type, e.g. \"application/pdf\", \"image/png\""
+          },
+          "Metadata": {
+            "type": "object",
+            "description": "Dictionary<string, string> of metadata",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "ID"
+        ],
+        "x-uipath-resource-kind": "JobAttachment"
+      }
     }
   },
   "outputSchema": {
@@ -100,7 +132,7 @@
     },
     {
       "role": "user",
-      "content": "Read this SYNTHETIC repair estimate file: {{input.docCtx__output__file}}",
+      "content": "Read this SYNTHETIC repair estimate file: {{input.estimate}}",
       "contentTokens": [
         {
           "type": "simpleText",
@@ -108,7 +140,7 @@
         },
         {
           "type": "variable",
-          "rawString": "input.docCtx__output__file"
+          "rawString": "input.estimate"
         }
       ]
     }
