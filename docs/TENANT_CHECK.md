@@ -22,3 +22,5 @@ Skill: uipath-platform + uipath-maestro-flow (registry, debug). Raw outputs in d
 | Subflow | YES | `core.subflow` |
 | Parallel | YES | `core.logic.merge` (parallel-merge.md) |
 | Folders | Personal workspace + 1 other | `uip or folders list` |
+
+**Decision (owner, 2026-11-04):** Data Fabric is not available on the Community license. Fallback adopted: Orchestrator storage bucket + JSON files for claims, scenarios and the recovery ledger; local repo JSON when offline. T7/T8 are re-planned as storage-bucket JSON.

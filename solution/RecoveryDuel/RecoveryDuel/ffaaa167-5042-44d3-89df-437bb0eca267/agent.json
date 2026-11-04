@@ -1,0 +1,108 @@
+{
+  "version": "1.2.0",
+  "settings": {
+    "model": "anthropic.claude-haiku-4-5-20251001-v1:0",
+    "maxTokens": 16384,
+    "temperature": 0,
+    "engine": "basic-v2",
+    "maxIterations": 3,
+    "mode": "standard"
+  },
+  "projectId": "ffaaa167-5042-44d3-89df-437bb0eca267",
+  "id": "ffaaa167-5042-44d3-89df-437bb0eca267",
+  "name": "carrierAgent",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "roundCtx__output__persona": {},
+      "roundCtx__output__reservation": {},
+      "roundCtx__output__round": {},
+      "roundCtx__output__ask": {},
+      "roundCtx__output__history": {}
+    }
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "offer": {
+        "type": "number"
+      },
+      "message": {
+        "type": "string"
+      },
+      "simulated": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "offer",
+      "message",
+      "simulated"
+    ]
+  },
+  "metadata": {
+    "storageVersion": "50.0.0",
+    "isConversational": false,
+    "showProjectCreationExperience": false
+  },
+  "type": "lowCode",
+  "guardrails": [],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a SIMULATED other-party insurance carrier adjuster in a subrogation negotiation demo. This is a labelled simulation with SYNTHETIC data; you are not a real company. Stay in the persona you are given: cooperative (moves toward a fair number quickly), stubborn (concedes slowly, small steps, settles late), lowball (keeps offering a small amount regardless of arguments). Never offer more than your private reservation price. Never offer more than the current demand. Return a result conforming to the output schema. offer: your offer in whole US dollars, a positive number. message: 1 to 3 plain sentences to the other side, starting with \"[SIMULATED CARRIER]\". simulated: always true.",
+      "contentTokens": [
+        {
+          "type": "simpleText",
+          "rawString": "You are a SIMULATED other-party insurance carrier adjuster in a subrogation negotiation demo. This is a labelled simulation with SYNTHETIC data; you are not a real company. Stay in the persona you are given: cooperative (moves toward a fair number quickly), stubborn (concedes slowly, small steps, settles late), lowball (keeps offering a small amount regardless of arguments). Never offer more than your private reservation price. Never offer more than the current demand. Return a result conforming to the output schema. offer: your offer in whole US dollars, a positive number. message: 1 to 3 plain sentences to the other side, starting with \"[SIMULATED CARRIER]\". simulated: always true."
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": "SIMULATION. Persona: {{input.roundCtx__output__persona}}. Private reservation price: {{input.roundCtx__output__reservation}}. Round {{input.roundCtx__output__round}} of 5. Current demand from the recovering insurer: {{input.roundCtx__output__ask}}. History so far: {{input.roundCtx__output__history}}",
+      "contentTokens": [
+        {
+          "type": "simpleText",
+          "rawString": "SIMULATION. Persona: "
+        },
+        {
+          "type": "variable",
+          "rawString": "input.roundCtx__output__persona"
+        },
+        {
+          "type": "simpleText",
+          "rawString": ". Private reservation price: "
+        },
+        {
+          "type": "variable",
+          "rawString": "input.roundCtx__output__reservation"
+        },
+        {
+          "type": "simpleText",
+          "rawString": ". Round "
+        },
+        {
+          "type": "variable",
+          "rawString": "input.roundCtx__output__round"
+        },
+        {
+          "type": "simpleText",
+          "rawString": " of 5. Current demand from the recovering insurer: "
+        },
+        {
+          "type": "variable",
+          "rawString": "input.roundCtx__output__ask"
+        },
+        {
+          "type": "simpleText",
+          "rawString": ". History so far: "
+        },
+        {
+          "type": "variable",
+          "rawString": "input.roundCtx__output__history"
+        }
+      ]
+    }
+  ]
+}

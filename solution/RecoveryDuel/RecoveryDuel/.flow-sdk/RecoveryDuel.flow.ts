@@ -10,9 +10,10 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
   .schemaVersion("1.9")
   .name("RecoveryDuel")
   .trigger(manual(), { version: "1.0" })
-  .input({ claims: types.array, asOf: types.string, killSwitch: types.boolean })
-  .output({ ranked: types.array, summary: types.object, evidence: types.object, liability: types.object })
+  .input({ claims: types.array, asOf: types.string, killSwitch: types.boolean, counterparty: types.object })
+  .output({ ranked: types.array, summary: types.object, evidence: types.object, liability: types.object, negotiation: types.object })
   .var("assessed", types.array, [])
+  .var("neg", types.object, {})
   .step("intake", script({
     code: `
       const rows = $vars.start.output.claims || [];
@@ -71,5 +72,59 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
     inputs: { assessment: js`$vars.pickTop.output.assessmentJson`, evidence: js`$vars.evidenceAnalyst.output.evidence_summary`, strength: js`$vars.evidenceAnalyst.output.strength` },
     returns: { liable_party: "string", rationale: "string", agrees_with_rules: "boolean", risks: "array" },
   }))
-  .return({ ranked: js`$vars.rank.output.ranked`, summary: js`$vars.rank.output.summary`, evidence: js`$vars.evidenceAnalyst.output`, liability: js`$vars.liabilityAssessor.output` })
+  .step("negInit", script({
+    code: `const a = $vars.pickTop.output.assessment || {};
+      const cp = $vars.start.output.counterparty || {};
+      return { state: { claim_id: a.claim_id || null, round: 0, floor: a.floor || 0, last_ask: a.demand || 0, demand: a.demand || 0,
+        persona: cp.persona || "cooperative", reservation: Number(cp.reservation_price) || Math.round((a.demand || 0) * 0.9),
+        status: $vars.pickTop.output.found ? "OPEN" : "NO_CASE", history: [], rationale: ($vars.liabilityAssessor.output || {}).rationale || "", simulated_counterparty: true } };`,
+    returns: { state: "object" },
+  }), { updates: { neg: js`$vars.negInit.output.state` } })
+  .doWhile("duel", js`$vars.neg.status === "OPEN"`, (body) => body
+    .step("roundCtx", script({
+      code: `const n = $vars.neg; const r = n.round + 1;
+        return { state: Object.assign({}, n, { round: r }), round: String(r), ask: String(n.last_ask), floor: String(n.floor),
+          persona: n.persona, reservation: String(n.reservation), history: JSON.stringify(n.history) };`,
+      returns: { state: "object", round: "string", ask: "string", floor: "string", persona: "string", reservation: "string", history: "string" },
+    }), { updates: { neg: js`$vars.roundCtx.output.state` } })
+    .step("carrierAgent", inlineAgent({
+      model: "anthropic.claude-haiku-4-5-20251001-v1:0", temperature: 0, maxIterations: 3,
+      systemPrompt: `You are a SIMULATED other-party insurance carrier adjuster in a subrogation negotiation demo. This is a labelled simulation with SYNTHETIC data; you are not a real company. Stay in the persona you are given: cooperative (moves toward a fair number quickly), stubborn (concedes slowly, small steps, settles late), lowball (keeps offering a small amount regardless of arguments). Never offer more than your private reservation price. Never offer more than the current demand. Return a result conforming to the output schema. offer: your offer in whole US dollars, a positive number. message: 1 to 3 plain sentences to the other side, starting with "[SIMULATED CARRIER]". simulated: always true.`,
+      userPrompt: "SIMULATION. Persona: {{input.persona}}. Private reservation price: {{input.reservation}}. Round {{input.round}} of 5. Current demand from the recovering insurer: {{input.ask}}. History so far: {{input.history}}",
+      inputs: { persona: js`$vars.roundCtx.output.persona`, reservation: js`$vars.roundCtx.output.reservation`, round: js`$vars.roundCtx.output.round`, ask: js`$vars.roundCtx.output.ask`, history: js`$vars.roundCtx.output.history` },
+      returns: { offer: "number", message: "string", simulated: "boolean" },
+    }))
+    .step("judgeOffer", script({
+      code: RULES + `
+        const n = $vars.neg; const o = Number($vars.carrierAgent.output.offer);
+        const offer = Math.round(Math.min(isFinite(o) ? o : 0, n.last_ask, n.reservation)); const clamped = offer !== o;
+        const d = RD.evaluateOffer(n, offer);
+        const h = n.history.concat([{ round: n.round, from: "SIMULATED_CARRIER", offer, raw_offer: o, clamped, message: $vars.carrierAgent.output.message, decision: d.action }]);
+        let status = "OPEN";
+        if (d.action === "ACCEPT") status = "SETTLED"; else if (d.action === "IMPASSE") status = "IMPASSE";
+        else if (n.round >= RD.GUARDRAILS.MAX_ROUNDS) status = "IMPASSE";
+        return { state: Object.assign({}, n, { history: h, status, last_offer: offer, settled_amount: d.amount || null, tier: d.tier || null }) };`,
+      returns: { state: "object" },
+    }), { updates: { neg: js`$vars.judgeOffer.output.state` } })
+    .branch("closed", js`$vars.neg.status !== "OPEN"`, (t) => t.break())
+    .step("negCtx", script({
+      code: `const n = $vars.neg; return { ask: String(n.last_ask), floor: String(n.floor), offer: String(n.last_offer), round: String(n.round), history: JSON.stringify(n.history), rationale: n.rationale || "" };`,
+      returns: { ask: "string", floor: "string", offer: "string", round: "string", history: "string", rationale: "string" },
+    }))
+    .step("negotiator", inlineAgent({
+      model: "anthropic.claude-sonnet-4-6", temperature: 0, maxIterations: 3,
+      systemPrompt: `You are the Negotiator for an auto insurance subrogation team recovering money already paid on a SYNTHETIC claim. Opponent offers come from a SIMULATED carrier. Hard limits are enforced by a rules engine after you answer: you may never go below the floor, never raise your ask, must concede at least 3 percent of the last ask unless you are at the floor, and there are at most 5 rounds. Concede in measured steps, closing roughly a third of the gap each round, and use the liability rationale as leverage. Return a result conforming to the output schema. counter: your next ask in whole US dollars. message: 1 to 3 plain sentences to the carrier, no em dashes.`,
+      userPrompt: "Round {{input.round}} of 5. Our last ask: {{input.ask}}. Our floor: {{input.floor}}. SIMULATED carrier offer: {{input.offer}}. Liability rationale: {{input.rationale}}. History: {{input.history}}",
+      inputs: { round: js`$vars.negCtx.output.round`, ask: js`$vars.negCtx.output.ask`, floor: js`$vars.negCtx.output.floor`, offer: js`$vars.negCtx.output.offer`, rationale: js`$vars.negCtx.output.rationale`, history: js`$vars.negCtx.output.history` },
+      returns: { counter: "number", message: "string" },
+    }))
+    .step("guardCounter", script({
+      code: RULES + `
+        const n = $vars.neg; const c = RD.checkCounter(n, Number($vars.negotiator.output.counter));
+        const h = n.history.concat([{ round: n.round, from: "NEGOTIATOR", proposed: Number($vars.negotiator.output.counter), sent: c.enforced, violations: c.violations, message: $vars.negotiator.output.message }]);
+        return { state: Object.assign({}, n, { last_ask: c.enforced, history: h }) };`,
+      returns: { state: "object" },
+    }), { updates: { neg: js`$vars.guardCounter.output.state` } }),
+    { limit: 5 })
+  .return({ negotiation: js`$vars.neg`, ranked: js`$vars.rank.output.ranked`, summary: js`$vars.rank.output.summary`, evidence: js`$vars.evidenceAnalyst.output`, liability: js`$vars.liabilityAssessor.output` })
   .build();

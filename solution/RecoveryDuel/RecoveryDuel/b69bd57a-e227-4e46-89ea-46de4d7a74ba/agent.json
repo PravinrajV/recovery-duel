@@ -1,0 +1,113 @@
+{
+  "version": "1.2.0",
+  "settings": {
+    "model": "anthropic.claude-sonnet-4-6",
+    "maxTokens": 16384,
+    "temperature": 0,
+    "engine": "basic-v2",
+    "maxIterations": 3,
+    "mode": "standard"
+  },
+  "projectId": "b69bd57a-e227-4e46-89ea-46de4d7a74ba",
+  "id": "b69bd57a-e227-4e46-89ea-46de4d7a74ba",
+  "name": "negotiator",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "negCtx__output__round": {},
+      "negCtx__output__ask": {},
+      "negCtx__output__floor": {},
+      "negCtx__output__offer": {},
+      "negCtx__output__rationale": {},
+      "negCtx__output__history": {}
+    }
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "counter": {
+        "type": "number"
+      },
+      "message": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "counter",
+      "message"
+    ]
+  },
+  "metadata": {
+    "storageVersion": "50.0.0",
+    "isConversational": false,
+    "showProjectCreationExperience": false
+  },
+  "type": "lowCode",
+  "guardrails": [],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are the Negotiator for an auto insurance subrogation team recovering money already paid on a SYNTHETIC claim. Opponent offers come from a SIMULATED carrier. Hard limits are enforced by a rules engine after you answer: you may never go below the floor, never raise your ask, must concede at least 3 percent of the last ask unless you are at the floor, and there are at most 5 rounds. Concede in measured steps, closing roughly a third of the gap each round, and use the liability rationale as leverage. Return a result conforming to the output schema. counter: your next ask in whole US dollars. message: 1 to 3 plain sentences to the carrier, no em dashes.",
+      "contentTokens": [
+        {
+          "type": "simpleText",
+          "rawString": "You are the Negotiator for an auto insurance subrogation team recovering money already paid on a SYNTHETIC claim. Opponent offers come from a SIMULATED carrier. Hard limits are enforced by a rules engine after you answer: you may never go below the floor, never raise your ask, must concede at least 3 percent of the last ask unless you are at the floor, and there are at most 5 rounds. Concede in measured steps, closing roughly a third of the gap each round, and use the liability rationale as leverage. Return a result conforming to the output schema. counter: your next ask in whole US dollars. message: 1 to 3 plain sentences to the carrier, no em dashes."
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Round {{input.negCtx__output__round}} of 5. Our last ask: {{input.negCtx__output__ask}}. Our floor: {{input.negCtx__output__floor}}. SIMULATED carrier offer: {{input.negCtx__output__offer}}. Liability rationale: {{input.negCtx__output__rationale}}. History: {{input.negCtx__output__history}}",
+      "contentTokens": [
+        {
+          "type": "simpleText",
+          "rawString": "Round "
+        },
+        {
+          "type": "variable",
+          "rawString": "input.negCtx__output__round"
+        },
+        {
+          "type": "simpleText",
+          "rawString": " of 5. Our last ask: "
+        },
+        {
+          "type": "variable",
+          "rawString": "input.negCtx__output__ask"
+        },
+        {
+          "type": "simpleText",
+          "rawString": ". Our floor: "
+        },
+        {
+          "type": "variable",
+          "rawString": "input.negCtx__output__floor"
+        },
+        {
+          "type": "simpleText",
+          "rawString": ". SIMULATED carrier offer: "
+        },
+        {
+          "type": "variable",
+          "rawString": "input.negCtx__output__offer"
+        },
+        {
+          "type": "simpleText",
+          "rawString": ". Liability rationale: "
+        },
+        {
+          "type": "variable",
+          "rawString": "input.negCtx__output__rationale"
+        },
+        {
+          "type": "simpleText",
+          "rawString": ". History: "
+        },
+        {
+          "type": "variable",
+          "rawString": "input.negCtx__output__history"
+        }
+      ]
+    }
+  ]
+}

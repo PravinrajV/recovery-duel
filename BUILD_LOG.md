@@ -60,3 +60,13 @@ Built by Grok Bot (coding agent) for Pravinraj Vincent. Times are America/New_Yo
 - `uip maestro flow compile` wrote 2 agent.json sidecars; `uip agent validate <uuid> --inline-in-flow` -> Valid x2; `flow validate` -> Valid.
 - Tenant: `uip maestro flow debug solution/RecoveryDuel/RecoveryDuel -i @inputs.json` (3 synthetic claims) -> Completed, job ef089aaa. Both agents resolved inputs (no literal {{input.*}}), cited campaign 21V890000, strength STRONG, agrees_with_rules true. Trace: docs/runs/T10_debug_ef089aaa.json.
 - Known gap: if no PURSUE claim, agents still run on empty input; guard with a branch in T12. Agent prose can include em dashes; demo copy should be post-edited.
+
+## 2026-11-04 02:35 ET | Data store decision
+- Owner: Data Fabric not available on Community license. Adopted fallback: Orchestrator storage bucket + JSON (local repo JSON offline). Recorded in PROGRESS.md and docs/TENANT_CHECK.md; T7/T8 re-planned.
+
+## 2026-11-04 03:00 ET | T11 Negotiator + SIMULATED carrier (skills: uipath-maestro-flow loops.md doWhile/break, branch.md, inline-agent.md; uipath-agents inline-in-flow.md)
+- Added flow input `counterparty {persona, reservation_price}`, var `neg`, `negInit`, then `doWhile("duel", neg.status==="OPEN", limit 5)`: roundCtx -> carrierAgent (Haiku 4.5, SIMULATED persona, messages prefixed [SIMULATED CARRIER]) -> judgeOffer (RD.evaluateOffer) -> branch closed -> break -> negCtx -> negotiator (Sonnet 4.6) -> guardCounter (RD.checkCounter enforces floor, no raise, min 3% concession). Reservation is never shown to the Negotiator.
+- `flow check --source` 0/0. `flow validate` run 1 error: negotiator bound $vars.liabilityAssessor.output.rationale, which validate treats as not on every path. Fix: carry rationale in neg state, bind negCtx output. Run 2 Valid. `uip agent validate --inline-in-flow` Valid x4.
+- Debug run 1 (job 08ac04b6, hero CLM-00017, cooperative, reservation 11,050): Completed, SETTLED $13,350 round 3. BUG: simulated carrier offered above its private reservation. Fix: judgeOffer clamps offer to min(offer, last_ask, reservation) and logs raw_offer/clamped.
+- Debug run 2 (job 978c169d): Completed, SETTLED $11,050 in round 5, tier SPECIALIST, 0 guardrail violations. Matches the rules-engine hero ($11,050). Trace docs/runs/T11_debug_978c169d.json.
+- Follow-ups for T12: carrier prompt ignores reservation (clamped every round), so tune persona prompt; run stubborn/lowball scenarios on tenant; NO_CASE guard branch before agents.

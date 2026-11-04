@@ -1506,12 +1506,867 @@
       }
     },
     {
+      "id": "negInit",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 3424,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "negInit",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "properties": {
+            "state": {
+              "type": "object"
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "inputs": {
+        "script": "const a = $vars.pickTop.output.assessment || {};\n      const cp = $vars.start.output.counterparty || {};\n      return { state: { claim_id: a.claim_id || null, round: 0, floor: a.floor || 0, last_ask: a.demand || 0, demand: a.demand || 0,\n        persona: cp.persona || \"cooperative\", reservation: Number(cp.reservation_price) || Math.round((a.demand || 0) * 0.9),\n        status: $vars.pickTop.output.found ? \"OPEN\" : \"NO_CASE\", history: [], rationale: ($vars.liabilityAssessor.output || {}).rationale || \"\", simulated_counterparty: true } };"
+      }
+    },
+    {
+      "id": "duel",
+      "type": "core.logic.dowhile",
+      "typeVersion": "1.0",
+      "ui": {
+        "position": {
+          "x": 3712,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "duel",
+        "icon": "repeat"
+      },
+      "model": {
+        "type": "bpmn:SubProcess"
+      },
+      "outputs": {
+        "error": {
+          "type": "object",
+          "description": "Error information if the node fails",
+          "source": {
+            "type": "literal",
+            "expression": "=Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "inputs": {
+        "condition": "$vars.neg.status === \"OPEN\"",
+        "limit": 5,
+        "breakEnabled": true
+      }
+    },
+    {
+      "id": "roundCtx",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 4000,
+          "y": 304
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "roundCtx",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "properties": {
+            "state": {
+              "type": "object"
+            },
+            "round": {
+              "type": "string"
+            },
+            "ask": {
+              "type": "string"
+            },
+            "floor": {
+              "type": "string"
+            },
+            "persona": {
+              "type": "string"
+            },
+            "reservation": {
+              "type": "string"
+            },
+            "history": {
+              "type": "string"
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "parentId": "duel",
+      "inputs": {
+        "script": "const n = $vars.neg; const r = n.round + 1;\n        return { state: Object.assign({}, n, { round: r }), round: String(r), ask: String(n.last_ask), floor: String(n.floor),\n          persona: n.persona, reservation: String(n.reservation), history: JSON.stringify(n.history) };"
+      }
+    },
+    {
+      "id": "carrierAgent",
+      "type": "uipath.agent.autonomous",
+      "typeVersion": "1.4",
+      "ui": {
+        "position": {
+          "x": 4288,
+          "y": 304
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "carrierAgent",
+        "icon": "autonomous-agent"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "Agent response",
+          "var": "output",
+          "properties": {
+            "content": {
+              "type": "string",
+              "description": "The agent response text"
+            }
+          },
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "offer": {
+                "type": "number"
+              },
+              "message": {
+                "type": "string"
+              },
+              "simulated": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the node fails",
+          "source": {
+            "type": "literal",
+            "expression": "=Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "parentId": "duel",
+      "inputs": {
+        "source": "ffaaa167-5042-44d3-89df-437bb0eca267",
+        "agentInputVariables": [
+          {
+            "id": "roundCtx__output__persona",
+            "type": "string",
+            "binding": "=js:$vars.roundCtx.output.persona"
+          },
+          {
+            "id": "roundCtx__output__reservation",
+            "type": "string",
+            "binding": "=js:$vars.roundCtx.output.reservation"
+          },
+          {
+            "id": "roundCtx__output__round",
+            "type": "string",
+            "binding": "=js:$vars.roundCtx.output.round"
+          },
+          {
+            "id": "roundCtx__output__ask",
+            "type": "string",
+            "binding": "=js:$vars.roundCtx.output.ask"
+          },
+          {
+            "id": "roundCtx__output__history",
+            "type": "string",
+            "binding": "=js:$vars.roundCtx.output.history"
+          }
+        ],
+        "agentOutputVariables": [
+          {
+            "id": "offer",
+            "type": "number"
+          },
+          {
+            "id": "message",
+            "type": "string"
+          },
+          {
+            "id": "simulated",
+            "type": "boolean"
+          }
+        ]
+      }
+    },
+    {
+      "id": "judgeOffer",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 4576,
+          "y": 304
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "judgeOffer",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "properties": {
+            "state": {
+              "type": "object"
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "parentId": "duel",
+      "inputs": {
+        "script": "// Recovery Duel deterministic rules engine (T9).\n// ES2020, no require/fetch/Intl/Date-locale: safe for UiPath Flow Script nodes.\n// Embedded into Script node bodies by the flow source; also loadable from Node for tests.\n// State law values are ILLUSTRATIVE and UNVERIFIED, not legal advice.\nvar RD = (function () {\n  var STATE_RULES = {\n    CA: { sol_years: 3, doctrine: 'pure_comparative' },\n    NY: { sol_years: 3, doctrine: 'pure_comparative' },\n    TX: { sol_years: 2, doctrine: 'modified_51' },\n    FL: { sol_years: 4, doctrine: 'modified_51' },\n    VA: { sol_years: 5, doctrine: 'contributory' }\n  };\n  var CAUSE_COMPONENT = {\n    brake_failure_rear_end: 'SERVICE BRAKES', engine_stall_fuel_pump: 'FUEL SYSTEM',\n    tire_blowout: 'TIRES', headlight_failure_night_collision: 'EXTERIOR LIGHTING',\n    airbag_nondeploy: 'AIR BAGS', hail_damage: null, deer_strike: null, parking_lot_backing: null\n  };\n  var G = { MAX_ROUNDS: 5, MIN_CONCESSION_PCT: 0.03, FLOOR_PCT: 0.70, AUTO_MAX: 5000, SPECIALIST_MAX: 25000 };\n  var DAY = 86400000;\n  function ymd(s) { var p = String(s).split('-').map(Number); return Date.UTC(p[0], p[1] - 1, p[2]); }\n  function addYears(s, n) { var p = String(s).split('-').map(Number); return Date.UTC(p[0] + n, p[1] - 1, p[2]); }\n\n  function sol(claim, asOf) {\n    var r = STATE_RULES[claim.state];\n    if (!r) return { known: false, days_left: null, expired: null };\n    var d = Math.round((addYears(claim.loss_date, r.sol_years) - ymd(asOf)) / DAY);\n    return { known: true, days_left: d, expired: d < 0, deadline_ms: addYears(claim.loss_date, r.sol_years) };\n  }\n  function negligence(claim) {\n    var r = STATE_RULES[claim.state] || { doctrine: 'unknown' };\n    var f = Number(claim.insured_fault_pct) || 0;\n    var barred = false, factor = 1 - f / 100;\n    if (r.doctrine === 'contributory') barred = f > 0;\n    else if (r.doctrine === 'modified_51') barred = f >= 51;\n    else if (r.doctrine !== 'pure_comparative') barred = true;\n    if (barred) factor = 0;\n    return { doctrine: r.doctrine, insured_fault_pct: f, barred: barred, factor: factor };\n  }\n  function recallMatch(claim, recalls) {\n    var kw = CAUSE_COMPONENT[claim.loss_cause];\n    if (!kw) return { match: false, reason: 'loss cause not recall-related' };\n    var list = recalls || [];\n    for (var i = 0; i < list.length; i++) {\n      var c = String(list[i].Component || '').toUpperCase();\n      if (c.indexOf(kw) === 0) return { match: true, campaign: list[i].NHTSACampaignNumber, component: c };\n    }\n    return { match: false, reason: 'no recall component matches ' + kw };\n  }\n  function assess(claim, recalls, asOf) {\n    if (claim.data_status && claim.data_status !== 'OK')\n      return { claim_id: claim.claim_id, status: 'NEEDS_DATA', score: 0 };\n    var s = sol(claim, asOf), n = negligence(claim), m = recallMatch(claim, recalls);\n    var gross = Number(claim.paid_amount) + Number(claim.deductible);\n    var base = { claim_id: claim.claim_id, sol: s, negligence: n, recall: m, gross: gross };\n    if (!s.known) return Object.assign(base, { status: 'NEEDS_DATA', score: 0 });\n    if (s.expired) return Object.assign(base, { status: 'CLOSED_SOL_EXPIRED', score: 0 });\n    if (!m.match) return Object.assign(base, { status: 'NO_CASE', score: 0 });\n    if (n.barred) return Object.assign(base, { status: 'BARRED_NEGLIGENCE', score: 0 });\n    var demand = Math.round(gross * n.factor);\n    var pRecovery = 0.9 * n.factor;                       // recall match + liability share\n    var urgency = s.days_left < 30 ? 3 : s.days_left < 90 ? 2 : 1;\n    return Object.assign(base, { status: 'PURSUE', demand: demand, floor: Math.round(demand * G.FLOOR_PCT),\n      p_recovery: Math.round(pRecovery * 100) / 100, urgency: urgency,\n      score: Math.round(pRecovery * demand * urgency) });\n  }\n  function rank(assessed) {\n    return assessed.slice().sort(function (a, b) {\n      return (b.score - a.score) || String(a.claim_id).localeCompare(String(b.claim_id));\n    });\n  }\n  function authorityTier(amount) {\n    return amount <= G.AUTO_MAX ? 'AUTO' : amount <= G.SPECIALIST_MAX ? 'SPECIALIST' : 'MANAGER';\n  }\n  // Guardrail check on a counter proposed by the Negotiator agent. Script decides, not the agent.\n  function checkCounter(st, proposed) {\n    var v = [];\n    if (st.round >= G.MAX_ROUNDS) v.push('MAX_ROUNDS');\n    if (proposed < st.floor) v.push('BELOW_FLOOR');\n    if (proposed > st.last_ask) v.push('ASK_INCREASED');\n    var conc = st.last_ask - proposed;\n    if (conc > 0 && conc < st.last_ask * G.MIN_CONCESSION_PCT && proposed !== st.floor) v.push('CONCESSION_TOO_SMALL');\n    var fixed = Math.min(st.last_ask, Math.max(st.floor, proposed));\n    if (v.indexOf('CONCESSION_TOO_SMALL') >= 0) fixed = Math.max(st.floor, Math.round(st.last_ask * (1 - G.MIN_CONCESSION_PCT)));\n    return { ok: v.length === 0, violations: v, enforced: fixed };\n  }\n  // Accept/settle decision on a carrier offer.\n  function evaluateOffer(st, offer) {\n    var n = Number(offer);\n    if (!isFinite(n) || n <= 0) return { action: 'IGNORE_INVALID' };\n    if (n >= st.last_ask * (1 - G.MIN_CONCESSION_PCT)) return { action: 'ACCEPT', amount: n, tier: authorityTier(n) };\n    if (st.round >= G.MAX_ROUNDS) return n >= st.floor ? { action: 'ACCEPT', amount: n, tier: authorityTier(n) } : { action: 'IMPASSE' };\n    return { action: 'COUNTER' };\n  }\n  return { STATE_RULES: STATE_RULES, CAUSE_COMPONENT: CAUSE_COMPONENT, GUARDRAILS: G, sol: sol,\n    negligence: negligence, recallMatch: recallMatch, assess: assess, rank: rank,\n    authorityTier: authorityTier, checkCounter: checkCounter, evaluateOffer: evaluateOffer };\n})();\n\n\n        const n = $vars.neg; const o = Number($vars.carrierAgent.output.offer);\n        const offer = Math.round(Math.min(isFinite(o) ? o : 0, n.last_ask, n.reservation)); const clamped = offer !== o;\n        const d = RD.evaluateOffer(n, offer);\n        const h = n.history.concat([{ round: n.round, from: \"SIMULATED_CARRIER\", offer, raw_offer: o, clamped, message: $vars.carrierAgent.output.message, decision: d.action }]);\n        let status = \"OPEN\";\n        if (d.action === \"ACCEPT\") status = \"SETTLED\"; else if (d.action === \"IMPASSE\") status = \"IMPASSE\";\n        else if (n.round >= RD.GUARDRAILS.MAX_ROUNDS) status = \"IMPASSE\";\n        return { state: Object.assign({}, n, { history: h, status, last_offer: offer, settled_amount: d.amount || null, tier: d.tier || null }) };"
+      }
+    },
+    {
+      "id": "closed",
+      "type": "core.logic.decision",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 4864,
+          "y": 304
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "closed",
+        "icon": "trending-up-down"
+      },
+      "model": {
+        "type": "bpmn:InclusiveGateway"
+      },
+      "parentId": "duel",
+      "inputs": {
+        "trueLabel": "True",
+        "falseLabel": "False",
+        "expression": "$vars.neg.status !== \"OPEN\""
+      }
+    },
+    {
+      "id": "negCtx",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 5152,
+          "y": 304
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "negCtx",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "properties": {
+            "ask": {
+              "type": "string"
+            },
+            "floor": {
+              "type": "string"
+            },
+            "offer": {
+              "type": "string"
+            },
+            "round": {
+              "type": "string"
+            },
+            "history": {
+              "type": "string"
+            },
+            "rationale": {
+              "type": "string"
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "parentId": "duel",
+      "inputs": {
+        "script": "const n = $vars.neg; return { ask: String(n.last_ask), floor: String(n.floor), offer: String(n.last_offer), round: String(n.round), history: JSON.stringify(n.history), rationale: n.rationale || \"\" };"
+      }
+    },
+    {
+      "id": "negotiator",
+      "type": "uipath.agent.autonomous",
+      "typeVersion": "1.4",
+      "ui": {
+        "position": {
+          "x": 5440,
+          "y": 304
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "negotiator",
+        "icon": "autonomous-agent"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "Agent response",
+          "var": "output",
+          "properties": {
+            "content": {
+              "type": "string",
+              "description": "The agent response text"
+            }
+          },
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "counter": {
+                "type": "number"
+              },
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the node fails",
+          "source": {
+            "type": "literal",
+            "expression": "=Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "parentId": "duel",
+      "inputs": {
+        "source": "b69bd57a-e227-4e46-89ea-46de4d7a74ba",
+        "agentInputVariables": [
+          {
+            "id": "negCtx__output__round",
+            "type": "string",
+            "binding": "=js:$vars.negCtx.output.round"
+          },
+          {
+            "id": "negCtx__output__ask",
+            "type": "string",
+            "binding": "=js:$vars.negCtx.output.ask"
+          },
+          {
+            "id": "negCtx__output__floor",
+            "type": "string",
+            "binding": "=js:$vars.negCtx.output.floor"
+          },
+          {
+            "id": "negCtx__output__offer",
+            "type": "string",
+            "binding": "=js:$vars.negCtx.output.offer"
+          },
+          {
+            "id": "negCtx__output__rationale",
+            "type": "string",
+            "binding": "=js:$vars.negCtx.output.rationale"
+          },
+          {
+            "id": "negCtx__output__history",
+            "type": "string",
+            "binding": "=js:$vars.negCtx.output.history"
+          }
+        ],
+        "agentOutputVariables": [
+          {
+            "id": "counter",
+            "type": "number"
+          },
+          {
+            "id": "message",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "id": "guardCounter",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 5728,
+          "y": 304
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "guardCounter",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "properties": {
+            "state": {
+              "type": "object"
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "parentId": "duel",
+      "inputs": {
+        "script": "// Recovery Duel deterministic rules engine (T9).\n// ES2020, no require/fetch/Intl/Date-locale: safe for UiPath Flow Script nodes.\n// Embedded into Script node bodies by the flow source; also loadable from Node for tests.\n// State law values are ILLUSTRATIVE and UNVERIFIED, not legal advice.\nvar RD = (function () {\n  var STATE_RULES = {\n    CA: { sol_years: 3, doctrine: 'pure_comparative' },\n    NY: { sol_years: 3, doctrine: 'pure_comparative' },\n    TX: { sol_years: 2, doctrine: 'modified_51' },\n    FL: { sol_years: 4, doctrine: 'modified_51' },\n    VA: { sol_years: 5, doctrine: 'contributory' }\n  };\n  var CAUSE_COMPONENT = {\n    brake_failure_rear_end: 'SERVICE BRAKES', engine_stall_fuel_pump: 'FUEL SYSTEM',\n    tire_blowout: 'TIRES', headlight_failure_night_collision: 'EXTERIOR LIGHTING',\n    airbag_nondeploy: 'AIR BAGS', hail_damage: null, deer_strike: null, parking_lot_backing: null\n  };\n  var G = { MAX_ROUNDS: 5, MIN_CONCESSION_PCT: 0.03, FLOOR_PCT: 0.70, AUTO_MAX: 5000, SPECIALIST_MAX: 25000 };\n  var DAY = 86400000;\n  function ymd(s) { var p = String(s).split('-').map(Number); return Date.UTC(p[0], p[1] - 1, p[2]); }\n  function addYears(s, n) { var p = String(s).split('-').map(Number); return Date.UTC(p[0] + n, p[1] - 1, p[2]); }\n\n  function sol(claim, asOf) {\n    var r = STATE_RULES[claim.state];\n    if (!r) return { known: false, days_left: null, expired: null };\n    var d = Math.round((addYears(claim.loss_date, r.sol_years) - ymd(asOf)) / DAY);\n    return { known: true, days_left: d, expired: d < 0, deadline_ms: addYears(claim.loss_date, r.sol_years) };\n  }\n  function negligence(claim) {\n    var r = STATE_RULES[claim.state] || { doctrine: 'unknown' };\n    var f = Number(claim.insured_fault_pct) || 0;\n    var barred = false, factor = 1 - f / 100;\n    if (r.doctrine === 'contributory') barred = f > 0;\n    else if (r.doctrine === 'modified_51') barred = f >= 51;\n    else if (r.doctrine !== 'pure_comparative') barred = true;\n    if (barred) factor = 0;\n    return { doctrine: r.doctrine, insured_fault_pct: f, barred: barred, factor: factor };\n  }\n  function recallMatch(claim, recalls) {\n    var kw = CAUSE_COMPONENT[claim.loss_cause];\n    if (!kw) return { match: false, reason: 'loss cause not recall-related' };\n    var list = recalls || [];\n    for (var i = 0; i < list.length; i++) {\n      var c = String(list[i].Component || '').toUpperCase();\n      if (c.indexOf(kw) === 0) return { match: true, campaign: list[i].NHTSACampaignNumber, component: c };\n    }\n    return { match: false, reason: 'no recall component matches ' + kw };\n  }\n  function assess(claim, recalls, asOf) {\n    if (claim.data_status && claim.data_status !== 'OK')\n      return { claim_id: claim.claim_id, status: 'NEEDS_DATA', score: 0 };\n    var s = sol(claim, asOf), n = negligence(claim), m = recallMatch(claim, recalls);\n    var gross = Number(claim.paid_amount) + Number(claim.deductible);\n    var base = { claim_id: claim.claim_id, sol: s, negligence: n, recall: m, gross: gross };\n    if (!s.known) return Object.assign(base, { status: 'NEEDS_DATA', score: 0 });\n    if (s.expired) return Object.assign(base, { status: 'CLOSED_SOL_EXPIRED', score: 0 });\n    if (!m.match) return Object.assign(base, { status: 'NO_CASE', score: 0 });\n    if (n.barred) return Object.assign(base, { status: 'BARRED_NEGLIGENCE', score: 0 });\n    var demand = Math.round(gross * n.factor);\n    var pRecovery = 0.9 * n.factor;                       // recall match + liability share\n    var urgency = s.days_left < 30 ? 3 : s.days_left < 90 ? 2 : 1;\n    return Object.assign(base, { status: 'PURSUE', demand: demand, floor: Math.round(demand * G.FLOOR_PCT),\n      p_recovery: Math.round(pRecovery * 100) / 100, urgency: urgency,\n      score: Math.round(pRecovery * demand * urgency) });\n  }\n  function rank(assessed) {\n    return assessed.slice().sort(function (a, b) {\n      return (b.score - a.score) || String(a.claim_id).localeCompare(String(b.claim_id));\n    });\n  }\n  function authorityTier(amount) {\n    return amount <= G.AUTO_MAX ? 'AUTO' : amount <= G.SPECIALIST_MAX ? 'SPECIALIST' : 'MANAGER';\n  }\n  // Guardrail check on a counter proposed by the Negotiator agent. Script decides, not the agent.\n  function checkCounter(st, proposed) {\n    var v = [];\n    if (st.round >= G.MAX_ROUNDS) v.push('MAX_ROUNDS');\n    if (proposed < st.floor) v.push('BELOW_FLOOR');\n    if (proposed > st.last_ask) v.push('ASK_INCREASED');\n    var conc = st.last_ask - proposed;\n    if (conc > 0 && conc < st.last_ask * G.MIN_CONCESSION_PCT && proposed !== st.floor) v.push('CONCESSION_TOO_SMALL');\n    var fixed = Math.min(st.last_ask, Math.max(st.floor, proposed));\n    if (v.indexOf('CONCESSION_TOO_SMALL') >= 0) fixed = Math.max(st.floor, Math.round(st.last_ask * (1 - G.MIN_CONCESSION_PCT)));\n    return { ok: v.length === 0, violations: v, enforced: fixed };\n  }\n  // Accept/settle decision on a carrier offer.\n  function evaluateOffer(st, offer) {\n    var n = Number(offer);\n    if (!isFinite(n) || n <= 0) return { action: 'IGNORE_INVALID' };\n    if (n >= st.last_ask * (1 - G.MIN_CONCESSION_PCT)) return { action: 'ACCEPT', amount: n, tier: authorityTier(n) };\n    if (st.round >= G.MAX_ROUNDS) return n >= st.floor ? { action: 'ACCEPT', amount: n, tier: authorityTier(n) } : { action: 'IMPASSE' };\n    return { action: 'COUNTER' };\n  }\n  return { STATE_RULES: STATE_RULES, CAUSE_COMPONENT: CAUSE_COMPONENT, GUARDRAILS: G, sol: sol,\n    negligence: negligence, recallMatch: recallMatch, assess: assess, rank: rank,\n    authorityTier: authorityTier, checkCounter: checkCounter, evaluateOffer: evaluateOffer };\n})();\n\n\n        const n = $vars.neg; const c = RD.checkCounter(n, Number($vars.negotiator.output.counter));\n        const h = n.history.concat([{ round: n.round, from: \"NEGOTIATOR\", proposed: Number($vars.negotiator.output.counter), sent: c.enforced, violations: c.violations, message: $vars.negotiator.output.message }]);\n        return { state: Object.assign({}, n, { last_ask: c.enforced, history: h }) };"
+      }
+    },
+    {
       "id": "end",
       "type": "core.control.end",
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 3424,
+          "x": 6016,
           "y": 144
         },
         "size": {
@@ -1569,6 +2424,16 @@
           },
           "var": "liability"
         },
+        "negotiation": {
+          "type": "object",
+          "description": "",
+          "source": {
+            "type": "jsExpression",
+            "expression": "$vars.neg",
+            "fieldType": "object"
+          },
+          "var": "negotiation"
+        },
         "assessed": {
           "type": "array",
           "description": "",
@@ -1578,6 +2443,16 @@
             "fieldType": "array"
           },
           "var": "assessed"
+        },
+        "neg": {
+          "type": "object",
+          "description": "",
+          "source": {
+            "type": "jsExpression",
+            "expression": "$vars.neg",
+            "fieldType": "object"
+          },
+          "var": "neg"
         }
       }
     }
@@ -1664,11 +2539,88 @@
       "id": "edge_11",
       "sourceNodeId": "liabilityAssessor",
       "sourcePort": "success",
-      "targetNodeId": "end",
+      "targetNodeId": "negInit",
       "targetPort": "input"
     },
     {
       "id": "edge_12",
+      "sourceNodeId": "negInit",
+      "sourcePort": "success",
+      "targetNodeId": "duel",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_13",
+      "sourceNodeId": "duel",
+      "sourcePort": "start",
+      "targetNodeId": "roundCtx",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_14",
+      "sourceNodeId": "roundCtx",
+      "sourcePort": "success",
+      "targetNodeId": "carrierAgent",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_15",
+      "sourceNodeId": "carrierAgent",
+      "sourcePort": "success",
+      "targetNodeId": "judgeOffer",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_16",
+      "sourceNodeId": "judgeOffer",
+      "sourcePort": "success",
+      "targetNodeId": "closed",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_17",
+      "sourceNodeId": "closed",
+      "sourcePort": "true",
+      "targetNodeId": "duel",
+      "targetPort": "break"
+    },
+    {
+      "id": "edge_18",
+      "sourceNodeId": "closed",
+      "sourcePort": "false",
+      "targetNodeId": "negCtx",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_19",
+      "sourceNodeId": "negCtx",
+      "sourcePort": "success",
+      "targetNodeId": "negotiator",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_20",
+      "sourceNodeId": "negotiator",
+      "sourcePort": "success",
+      "targetNodeId": "guardCounter",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_21",
+      "sourceNodeId": "guardCounter",
+      "sourcePort": "success",
+      "targetNodeId": "duel",
+      "targetPort": "continue"
+    },
+    {
+      "id": "edge_22",
+      "sourceNodeId": "duel",
+      "sourcePort": "success",
+      "targetNodeId": "end",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_23",
       "sourceNodeId": "markNeedsData",
       "sourcePort": "success",
       "targetNodeId": "nextClaim",
@@ -3188,6 +4140,309 @@
       }
     },
     {
+      "nodeType": "core.logic.dowhile",
+      "supportsErrorHandling": true,
+      "version": "1.0",
+      "category": "control-flow",
+      "description": "Repeat a sequence of actions while a condition is true",
+      "tags": [
+        "control-flow",
+        "loop",
+        "iteration",
+        "dowhile"
+      ],
+      "sortOrder": 64,
+      "display": {
+        "label": "Do while",
+        "icon": "repeat",
+        "shape": "container",
+        "description": "Run a sequence of actions repeatedly while a condition is true"
+      },
+      "handleConfiguration": [
+        {
+          "position": "left",
+          "boundary": "outer",
+          "handles": [
+            {
+              "id": "input",
+              "type": "target",
+              "handleType": "input"
+            }
+          ]
+        },
+        {
+          "position": "right",
+          "boundary": "outer",
+          "handles": [
+            {
+              "id": "success",
+              "type": "source",
+              "handleType": "output"
+            }
+          ]
+        },
+        {
+          "position": "left",
+          "boundary": "inner",
+          "handles": [
+            {
+              "id": "start",
+              "label": "start",
+              "type": "source",
+              "handleType": "output"
+            }
+          ]
+        },
+        {
+          "position": "right",
+          "boundary": "inner",
+          "handles": [
+            {
+              "id": "continue",
+              "label": "continue",
+              "type": "target",
+              "handleType": "input"
+            },
+            {
+              "id": "break",
+              "label": "break",
+              "type": "target",
+              "handleType": "input",
+              "visible": "inputs.breakEnabled"
+            }
+          ]
+        }
+      ],
+      "model": {
+        "type": "bpmn:SubProcess"
+      },
+      "inputDefinition": {
+        "type": "object",
+        "properties": {
+          "condition": {
+            "type": "string",
+            "minLength": 1,
+            "errorMessage": "Add a condition"
+          },
+          "limit": {
+            "type": "number",
+            "errorMessage": "Set maximum iterations"
+          },
+          "breakEnabled": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "condition"
+        ]
+      },
+      "inputDefaults": {
+        "condition": "",
+        "breakEnabled": false
+      },
+      "outputDefinition": {
+        "error": {
+          "type": "object",
+          "description": "Error information if the node fails",
+          "source": "=Error",
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "form": {
+        "id": "dowhile-properties",
+        "title": "Do while configuration",
+        "sections": [
+          {
+            "id": "iteration",
+            "title": "Iteration",
+            "fields": [
+              {
+                "name": "inputs.condition",
+                "type": "custom",
+                "component": "code-editor",
+                "label": "Condition",
+                "description": "The loop repeats while this condition is true. The condition is checked after each iteration.",
+                "componentProps": {
+                  "singleLine": true,
+                  "mode": "expression",
+                  "toggleable": false,
+                  "placeholder": "$vars.response.hasNextPage === true",
+                  "showVariableButton": true,
+                  "returnType": "boolean",
+                  "validationMode": "expression",
+                  "language": "javascript"
+                }
+              },
+              {
+                "name": "inputs.limit",
+                "type": "number",
+                "label": "Maximum iterations",
+                "description": "The loop stops after this many iterations, even if the condition is still true. A blank field defaults to 10,000."
+              },
+              {
+                "name": "inputs.breakEnabled",
+                "type": "switch",
+                "label": "Show break handle",
+                "description": "Nodes inside the loop can exit through a break handle."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeType": "core.logic.decision",
+      "version": "1.0.0",
+      "category": "control-flow",
+      "tags": [
+        "control-flow",
+        "if",
+        "loop",
+        "switch"
+      ],
+      "sortOrder": 20,
+      "display": {
+        "label": "Decision",
+        "icon": "trending-up-down",
+        "iconBackground": "linear-gradient(225deg, #FAFAFB 0%, #ECEDEF 100%)",
+        "iconBackgroundDark": "linear-gradient(225deg, #526069 0%, rgba(50, 60, 66, 0.6) 100%)"
+      },
+      "handleConfiguration": [
+        {
+          "position": "left",
+          "handles": [
+            {
+              "id": "input",
+              "type": "target",
+              "handleType": "input"
+            }
+          ],
+          "visible": true
+        },
+        {
+          "position": "right",
+          "handles": [
+            {
+              "id": "true",
+              "type": "source",
+              "handleType": "output",
+              "label": "{inputs.trueLabel}",
+              "constraints": {
+                "minConnections": 1
+              }
+            },
+            {
+              "id": "false",
+              "type": "source",
+              "handleType": "output",
+              "label": "{inputs.falseLabel}",
+              "constraints": {
+                "minConnections": 1
+              }
+            }
+          ],
+          "visible": true
+        }
+      ],
+      "model": {
+        "type": "bpmn:InclusiveGateway"
+      },
+      "inputDefinition": {
+        "type": "object",
+        "properties": {
+          "expression": {
+            "type": "string",
+            "minLength": 1,
+            "errorMessage": "A condition expression is required"
+          },
+          "trueLabel": {
+            "type": "string"
+          },
+          "falseLabel": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "expression"
+        ]
+      },
+      "inputDefaults": {
+        "trueLabel": "True",
+        "falseLabel": "False"
+      },
+      "form": {
+        "id": "decision-properties",
+        "title": "Decision configuration",
+        "sections": [
+          {
+            "id": "condition",
+            "title": "Condition",
+            "fields": [
+              {
+                "name": "inputs.expression",
+                "type": "custom",
+                "component": "script-editor",
+                "componentProps": {
+                  "language": "javascript",
+                  "returnType": "boolean",
+                  "minHeight": 100,
+                  "placeholder": "e.g., $vars.data.status === \"approved\" && $vars.data.amount > 1000"
+                },
+                "label": "Expression",
+                "description": "JavaScript expression that evaluates to true or false"
+              },
+              {
+                "name": "inputs.trueLabel",
+                "type": "text",
+                "label": "True branch label",
+                "description": "Label shown when condition is true"
+              },
+              {
+                "name": "inputs.falseLabel",
+                "type": "text",
+                "label": "False branch label",
+                "description": "Label shown when condition is false"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
       "nodeType": "core.control.end",
       "version": "1.0.0",
       "category": "control-flow",
@@ -3244,6 +4499,13 @@
         "triggerNodeId": "start"
       },
       {
+        "id": "counterparty",
+        "name": "counterparty",
+        "direction": "in",
+        "type": "object",
+        "triggerNodeId": "start"
+      },
+      {
         "id": "ranked",
         "name": "ranked",
         "direction": "out",
@@ -3268,11 +4530,24 @@
         "type": "object"
       },
       {
+        "id": "negotiation",
+        "name": "negotiation",
+        "direction": "out",
+        "type": "object"
+      },
+      {
         "id": "assessed",
         "name": "assessed",
         "direction": "inout",
         "type": "array",
         "defaultValue": []
+      },
+      {
+        "id": "neg",
+        "name": "neg",
+        "direction": "inout",
+        "type": "object",
+        "defaultValue": {}
       }
     ],
     "nodes": [
@@ -3867,6 +5142,438 @@
         }
       },
       {
+        "id": "negInit.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "negInit",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "negInit.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "negInit",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "duel.error",
+        "type": "object",
+        "description": "Error information if the node fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "duel",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "roundCtx.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "roundCtx",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "roundCtx.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "roundCtx",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "carrierAgent.output",
+        "type": "object",
+        "description": "Agent response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "offer": {
+              "type": "number"
+            },
+            "message": {
+              "type": "string"
+            },
+            "simulated": {
+              "type": "boolean"
+            }
+          }
+        },
+        "binding": {
+          "nodeId": "carrierAgent",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "carrierAgent.error",
+        "type": "object",
+        "description": "Error information if the node fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "carrierAgent",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "judgeOffer.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "judgeOffer",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "judgeOffer.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "judgeOffer",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "negCtx.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "negCtx",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "negCtx.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "negCtx",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "negotiator.output",
+        "type": "object",
+        "description": "Agent response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "counter": {
+              "type": "number"
+            },
+            "message": {
+              "type": "string"
+            }
+          }
+        },
+        "binding": {
+          "nodeId": "negotiator",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "negotiator.error",
+        "type": "object",
+        "description": "Error information if the node fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "negotiator",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "guardCounter.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "guardCounter",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "guardCounter.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "guardCounter",
+          "outputId": "error"
+        }
+      },
+      {
         "id": "end.ranked",
         "type": "array",
         "description": "",
@@ -3903,12 +5610,30 @@
         }
       },
       {
+        "id": "end.negotiation",
+        "type": "object",
+        "description": "",
+        "binding": {
+          "nodeId": "end",
+          "outputId": "negotiation"
+        }
+      },
+      {
         "id": "end.assessed",
         "type": "array",
         "description": "",
         "binding": {
           "nodeId": "end",
           "outputId": "assessed"
+        }
+      },
+      {
+        "id": "end.neg",
+        "type": "object",
+        "description": "",
+        "binding": {
+          "nodeId": "end",
+          "outputId": "neg"
         }
       }
     ],
@@ -3930,6 +5655,46 @@
             "type": "jsExpression",
             "expression": "$vars.assess.output.list",
             "fieldType": "array"
+          }
+        }
+      ],
+      "negInit": [
+        {
+          "variableId": "neg",
+          "expression": {
+            "type": "jsExpression",
+            "expression": "$vars.negInit.output.state",
+            "fieldType": "object"
+          }
+        }
+      ],
+      "roundCtx": [
+        {
+          "variableId": "neg",
+          "expression": {
+            "type": "jsExpression",
+            "expression": "$vars.roundCtx.output.state",
+            "fieldType": "object"
+          }
+        }
+      ],
+      "judgeOffer": [
+        {
+          "variableId": "neg",
+          "expression": {
+            "type": "jsExpression",
+            "expression": "$vars.judgeOffer.output.state",
+            "fieldType": "object"
+          }
+        }
+      ],
+      "guardCounter": [
+        {
+          "variableId": "neg",
+          "expression": {
+            "type": "jsExpression",
+            "expression": "$vars.guardCounter.output.state",
+            "fieldType": "object"
           }
         }
       ]
