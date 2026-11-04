@@ -19,5 +19,8 @@
 | T17 kill switches + error paths | done | | negotiation kill switch (input + config) PAUSED_KILL_SWITCH debug bfe72eff; agent onError -> NEEDS_REVIEW_AGENT_ERROR (validated, not forced on tenant); regression S01/S02/S11/S15 4/4 |
 | T18 ROI report (HTML fallback) | done | | docs/roi_report.html: recovered $72,791 = refunds $2,890 + net $69,901, reconciles; Slack card deferred to after sign-in |
 | T19 hardening | done | | 3 clean runs: bucket 1015ac55 (ledger 3 -> 4), S01 740f0214, S02 06e8fa26; agent onError verified on tenant 007fde7b (NEEDS_REVIEW_AGENT_ERROR); no flakes |
-| NEXT | T19 hardening (3 clean full runs incl. bucket source); T16 email channel BLOCKED on owner Gmail sign-in (test inbox connection). Unblocked alternative: T17 kill switches + error paths polish |
+| T20 demo script | done (draft) | | docs/DEMO_SCRIPT.md; recording by owner; email shots wait on T16 |
+| T21 README | done | | email row marked planned until T16 |
+| T22 coding-agent section | done (owner review) | | in README |
+| NEXT | T16 email channel BLOCKED on owner Gmail test inbox sign-in; then T23 verify repo signed out, T24 submission draft. Earlier NEXT notes below are superseded | T19 hardening (3 clean full runs incl. bucket source); T16 email channel BLOCKED on owner Gmail sign-in (test inbox connection). Unblocked alternative: T17 kill switches + error paths polish |
 | (old) | T12: tune carrier persona prompt, NO_CASE guard branch, tenant runs for S02 stubborn + S03 lowball (impasse), then HITL approval tiers (T13) and storage-bucket JSON (T7/T8) | | |

@@ -1,43 +1,104 @@
 # Recovery Duel
 
-A Maestro Flow (Maestro Automate) entry for the UiPath "Agents at Work: Maestro Automate Challenge".
-It scans closed auto claims against real NHTSA recall data, builds a subrogation case, and lets an
-insurer's negotiator agent settle with the other carrier inside hard limits enforced by script, with
-human approval by dollar tier.
+A Maestro Flow (Maestro Automate) entry for the UiPath "Agents at Work: The Maestro Automate Challenge".
+By Pravinraj Vincent, UiPath Solutions Engineer.
 
-Status: early build. Offline pieces only (data generator, flow scaffold). Nothing deployed yet.
+All claim data is SYNTHETIC. The other insurance carrier is a SIMULATED agent.
+
+## The problem
+When an insurer pays an auto claim, someone else is often at fault: another driver, or a defective
+part that is under a safety recall. Getting that money back is called subrogation. Industry wide,
+salvage plus subrogation comes to about 4.5% of net claims paid (Bisco and Fier, NAIC Journal of
+Insurance Regulation, 2023), and a lot is missed because adjusters do not have time to dig through
+closed files. Recovery Duel reviews closed claims, finds the ones worth chasing, builds the case,
+negotiates with the other carrier inside hard limits, and books the recovery, with people approving
+the money.
+
+## What it does
+1. Loads closed claims from the trigger input or from an Orchestrator storage bucket (`recovery-duel-data`).
+2. Checks a kill switch and paused states in the bucket config.
+3. For each claim, calls the live NHTSA recalls API (retries, then NEEDS_DATA on failure).
+4. A script rules engine (`rules/rules.js`) checks state filing deadlines, fault rules and recall to cause matching, ranks the claims, and sets the demand and floor.
+5. Two agents, the Evidence Analyst and the Liability Assessor, write the case with cited recall campaigns. They never set dollar amounts.
+6. The duel: our Negotiator agent trades offers with a SIMULATED carrier agent for up to 5 rounds. Every offer is clamped by script, so it cannot go below our floor, and the carrier cannot go above its private limit, which the Negotiator never sees. Carrier messages are tagged `[SIMULATED CARRIER]`.
+7. Approval by amount: auto under the first tier, a specialist form, or a manager form in Action Center. A script escalates approvals older than 24 hours.
+8. Books the result to a ledger in the bucket, including the policyholder's deductible refund, and builds an ROI view.
+
+Error paths: an agent failure routes the claim to NEEDS_REVIEW_AGENT_ERROR instead of failing the run (tested on the tenant, job 007fde7b), a bucket outage falls back to the trigger input, and a ledger write never fails the run.
+
+## Architecture
+```mermaid
+flowchart LR
+  T[Trigger input] --> SRC{source}
+  SRC -->|bucket| L[rdstore function: load claims and config]
+  SRC -->|input| I[Intake + kill switch]
+  L --> I
+  I --> N[Loop: NHTSA recalls API]
+  N --> R[Rules engine script: deadlines, fault, rank, demand, floor]
+  R -->|no case| X[Ledger: no money]
+  R -->|case| E[Evidence Analyst agent]
+  E --> A[Liability Assessor agent]
+  A --> D[Duel loop: Negotiator vs SIMULATED carrier, script clamps]
+  D --> P{Approval tier}
+  P -->|auto| B[Book: refund split]
+  P -->|specialist or manager| H[Action Center form] --> B
+  B --> LG[rdstore function: append ledger in bucket]
+```
 
 ## Real vs simulated
 | Part | Real or simulated |
 |---|---|
-| NHTSA recalls, vPIC VIN decode, NHTSA complaints | REAL public APIs (cached fixtures in `data/fixtures/nhtsa/`) |
-| Maestro Flow, agents, approvals, rules engine | REAL UiPath components (once deployed) |
-| Claims, policyholders, VINs, police reports, weather records | SIMULATED (synthetic, `scripts/gen_data.py`) |
+| NHTSA recalls API, vPIC VIN decode | REAL public APIs (fixtures cached in `data/fixtures/nhtsa/` for tests) |
+| Maestro Flow, agents, Action Center approvals, storage bucket, coded function, rules engine | REAL UiPath components, running on a Community tenant |
+| Claims, policyholders, VINs | SIMULATED (synthetic, `scripts/gen_data.py`, seed 20261104) |
 | Other carrier's negotiating agent | SIMULATED, clearly labelled |
-| Arbitration filing packet | SIMULATED |
-| State law table (SOL, negligence) | ILLUSTRATIVE, UNVERIFIED, not legal advice |
-| NAIC recovery benchmark | CONFIRMED: 4.5% of net claims paid, salvage plus subrogation, whole book (Bisco & Fier, NAIC JIR 2023). Shown as an indicator, not like-for-like |
+| State law table (deadlines, negligence) | ILLUSTRATIVE, not legal advice |
+| NAIC recovery benchmark | CONFIRMED: 4.5% of net claims paid, salvage plus subrogation, whole book. Shown as an indicator, not like for like |
+| Demand letter and refund email to a test inbox | Planned (needs a Gmail test inbox connection) |
 
 No real customer data and no employer data are used.
 
-## Layout
-- `solution/RecoveryDuel/` UiPath solution and Flow project (`uip solution init`, `uip maestro flow init --automate`)
-- `scripts/gen_data.py` deterministic synthetic data generator
-- `data/` generated data + NHTSA fixtures
-- `tests/` unit tests and `run.sh` (offline checks)
-- `agents/` agent definitions (later)
-- `docs/` sources map, rules question draft, tenant check (later)
-- `BUILD_LOG.md` how this was built with a coding agent
+## Results
+- 15 of 15 scenarios pass in tenant debug runs (table below).
+- Hardening (T19): 3 clean full runs, including one reading claims from the bucket that added a ledger entry. No flaky results; only the agent-chosen settle amount varies, and it always stays inside the script limits.
+- ROI on the scenario set (`docs/roi_report.html`): $72,791 recovered, $2,890 back to policyholders, $69,901 net, and it reconciles. This is a hand-picked test set, so its ratio is not comparable to the NAIC figure.
+- Offline tests: `tests/run.sh` (Python and Node unit tests, `uip maestro flow check`, compile and validate).
 
-## Run the offline checks
+## Layout
+- `solution/RecoveryDuel/` UiPath solution and Flow project. The flow source is `.flow-sdk/RecoveryDuel.flow.ts`, compiled to `RecoveryDuel.flow`
+- `functions_src/RdStore/` coded function that reads and writes the bucket
+- `rules/rules.js` rules engine (all dollar math)
+- `scripts/` data generator, scenario harness, bucket sync, ROI report, approval escalation
+- `tests/` unit tests, scenarios, run inputs, `run.sh`
+- `docs/` tenant check, sources, demo script, run traces in `docs/runs/`
+- `BUILD_LOG.md` every step, with the UiPath skill and `uip` commands used
+
+## How to run
 ```
-python3 scripts/gen_data.py      # regenerate data (seed 20261104)
-tests/run.sh                     # unit tests + uip maestro flow validate
+npm install -g @uipath/cli          # UiPath CLI
+uip login                           # your own tenant
+tests/run.sh                        # offline checks
+uip maestro flow debug solution/RecoveryDuel/RecoveryDuel -i @tests/inputs/T15_S01.json
+python3 scripts/harness.py          # all 15 scenarios, completes approval tasks for you
 ```
-Needs Python 3.10+ and the UiPath CLI (`npm install -g @uipath/cli`).
+Bucket source: create a storage bucket, run `scripts/sync_bucket.sh <folder-key> <bucket-key>`, deploy `functions_src/RdStore` as process `rdstore`, then debug with `tests/inputs/T19_BUCKET.json`.
+Needs Python 3.10+, Node 22+ and the UiPath CLI.
+
+## How I built it with a coding agent
+I described the idea and the rules of the challenge, and a coding agent did the build through the
+UiPath CLI (`uip`) and the UiPath skills, not by hand on the canvas. `BUILD_LOG.md` has every step.
+A few rounds that shaped the result:
+
+1. **Plan and tenant check.** The agent read the Maestro Flow, agents and HITL skills, then probed my Community tenant with `uip` before writing anything. It found Data Fabric is not available on Community and approval forms have no timeout. So we moved the data to an Orchestrator storage bucket and wrote a scheduled escalation script instead.
+2. **Rules first, agents second.** It wrote the rules engine with 16 tests before any agent existed, so every dollar comes from script. The agents only explain and negotiate.
+3. **A bug the tests caught.** The first negotiation run let the simulated carrier settle above its own private limit. The agent added a script clamp and a test, and the scenario harness now checks it on every run.
+4. **Platform surprises.** Flow passes an extra `errorHandlingEnabled` argument to published functions, which a closed input schema rejects. The personal workspace allows only one published process, so the function went to a shared folder. `uip maestro flow check` flagged reads of branch-only outputs, fixed with flow variables.
+5. **Testing on the tenant.** A harness runs all 15 scenarios with `uip maestro flow debug` and completes the approval forms with `uip tasks complete`. To prove the agent error path, it ran a scratch copy with a broken model name and confirmed the claim went to review instead of crashing.
+
+What surprised me: how much of Maestro Flow can be driven from the CLI, including debug runs, approvals and deployments, and how the type-checked flow source caught mistakes before anything reached the tenant.
 
 ## Rules assumption (2026-11-04)
-Per the owner's decision, the rules question was NOT posted to the challenge thread. We assume a clearly labelled simulated counterparty, synthetic data and Preview features are allowed in entries.
+The rules question was not posted to the challenge thread. We assume a clearly labelled simulated counterparty, synthetic data and Preview features are allowed.
 
 ## Scenario test results (T15)
 
