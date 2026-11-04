@@ -50,3 +50,13 @@ Built by Grok Bot (coding agent) for Pravinraj Vincent. Times are America/New_Yo
 ## 2026-11-04 02:35 ET | T2 tenant check (skills: uipath-platform, uipath-maestro-flow)
 - Commands: `uip df entities list`, `uip is connectors list`, `uip is connections list`, `uip tasks list`, `uip agent model list`, `uip or folders list`, `uip maestro flow registry search <voice|email received|parallel|subflow|data fabric|context grounding|hitl>`, `registry get quick-form`, `uip maestro flow debug solution/RecoveryDuel/RecoveryDuel` (Completed).
 - Result: docs/TENANT_CHECK.md. Data Fabric NOT provisioned -> T7/T8 blocked. No HITL timeout field. Debug runs work.
+
+## 2026-11-04 02:45 ET | S02 fix
+- Seed change in `scripts/gen_data.py`: S02 stubborn reservation 7000 -> 9000 (was below floor $8,575, so impasse was the correct engine output; the seed was wrong, not the floor). Regenerated data; test now asserts ACCEPT in exactly round 5 at $9,000 >= floor. 16/16 pass.
+
+## 2026-11-04 02:50 ET | T10 Evidence Analyst + Liability Assessor (skills: uipath-agents lowcode/inline-in-flow.md, uipath-maestro-flow references/inline-agent.md)
+- Added `pickTop` script + two `inlineAgent` steps (model anthropic.claude-sonnet-4-6 from `uip agent model list`, temperature 0, typed `returns`) to `.flow-sdk/RecoveryDuel.flow.ts`. Rules engine numbers are authoritative; agents explain, never change amounts.
+- `uip maestro flow check --source` run 1: 2 errors INLINE_AGENT_COMPOSITE_INPUT (JSON.stringify(...) bound as input never reaches the agent). Fix: pickTop emits claimJson/assessmentJson strings; bind plain references. Run 2: 0/0.
+- `uip maestro flow compile` wrote 2 agent.json sidecars; `uip agent validate <uuid> --inline-in-flow` -> Valid x2; `flow validate` -> Valid.
+- Tenant: `uip maestro flow debug solution/RecoveryDuel/RecoveryDuel -i @inputs.json` (3 synthetic claims) -> Completed, job ef089aaa. Both agents resolved inputs (no literal {{input.*}}), cited campaign 21V890000, strength STRONG, agrees_with_rules true. Trace: docs/runs/T10_debug_ef089aaa.json.
+- Known gap: if no PURSUE claim, agents still run on empty input; guard with a branch in T12. Agent prose can include em dashes; demo copy should be post-edited.

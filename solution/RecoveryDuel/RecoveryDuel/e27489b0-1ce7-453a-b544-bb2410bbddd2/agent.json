@@ -1,0 +1,98 @@
+{
+  "version": "1.2.0",
+  "settings": {
+    "model": "anthropic.claude-sonnet-4-6",
+    "maxTokens": 16384,
+    "temperature": 0,
+    "engine": "basic-v2",
+    "maxIterations": 5,
+    "mode": "standard"
+  },
+  "projectId": "e27489b0-1ce7-453a-b544-bb2410bbddd2",
+  "id": "e27489b0-1ce7-453a-b544-bb2410bbddd2",
+  "name": "liabilityAssessor",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "pickTop__output__assessmentJson": {},
+      "evidenceAnalyst__output__evidence_summary": {
+        "type": "string"
+      },
+      "evidenceAnalyst__output__strength": {
+        "type": "string"
+      }
+    }
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "liable_party": {
+        "type": "string"
+      },
+      "rationale": {
+        "type": "string"
+      },
+      "agrees_with_rules": {
+        "type": "boolean"
+      },
+      "risks": {
+        "type": "array"
+      }
+    },
+    "required": [
+      "liable_party",
+      "rationale",
+      "agrees_with_rules",
+      "risks"
+    ]
+  },
+  "metadata": {
+    "storageVersion": "50.0.0",
+    "isConversational": false,
+    "showProjectCreationExperience": false
+  },
+  "type": "lowCode",
+  "guardrails": [],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are the Liability Assessor for an auto insurance subrogation team. All data is SYNTHETIC demo data. A deterministic rules engine has already computed the statute-of-limitations deadline, the state negligence rule, the recoverable demand and the floor. You must not change those numbers. Your job is to explain, in plain language, who is liable and why, using the evidence memo. Return a result conforming to the output schema. liable_party: the party the recovery is pursued against (for example the vehicle manufacturer or the other driver's carrier). rationale: 3 to 5 plain sentences. agrees_with_rules: true if the evidence supports pursuing at the rules engine demand, else false. risks: arguments the other side is likely to raise.",
+      "contentTokens": [
+        {
+          "type": "simpleText",
+          "rawString": "You are the Liability Assessor for an auto insurance subrogation team. All data is SYNTHETIC demo data. A deterministic rules engine has already computed the statute-of-limitations deadline, the state negligence rule, the recoverable demand and the floor. You must not change those numbers. Your job is to explain, in plain language, who is liable and why, using the evidence memo. Return a result conforming to the output schema. liable_party: the party the recovery is pursued against (for example the vehicle manufacturer or the other driver's carrier). rationale: 3 to 5 plain sentences. agrees_with_rules: true if the evidence supports pursuing at the rules engine demand, else false. risks: arguments the other side is likely to raise."
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Rules engine assessment (authoritative numbers): {{input.pickTop__output__assessmentJson}}\nEvidence memo: {{input.evidenceAnalyst__output__evidence_summary}}\nEvidence strength: {{input.evidenceAnalyst__output__strength}}",
+      "contentTokens": [
+        {
+          "type": "simpleText",
+          "rawString": "Rules engine assessment (authoritative numbers): "
+        },
+        {
+          "type": "variable",
+          "rawString": "input.pickTop__output__assessmentJson"
+        },
+        {
+          "type": "simpleText",
+          "rawString": "\nEvidence memo: "
+        },
+        {
+          "type": "variable",
+          "rawString": "input.evidenceAnalyst__output__evidence_summary"
+        },
+        {
+          "type": "simpleText",
+          "rawString": "\nEvidence strength: "
+        },
+        {
+          "type": "variable",
+          "rawString": "input.evidenceAnalyst__output__strength"
+        }
+      ]
+    }
+  ]
+}

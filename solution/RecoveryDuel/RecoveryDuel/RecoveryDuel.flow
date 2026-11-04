@@ -1138,12 +1138,380 @@
       }
     },
     {
+      "id": "pickTop",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 2560,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "pickTop",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "properties": {
+            "found": {
+              "type": "boolean"
+            },
+            "assessment": {
+              "type": "object"
+            },
+            "claim": {
+              "type": "object"
+            },
+            "claimJson": {
+              "type": "string"
+            },
+            "assessmentJson": {
+              "type": "string"
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "inputs": {
+        "script": "const top = ($vars.rank.output.ranked || []).find(a => a.status === \"PURSUE\") || null;\n      const c = top ? ($vars.start.output.claims || []).find(x => x.claim_id === top.claim_id) || {} : {};\n      return { found: !!top, assessment: top || {}, claim: c, claimJson: JSON.stringify(c), assessmentJson: JSON.stringify(top || {}) };"
+      }
+    },
+    {
+      "id": "evidenceAnalyst",
+      "type": "uipath.agent.autonomous",
+      "typeVersion": "1.4",
+      "ui": {
+        "position": {
+          "x": 2848,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "evidenceAnalyst",
+        "icon": "autonomous-agent"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "Agent response",
+          "var": "output",
+          "properties": {
+            "content": {
+              "type": "string",
+              "description": "The agent response text"
+            }
+          },
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "evidence_summary": {
+                "type": "string"
+              },
+              "cited_campaigns": {
+                "type": "array"
+              },
+              "strength": {
+                "type": "string"
+              },
+              "gaps": {
+                "type": "array"
+              }
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the node fails",
+          "source": {
+            "type": "literal",
+            "expression": "=Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "inputs": {
+        "source": "98a90619-a8e5-46d7-b255-7a19ed8d220b",
+        "agentInputVariables": [
+          {
+            "id": "pickTop__output__claimJson",
+            "type": "string",
+            "binding": "=js:$vars.pickTop.output.claimJson"
+          },
+          {
+            "id": "pickTop__output__assessmentJson",
+            "type": "string",
+            "binding": "=js:$vars.pickTop.output.assessmentJson"
+          }
+        ],
+        "agentOutputVariables": [
+          {
+            "id": "evidence_summary",
+            "type": "string"
+          },
+          {
+            "id": "cited_campaigns",
+            "type": "array"
+          },
+          {
+            "id": "strength",
+            "type": "string"
+          },
+          {
+            "id": "gaps",
+            "type": "array"
+          }
+        ]
+      }
+    },
+    {
+      "id": "liabilityAssessor",
+      "type": "uipath.agent.autonomous",
+      "typeVersion": "1.4",
+      "ui": {
+        "position": {
+          "x": 3136,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "liabilityAssessor",
+        "icon": "autonomous-agent"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "Agent response",
+          "var": "output",
+          "properties": {
+            "content": {
+              "type": "string",
+              "description": "The agent response text"
+            }
+          },
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "liable_party": {
+                "type": "string"
+              },
+              "rationale": {
+                "type": "string"
+              },
+              "agrees_with_rules": {
+                "type": "boolean"
+              },
+              "risks": {
+                "type": "array"
+              }
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the node fails",
+          "source": {
+            "type": "literal",
+            "expression": "=Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "inputs": {
+        "source": "e27489b0-1ce7-453a-b544-bb2410bbddd2",
+        "agentInputVariables": [
+          {
+            "id": "pickTop__output__assessmentJson",
+            "type": "string",
+            "binding": "=js:$vars.pickTop.output.assessmentJson"
+          },
+          {
+            "id": "evidenceAnalyst__output__evidence_summary",
+            "type": "string",
+            "binding": "=js:$vars.evidenceAnalyst.output.evidence_summary"
+          },
+          {
+            "id": "evidenceAnalyst__output__strength",
+            "type": "string",
+            "binding": "=js:$vars.evidenceAnalyst.output.strength"
+          }
+        ],
+        "agentOutputVariables": [
+          {
+            "id": "liable_party",
+            "type": "string"
+          },
+          {
+            "id": "rationale",
+            "type": "string"
+          },
+          {
+            "id": "agrees_with_rules",
+            "type": "boolean"
+          },
+          {
+            "id": "risks",
+            "type": "array"
+          }
+        ]
+      }
+    },
+    {
       "id": "end",
       "type": "core.control.end",
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 2560,
+          "x": 3424,
           "y": 144
         },
         "size": {
@@ -1180,6 +1548,26 @@
             "fieldType": "object"
           },
           "var": "summary"
+        },
+        "evidence": {
+          "type": "object",
+          "description": "",
+          "source": {
+            "type": "jsExpression",
+            "expression": "$vars.evidenceAnalyst.output",
+            "fieldType": "object"
+          },
+          "var": "evidence"
+        },
+        "liability": {
+          "type": "object",
+          "description": "",
+          "source": {
+            "type": "jsExpression",
+            "expression": "$vars.liabilityAssessor.output",
+            "fieldType": "object"
+          },
+          "var": "liability"
         },
         "assessed": {
           "type": "array",
@@ -1255,11 +1643,32 @@
       "id": "edge_8",
       "sourceNodeId": "rank",
       "sourcePort": "success",
-      "targetNodeId": "end",
+      "targetNodeId": "pickTop",
       "targetPort": "input"
     },
     {
       "id": "edge_9",
+      "sourceNodeId": "pickTop",
+      "sourcePort": "success",
+      "targetNodeId": "evidenceAnalyst",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_10",
+      "sourceNodeId": "evidenceAnalyst",
+      "sourcePort": "success",
+      "targetNodeId": "liabilityAssessor",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_11",
+      "sourceNodeId": "liabilityAssessor",
+      "sourcePort": "success",
+      "targetNodeId": "end",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_12",
       "sourceNodeId": "markNeedsData",
       "sourcePort": "success",
       "targetNodeId": "nextClaim",
@@ -2371,6 +2780,414 @@
       }
     },
     {
+      "nodeType": "uipath.agent.autonomous",
+      "version": "1.4",
+      "category": "agent",
+      "description": "AI agent that completes tasks autonomously",
+      "tags": [
+        "agentic",
+        "ai",
+        "autonomous",
+        "agent"
+      ],
+      "sortOrder": 5,
+      "supportsErrorHandling": true,
+      "display": {
+        "label": "Autonomous agent",
+        "icon": "autonomous-agent",
+        "shape": "rectangle"
+      },
+      "handleConfiguration": [
+        {
+          "position": "top",
+          "handles": [
+            {
+              "id": "escalation",
+              "type": "source",
+              "handleType": "artifact",
+              "label": "Escalations",
+              "showButton": true,
+              "constraints": {
+                "allowedTargets": [
+                  {
+                    "nodeType": "uipath.agent.resource.escalation"
+                  },
+                  {
+                    "nodeType": "uipath.agent.resource.escalation.*"
+                  }
+                ],
+                "validationMessage": "Only Agent Escalation nodes can connect here",
+                "addNodePanel": {
+                  "searchScope": "deep",
+                  "searchProviders": []
+                }
+              }
+            }
+          ]
+        },
+        {
+          "position": "bottom",
+          "handles": [
+            {
+              "id": "context",
+              "type": "source",
+              "handleType": "artifact",
+              "label": "Context",
+              "showButton": true,
+              "constraints": {
+                "allowedTargets": [
+                  {
+                    "nodeType": "uipath.agent.resource.context.*"
+                  }
+                ],
+                "validationMessage": "Only Context resource nodes can connect here",
+                "addNodePanel": {
+                  "searchScope": "deep",
+                  "searchProviders": [],
+                  "refreshOnFocus": "context",
+                  "createNewActions": [
+                    {
+                      "label": "Create new Context",
+                      "icon": "external-link",
+                      "description": "Opens in a new tab",
+                      "urlTemplate": "/{org}/agents_/indexes/add",
+                      "categoryId": "agent"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "tool",
+              "type": "source",
+              "handleType": "artifact",
+              "label": "Tools",
+              "showButton": true,
+              "constraints": {
+                "allowedTargets": [
+                  {
+                    "nodeType": "uipath.agent.resource.tool.*"
+                  }
+                ],
+                "validationMessage": "Only Tool resource nodes can connect here",
+                "addNodePanel": {
+                  "searchScope": "deep",
+                  "searchProviders": [],
+                  "refreshOnFocus": "mcp",
+                  "createNewActions": [
+                    {
+                      "label": "Create new MCP server",
+                      "icon": "plus",
+                      "urlTemplate": "/{org}/{tenant}/orchestrator_/mcp",
+                      "categoryId": "agent.tool.mcp"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "position": "left",
+          "handles": [
+            {
+              "id": "input",
+              "type": "target",
+              "handleType": "input"
+            }
+          ]
+        },
+        {
+          "position": "right",
+          "handles": [
+            {
+              "id": "success",
+              "type": "source",
+              "handleType": "output",
+              "isDefaultForType": true
+            },
+            {
+              "id": "error",
+              "label": "Error",
+              "type": "source",
+              "handleType": "output",
+              "visible": "{inputs.errorHandlingEnabled}",
+              "constraints": {
+                "maxConnections": 1
+              }
+            }
+          ]
+        }
+      ],
+      "form": {
+        "id": "settings-form",
+        "title": "Agent settings",
+        "mode": "onChange",
+        "reValidateMode": "onChange",
+        "sections": [
+          {
+            "id": "section-1",
+            "title": "Agent settings",
+            "collapsible": true,
+            "defaultExpanded": true,
+            "fields": [
+              {
+                "name": "inputs.mode",
+                "type": "custom",
+                "component": "agent-harness-picker",
+                "label": ""
+              },
+              {
+                "name": "inputs.model",
+                "type": "custom",
+                "component": "agent-model-picker",
+                "label": "Model",
+                "componentProps": {
+                  "placeholder": "gpt-4o-2024-11-20"
+                }
+              },
+              {
+                "name": "inputs.systemPrompt",
+                "type": "custom",
+                "component": "prompt-editor",
+                "label": "System prompt",
+                "componentProps": {
+                  "multiline": true,
+                  "minRows": 4,
+                  "maxRows": 20,
+                  "placeholder": "Enter the system prompt"
+                }
+              },
+              {
+                "name": "inputs.userPrompt",
+                "type": "custom",
+                "component": "prompt-editor",
+                "label": "User prompt",
+                "componentProps": {
+                  "multiline": true,
+                  "minRows": 3,
+                  "maxRows": 15,
+                  "placeholder": "Enter the user prompt"
+                }
+              }
+            ]
+          },
+          {
+            "id": "section-advanced",
+            "title": "Advanced settings",
+            "collapsible": true,
+            "defaultExpanded": false,
+            "fields": [
+              {
+                "name": "inputs.temperature",
+                "type": "slider",
+                "label": "Temperature",
+                "defaultValue": 0,
+                "min": 0,
+                "max": 1,
+                "step": 0.01
+              },
+              {
+                "name": "inputs.maxTokenPerResponse",
+                "type": "slider",
+                "label": "Maximum tokens per response",
+                "defaultValue": 16384,
+                "min": 0,
+                "step": 1,
+                "maxRef": {
+                  "fromField": "inputs.modelMaxTokens",
+                  "fallback": 16384
+                }
+              },
+              {
+                "name": "inputs.maxIterations",
+                "type": "slider",
+                "label": "Maximum iterations",
+                "defaultValue": 25,
+                "min": 1,
+                "max": 100,
+                "step": 1
+              }
+            ]
+          },
+          {
+            "id": "guardrails",
+            "collapsible": false,
+            "fields": [
+              {
+                "name": "inputs.guardrails",
+                "type": "custom",
+                "component": "guardrails-editor",
+                "label": "",
+                "componentProps": {
+                  "toolName": "Agent",
+                  "scope": "Agent"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "inputDefinition": {
+        "type": "object",
+        "properties": {
+          "systemPrompt": {
+            "type": "string",
+            "minLength": 1,
+            "errorMessage": {
+              "minLength": "System prompt is required"
+            }
+          },
+          "userPrompt": {
+            "type": "string",
+            "minLength": 1,
+            "errorMessage": {
+              "minLength": "User prompt is required"
+            }
+          },
+          "model": {
+            "type": "string",
+            "minLength": 1,
+            "errorMessage": {
+              "minLength": "Model is required"
+            }
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "standard",
+              "advanced"
+            ]
+          },
+          "temperature": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "maxTokenPerResponse": {
+            "type": "number",
+            "minimum": 0
+          },
+          "modelMaxTokens": {
+            "type": "number",
+            "minimum": 0
+          },
+          "maxIterations": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "guardrails": {
+            "type": "array"
+          },
+          "agentInputVariables": {
+            "type": "array"
+          },
+          "agentOutputVariables": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "systemPrompt",
+          "userPrompt",
+          "model"
+        ]
+      },
+      "inputDefaults": {
+        "systemPrompt": "You are an agentic assistant.",
+        "userPrompt": "What is the current date?",
+        "model": "gpt-4o-2024-11-20",
+        "mode": "standard",
+        "agentInputVariables": [],
+        "agentOutputVariables": [
+          {
+            "id": "content",
+            "type": "string"
+          }
+        ]
+      },
+      "outputDefinition": {
+        "output": {
+          "type": "object",
+          "description": "Agent response",
+          "var": "output",
+          "properties": {
+            "content": {
+              "type": "string",
+              "description": "The agent response text"
+            }
+          },
+          "source": "=result.response"
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the node fails",
+          "source": "=Error",
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "model": {
+        "source": true,
+        "type": "bpmn:ServiceTask",
+        "serviceType": "Orchestrator.StartInlineAgentJob",
+        "version": "v2",
+        "context": [
+          {
+            "name": "_label",
+            "type": "string",
+            "value": ""
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "value": ""
+          },
+          {
+            "name": "entryPoint",
+            "type": "string",
+            "value": ""
+          }
+        ]
+      },
+      "debug": {
+        "runtime": "bpmnEngine"
+      }
+    },
+    {
       "nodeType": "core.control.end",
       "version": "1.0.0",
       "category": "control-flow",
@@ -2435,6 +3252,18 @@
       {
         "id": "summary",
         "name": "summary",
+        "direction": "out",
+        "type": "object"
+      },
+      {
+        "id": "evidence",
+        "name": "evidence",
+        "direction": "out",
+        "type": "object"
+      },
+      {
+        "id": "liability",
+        "name": "liability",
         "direction": "out",
         "type": "object"
       },
@@ -2848,6 +3677,196 @@
         }
       },
       {
+        "id": "pickTop.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "pickTop",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "pickTop.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "pickTop",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "evidenceAnalyst.output",
+        "type": "object",
+        "description": "Agent response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "evidence_summary": {
+              "type": "string"
+            },
+            "cited_campaigns": {
+              "type": "array"
+            },
+            "strength": {
+              "type": "string"
+            },
+            "gaps": {
+              "type": "array"
+            }
+          }
+        },
+        "binding": {
+          "nodeId": "evidenceAnalyst",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "evidenceAnalyst.error",
+        "type": "object",
+        "description": "Error information if the node fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "evidenceAnalyst",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "liabilityAssessor.output",
+        "type": "object",
+        "description": "Agent response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "liable_party": {
+              "type": "string"
+            },
+            "rationale": {
+              "type": "string"
+            },
+            "agrees_with_rules": {
+              "type": "boolean"
+            },
+            "risks": {
+              "type": "array"
+            }
+          }
+        },
+        "binding": {
+          "nodeId": "liabilityAssessor",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "liabilityAssessor.error",
+        "type": "object",
+        "description": "Error information if the node fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "liabilityAssessor",
+          "outputId": "error"
+        }
+      },
+      {
         "id": "end.ranked",
         "type": "array",
         "description": "",
@@ -2863,6 +3882,24 @@
         "binding": {
           "nodeId": "end",
           "outputId": "summary"
+        }
+      },
+      {
+        "id": "end.evidence",
+        "type": "object",
+        "description": "",
+        "binding": {
+          "nodeId": "end",
+          "outputId": "evidence"
+        }
+      },
+      {
+        "id": "end.liability",
+        "type": "object",
+        "description": "",
+        "binding": {
+          "nodeId": "end",
+          "outputId": "liability"
         }
       },
       {

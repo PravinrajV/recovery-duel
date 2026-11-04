@@ -147,7 +147,7 @@ def seed_scenarios(rng, recalls):
 
     recent = (AS_OF - timedelta(days=200)).isoformat()
     add(1, "Clear recall match, cooperative carrier, settles round 2", "cooperative", 9000, paid_amount=9800, insured_fault_pct=0, loss_date=recent)
-    add(2, "Stubborn carrier, settles at floor round 5", "stubborn", 7000, paid_amount=12000, insured_fault_pct=0, loss_date=recent)
+    add(2, "Stubborn carrier, settles at floor round 5", "stubborn", 9000, paid_amount=12000, insured_fault_pct=0, loss_date=recent)
     add(3, "Lowball below floor every round -> impasse -> arbitration packet", "lowball", 1500, paid_amount=16000, insured_fault_pct=0, loss_date=recent)
     add(4, "Counter above T1 authority -> specialist escalation", "cooperative", 14000, paid_amount=14200, insured_fault_pct=0, loss_date=recent)
     add(5, "Above T2 -> manager, timeout -> auto-escalate", "stubborn", 30000, paid_amount=38000, insured_fault_pct=0, loss_date=recent)

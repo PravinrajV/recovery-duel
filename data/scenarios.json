@@ -15,7 +15,7 @@
    "claim_id": "CLM-00002",
    "description": "Stubborn carrier, settles at floor round 5",
    "counterparty_persona": "stubborn",
-   "reservation_price": 7000,
+   "reservation_price": 9000,
    "simulated": true
   },
   {

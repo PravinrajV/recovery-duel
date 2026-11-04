@@ -47,8 +47,9 @@ test('S01 cooperative settles; DEMO hero CLM-00017 near $11,050 in <=5 rounds', 
   assert.ok(h.rounds <= 5); console.log('hero', h);
 });
 test('S02 stubborn settles at or above floor', () => {
-  const a = A('CLM-00002'), r = duel(a, 'stubborn', 7000);
-  if (r.action === 'ACCEPT') assert.ok(r.amount >= a.floor); else assert.equal(r.action, 'IMPASSE');
+  const sc = JSON.parse(fs.readFileSync('data/scenarios.json', 'utf8')).scenarios.find(s => s.id === 'S02');
+  const a = A('CLM-00002'), r = duel(a, 'stubborn', sc.reservation_price);
+  assert.equal(r.action, 'ACCEPT'); assert.equal(r.rounds, 5); assert.ok(r.amount >= a.floor);
   console.log('S02', a.demand, a.floor, r);
 });
 test('S03 lowball -> IMPASSE', () => assert.equal(duel(A('CLM-00003'), 'lowball', 1500).action, 'IMPASSE'));

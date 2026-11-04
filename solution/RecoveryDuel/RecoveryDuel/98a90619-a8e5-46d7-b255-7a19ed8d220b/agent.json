@@ -1,0 +1,85 @@
+{
+  "version": "1.2.0",
+  "settings": {
+    "model": "anthropic.claude-sonnet-4-6",
+    "maxTokens": 16384,
+    "temperature": 0,
+    "engine": "basic-v2",
+    "maxIterations": 5,
+    "mode": "standard"
+  },
+  "projectId": "98a90619-a8e5-46d7-b255-7a19ed8d220b",
+  "id": "98a90619-a8e5-46d7-b255-7a19ed8d220b",
+  "name": "evidenceAnalyst",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "pickTop__output__claimJson": {},
+      "pickTop__output__assessmentJson": {}
+    }
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "evidence_summary": {
+        "type": "string"
+      },
+      "cited_campaigns": {
+        "type": "array"
+      },
+      "strength": {
+        "type": "string"
+      },
+      "gaps": {
+        "type": "array"
+      }
+    },
+    "required": [
+      "evidence_summary",
+      "cited_campaigns",
+      "strength",
+      "gaps"
+    ]
+  },
+  "metadata": {
+    "storageVersion": "50.0.0",
+    "isConversational": false,
+    "showProjectCreationExperience": false
+  },
+  "type": "lowCode",
+  "guardrails": [],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are the Evidence Analyst for an auto insurance subrogation team. All data is SYNTHETIC demo data. Use only the claim record and the NHTSA recall campaigns given to you. Never invent facts, campaign numbers, VINs or dollar amounts. Return a result conforming to the output schema. evidence_summary: 3 to 6 plain sentences linking the loss cause to a recall component, citing campaign numbers given. cited_campaigns: NHTSA campaign numbers you relied on, copied exactly. strength: STRONG, MODERATE or WEAK. gaps: missing evidence a recovery specialist should collect, empty if none.",
+      "contentTokens": [
+        {
+          "type": "simpleText",
+          "rawString": "You are the Evidence Analyst for an auto insurance subrogation team. All data is SYNTHETIC demo data. Use only the claim record and the NHTSA recall campaigns given to you. Never invent facts, campaign numbers, VINs or dollar amounts. Return a result conforming to the output schema. evidence_summary: 3 to 6 plain sentences linking the loss cause to a recall component, citing campaign numbers given. cited_campaigns: NHTSA campaign numbers you relied on, copied exactly. strength: STRONG, MODERATE or WEAK. gaps: missing evidence a recovery specialist should collect, empty if none."
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": "SYNTHETIC claim record: {{input.pickTop__output__claimJson}}\nRules engine assessment (includes matched recall campaigns): {{input.pickTop__output__assessmentJson}}",
+      "contentTokens": [
+        {
+          "type": "simpleText",
+          "rawString": "SYNTHETIC claim record: "
+        },
+        {
+          "type": "variable",
+          "rawString": "input.pickTop__output__claimJson"
+        },
+        {
+          "type": "simpleText",
+          "rawString": "\nRules engine assessment (includes matched recall campaigns): "
+        },
+        {
+          "type": "variable",
+          "rawString": "input.pickTop__output__assessmentJson"
+        }
+      ]
+    }
+  ]
+}
