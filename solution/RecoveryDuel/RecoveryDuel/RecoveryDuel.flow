@@ -1357,6 +1357,16 @@
             "fieldType": "object"
           },
           "var": "neg"
+        },
+        "approval": {
+          "type": "object",
+          "description": "",
+          "source": {
+            "type": "jsExpression",
+            "expression": "$vars.approval",
+            "fieldType": "object"
+          },
+          "var": "approval"
         }
       }
     },
@@ -2485,12 +2495,984 @@
       }
     },
     {
-      "id": "stylePass",
+      "id": "approvalCtx",
       "type": "core.action.script",
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
           "x": 6592,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "approvalCtx",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "properties": {
+            "route": {
+              "type": "string"
+            },
+            "claimId": {
+              "type": "string"
+            },
+            "amount": {
+              "type": "number"
+            },
+            "floor": {
+              "type": "number"
+            },
+            "summary": {
+              "type": "string"
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "inputs": {
+        "script": "const n = $vars.neg; const settled = n.status === \"SETTLED\";\n      const h = (n.history || []).map(x => \"R\" + x.round + \" \" + x.from + \": \" + (x.offer != null ? x.offer : x.sent)).join(\"; \");\n      return { route: settled ? (n.tier || \"MANAGER\") : \"NONE\", claimId: n.claim_id || \"\", amount: Number(n.settled_amount) || 0, floor: Number(n.floor) || 0,\n        summary: \"SIMULATED counterparty. \" + n.status + \" after \" + n.round + \" rounds. \" + h };"
+      }
+    },
+    {
+      "id": "approvalTier",
+      "type": "core.logic.switch",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 6880,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "approvalTier",
+        "icon": "between-horizontal-start"
+      },
+      "model": {
+        "type": "bpmn:ExclusiveGateway"
+      },
+      "inputs": {
+        "cases": [
+          {
+            "id": "case_1",
+            "label": "Up to $5k, at or above floor",
+            "expression": "$vars.approvalCtx.output.route === \"AUTO\""
+          },
+          {
+            "id": "case_2",
+            "label": "Up to $25k",
+            "expression": "$vars.approvalCtx.output.route === \"SPECIALIST\""
+          },
+          {
+            "id": "case_3",
+            "label": "Above $25k",
+            "expression": "$vars.approvalCtx.output.route === \"MANAGER\""
+          }
+        ],
+        "hasDefault": true
+      }
+    },
+    {
+      "id": "autoApprove",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 7168,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "autoApprove",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "properties": {
+            "decision": {
+              "type": "string"
+            },
+            "by": {
+              "type": "string"
+            },
+            "note": {
+              "type": "string"
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "inputs": {
+        "script": "// Recovery Duel deterministic rules engine (T9).\n// ES2020, no require/fetch/Intl/Date-locale: safe for UiPath Flow Script nodes.\n// Embedded into Script node bodies by the flow source; also loadable from Node for tests.\n// State law values are ILLUSTRATIVE and UNVERIFIED, not legal advice.\nvar RD = (function () {\n  var STATE_RULES = {\n    CA: { sol_years: 3, doctrine: 'pure_comparative' },\n    NY: { sol_years: 3, doctrine: 'pure_comparative' },\n    TX: { sol_years: 2, doctrine: 'modified_51' },\n    FL: { sol_years: 4, doctrine: 'modified_51' },\n    VA: { sol_years: 5, doctrine: 'contributory' }\n  };\n  var CAUSE_COMPONENT = {\n    brake_failure_rear_end: 'SERVICE BRAKES', engine_stall_fuel_pump: 'FUEL SYSTEM',\n    tire_blowout: 'TIRES', headlight_failure_night_collision: 'EXTERIOR LIGHTING',\n    airbag_nondeploy: 'AIR BAGS', hail_damage: null, deer_strike: null, parking_lot_backing: null\n  };\n  var G = { MAX_ROUNDS: 5, MIN_CONCESSION_PCT: 0.03, FLOOR_PCT: 0.70, AUTO_MAX: 5000, SPECIALIST_MAX: 25000 };\n  var DAY = 86400000;\n  function ymd(s) { var p = String(s).split('-').map(Number); return Date.UTC(p[0], p[1] - 1, p[2]); }\n  function addYears(s, n) { var p = String(s).split('-').map(Number); return Date.UTC(p[0] + n, p[1] - 1, p[2]); }\n\n  function sol(claim, asOf) {\n    var r = STATE_RULES[claim.state];\n    if (!r) return { known: false, days_left: null, expired: null };\n    var d = Math.round((addYears(claim.loss_date, r.sol_years) - ymd(asOf)) / DAY);\n    return { known: true, days_left: d, expired: d < 0, deadline_ms: addYears(claim.loss_date, r.sol_years) };\n  }\n  function negligence(claim) {\n    var r = STATE_RULES[claim.state] || { doctrine: 'unknown' };\n    var f = Number(claim.insured_fault_pct) || 0;\n    var barred = false, factor = 1 - f / 100;\n    if (r.doctrine === 'contributory') barred = f > 0;\n    else if (r.doctrine === 'modified_51') barred = f >= 51;\n    else if (r.doctrine !== 'pure_comparative') barred = true;\n    if (barred) factor = 0;\n    return { doctrine: r.doctrine, insured_fault_pct: f, barred: barred, factor: factor };\n  }\n  function recallMatch(claim, recalls) {\n    var kw = CAUSE_COMPONENT[claim.loss_cause];\n    if (!kw) return { match: false, reason: 'loss cause not recall-related' };\n    var list = recalls || [];\n    for (var i = 0; i < list.length; i++) {\n      var c = String(list[i].Component || '').toUpperCase();\n      if (c.indexOf(kw) === 0) return { match: true, campaign: list[i].NHTSACampaignNumber, component: c };\n    }\n    return { match: false, reason: 'no recall component matches ' + kw };\n  }\n  function assess(claim, recalls, asOf) {\n    if (claim.data_status && claim.data_status !== 'OK')\n      return { claim_id: claim.claim_id, status: 'NEEDS_DATA', score: 0 };\n    var s = sol(claim, asOf), n = negligence(claim), m = recallMatch(claim, recalls);\n    var gross = Number(claim.paid_amount) + Number(claim.deductible);\n    var base = { claim_id: claim.claim_id, sol: s, negligence: n, recall: m, gross: gross };\n    if (!s.known) return Object.assign(base, { status: 'NEEDS_DATA', score: 0 });\n    if (s.expired) return Object.assign(base, { status: 'CLOSED_SOL_EXPIRED', score: 0 });\n    if (!m.match) return Object.assign(base, { status: 'NO_CASE', score: 0 });\n    if (n.barred) return Object.assign(base, { status: 'BARRED_NEGLIGENCE', score: 0 });\n    var demand = Math.round(gross * n.factor);\n    var pRecovery = 0.9 * n.factor;                       // recall match + liability share\n    var urgency = s.days_left < 30 ? 3 : s.days_left < 90 ? 2 : 1;\n    return Object.assign(base, { status: 'PURSUE', demand: demand, floor: Math.round(demand * G.FLOOR_PCT),\n      p_recovery: Math.round(pRecovery * 100) / 100, urgency: urgency,\n      score: Math.round(pRecovery * demand * urgency) });\n  }\n  function rank(assessed) {\n    return assessed.slice().sort(function (a, b) {\n      return (b.score - a.score) || String(a.claim_id).localeCompare(String(b.claim_id));\n    });\n  }\n  function authorityTier(amount) {\n    return amount <= G.AUTO_MAX ? 'AUTO' : amount <= G.SPECIALIST_MAX ? 'SPECIALIST' : 'MANAGER';\n  }\n  // Guardrail check on a counter proposed by the Negotiator agent. Script decides, not the agent.\n  function checkCounter(st, proposed) {\n    var v = [];\n    if (st.round >= G.MAX_ROUNDS) v.push('MAX_ROUNDS');\n    if (proposed < st.floor) v.push('BELOW_FLOOR');\n    if (proposed > st.last_ask) v.push('ASK_INCREASED');\n    var conc = st.last_ask - proposed;\n    if (conc > 0 && conc < st.last_ask * G.MIN_CONCESSION_PCT && proposed !== st.floor) v.push('CONCESSION_TOO_SMALL');\n    var fixed = Math.min(st.last_ask, Math.max(st.floor, proposed));\n    if (v.indexOf('CONCESSION_TOO_SMALL') >= 0) fixed = Math.max(st.floor, Math.round(st.last_ask * (1 - G.MIN_CONCESSION_PCT)));\n    return { ok: v.length === 0, violations: v, enforced: fixed };\n  }\n  // Accept/settle decision on a carrier offer.\n  function evaluateOffer(st, offer) {\n    var n = Number(offer);\n    if (!isFinite(n) || n <= 0) return { action: 'IGNORE_INVALID' };\n    if (n >= st.last_ask * (1 - G.MIN_CONCESSION_PCT)) return { action: 'ACCEPT', amount: n, tier: authorityTier(n) };\n    if (st.round >= G.MAX_ROUNDS) return n >= st.floor ? { action: 'ACCEPT', amount: n, tier: authorityTier(n) } : { action: 'IMPASSE' };\n    return { action: 'COUNTER' };\n  }\n  return { STATE_RULES: STATE_RULES, CAUSE_COMPONENT: CAUSE_COMPONENT, GUARDRAILS: G, sol: sol,\n    negligence: negligence, recallMatch: recallMatch, assess: assess, rank: rank,\n    authorityTier: authorityTier, checkCounter: checkCounter, evaluateOffer: evaluateOffer };\n})();\n\nconst n = $vars.neg; const ok = n.settled_amount >= n.floor && n.settled_amount <= RD.GUARDRAILS.AUTO_MAX;\n          return { decision: ok ? \"APPROVED\" : \"NEEDS_REVIEW\", by: \"AUTO_POLICY\", note: ok ? \"Within auto authority and at or above floor\" : \"Outside auto policy\" };"
+      }
+    },
+    {
+      "id": "specialistReview",
+      "type": "uipath.human-in-the-loop.quick-form",
+      "typeVersion": "1.0",
+      "ui": {
+        "position": {
+          "x": 7456,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "specialistReview",
+        "icon": "users"
+      },
+      "model": {
+        "type": "bpmn:UserTask",
+        "serviceType": "Actions.HITL"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "Task result data",
+          "source": {
+            "type": "literal",
+            "expression": "=result",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "properties": {
+            "note": {
+              "type": "string"
+            },
+            "Action": {
+              "type": "string",
+              "enum": [
+                "Approve",
+                "Reject"
+              ],
+              "default": "Approve"
+            }
+          }
+        },
+        "status": {
+          "type": "string",
+          "description": "Task completion status",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Action",
+            "fieldType": "string"
+          },
+          "var": "status",
+          "enum": [
+            "Approve",
+            "Reject"
+          ],
+          "default": "Approve"
+        }
+      },
+      "inputs": {
+        "title": "Recovery Duel: Specialist approval for SYNTHETIC settlement",
+        "priority": "Medium",
+        "labels": "recovery-duel,specialist,simulated",
+        "recipient": {
+          "channels": [
+            "Email",
+            "ActionCenter"
+          ],
+          "connections": {},
+          "assignee": {
+            "type": "group"
+          }
+        },
+        "schema": {
+          "schemaId": "4c9b7db1-f748-597a-a918-10684e8cad63",
+          "fields": [
+            {
+              "id": "claimid",
+              "label": "Claim (synthetic)",
+              "type": "string",
+              "direction": "input",
+              "binding": "vars.approvalCtx.output.claimId"
+            },
+            {
+              "id": "amount",
+              "label": "Settlement amount (USD)",
+              "type": "number",
+              "direction": "input",
+              "binding": "vars.approvalCtx.output.amount"
+            },
+            {
+              "id": "floor",
+              "label": "Rules engine floor (USD)",
+              "type": "number",
+              "direction": "input",
+              "binding": "vars.approvalCtx.output.floor"
+            },
+            {
+              "id": "summary",
+              "label": "Negotiation summary",
+              "type": "string",
+              "direction": "input",
+              "binding": "vars.approvalCtx.output.summary"
+            },
+            {
+              "id": "note",
+              "label": "Reviewer note",
+              "type": "string",
+              "direction": "output",
+              "variable": "vars.note",
+              "required": false
+            }
+          ],
+          "outcomes": [
+            {
+              "id": "approve",
+              "name": "Approve",
+              "type": "string",
+              "isPrimary": true,
+              "action": "Continue"
+            },
+            {
+              "id": "reject",
+              "name": "Reject",
+              "type": "string",
+              "isPrimary": false,
+              "action": "Continue"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "specialistReviewOk",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 7744,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "specialistReviewOk",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "properties": {
+            "decision": {
+              "type": "string"
+            },
+            "by": {
+              "type": "string"
+            },
+            "note": {
+              "type": "string"
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "inputs": {
+        "script": "return { decision: \"APPROVED\", by: \"SPECIALIST\", note: ((o) => o.note || o.Note || \"\")($vars.specialistReview.output || {}) };"
+      }
+    },
+    {
+      "id": "specialistReviewNo",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 8032,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "specialistReviewNo",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "properties": {
+            "decision": {
+              "type": "string"
+            },
+            "by": {
+              "type": "string"
+            },
+            "note": {
+              "type": "string"
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "inputs": {
+        "script": "return { decision: \"REJECTED\", by: \"SPECIALIST\", note: ((o) => o.note || o.Note || \"\")($vars.specialistReview.output || {}) };"
+      }
+    },
+    {
+      "id": "managerReview",
+      "type": "uipath.human-in-the-loop.quick-form",
+      "typeVersion": "1.0",
+      "ui": {
+        "position": {
+          "x": 8320,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "managerReview",
+        "icon": "users"
+      },
+      "model": {
+        "type": "bpmn:UserTask",
+        "serviceType": "Actions.HITL"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "Task result data",
+          "source": {
+            "type": "literal",
+            "expression": "=result",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "properties": {
+            "note": {
+              "type": "string"
+            },
+            "Action": {
+              "type": "string",
+              "enum": [
+                "Approve",
+                "Reject"
+              ],
+              "default": "Approve"
+            }
+          }
+        },
+        "status": {
+          "type": "string",
+          "description": "Task completion status",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Action",
+            "fieldType": "string"
+          },
+          "var": "status",
+          "enum": [
+            "Approve",
+            "Reject"
+          ],
+          "default": "Approve"
+        }
+      },
+      "inputs": {
+        "title": "Recovery Duel: Manager approval for SYNTHETIC settlement",
+        "priority": "High",
+        "labels": "recovery-duel,manager,simulated",
+        "recipient": {
+          "channels": [
+            "Email",
+            "ActionCenter"
+          ],
+          "connections": {},
+          "assignee": {
+            "type": "group"
+          }
+        },
+        "schema": {
+          "schemaId": "64aeed85-76f0-5c17-9410-28a8c9f84574",
+          "fields": [
+            {
+              "id": "claimid",
+              "label": "Claim (synthetic)",
+              "type": "string",
+              "direction": "input",
+              "binding": "vars.approvalCtx.output.claimId"
+            },
+            {
+              "id": "amount",
+              "label": "Settlement amount (USD)",
+              "type": "number",
+              "direction": "input",
+              "binding": "vars.approvalCtx.output.amount"
+            },
+            {
+              "id": "floor",
+              "label": "Rules engine floor (USD)",
+              "type": "number",
+              "direction": "input",
+              "binding": "vars.approvalCtx.output.floor"
+            },
+            {
+              "id": "summary",
+              "label": "Negotiation summary",
+              "type": "string",
+              "direction": "input",
+              "binding": "vars.approvalCtx.output.summary"
+            },
+            {
+              "id": "note",
+              "label": "Reviewer note",
+              "type": "string",
+              "direction": "output",
+              "variable": "vars.note",
+              "required": false
+            }
+          ],
+          "outcomes": [
+            {
+              "id": "approve",
+              "name": "Approve",
+              "type": "string",
+              "isPrimary": true,
+              "action": "Continue"
+            },
+            {
+              "id": "reject",
+              "name": "Reject",
+              "type": "string",
+              "isPrimary": false,
+              "action": "Continue"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "managerReviewOk",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 8608,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "managerReviewOk",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "properties": {
+            "decision": {
+              "type": "string"
+            },
+            "by": {
+              "type": "string"
+            },
+            "note": {
+              "type": "string"
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "inputs": {
+        "script": "return { decision: \"APPROVED\", by: \"MANAGER\", note: ((o) => o.note || o.Note || \"\")($vars.managerReview.output || {}) };"
+      }
+    },
+    {
+      "id": "managerReviewNo",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 8896,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "managerReviewNo",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "properties": {
+            "decision": {
+              "type": "string"
+            },
+            "by": {
+              "type": "string"
+            },
+            "note": {
+              "type": "string"
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "inputs": {
+        "script": "return { decision: \"REJECTED\", by: \"MANAGER\", note: ((o) => o.note || o.Note || \"\")($vars.managerReview.output || {}) };"
+      }
+    },
+    {
+      "id": "noApproval",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 9184,
+          "y": 144
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "collapsed": false
+      },
+      "display": {
+        "label": "noApproval",
+        "icon": "code"
+      },
+      "model": {
+        "type": "bpmn:ScriptTask"
+      },
+      "outputs": {
+        "output": {
+          "type": "object",
+          "description": "The return value of the script",
+          "source": {
+            "type": "literal",
+            "expression": "=result.response",
+            "fieldType": "string"
+          },
+          "var": "output",
+          "properties": {
+            "decision": {
+              "type": "string"
+            },
+            "by": {
+              "type": "string"
+            },
+            "note": {
+              "type": "string"
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if the script fails",
+          "source": {
+            "type": "literal",
+            "expression": "=result.Error",
+            "fieldType": "string"
+          },
+          "var": "error",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "detail",
+              "category",
+              "status"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code as a string"
+              },
+              "message": {
+                "type": "string",
+                "description": "High-level error message"
+              },
+              "detail": {
+                "type": "string",
+                "description": "Detailed error description"
+              },
+              "category": {
+                "type": "string",
+                "description": "Error category"
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "inputs": {
+        "script": "return { decision: \"NOT_REQUIRED\", by: \"NONE\", note: \"No settlement to approve: \" + $vars.neg.status };"
+      }
+    },
+    {
+      "id": "stylePass",
+      "type": "core.action.script",
+      "typeVersion": "1.0.0",
+      "ui": {
+        "position": {
+          "x": 9472,
           "y": 144
         },
         "size": {
@@ -2574,7 +3556,7 @@
         }
       },
       "inputs": {
-        "script": "const clean = (x) => typeof x === \"string\" ? x.replace(/\\s*[\\u2014\\u2013]\\s*/g, \", \").replace(/ ,/g, \",\")\n        : Array.isArray(x) ? x.map(clean) : (x && typeof x === \"object\") ? Object.keys(x).reduce((o, k) => { o[k] = clean(x[k]); return o; }, {}) : x;\n      return { negotiation: clean($vars.neg), evidence: clean($vars.evidenceAnalyst.output || {}), liability: clean($vars.liabilityAssessor.output || {}) };"
+        "script": "const clean = (x) => typeof x === \"string\" ? x.replace(/\\s*[\\u2014\\u2013]\\s*/g, \", \").replace(/ ,/g, \",\")\n        : Array.isArray(x) ? x.map(clean) : (x && typeof x === \"object\") ? Object.keys(x).reduce((o, k) => { o[k] = clean(x[k]); return o; }, {}) : x;\n      return { negotiation: Object.assign(clean($vars.neg), { approval: clean($vars.approval) }), evidence: clean($vars.evidenceAnalyst.output || {}), liability: clean($vars.liabilityAssessor.output || {}) };"
       }
     },
     {
@@ -2583,7 +3565,7 @@
       "typeVersion": "1.0.0",
       "ui": {
         "position": {
-          "x": 6880,
+          "x": 9760,
           "y": 144
         },
         "size": {
@@ -2670,6 +3652,16 @@
             "fieldType": "object"
           },
           "var": "neg"
+        },
+        "approval": {
+          "type": "object",
+          "description": "",
+          "source": {
+            "type": "jsExpression",
+            "expression": "$vars.approval",
+            "fieldType": "object"
+          },
+          "var": "approval"
         }
       }
     }
@@ -2847,18 +3839,123 @@
       "id": "edge_24",
       "sourceNodeId": "duel",
       "sourcePort": "success",
-      "targetNodeId": "stylePass",
+      "targetNodeId": "approvalCtx",
       "targetPort": "input"
     },
     {
       "id": "edge_25",
+      "sourceNodeId": "approvalCtx",
+      "sourcePort": "success",
+      "targetNodeId": "approvalTier",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_26",
+      "sourceNodeId": "approvalTier",
+      "sourcePort": "case-case_1",
+      "targetNodeId": "autoApprove",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_27",
+      "sourceNodeId": "approvalTier",
+      "sourcePort": "case-case_2",
+      "targetNodeId": "specialistReview",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_28",
+      "sourceNodeId": "specialistReview",
+      "sourcePort": "outcome-approve",
+      "targetNodeId": "specialistReviewOk",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_29",
+      "sourceNodeId": "specialistReview",
+      "sourcePort": "outcome-reject",
+      "targetNodeId": "specialistReviewNo",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_30",
+      "sourceNodeId": "approvalTier",
+      "sourcePort": "case-case_3",
+      "targetNodeId": "managerReview",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_31",
+      "sourceNodeId": "managerReview",
+      "sourcePort": "outcome-approve",
+      "targetNodeId": "managerReviewOk",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_32",
+      "sourceNodeId": "managerReview",
+      "sourcePort": "outcome-reject",
+      "targetNodeId": "managerReviewNo",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_33",
+      "sourceNodeId": "approvalTier",
+      "sourcePort": "default",
+      "targetNodeId": "noApproval",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_34",
+      "sourceNodeId": "autoApprove",
+      "sourcePort": "success",
+      "targetNodeId": "stylePass",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_35",
+      "sourceNodeId": "specialistReviewOk",
+      "sourcePort": "success",
+      "targetNodeId": "stylePass",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_36",
+      "sourceNodeId": "specialistReviewNo",
+      "sourcePort": "success",
+      "targetNodeId": "stylePass",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_37",
+      "sourceNodeId": "managerReviewOk",
+      "sourcePort": "success",
+      "targetNodeId": "stylePass",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_38",
+      "sourceNodeId": "managerReviewNo",
+      "sourcePort": "success",
+      "targetNodeId": "stylePass",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_39",
+      "sourceNodeId": "noApproval",
+      "sourcePort": "success",
+      "targetNodeId": "stylePass",
+      "targetPort": "input"
+    },
+    {
+      "id": "edge_40",
       "sourceNodeId": "stylePass",
       "sourcePort": "success",
       "targetNodeId": "end2",
       "targetPort": "input"
     },
     {
-      "id": "edge_26",
+      "id": "edge_41",
       "sourceNodeId": "markNeedsData",
       "sourcePort": "success",
       "targetNodeId": "nextClaim",
@@ -4711,6 +5808,237 @@
           }
         ]
       }
+    },
+    {
+      "nodeType": "core.logic.switch",
+      "version": "1.0.0",
+      "category": "control-flow",
+      "tags": [
+        "control-flow",
+        "switch"
+      ],
+      "sortOrder": 20,
+      "display": {
+        "label": "Switch",
+        "icon": "between-horizontal-start",
+        "iconBackground": "linear-gradient(225deg, #FAFAFB 0%, #ECEDEF 100%)",
+        "iconBackgroundDark": "linear-gradient(225deg, #526069 0%, rgba(50, 60, 66, 0.6) 100%)"
+      },
+      "handleConfiguration": [
+        {
+          "position": "left",
+          "handles": [
+            {
+              "id": "input",
+              "type": "target",
+              "handleType": "input"
+            }
+          ],
+          "visible": true
+        },
+        {
+          "position": "right",
+          "handles": [
+            {
+              "id": "case-{item.id}",
+              "type": "source",
+              "handleType": "output",
+              "label": "{item.label || 'Case ' + (index + 1)}",
+              "repeat": "inputs.cases"
+            },
+            {
+              "id": "default",
+              "type": "source",
+              "handleType": "output",
+              "label": "Default",
+              "visible": "inputs.hasDefault"
+            }
+          ],
+          "visible": true
+        }
+      ],
+      "model": {
+        "type": "bpmn:ExclusiveGateway"
+      },
+      "inputDefinition": {
+        "type": "object",
+        "properties": {
+          "cases": {
+            "type": "array",
+            "minItems": 1,
+            "errorMessage": "At least one case is required",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "expression": {
+                  "type": "string",
+                  "minLength": 1,
+                  "errorMessage": "A condition expression is required"
+                }
+              },
+              "required": [
+                "expression"
+              ]
+            }
+          },
+          "hasDefault": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "cases"
+        ]
+      },
+      "inputDefaults": {
+        "cases": [
+          {
+            "id": "default-1",
+            "label": "Case 1",
+            "expression": ""
+          },
+          {
+            "id": "default-2",
+            "label": "Case 2",
+            "expression": ""
+          }
+        ],
+        "hasDefault": true
+      },
+      "form": {
+        "id": "switch-properties",
+        "title": "Switch configuration",
+        "sections": [
+          {
+            "id": "cases",
+            "title": "Cases",
+            "description": "Each case is evaluated in order. The first condition that returns true is taken.",
+            "collapsible": true,
+            "defaultExpanded": true,
+            "fields": [
+              {
+                "name": "inputs.cases",
+                "type": "custom",
+                "label": "Switch cases",
+                "component": "case-list-editor",
+                "componentProps": {
+                  "minCases": 1,
+                  "maxCases": 10,
+                  "labelPlaceholder": "e.g., Low",
+                  "expressionPlaceholder": "e.g., $vars.value <= 30"
+                }
+              },
+              {
+                "name": "inputs.hasDefault",
+                "type": "switch",
+                "label": "Include default case",
+                "description": "Add a fallback path when no conditions match",
+                "defaultValue": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeType": "uipath.human-in-the-loop.quick-form",
+      "version": "1.0",
+      "category": "human-task",
+      "tags": [
+        "human-task",
+        "hitl",
+        "human-in-the-loop",
+        "quick-form",
+        "approval"
+      ],
+      "sortOrder": 27,
+      "display": {
+        "label": "Quick Form",
+        "icon": "users",
+        "shape": "square"
+      },
+      "handleConfiguration": [
+        {
+          "position": "left",
+          "handles": [
+            {
+              "id": "input",
+              "type": "target",
+              "handleType": "input"
+            }
+          ],
+          "visible": true
+        },
+        {
+          "position": "right",
+          "handles": [
+            {
+              "id": "completed",
+              "type": "source",
+              "handleType": "output",
+              "showButton": true,
+              "constraints": {
+                "forbiddenTargetCategories": [
+                  "trigger"
+                ]
+              }
+            }
+          ],
+          "visible": true
+        }
+      ],
+      "model": {
+        "type": "bpmn:UserTask",
+        "serviceType": "Actions.HITL"
+      },
+      "inputDefaults": {
+        "schema": {
+          "fields": [],
+          "outcomes": [
+            {
+              "id": "submit",
+              "name": "Submit",
+              "type": "string",
+              "isPrimary": true,
+              "action": "Continue"
+            }
+          ]
+        },
+        "recipient": {
+          "channels": [
+            "Email",
+            "ActionCenter"
+          ],
+          "connections": {},
+          "assignee": {
+            "type": "group"
+          }
+        }
+      },
+      "outputDefinition": {
+        "output": {
+          "type": "object",
+          "description": "Task result data",
+          "source": "=result",
+          "var": "output"
+        },
+        "status": {
+          "type": "string",
+          "description": "Task completion status (completed, cancelled, timeout)",
+          "source": "=result.Action",
+          "var": "status"
+        }
+      },
+      "runtimeConstraints": {
+        "exclude": [
+          "api-function"
+        ]
+      }
     }
   ],
   "variables": {
@@ -4783,6 +6111,13 @@
       {
         "id": "neg",
         "name": "neg",
+        "direction": "inout",
+        "type": "object",
+        "defaultValue": {}
+      },
+      {
+        "id": "approval",
+        "name": "approval",
         "direction": "inout",
         "type": "object",
         "defaultValue": {}
@@ -5302,6 +6637,15 @@
         "binding": {
           "nodeId": "end",
           "outputId": "neg"
+        }
+      },
+      {
+        "id": "end.approval",
+        "type": "object",
+        "description": "",
+        "binding": {
+          "nodeId": "end",
+          "outputId": "approval"
         }
       },
       {
@@ -5875,6 +7219,406 @@
         }
       },
       {
+        "id": "approvalCtx.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "approvalCtx",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "approvalCtx.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "approvalCtx",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "autoApprove.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "autoApprove",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "autoApprove.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "autoApprove",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "specialistReview.output",
+        "type": "object",
+        "description": "Task result data",
+        "binding": {
+          "nodeId": "specialistReview",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "specialistReview.status",
+        "type": "string",
+        "description": "Task completion status",
+        "binding": {
+          "nodeId": "specialistReview",
+          "outputId": "status"
+        }
+      },
+      {
+        "id": "specialistReviewOk.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "specialistReviewOk",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "specialistReviewOk.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "specialistReviewOk",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "specialistReviewNo.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "specialistReviewNo",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "specialistReviewNo.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "specialistReviewNo",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "managerReview.output",
+        "type": "object",
+        "description": "Task result data",
+        "binding": {
+          "nodeId": "managerReview",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "managerReview.status",
+        "type": "string",
+        "description": "Task completion status",
+        "binding": {
+          "nodeId": "managerReview",
+          "outputId": "status"
+        }
+      },
+      {
+        "id": "managerReviewOk.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "managerReviewOk",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "managerReviewOk.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "managerReviewOk",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "managerReviewNo.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "managerReviewNo",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "managerReviewNo.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "managerReviewNo",
+          "outputId": "error"
+        }
+      },
+      {
+        "id": "noApproval.output",
+        "type": "object",
+        "description": "The return value of the script",
+        "binding": {
+          "nodeId": "noApproval",
+          "outputId": "output"
+        }
+      },
+      {
+        "id": "noApproval.error",
+        "type": "object",
+        "description": "Error information if the script fails",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "required": [
+            "code",
+            "message",
+            "detail",
+            "category",
+            "status"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code as a string"
+            },
+            "message": {
+              "type": "string",
+              "description": "High-level error message"
+            },
+            "detail": {
+              "type": "string",
+              "description": "Detailed error description"
+            },
+            "category": {
+              "type": "string",
+              "description": "Error category"
+            },
+            "status": {
+              "type": "integer",
+              "description": "HTTP status code"
+            }
+          },
+          "additionalProperties": false
+        },
+        "binding": {
+          "nodeId": "noApproval",
+          "outputId": "error"
+        }
+      },
+      {
         "id": "stylePass.output",
         "type": "object",
         "description": "The return value of the script",
@@ -5988,6 +7732,15 @@
           "nodeId": "end2",
           "outputId": "neg"
         }
+      },
+      {
+        "id": "end2.approval",
+        "type": "object",
+        "description": "",
+        "binding": {
+          "nodeId": "end2",
+          "outputId": "approval"
+        }
       }
     ],
     "variableUpdates": {
@@ -6047,6 +7800,66 @@
           "expression": {
             "type": "jsExpression",
             "expression": "$vars.guardCounter.output.state",
+            "fieldType": "object"
+          }
+        }
+      ],
+      "autoApprove": [
+        {
+          "variableId": "approval",
+          "expression": {
+            "type": "jsExpression",
+            "expression": "$vars.autoApprove.output",
+            "fieldType": "object"
+          }
+        }
+      ],
+      "specialistReviewOk": [
+        {
+          "variableId": "approval",
+          "expression": {
+            "type": "jsExpression",
+            "expression": "$vars.specialistReviewOk.output",
+            "fieldType": "object"
+          }
+        }
+      ],
+      "specialistReviewNo": [
+        {
+          "variableId": "approval",
+          "expression": {
+            "type": "jsExpression",
+            "expression": "$vars.specialistReviewNo.output",
+            "fieldType": "object"
+          }
+        }
+      ],
+      "managerReviewOk": [
+        {
+          "variableId": "approval",
+          "expression": {
+            "type": "jsExpression",
+            "expression": "$vars.managerReviewOk.output",
+            "fieldType": "object"
+          }
+        }
+      ],
+      "managerReviewNo": [
+        {
+          "variableId": "approval",
+          "expression": {
+            "type": "jsExpression",
+            "expression": "$vars.managerReviewNo.output",
+            "fieldType": "object"
+          }
+        }
+      ],
+      "noApproval": [
+        {
+          "variableId": "approval",
+          "expression": {
+            "type": "jsExpression",
+            "expression": "$vars.noApproval.output",
             "fieldType": "object"
           }
         }

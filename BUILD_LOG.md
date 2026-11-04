@@ -82,3 +82,16 @@ Built by Grok Bot (coding agent) for Pravinraj Vincent. Times are America/New_Yo
   - S03 lowball (CLM-00003, max 1500), job 90a491bb: IMPASSE after round 5 (floor $11,550), carrier held 1500, 0 clamps, 0 violations.
   - stylePass inputs held 9 em dashes per run (agent "gaps" text); outputs 0.
 - Note: S02 carrier reached max in round 4 (prompt said round 5); acceptance still exact (settles r5 at $9,000) because the negotiator was above it.
+
+## 2026-11-04 03:40 ET | T13 human approval by amount tier (skills: uipath-human-in-the-loop SKILL.md + references/hitl-node-quickform.md; uipath-maestro-flow references/hitl.md, switch.md; uipath-tasks for test completion)
+- Added flow var `approval`, `approvalCtx` Script (route = rules-engine tier when SETTLED, else NONE), `.switch("approvalTier")`:
+  - AUTO (<= $5k): `autoApprove` Script re-checks amount >= floor and <= RD.GUARDRAILS.AUTO_MAX.
+  - SPECIALIST (<= $25k) / MANAGER (> $25k): `.stepSwitch` on `hitl({ variant: "quick-form", outcomes: ["Approve","Reject"] })` with input fields claim, amount, floor, negotiation summary and an output reviewer note; one arm per outcome (no unrouted ports). Manager form priority High. Labels recovery-duel,<tier>,simulated. Recipient omitted = platform default (Action Center + Email, unassigned in folder).
+  - default: `noApproval` (IMPASSE / NO_CASE).
+- `flow check --source` 0/0 first try; `bash tests/run.sh` 16/16 + Valid.
+- Tenant debug runs (`uip maestro flow debug ... -i @tests/inputs/<x>.json`), tasks completed with `uip tasks complete <id> --folder-key <Shared> --type QuickFormTask --action <Approve|Reject>`:
+  - AUTO CLM-00039, job 4af5efd0: SETTLED $1,856 -> autoApprove APPROVED, no task.
+  - SPECIALIST S02 CLM-00002, job bc1af303: task 100029149 created, Approve -> specialistReviewOk APPROVED.
+  - MANAGER CLM-00005, job 53a23b11: SETTLED $36,000 -> task 100029148 (Manager), Reject -> managerReviewNo REJECTED.
+- Finding: Quick Form output arrives with both `note` and `Note` keys depending on the client; arms now read `o.note || o.Note`.
+- 24h escalation: Quick Form has no timeout, so `scripts/escalate_stale_approvals.py` (uses `uip tasks list/labels/reassign`) runs on a schedule; dry run by default, `--apply [--manager email]` labels and reassigns Specialist tasks older than 24h. `tests/test_escalation.py` 1/1; live dry run: 0 stale tasks. Scheduling it (cron or Orchestrator trigger) is part of T20 packaging.

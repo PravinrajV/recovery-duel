@@ -1,6 +1,6 @@
 // Recovery Duel: intake -> evidence loop -> rules ranking (T6/T9 skeleton).
 // Authored per uipath-maestro-flow skill; Script node bodies embed rules/rules.js verbatim.
-import { flow, manual, script, http, input, v, js, types, inlineAgent } from "@uipath/maestro-builder-sdk";
+import { flow, manual, script, http, input, v, js, lit, types, inlineAgent, hitl } from "@uipath/maestro-builder-sdk";
 import { readFileSync } from "node:fs";
 
 const RULES = readFileSync(new URL("../../../../rules/rules.js", import.meta.url), "utf8")
@@ -14,6 +14,7 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
   .output({ ranked: types.array, summary: types.object, evidence: types.object, liability: types.object, negotiation: types.object })
   .var("assessed", types.array, [])
   .var("neg", types.object, {})
+  .var("approval", types.object, {})
   .step("intake", script({
     code: `
       const rows = $vars.start.output.claims || [];
@@ -129,10 +130,48 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
       returns: { state: "object" },
     }), { updates: { neg: js`$vars.guardCounter.output.state` } }),
     { limit: 5 })
+  .step("approvalCtx", script({
+    code: `const n = $vars.neg; const settled = n.status === "SETTLED";
+      const h = (n.history || []).map(x => "R" + x.round + " " + x.from + ": " + (x.offer != null ? x.offer : x.sent)).join("; ");
+      return { route: settled ? (n.tier || "MANAGER") : "NONE", claimId: n.claim_id || "", amount: Number(n.settled_amount) || 0, floor: Number(n.floor) || 0,
+        summary: "SIMULATED counterparty. " + n.status + " after " + n.round + " rounds. " + h };`,
+    returns: { route: "string", claimId: "string", amount: "number", floor: "number", summary: "string" },
+  }))
+  .switch("approvalTier", js`$vars.approvalCtx.output.route`, [
+    { value: "AUTO", label: "Up to $5k, at or above floor", body: (b) => b.step("autoApprove", script({
+        code: RULES + `const n = $vars.neg; const ok = n.settled_amount >= n.floor && n.settled_amount <= RD.GUARDRAILS.AUTO_MAX;
+          return { decision: ok ? "APPROVED" : "NEEDS_REVIEW", by: "AUTO_POLICY", note: ok ? "Within auto authority and at or above floor" : "Outside auto policy" };`,
+        returns: { decision: "string", by: "string", note: "string" } }), { updates: { approval: js`$vars.autoApprove.output` } }) },
+    { value: "SPECIALIST", label: "Up to $25k", body: (b) => b.stepSwitch("specialistReview", hitl({ variant: "quick-form", title: "Recovery Duel: Specialist approval for SYNTHETIC settlement", priority: "Medium", labels: "recovery-duel,specialist,simulated",
+          fields: [
+            { id: "claimid", label: "Claim (synthetic)", type: "string", direction: "input", value: js`$vars.approvalCtx.output.claimId` },
+            { id: "amount", label: "Settlement amount (USD)", type: "number", direction: "input", value: js`$vars.approvalCtx.output.amount` },
+            { id: "floor", label: "Rules engine floor (USD)", type: "number", direction: "input", value: js`$vars.approvalCtx.output.floor` },
+            { id: "summary", label: "Negotiation summary", type: "text", direction: "input", value: js`$vars.approvalCtx.output.summary` },
+            { id: "note", label: "Reviewer note", type: "text", direction: "output", required: false },
+          ],
+          outcomes: ["Approve", "Reject"] }), [
+          { value: "Approve", body: (a) => a.step("specialistReviewOk", script({ code: `return { decision: "APPROVED", by: "SPECIALIST", note: ((o) => o.note || o.Note || "")($vars.specialistReview.output || {}) };`, returns: { decision: "string", by: "string", note: "string" } }), { updates: { approval: js`$vars.specialistReviewOk.output` } }) },
+          { value: "Reject", body: (a) => a.step("specialistReviewNo", script({ code: `return { decision: "REJECTED", by: "SPECIALIST", note: ((o) => o.note || o.Note || "")($vars.specialistReview.output || {}) };`, returns: { decision: "string", by: "string", note: "string" } }), { updates: { approval: js`$vars.specialistReviewNo.output` } }) },
+        ]) },
+    { value: "MANAGER", label: "Above $25k", body: (b) => b.stepSwitch("managerReview", hitl({ variant: "quick-form", title: "Recovery Duel: Manager approval for SYNTHETIC settlement", priority: "High", labels: "recovery-duel,manager,simulated",
+          fields: [
+            { id: "claimid", label: "Claim (synthetic)", type: "string", direction: "input", value: js`$vars.approvalCtx.output.claimId` },
+            { id: "amount", label: "Settlement amount (USD)", type: "number", direction: "input", value: js`$vars.approvalCtx.output.amount` },
+            { id: "floor", label: "Rules engine floor (USD)", type: "number", direction: "input", value: js`$vars.approvalCtx.output.floor` },
+            { id: "summary", label: "Negotiation summary", type: "text", direction: "input", value: js`$vars.approvalCtx.output.summary` },
+            { id: "note", label: "Reviewer note", type: "text", direction: "output", required: false },
+          ],
+          outcomes: ["Approve", "Reject"] }), [
+          { value: "Approve", body: (a) => a.step("managerReviewOk", script({ code: `return { decision: "APPROVED", by: "MANAGER", note: ((o) => o.note || o.Note || "")($vars.managerReview.output || {}) };`, returns: { decision: "string", by: "string", note: "string" } }), { updates: { approval: js`$vars.managerReviewOk.output` } }) },
+          { value: "Reject", body: (a) => a.step("managerReviewNo", script({ code: `return { decision: "REJECTED", by: "MANAGER", note: ((o) => o.note || o.Note || "")($vars.managerReview.output || {}) };`, returns: { decision: "string", by: "string", note: "string" } }), { updates: { approval: js`$vars.managerReviewNo.output` } }) },
+        ]) },
+  ], (other) => other.step("noApproval", script({ code: `return { decision: "NOT_REQUIRED", by: "NONE", note: "No settlement to approve: " + $vars.neg.status };`,
+      returns: { decision: "string", by: "string", note: "string" } }), { updates: { approval: js`$vars.noApproval.output` } }))
   .step("stylePass", script({
     code: `const clean = (x) => typeof x === "string" ? x.replace(/\\s*[\\u2014\\u2013]\\s*/g, ", ").replace(/ ,/g, ",")
         : Array.isArray(x) ? x.map(clean) : (x && typeof x === "object") ? Object.keys(x).reduce((o, k) => { o[k] = clean(x[k]); return o; }, {}) : x;
-      return { negotiation: clean($vars.neg), evidence: clean($vars.evidenceAnalyst.output || {}), liability: clean($vars.liabilityAssessor.output || {}) };`,
+      return { negotiation: Object.assign(clean($vars.neg), { approval: clean($vars.approval) }), evidence: clean($vars.evidenceAnalyst.output || {}), liability: clean($vars.liabilityAssessor.output || {}) };`,
     returns: { negotiation: "object", evidence: "object", liability: "object" },
   }))
   .return({ negotiation: js`$vars.stylePass.output.negotiation`, ranked: js`$vars.rank.output.ranked`, summary: js`$vars.rank.output.summary`, evidence: js`$vars.stylePass.output.evidence`, liability: js`$vars.stylePass.output.liability` })
