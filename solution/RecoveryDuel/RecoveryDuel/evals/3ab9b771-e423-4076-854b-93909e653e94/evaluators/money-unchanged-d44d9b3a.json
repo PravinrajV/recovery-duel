@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "id": "money-unchanged-d44d9b3a",
+  "name": "money-unchanged",
+  "description": "Negotiation status, demand and floor match the rules engine (document and agents never change them)",
+  "evaluatorTypeId": "uipath-json-similarity",
+  "evaluatorConfig": {
+    "name": "money-unchanged",
+    "targetOutputKey": "negotiation"
+  },
+  "fileName": "money-unchanged-d44d9b3a.json",
+  "createdAt": "2026-11-05T01:16:11.502Z",
+  "updatedAt": "2026-11-05T01:16:11.502Z"
+}

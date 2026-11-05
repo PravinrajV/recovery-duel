@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "id": "doc-check-2d916930",
+  "name": "doc-check",
+  "description": "Document step result (Document Reader agent + doc rules + human form) matches the expected status, failed checks and injection flag",
+  "evaluatorTypeId": "uipath-json-similarity",
+  "evaluatorConfig": {
+    "name": "doc-check",
+    "targetOutputKey": "document"
+  },
+  "fileName": "doc-check-2d916930.json",
+  "createdAt": "2026-11-05T01:16:11.015Z",
+  "updatedAt": "2026-11-05T01:16:11.015Z"
+}
