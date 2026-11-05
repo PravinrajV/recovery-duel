@@ -64,36 +64,43 @@ flowchart LR
 No real customer data and no employer data are used.
 
 ## Results
-- 15 of 15 scenarios pass in tenant debug runs (table below).
+- 15 of 15 scenarios pass in tenant debug runs (table below, also [docs/runs/T15_RESULTS.md](docs/runs/T15_RESULTS.md)).
 - Hardening (T19): 3 clean full runs, including one reading claims from the bucket that added a ledger entry. No flaky results; only the agent-chosen settle amount varies, and it always stays inside the script limits.
 - ROI on the scenario set (`docs/roi_report.html`): $72,791 recovered, $2,890 back to policyholders, $69,901 net, and it reconciles. This is a hand-picked test set, so its ratio is not comparable to the NAIC figure.
-- Document step (A1): 7 of 7 scenarios pass with a SYNTHETIC repair estimate attached (S01, S02, S04 validated by rules; S05 tampered total and S10 wrong VIN sent to the Action Center form and rejected; S14 injected text flagged, then accepted by the human; S06 no case, step not reached). Demand and floor were equal to the rules engine in every run. One T15 scenario (S03) re-run with no attachment gives DOC_NOT_PROVIDED and the same IMPASSE, demand and floor as T15. Table: `docs/runs/A1_RESULTS.md`.
+- Document step (A1): 7 of 7 scenarios pass with a SYNTHETIC repair estimate attached (S01, S02, S04 validated by rules; S05 tampered total and S10 wrong VIN sent to the Action Center form and rejected; S14 injected text flagged, then accepted by the human; S06 no case, step not reached). Demand and floor were equal to the rules engine in every run. One T15 scenario (S03) re-run with no attachment gives DOC_NOT_PROVIDED and the same IMPASSE, demand and floor as T15. Table: [docs/runs/A1_RESULTS.md](docs/runs/A1_RESULTS.md).
 - Offline tests: `tests/run.sh` (Python and Node unit tests, `uip maestro flow check`, compile and validate).
 
 ## Layout
-- `solution/RecoveryDuel/` UiPath solution and Flow project. The flow source is `.flow-sdk/RecoveryDuel.flow.ts`, compiled to `RecoveryDuel.flow`
+- `solution/RecoveryDuel/` UiPath solution and Flow project. The flow source is `solution/RecoveryDuel/RecoveryDuel/.flow-sdk/RecoveryDuel.flow.ts`, compiled to `RecoveryDuel.flow`
 - `functions_src/RdStore/` coded function that reads and writes the bucket
+- `functions_src/RdMail/` coded function that sends the demand email and reads replies (test inbox only)
 - `rules/rules.js` rules engine (all dollar math)
 - `rules/doc_rules.js` repair estimate checks (no dollar math, facts and status only)
 - `data/docs/` SYNTHETIC repair estimate PDFs from `scripts/gen_docs.py`
 - `scripts/` data generator, scenario harness, bucket sync, ROI report, approval escalation
 - `tests/` unit tests, scenarios, run inputs, `run.sh`
 - `docs/` tenant check, sources, demo script, run traces in `docs/runs/`
-- `BUILD_LOG.md` every step, with the UiPath skill and `uip` commands used
+- [BUILD_LOG.md](BUILD_LOG.md) every step, with the UiPath skill and `uip` commands used
 
 ## How to run
+Needs Python 3.10+, Node 22+ and git. Tested from a fresh clone on 2026-11-04 with no login and no local config.
 ```
-npm install -g @uipath/cli          # UiPath CLI
-uip login                           # your own tenant
-tests/run.sh                        # offline checks
+git clone https://github.com/PravinrajV/recovery-duel && cd recovery-duel
+npm install -g @uipath/cli @uipath/maestro-builder-sdk   # UiPath CLI + Flow SDK (flow check needs the SDK)
+tests/run.sh                        # offline checks, no tenant login needed
+```
+The rest needs your own UiPath tenant:
+```
+uip login
 uip maestro flow debug solution/RecoveryDuel/RecoveryDuel -i @tests/inputs/T15_S01.json
 python3 scripts/harness.py          # all 15 scenarios, completes approval tasks for you
-python3 scripts/gen_docs.py         # SYNTHETIC repair estimate PDFs in data/docs
+pip install reportlab               # only to regenerate the estimate PDFs
+python3 scripts/gen_docs.py         # SYNTHETIC repair estimate PDFs in data/docs (already committed)
 uip maestro flow debug solution/RecoveryDuel/RecoveryDuel -i @tests/inputs/T15_S01.json --attachment estimateFile=data/docs/estimate_CLM-00017.pdf
 python3 scripts/harness.py --a1 S01 S05   # document step scenarios, writes docs/runs/A1_*
 ```
 Bucket source: create a storage bucket, run `scripts/sync_bucket.sh <folder-key> <bucket-key>`, deploy `functions_src/RdStore` as process `rdstore`, then debug with `tests/inputs/T19_BUCKET.json`.
-Needs Python 3.10+, Node 22+ and the UiPath CLI.
+Email path: deploy `functions_src/RdMail` as process `rdmail` and create a Credential asset `rd-mail` with the test mailbox login (see [BUILD_LOG.md](BUILD_LOG.md), T16). Change the hard-coded test recipient (`TEST_INBOX` in `functions_src/RdMail/functions/_mail.ts`) to your own test inbox first. The process keys of `rdstore` and `rdmail` are constants near the top of the flow source; set them to your own deployed processes. If a function call fails, the flow's error handlers carry on and the claim result is unchanged.
 
 ## How I built it with a coding agent
 I described the idea and the rules of the challenge, and a coding agent did the build through the
