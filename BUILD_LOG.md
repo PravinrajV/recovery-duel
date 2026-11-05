@@ -216,3 +216,8 @@ Built by Grok Bot (coding agent) for Pravinraj Vincent. Times are America/New_Yo
 - `uip or processes create --entry-point "content/RecoveryDuel.bpmn#nightly"` -> process RecoveryDuel-Nightly (17f413f2), `uip or triggers create --type time --cron "0 0/5 * * * ?"` (6da0c008; the CLI only accepts --runtime-type Serverless, the tenant stored ProcessOrchestration). Fired at 01:45 UTC: job 923fcbe1 Successful, source Schedule, bucket loaded (200 claims), CLM-00039 SETTLED $1,805 auto approved, demand emailed to recoveryduel@vncntlabs.com only, ledger appended (count 5). Trigger disabled right after the fire. Both triggers now disabled with cron 0 0 7 * * ? UTC. docs/runs/SCHEDULE_VERIFY.json.
 - Escalation script: it calls the `uip` CLI, which a serverless coded function can't run, so it isn't scheduled on the tenant. README gives a host cron line (dry run by default). Not installed.
 - Docs name the coding agent: Grok Bot, an AI assistant that drove `uip` and the UiPath skills.
+
+## 2026-11-04 21:05 ET | Silent demo video + voice-over script (docs only for repo)
+- Owner asked for a silent demo he can voice over. Built slide-based MP4 with ffmpeg/PIL from real docs/runs numbers (no live UI). Output kept outside the repo: `/workspace/recovery-duel-demo/recovery-duel-demo-silent.mp4` (1280x720, 30 fps, 3:48, video-only).
+- Recurring on-screen badge: Built with UiPath CLI (uip) + UiPath skills, no canvas drag. Coding-agent beat cites uip 1.205.0, skills maestro-flow/platform/functions/agents/tasks/human-in-the-loop, 34 commits, BUILD_LOG/PROGRESS. No product name for the agent (owner correction).
+- Committed: `docs/VOICEOVER_SCRIPT.md` (timed narration + judging 30/40/30). Video and preview PNGs not committed (size).
