@@ -145,3 +145,5 @@ Run with `python3 scripts/harness.py` (tenant debug runs via `uip maestro flow d
 | S15 | CLM-00016 | NO_CASE (kill switch) | NO_CASE |  |  |  |  | 8b019626 | PASS |
 
 **15/15 pass.** Rank status per claim is asserted against the offline rules engine (`scripts/expected.mjs`).
+
+> Note: `maestro-builder-sdk` 1.205.0 writes a non-GUID entry point id for the nightly schedule start. Run `scripts/patch_entrypoints.py` (tests/run.sh does) before any `uip maestro flow debug` or `uip solution upload`, or Studio Web may fail to load the solution and publish may be rejected.
