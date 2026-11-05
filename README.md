@@ -67,6 +67,7 @@ No real customer data and no employer data are used.
 - 15 of 15 scenarios pass in tenant debug runs (table below).
 - Hardening (T19): 3 clean full runs, including one reading claims from the bucket that added a ledger entry. No flaky results; only the agent-chosen settle amount varies, and it always stays inside the script limits.
 - ROI on the scenario set (`docs/roi_report.html`): $72,791 recovered, $2,890 back to policyholders, $69,901 net, and it reconciles. This is a hand-picked test set, so its ratio is not comparable to the NAIC figure.
+- Document step (A1): 7 of 7 scenarios pass with a SYNTHETIC repair estimate attached (S01, S02, S04 validated by rules; S05 tampered total and S10 wrong VIN sent to the Action Center form and rejected; S14 injected text flagged, then accepted by the human; S06 no case, step not reached). Demand and floor were equal to the rules engine in every run. One T15 scenario (S03) re-run with no attachment gives DOC_NOT_PROVIDED and the same IMPASSE, demand and floor as T15. Table: `docs/runs/A1_RESULTS.md`.
 - Offline tests: `tests/run.sh` (Python and Node unit tests, `uip maestro flow check`, compile and validate).
 
 ## Layout
