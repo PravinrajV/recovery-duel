@@ -221,3 +221,8 @@ Built by Grok Bot (coding agent) for Pravinraj Vincent. Times are America/New_Yo
 - Owner asked for a silent demo he can voice over. Built slide-based MP4 with ffmpeg/PIL from real docs/runs numbers (no live UI). Output kept outside the repo: `/workspace/recovery-duel-demo/recovery-duel-demo-silent.mp4` (1280x720, 30 fps, 3:48, video-only).
 - Recurring on-screen badge: Built with UiPath CLI (uip) + UiPath skills, no canvas drag. Coding-agent beat cites uip 1.205.0, skills maestro-flow/platform/functions/agents/tasks/human-in-the-loop, 34 commits, BUILD_LOG/PROGRESS. No product name for the agent (owner correction).
 - Committed: `docs/VOICEOVER_SCRIPT.md` (timed narration + judging 30/40/30). Video and preview PNGs not committed (size).
+
+## 2026-11-04 21:20 ET | Studio Web "editor failed to load" fix
+- Cause (best evidence): the Studio Web copy of solution 3f8821e0 came from a `uip maestro flow debug` upload of an unpatched compile, so the scheduled start had entryPointId "nightly" (not a GUID) in .flow, entry-points.json and the bpmn.
+- Fix: `bash tests/run.sh && uip solution upload solution/RecoveryDuel` (overwrote, snapshot kept). Re-download shows nightly entryPointId 9f30559a-9718-5624-86e2-6b35e31bb64e.
+- Rule: run `scripts/patch_entrypoints.py` (or `tests/run.sh`) before any `uip maestro flow debug` or `uip solution upload`.
