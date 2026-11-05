@@ -1,6 +1,6 @@
 // Recovery Duel: intake -> evidence loop -> rules ranking (T6/T9 skeleton).
 // Authored per uipath-maestro-flow skill; Script node bodies embed rules/rules.js verbatim.
-import { flow, manual, script, http, input, v, js, lit, types, inlineAgent, hitl, publishedFunction, ran, delay, out } from "@uipath/maestro-builder-sdk";
+import { flow, manual, scheduled, script, http, input, v, js, lit, types, inlineAgent, hitl, publishedFunction, ran, delay, out } from "@uipath/maestro-builder-sdk";
 import { readFileSync } from "node:fs";
 
 // T7c: Orchestrator storage bucket access goes through the published Coded Function `rdstore`
@@ -25,8 +25,26 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
   .schemaVersion("1.9")
   .name("RecoveryDuel")
   .trigger(manual(), { version: "1.0" })
-  .input({ claims: types.array, asOf: types.string, killSwitch: types.boolean, killNegotiation: types.boolean, counterparty: types.object, source: types.string, claimIds: types.array, runId: types.string, estimateFile: types.file })
+  .input({ claims: { type: types.array, shared: "rqClaims" }, asOf: { type: types.string, shared: "rqAsOf" }, killSwitch: { type: types.boolean, shared: "rqKillSwitch" }, killNegotiation: { type: types.boolean, shared: "rqKillNegotiation" }, counterparty: { type: types.object, shared: "rqCounterparty" }, source: { type: types.string, shared: "rqSource" }, claimIds: { type: types.array, shared: "rqClaimIds" }, runId: { type: types.string, shared: "rqRunId" }, estimateFile: { type: types.file, shared: "rqEstimateFile" } })
+  // Schedule: nightly at 07:00 UTC (02:00 ET). A timer has no caller, so the prefix sets safe run settings:
+  // claims come from the rdstore bucket, the counterparty is SIMULATED, email goes to the test inbox only.
+  .entryPoint("nightly", scheduled({ every: "0 0 7 * * ?" }), { label: "Nightly run (SYNTHETIC)" }, (b) => b.step("nightlySetup", script({
+    code: `const d = new Date().toISOString();
+      return { source: "bucket", claimIds: ["CLM-00039"], asOf: d.slice(0, 10), runId: "SCHED-" + d.slice(0, 16).replace(/[^0-9]/g, ""),
+        counterparty: { persona: "cooperative", reservation_price: 2000 }, killSwitch: false, killNegotiation: false };`,
+    returns: "object" }), { updates: { rqSource: js`$vars.nightlySetup.output.source`, rqClaimIds: js`$vars.nightlySetup.output.claimIds`,
+      rqAsOf: js`$vars.nightlySetup.output.asOf`, rqRunId: js`$vars.nightlySetup.output.runId`, rqCounterparty: js`$vars.nightlySetup.output.counterparty`,
+      rqKillSwitch: js`$vars.nightlySetup.output.killSwitch`, rqKillNegotiation: js`$vars.nightlySetup.output.killNegotiation` } }))
   .output({ document: types.object, email: types.object, ranked: types.array, summary: types.object, evidence: types.object, liability: types.object, negotiation: types.object, store: types.object, roi: types.object })
+  .var("rqClaims", types.array, [])
+  .var("rqAsOf", types.string, "")
+  .var("rqKillSwitch", types.boolean, false)
+  .var("rqKillNegotiation", types.boolean, false)
+  .var("rqCounterparty", types.object, {})
+  .var("rqSource", types.string, "input")
+  .var("rqClaimIds", types.array, [])
+  .var("rqRunId", types.string, "")
+  .var("rqEstimateFile", types.file, null)
   .var("assessed", types.array, [])
   .var("neg", types.object, {})
   .var("approval", types.object, {})
@@ -38,14 +56,14 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
   .var("inbox", types.array, [])
   .var("doc", types.object, { status: "NOT_REACHED" })
   .var("estimate", types.file)
-  .branch("fromBucket", js`$vars.start.output.source === "bucket"`,
+  .branch("fromBucket", js`$vars.rqSource === "bucket"`,
     (t) => t.label("Read claims + config from bucket").step("loadStore", publishedFunction({ ...STORE, inputs: { op: "load" }, returns: STORE_RETURNS }))
       .onError((h) => h.step("storeLoadFailed", script({
         code: 'return { source: "input", loaded: false, error: "bucket load failed, using trigger input" };', returns: "object" }),
         { updates: { store: js`$vars.storeLoadFailed.output` } }).stepToRef("intake"))
       .step("parseStore", script({
         code: `const c = JSON.parse($vars.loadStore.output.claimsJson || "{}"); const cfg = JSON.parse($vars.loadStore.output.configJson || "{}");
-          const ids = $vars.start.output.claimIds || [];
+          const ids = $vars.rqClaimIds || [];
           const all = Array.isArray(c) ? c : (c.claims || []);
           const claims = ids.length ? all.filter(x => ids.indexOf(x.claim_id) >= 0) : all;
           return { source: "bucket", loaded: true, claims, total_in_bucket: all.length, kill_switch: cfg.kill_switch || {}, guardrails: cfg.guardrails || {} };`,
@@ -54,9 +72,9 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
   .step("intake", script({
     code: `
       const st = $vars.store || {}; const ks = st.kill_switch || {};
-      const rows = st.loaded ? (st.claims || []) : ($vars.start.output.claims || []);
+      const rows = st.loaded ? (st.claims || []) : ($vars.rqClaims || []);
       const paused = ks.paused_states || [];
-      if ($vars.start.output.killSwitch || ks.global) return { items: [], stopped: true, claims: [] };
+      if ($vars.rqKillSwitch || ks.global) return { items: [], stopped: true, claims: [] };
       const items = rows.filter(c => c && c.claim_id && paused.indexOf(c.state) < 0).map(c => ({
         ...c, paid_amount: Number(c.paid_amount), deductible: Number(c.deductible),
         insured_fault_pct: Number(c.insured_fault_pct) }));
@@ -76,7 +94,7 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
     .step("assess", script({
       code: RULES + `
         const c = $vars.eachClaim.currentItem;
-        const a = RD.assess(c, $vars.getRecalls.output.body.results || [], $vars.start.output.asOf);
+        const a = RD.assess(c, $vars.getRecalls.output.body.results || [], $vars.rqAsOf);
         return { list: ($vars.assessed || []).concat([a]) };`,
       returns: { list: "array" },
     }), { updates: { assessed: js`$vars.assess.output.list` } })
@@ -99,7 +117,7 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
   }))
   .branch("noCase", js`!$vars.pickTop.output.found`,
     (t) => t.label("No claim qualifies")
-      .branch("noCaseLedger", js`($vars.store || {}).loaded === true`, (y) => y.step("ledgerNoCase", publishedFunction({ ...STORE, inputs: { op: "append", entryJson: js`JSON.stringify({ run_id: $vars.start.output.runId || ("run-" + new Date().toISOString()), claim_id: ($vars.pickTop.output.assessment || {}).claim_id || "NONE", status: ($vars.intake.output.stopped ? "KILL_SWITCH" : "NO_CASE"), amount: 0, tier: "NONE", approval: "NOT_REQUIRED", rounds: 0, demand: 0, floor: 0, source: ($vars.store || {}).source || "input", simulated_counterparty: true, synthetic: true, at: new Date().toISOString() })` }, returns: STORE_RETURNS }), { updates: { ledger: js`$vars.ledgerNoCase.output` } })
+      .branch("noCaseLedger", js`($vars.store || {}).loaded === true`, (y) => y.step("ledgerNoCase", publishedFunction({ ...STORE, inputs: { op: "append", entryJson: js`JSON.stringify({ run_id: $vars.rqRunId || ("run-" + new Date().toISOString()), claim_id: ($vars.pickTop.output.assessment || {}).claim_id || "NONE", status: ($vars.intake.output.stopped ? "KILL_SWITCH" : "NO_CASE"), amount: 0, tier: "NONE", approval: "NOT_REQUIRED", rounds: 0, demand: 0, floor: 0, source: ($vars.store || {}).source || "input", simulated_counterparty: true, synthetic: true, at: new Date().toISOString() })` }, returns: STORE_RETURNS }), { updates: { ledger: js`$vars.ledgerNoCase.output` } })
         .onError((h) => h.step("ledgerNoCaseFailed", script({ code: 'return { ok: false, ledgerCount: null };', returns: "object" }), { updates: { ledger: js`$vars.ledgerNoCaseFailed.output` } }).stepToRef("noCaseEnd")))
       .step("noCaseEnd", script({ code: 'const l = $vars.ledger || {}; return { ledger_ok: !!l.ok, ledger_count: l.ok ? l.ledgerCount : null };', returns: "object" }))
       .return({ ranked: js`$vars.rank.output.ranked`, summary: js`$vars.rank.output.summary`,
@@ -109,10 +127,10 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
   // A1 document step: Document Reader agent (built-in Analyze Files tool) -> doc_rules.js checks -> Action Center
   // human validation when a check fails. Output is facts and a status only; demand and floor stay with the rules engine.
   .step("docCtx", script({
-    code: DOCRULES + `const f = $vars.start.output.estimateFile; const has = !!(f && (f.ID || f.FullName));
+    code: DOCRULES + `const f = $vars.rqEstimateFile; const has = !!(f && (f.ID || f.FullName));
       return { has, file: has ? f : null, doc: has ? { status: "PENDING" } : RDDOC.notProvided("DOC_NOT_PROVIDED") };`,
     returns: { has: "boolean", file: "object", doc: "object" },
-  }), { updates: { doc: js`$vars.docCtx.output.doc`, estimate: js`$vars.start.output.estimateFile` } })
+  }), { updates: { doc: js`$vars.docCtx.output.doc`, estimate: js`$vars.rqEstimateFile` } })
   .branch("docGiven", js`$vars.docCtx.output.has === true`, (d) => d.label("Estimate attached")
     .step("docReader", inlineAgent({
       model: "anthropic.claude-sonnet-4-6", temperature: 0, maxIterations: 4,
@@ -179,8 +197,8 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
     returns: { status: "string", step: "string", detail: "string" } }), { updates: { halt: js`$vars.liabilityFailed.output` } }).stepToRef("negInit"))
   .step("negInit", script({
     code: `const a = $vars.pickTop.output.assessment || {};
-      const cp = $vars.start.output.counterparty || {}; const halt = $vars.halt || {};
-      const paused = !!$vars.start.output.killNegotiation || !!$vars.intake.output.negotiation_paused;
+      const cp = $vars.rqCounterparty || {}; const halt = $vars.halt || {};
+      const paused = !!$vars.rqKillNegotiation || !!$vars.intake.output.negotiation_paused;
       const status = !$vars.pickTop.output.found ? "NO_CASE" : halt.status ? "NEEDS_REVIEW_AGENT_ERROR" : paused ? "PAUSED_KILL_SWITCH" : "OPEN";
       return { state: { claim_id: a.claim_id || null, round: 0, floor: a.floor || 0, last_ask: a.demand || 0, demand: a.demand || 0,
         persona: cp.persona || "cooperative", reservation: Number(cp.reservation_price) || Math.round((a.demand || 0) * 0.9),
@@ -282,7 +300,7 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
       const c = ($vars.intake.output.claims || []).find(x => x.claim_id === n.claim_id) || {};
       const won = n.status === "SETTLED" && ap.decision === "APPROVED";
       const d = RD.deductibleRefund(c.paid_amount, c.deductible, won ? n.settled_amount : 0);
-      const entry = { run_id: $vars.start.output.runId || ("run-" + new Date().toISOString()), claim_id: n.claim_id || "NONE", status: n.status,
+      const entry = { run_id: $vars.rqRunId || ("run-" + new Date().toISOString()), claim_id: n.claim_id || "NONE", status: n.status,
         amount: Number(n.settled_amount) || 0, tier: n.tier || "NONE", approval: ap.decision || "NONE", rounds: Number(n.round) || 0,
         demand: Number(n.demand) || 0, floor: Number(n.floor) || 0, paid: Number(c.paid_amount) || 0, deductible: Number(c.deductible) || 0,
         refund: d.refund, insurer_net: won ? d.insurer_net : 0, source: ($vars.store || {}).source || "input",
@@ -301,9 +319,9 @@ export default flow("3ab9b771-e423-4076-854b-93909e653e94")
   }))
   .branch("emailCase", js`!!($vars.neg || {}).claim_id`, (y) => y
     .step("letter", script({
-      code: `const n = $vars.neg; const ap = $vars.approval || {}; const p = ($vars.start.output.counterparty || {}).persona || "standard";
+      code: `const n = $vars.neg; const ap = $vars.approval || {}; const p = ($vars.rqCounterparty || {}).persona || "standard";
         const money = (x) => "$" + Number(x || 0).toLocaleString("en-US");
-        const tag = (String($vars.start.output.runId || "run").replace(/[^A-Za-z0-9_-]/g, "").slice(0, 24) + "-" + Date.now().toString(36));
+        const tag = (String($vars.rqRunId || "run").replace(/[^A-Za-z0-9_-]/g, "").slice(0, 24) + "-" + Date.now().toString(36));
         const subject = "[SYNTHETIC / SIMULATED DEMO] Subrogation demand " + n.claim_id + " (run " + tag + ")";
         const lines = ["SYNTHETIC / SIMULATED DEMO. No real claim, insurer or person. Sent to a test inbox only.", "",
           "Claim ID: " + n.claim_id, "Demand: " + money(n.demand), "Recall cited: " + (($vars.evidenceAnalyst.output || {}).recall_campaign || "see evidence pack"),

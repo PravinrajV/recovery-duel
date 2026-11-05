@@ -1,0 +1,122 @@
+{
+ "note": "SYNTHETIC. Schedule verification on the Community tenant, folder \"RecoveryDuel Schedule\". Times are UTC from the API.",
+ "deployment": {
+  "name": "RecoveryDuel-schedule-verify",
+  "package": "RecoveryDuel.Flow.RecoveryDuel 1.0.2 (verify build, cron every 10 min, later set to 0 0 7 * * ?)",
+  "processes": {
+   "RecoveryDuel (entry #start, created by deploy)": "cb324a50-7400-41f6-bae5-6de1a5cac3a4",
+   "RecoveryDuel-Nightly (entry #nightly)": "17f413f2-9143-43c8-9aa1-2738277c928c"
+  }
+ },
+ "triggers_now": [
+  {
+   "Key": "6da0c008-2388-4978-90f0-b5ce6989fa82",
+   "Name": "RecoveryDuel_Nightly_Verify",
+   "Enabled": false,
+   "StartProcessCron": "0 0 7 * * ?",
+   "TimeZoneId": "UTC",
+   "ReleaseName": "RecoveryDuel-Nightly",
+   "RuntimeType": "ProcessOrchestration"
+  },
+  {
+   "Key": "012ade99-44d9-4bb2-b8c4-c9ba22f1e113",
+   "Name": "RecoveryDuel_TimeTrigger",
+   "Enabled": false,
+   "StartProcessCron": "0 0 7 * * ?",
+   "TimeZoneId": "UTC",
+   "ReleaseName": "RecoveryDuel",
+   "RuntimeType": "ProcessOrchestration"
+  }
+ ],
+ "jobs": {
+  "26bd02c6-f102-4284-87c0-341cc170963e": {
+   "State": "Successful",
+   "Source": "RecoveryDuel_TimeTrigger",
+   "SourceType": "Schedule",
+   "StartTime": "2026-11-05T01:40:45.847Z",
+   "EndTime": "2026-11-05T01:40:49.703Z",
+   "ProcessType": "Flow",
+   "output": {
+    "summary": {
+     "total": 0,
+     "pursue": 0,
+     "needs_data": 0,
+     "sol_expired": 0,
+     "barred": 0,
+     "no_case": 0,
+     "pipeline_demand": 0
+    },
+    "store": {
+     "source": "input",
+     "ledger_appended": false,
+     "ledger_ok": false,
+     "ledger_count": null
+    },
+    "negotiation": {
+     "status": "NO_CASE",
+     "claim_id": null,
+     "demand": null,
+     "floor": null,
+     "settled_amount": null,
+     "approval": null,
+     "simulated_counterparty": true
+    },
+    "email": {
+     "to": null,
+     "sent": false,
+     "subject": null
+    },
+    "document": {
+     "status": "NOT_REACHED"
+    }
+   }
+  },
+  "923fcbe1-2133-41fa-8d2f-4622ae93cd4f": {
+   "State": "Successful",
+   "Source": "RecoveryDuel_Nightly_Verify",
+   "SourceType": "Schedule",
+   "StartTime": "2026-11-05T01:45:10.710Z",
+   "EndTime": "2026-11-05T01:47:23.527Z",
+   "ProcessType": "Flow",
+   "output": {
+    "summary": {
+     "total": 1,
+     "pursue": 1,
+     "needs_data": 0,
+     "sol_expired": 0,
+     "barred": 0,
+     "no_case": 0,
+     "pipeline_demand": 2080
+    },
+    "store": {
+     "source": "bucket",
+     "loaded": true,
+     "total_in_bucket": 200,
+     "ledger_appended": true,
+     "ledger_count": 5
+    },
+    "negotiation": {
+     "status": "SETTLED",
+     "claim_id": "CLM-00039",
+     "demand": 2080,
+     "floor": 1456,
+     "settled_amount": 1805,
+     "approval": {
+      "decision": "APPROVED",
+      "by": "AUTO_POLICY",
+      "note": "Within auto authority and at or above floor"
+     },
+     "simulated_counterparty": true
+    },
+    "email": {
+     "to": "recoveryduel@vncntlabs.com",
+     "sent": true,
+     "subject": "[SYNTHETIC / SIMULATED DEMO] Subrogation demand CLM-00039 (run SCHED-202611050145-mw2vx5q0)"
+    },
+    "document": {
+     "status": "DOC_NOT_PROVIDED"
+    }
+   }
+  }
+ }
+}

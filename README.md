@@ -15,7 +15,7 @@ negotiates with the other carrier inside hard limits, and books the recovery, wi
 the money.
 
 ## What it does
-1. Loads closed claims from the trigger input or from an Orchestrator storage bucket (`recovery-duel-data`).
+1. Starts from a manual trigger with input, or from a nightly schedule (`nightly` timer start, 07:00 UTC) that reads claims from an Orchestrator storage bucket (`recovery-duel-data`).
 2. Checks a kill switch and paused states in the bucket config.
 3. For each claim, calls the live NHTSA recalls API (retries, then NEEDS_DATA on failure).
 4. A script rules engine (`rules/rules.js`) checks state filing deadlines, fault rules and recall to cause matching, ranks the claims, and sets the demand and floor.
@@ -30,7 +30,8 @@ Error paths: an agent failure routes the claim to NEEDS_REVIEW_AGENT_ERROR inste
 ## Architecture
 ```mermaid
 flowchart LR
-  T[Trigger input] --> SRC{source}
+  T[Manual trigger input] --> SRC{source}
+  S[Nightly schedule] -->|bucket| SRC
   SRC -->|bucket| L[rdstore function: load claims and config]
   SRC -->|input| I[Intake + kill switch]
   L --> I
@@ -68,6 +69,8 @@ No real customer data and no employer data are used.
 - Hardening (T19): 3 clean full runs, including one reading claims from the bucket that added a ledger entry. No flaky results; only the agent-chosen settle amount varies, and it always stays inside the script limits.
 - ROI on the scenario set (`docs/roi_report.html`): $72,791 recovered, $2,890 back to policyholders, $69,901 net, and it reconciles. This is a hand-picked test set, so its ratio is not comparable to the NAIC figure.
 - Document step (A1): 7 of 7 scenarios pass with a SYNTHETIC repair estimate attached (S01, S02, S04 validated by rules; S05 tampered total and S10 wrong VIN sent to the Action Center form and rejected; S14 injected text flagged, then accepted by the human; S06 no case, step not reached). Demand and floor were equal to the rules engine in every run. One T15 scenario (S03) re-run with no attachment gives DOC_NOT_PROVIDED and the same IMPASSE, demand and floor as T15. Table: [docs/runs/A1_RESULTS.md](docs/runs/A1_RESULTS.md).
+- Schedule: the deployed flow ran from a real Orchestrator time trigger on the tenant (job 923fcbe1, from trigger RecoveryDuel_Nightly_Verify): it read CLM-00039 from the bucket, settled $1,805 (auto approved), sent the demand to the test inbox and appended the ledger. Both triggers are now disabled, set to 07:00 UTC. Evidence: [docs/runs/SCHEDULE_VERIFY.json](docs/runs/SCHEDULE_VERIFY.json).
+- Evaluations: a UiPath Flow eval set with 6 data points and 3 evaluators (document checks, money unchanged, LLM judge on the evidence, including the injection and tampered-estimate cases). On this Community tenant the eval service can't start the inline agents (403 resolving the agent project), so those scores don't measure the agents. Scored locally against tenant debug runs with the same expected outputs: 6 of 6 at 1.0. Details and every score: [docs/EVALUATIONS.md](docs/EVALUATIONS.md).
 - Offline tests: `tests/run.sh` (Python and Node unit tests, `uip maestro flow check`, compile and validate).
 
 ## Layout
@@ -77,7 +80,7 @@ No real customer data and no employer data are used.
 - `rules/rules.js` rules engine (all dollar math)
 - `rules/doc_rules.js` repair estimate checks (no dollar math, facts and status only)
 - `data/docs/` SYNTHETIC repair estimate PDFs from `scripts/gen_docs.py`
-- `scripts/` data generator, scenario harness, bucket sync, ROI report, approval escalation
+- `scripts/` data generator, scenario harness, bucket sync, ROI report, approval escalation, eval set builder (`build_evals.py`), local eval scorer (`score_local.py`), entry point patch (`patch_entrypoints.py`)
 - `tests/` unit tests, scenarios, run inputs, `run.sh`
 - `docs/` tenant check, sources, demo script, run traces in `docs/runs/`
 - [BUILD_LOG.md](BUILD_LOG.md) every step, with the UiPath skill and `uip` commands used
@@ -99,12 +102,13 @@ python3 scripts/gen_docs.py         # SYNTHETIC repair estimate PDFs in data/doc
 uip maestro flow debug solution/RecoveryDuel/RecoveryDuel -i @tests/inputs/T15_S01.json --attachment estimateFile=data/docs/estimate_CLM-00017.pdf
 python3 scripts/harness.py --a1 S01 S05   # document step scenarios, writes docs/runs/A1_*
 ```
+Schedule: the flow has a second start, `nightly` (timer, `0 0 7 * * ?` UTC), that sets source to bucket. Flow SDK 1.205.0 writes the timer's entry point id as the node id, which `uip solution publish` rejects ("No entry points defined", 1205), so `tests/run.sh` runs `scripts/patch_entrypoints.py` after compile to give it a GUID. Deploy with `uip solution pack/publish/deploy run`. The deploy-created trigger points at the manual start, so for the nightly entry create a process with `uip or processes create --entry-point "content/RecoveryDuel.bpmn#nightly"` and a time trigger on it. Leave triggers disabled unless you mean it, because each run emails the test inbox and writes the ledger.
+The 24-hour escalation script (`scripts/escalate_stale_approvals.py`) uses the `uip` CLI, so it runs from a machine with `uip` logged in, for example cron: `0 * * * * python3 scripts/escalate_stale_approvals.py` (dry run unless `--apply`). It isn't scheduled on the tenant.
 Bucket source: create a storage bucket, run `scripts/sync_bucket.sh <folder-key> <bucket-key>`, deploy `functions_src/RdStore` as process `rdstore`, then debug with `tests/inputs/T19_BUCKET.json`.
 Email path: deploy `functions_src/RdMail` as process `rdmail` and create a Credential asset `rd-mail` with the test mailbox login (see [BUILD_LOG.md](BUILD_LOG.md), T16). Change the hard-coded test recipient (`TEST_INBOX` in `functions_src/RdMail/functions/_mail.ts`) to your own test inbox first. The process keys of `rdstore` and `rdmail` are constants near the top of the flow source; set them to your own deployed processes. If a function call fails, the flow's error handlers carry on and the claim result is unchanged.
 
 ## How I built it with a coding agent
-I described the idea and the rules of the challenge, and a coding agent did the build through the
-UiPath CLI (`uip`) and the UiPath skills, not by hand on the canvas. `BUILD_LOG.md` has every step.
+I described the idea and the rules of the challenge, and my coding agent, Grok Bot (an AI assistant that drove the UiPath CLI `uip` and the UiPath skills), did the build, not by hand on the canvas. `BUILD_LOG.md` has every step.
 A few rounds that shaped the result:
 
 1. **Plan and tenant check.** The agent read the Maestro Flow, agents and HITL skills, then probed my Community tenant with `uip` before writing anything. It found Data Fabric is not available on Community and approval forms have no timeout. So we moved the data to an Orchestrator storage bucket and wrote a scheduled escalation script instead.
@@ -126,7 +130,7 @@ Run with `python3 scripts/harness.py` (tenant debug runs via `uip maestro flow d
 |---|---|---|---|---|---|---|---|---|---|
 | S01 | CLM-00017 | SETTLED | SETTLED | 5 | $11,050 | SPECIALIST | APPROVED | 94cc5c4e | PASS |
 | S02 | CLM-00002 | SETTLED | SETTLED | 5 | $9,000 | SPECIALIST | APPROVED | 9f4f5242 | PASS |
-| S03 | CLM-00003 | IMPASSE | IMPASSE | 5 |  |  | NOT_REQUIRED | 0980bbb1 | PASS |
+| S03 | CLM-00003 | IMPASSE | IMPASSE | 5 |  |  | NOT_REQUIRED | 20239851 | PASS |
 | S04 | CLM-00004 | SETTLED | SETTLED | 3 | $13,680 | SPECIALIST | APPROVED | ce9e367b | PASS |
 | S05 | CLM-00005 | SETTLED | SETTLED | 4 | $27,300 | MANAGER | REJECTED | 643e542c | PASS |
 | S06 | CLM-00006 | NO_CASE | NO_CASE |  |  |  |  | 6444fb58 | PASS |

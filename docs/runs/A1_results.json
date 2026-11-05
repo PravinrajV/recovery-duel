@@ -2,7 +2,7 @@
  "S01": {
   "pass": true,
   "fails": [],
-  "job": "d60a6d3d-ba9c-4a3e-9e9c-4c54dd966e47",
+  "job": "ca96e73a-b262-4eb1-bf3e-e26e57596dba",
   "neg": "SETTLED",
   "rounds": 5,
   "amount": 11050,
@@ -15,7 +15,7 @@
   "stopped": false,
   "tasks": [
    [
-    100030129,
+    100030146,
     "Recovery Duel: Specialist approval for SYNTHETIC settlement",
     "Approve",
     "Success"
@@ -28,13 +28,13 @@
    "failed": [],
    "injection_flagged": false
   },
-  "secs": 165,
-  "at": "2026-11-04T18:42:22"
+  "secs": 162,
+  "at": "2026-11-04T20:33:51"
  },
  "S04": {
   "pass": true,
   "fails": [],
-  "job": "758aa2f2-398e-4325-a5db-9b47d1565c66",
+  "job": "40f00ec2-0cf9-4d10-9b4d-13fd5f2981f8",
   "neg": "SETTLED",
   "rounds": 3,
   "amount": 13386,
@@ -47,7 +47,7 @@
   "stopped": false,
   "tasks": [
    [
-    100030130,
+    100030150,
     "Recovery Duel: Specialist approval for SYNTHETIC settlement",
     "Approve",
     "Success"
@@ -60,15 +60,15 @@
    "failed": [],
    "injection_flagged": false
   },
-  "secs": 147,
-  "at": "2026-11-04T18:44:49"
+  "secs": 133,
+  "at": "2026-11-04T20:38:47"
  },
  "S02": {
   "pass": true,
   "fails": [],
-  "job": "707df1dd-e62a-466d-a074-1b42b484b9e1",
+  "job": "b1053e71-9710-4f93-8304-43b508898f65",
   "neg": "SETTLED",
-  "rounds": 4,
+  "rounds": 5,
   "amount": 9000,
   "tier": "SPECIALIST",
   "approval": "APPROVED",
@@ -79,7 +79,7 @@
   "stopped": false,
   "tasks": [
    [
-    100030131,
+    100030148,
     "Recovery Duel: Specialist approval for SYNTHETIC settlement",
     "Approve",
     "Success"
@@ -92,16 +92,16 @@
    "failed": [],
    "injection_flagged": false
   },
-  "secs": 148,
-  "at": "2026-11-04T18:47:17"
+  "secs": 164,
+  "at": "2026-11-04T20:36:34"
  },
  "S05": {
   "pass": true,
   "fails": [],
-  "job": "0cecf81d-bf08-47d2-a607-e54848e724b6",
+  "job": "1e56dc9e-9af8-4918-b264-803fcbf86567",
   "neg": "SETTLED",
   "rounds": 4,
-  "amount": 28800,
+  "amount": 29500,
   "tier": "MANAGER",
   "approval": "REJECTED",
   "top": "CLM-00005",
@@ -111,13 +111,13 @@
   "stopped": false,
   "tasks": [
    [
-    100030132,
+    100030151,
     "Recovery Duel: validate SYNTHETIC repair estimate",
     "Reject",
     "Success"
    ],
    [
-    100030133,
+    100030152,
     "Recovery Duel: Manager approval for SYNTHETIC settlement",
     "Reject",
     "Success"
@@ -133,16 +133,16 @@
    ],
    "injection_flagged": false
   },
-  "secs": 164,
-  "at": "2026-11-04T18:50:01"
+  "secs": 152,
+  "at": "2026-11-04T20:41:19"
  },
  "S10": {
   "pass": true,
   "fails": [],
-  "job": "4aabcf49-79cc-447c-9037-07542e52b70c",
+  "job": "40b820e8-3368-4ce8-b30f-735aa677927a",
   "neg": "SETTLED",
   "rounds": 3,
-  "amount": 5933,
+  "amount": 6000,
   "tier": "SPECIALIST",
   "approval": "APPROVED",
   "top": "CLM-00011",
@@ -153,13 +153,13 @@
   "stopped": false,
   "tasks": [
    [
-    100030134,
+    100030153,
     "Recovery Duel: validate SYNTHETIC repair estimate",
     "Reject",
     "Success"
    ],
    [
-    100030135,
+    100030154,
     "Recovery Duel: Specialist approval for SYNTHETIC settlement",
     "Approve",
     "Success"
@@ -174,13 +174,13 @@
    ],
    "injection_flagged": false
   },
-  "secs": 150,
-  "at": "2026-11-04T18:52:31"
+  "secs": 148,
+  "at": "2026-11-04T20:44:08"
  },
  "S14": {
   "pass": true,
   "fails": [],
-  "job": "974be130-9cb2-4340-a1d2-fbb66f66ce5d",
+  "job": "7411d8bb-618d-40f6-bd30-f9ae31fb5b0d",
   "neg": "IMPASSE",
   "rounds": 5,
   "amount": null,
@@ -193,7 +193,7 @@
   "stopped": false,
   "tasks": [
    [
-    100030136,
+    100030156,
     "Recovery Duel: validate SYNTHETIC repair estimate",
     "Accept",
     "Success"
@@ -206,13 +206,13 @@
    "failed": [],
    "injection_flagged": true
   },
-  "secs": 190,
-  "at": "2026-11-04T18:55:41"
+  "secs": 152,
+  "at": "2026-11-04T20:46:39"
  },
  "S06": {
   "pass": true,
   "fails": [],
-  "job": "eeecc193-f091-4741-b54f-d7cfa257bef8",
+  "job": "194d6192-5819-47b9-b9f1-8d0e6bed15fb",
   "neg": "NO_CASE",
   "rounds": null,
   "amount": null,
@@ -231,7 +231,7 @@
    "failed": null,
    "injection_flagged": null
   },
-  "secs": 16,
-  "at": "2026-11-04T18:55:57"
+  "secs": 20,
+  "at": "2026-11-04T20:41:40"
  }
 }
