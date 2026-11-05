@@ -109,7 +109,7 @@ _Words: 58. Comfortable target for this beat at ~140 wpm: about 46._
 
 **On screen:** 15/15, 7/7 docs, $72,791 recovered, $2,890 refunds, 6/6 evals, ledger OK.
 
-**Say:** Fifteen of fifteen test scenarios pass on the tenant. Seven of seven document scenarios pass. On the scenario set, about seventy three thousand dollars recovered, with nearly three thousand back to policyholders. Local scoring of the eval set is six of six.
+**Say:** Fifteen of fifteen test scenarios pass on the tenant. Seven of seven document scenarios pass. On the scenario set: seventy-two thousand seven ninety-one recovered, and two thousand eight ninety back to policyholders. Local scoring of the eval set is six of six.
 
 _Words: 42. Comfortable target for this beat at ~140 wpm: about 37._
 
