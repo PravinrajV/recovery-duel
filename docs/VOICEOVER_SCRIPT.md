@@ -101,25 +101,25 @@ _Words: 41. Comfortable target for this beat at ~140 wpm: about 42._
 
 **On screen:** Impasse, kill switch, agent error. Schedule job 923fcbe1 settled $1805.
 
-**Say:** Not every case settles. A lowball carrier ends in impasse. A kill switch stops negotiation cleanly. An agent error routes the claim to human review. A real time trigger also ran the deployed flow: it read a claim from the bucket, settled eighteen hundred five dollars, emailed the test inbox, and wrote the ledger. Triggers are now disabled.
+**Say:** Not every case settles. Lowball means impasse. A kill switch stops cleanly. An agent error goes to human review. A real time trigger settled claim thirty-nine at eighteen hundred five dollars, emailed the test inbox, and wrote the ledger. Triggers are now disabled.
 
-_Words: 58. Comfortable target for this beat at ~140 wpm: about 46._
+_Words: 43. Comfortable target for this beat at ~140 wpm: about 46._
 
 ### 3:04–3:20  ·  results
 
 **On screen:** 15/15, 7/7 docs, $72,791 recovered, $2,890 refunds, 6/6 evals, ledger OK.
 
-**Say:** Fifteen of fifteen test scenarios pass on the tenant. Seven of seven document scenarios pass. On the scenario set: seventy-two thousand seven ninety-one recovered, and two thousand eight ninety back to policyholders. Local scoring of the eval set is six of six.
+**Say:** Fifteen of fifteen scenarios pass. Seven of seven document scenarios pass. Recovered: seventy-two thousand seven hundred ninety-one dollars. Policyholder refunds: two thousand eight hundred ninety. Local eval score: six of six.
 
-_Words: 42. Comfortable target for this beat at ~140 wpm: about 37._
+_Words: 31. Comfortable target for this beat at ~140 wpm: about 37._
 
 ### 3:20–3:36  ·  real_sim
 
 **On screen:** Real vs simulated table. Judging criteria 30/40/30.
 
-**Say:** What is real: NHTSA, UiPath agents, approvals, the bucket, rules, and mail to the test inbox. What is simulated: the claims and the other carrier. I built it with an AI coding agent using the UiPath CLI and skills. Judging covers innovation, build quality, and real world fit.
+**Say:** Real: NHTSA, UiPath agents, approvals, bucket, rules, and test-inbox mail. Simulated: claims and the other carrier. Built with an AI coding agent using the UiPath CLI and skills. Judging: innovation, build quality, real-world fit.
 
-_Words: 48. Comfortable target for this beat at ~140 wpm: about 37._
+_Words: 34. Comfortable target for this beat at ~140 wpm: about 37._
 
 ### 3:36–3:48  ·  end
 
