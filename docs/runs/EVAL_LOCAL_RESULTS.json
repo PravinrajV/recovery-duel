@@ -1,0 +1,56 @@
+{
+ "S01": {
+  "run": "A1_S01_debug.json",
+  "job": "ca96e73a-b262-4eb1-bf3e-e26e57596dba",
+  "overall": 1.0,
+  "doc-check": 1.0,
+  "money-unchanged": 1.0,
+  "evidence-safety": 1.0,
+  "mismatches": []
+ },
+ "S05": {
+  "run": "A1_S05_debug.json",
+  "job": "1e56dc9e-9af8-4918-b264-803fcbf86567",
+  "overall": 1.0,
+  "doc-check": 1.0,
+  "money-unchanged": 1.0,
+  "evidence-safety": 1.0,
+  "mismatches": []
+ },
+ "S10": {
+  "run": "A1_S10_debug.json",
+  "job": "40b820e8-3368-4ce8-b30f-735aa677927a",
+  "overall": 1.0,
+  "doc-check": 1.0,
+  "money-unchanged": 1.0,
+  "evidence-safety": 1.0,
+  "mismatches": []
+ },
+ "S14": {
+  "run": "A1_S14_debug.json",
+  "job": "7411d8bb-618d-40f6-bd30-f9ae31fb5b0d",
+  "overall": 1.0,
+  "doc-check": 1.0,
+  "money-unchanged": 1.0,
+  "evidence-safety": 1.0,
+  "mismatches": []
+ },
+ "S03": {
+  "run": "T15_S03_debug.json",
+  "job": "20239851-ce35-400d-8078-668d22307b6a",
+  "overall": 1.0,
+  "doc-check": 1.0,
+  "money-unchanged": 1.0,
+  "evidence-safety": 1.0,
+  "mismatches": []
+ },
+ "S06": {
+  "run": "A1_S06_debug.json",
+  "job": "194d6192-5819-47b9-b9f1-8d0e6bed15fb",
+  "overall": 1.0,
+  "doc-check": 1.0,
+  "money-unchanged": 1.0,
+  "evidence-safety": 1.0,
+  "mismatches": []
+ }
+}

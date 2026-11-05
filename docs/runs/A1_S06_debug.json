@@ -2,9 +2,9 @@
  "Result": "Success",
  "Code": "FlowDebug",
  "Data": {
-  "jobKey": "eeecc193-f091-4741-b54f-d7cfa257bef8",
-  "instanceId": "eeecc193-f091-4741-b54f-d7cfa257bef8",
-  "runId": "01a1a8fd-7cfe-73ca-8a1a-a6711a8092c2",
+  "jobKey": "194d6192-5819-47b9-b9f1-8d0e6bed15fb",
+  "instanceId": "194d6192-5819-47b9-b9f1-8d0e6bed15fb",
+  "runId": "01a1a95e-45c3-70f3-ad83-012bd31d0334",
   "folderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
   "finalStatus": "Completed",
   "entryPoint": "start",
@@ -15,127 +15,127 @@
     "elementId": "start",
     "elementType": "StartEvent",
     "status": "Completed",
-    "startedAt": "2026-11-04T23:55:49.2901471Z",
-    "completedAt": "2026-11-04T23:55:49.5733868Z"
+    "startedAt": "2026-11-05T01:41:32.1487463Z",
+    "completedAt": "2026-11-05T01:41:32.3563631Z"
    },
    {
     "elementId": "fromBucket",
     "elementType": "InclusiveGateway",
     "status": "Completed",
-    "startedAt": "2026-11-04T23:55:49.6489514Z",
-    "completedAt": "2026-11-04T23:55:49.7275657Z"
+    "startedAt": "2026-11-05T01:41:32.4405763Z",
+    "completedAt": "2026-11-05T01:41:32.5133799Z"
    },
    {
     "elementId": "intake",
     "elementType": "ScriptTask",
     "status": "Completed",
-    "startedAt": "2026-11-04T23:55:49.8124644Z",
-    "completedAt": "2026-11-04T23:55:50.0196346Z"
+    "startedAt": "2026-11-05T01:41:32.582313Z",
+    "completedAt": "2026-11-05T01:41:32.734778Z"
    },
    {
     "elementId": "eachClaim",
     "elementType": "SubProcess",
     "status": "Completed",
-    "startedAt": "2026-11-04T23:55:50.0936916Z",
-    "completedAt": "2026-11-04T23:55:52.7694237Z"
+    "startedAt": "2026-11-05T01:41:32.8236748Z",
+    "completedAt": "2026-11-05T01:41:35.7222274Z"
    },
    {
     "elementId": "getRecalls",
     "elementType": "SubProcess",
     "status": "Completed",
-    "startedAt": "2026-11-04T23:55:50.43174Z",
-    "completedAt": "2026-11-04T23:55:51.7992486Z"
+    "startedAt": "2026-11-05T01:41:33.1277229Z",
+    "completedAt": "2026-11-05T01:41:34.7426499Z"
    },
    {
     "elementId": "_Implicit_StartEvent_getRecalls",
     "elementType": "StartEvent",
     "status": "Completed",
-    "startedAt": "2026-11-04T23:55:50.6121904Z",
-    "completedAt": "2026-11-04T23:55:50.7272479Z"
+    "startedAt": "2026-11-05T01:41:33.3303435Z",
+    "completedAt": "2026-11-05T01:41:33.4877515Z"
    },
    {
     "elementId": "_Implicit_HttpTask_getRecalls",
     "elementType": "SendTask",
     "status": "Completed",
-    "startedAt": "2026-11-04T23:55:50.8082725Z",
-    "completedAt": "2026-11-04T23:55:51.4073408Z"
+    "startedAt": "2026-11-05T01:41:33.5629989Z",
+    "completedAt": "2026-11-05T01:41:34.3259045Z"
    },
    {
     "elementId": "_Implicit_EndEvent_Default_getRecalls",
     "elementType": "EndEvent",
     "status": "Completed",
-    "startedAt": "2026-11-04T23:55:51.4963633Z",
-    "completedAt": "2026-11-04T23:55:51.6071911Z"
+    "startedAt": "2026-11-05T01:41:34.4067004Z",
+    "completedAt": "2026-11-05T01:41:34.5355987Z"
    },
    {
     "elementId": "_Implicit_PostSubprocessGateway_getRecalls",
     "elementType": "ExclusiveGateway",
     "status": "Completed",
-    "startedAt": "2026-11-04T23:55:51.8769803Z",
-    "completedAt": "2026-11-04T23:55:51.9606961Z"
+    "startedAt": "2026-11-05T01:41:34.8346836Z",
+    "completedAt": "2026-11-05T01:41:34.9411906Z"
    },
    {
     "elementId": "assess",
     "elementType": "ScriptTask",
     "status": "Completed",
-    "startedAt": "2026-11-04T23:55:52.0407664Z",
-    "completedAt": "2026-11-04T23:55:52.2110531Z"
+    "startedAt": "2026-11-05T01:41:35.0149458Z",
+    "completedAt": "2026-11-05T01:41:35.1793027Z"
    },
    {
     "elementId": "nextClaim",
     "elementType": "ScriptTask",
     "status": "Completed",
-    "startedAt": "2026-11-04T23:55:52.2837342Z",
-    "completedAt": "2026-11-04T23:55:52.441295Z"
+    "startedAt": "2026-11-05T01:41:35.2685024Z",
+    "completedAt": "2026-11-05T01:41:35.4250434Z"
    },
    {
     "elementId": "rank",
     "elementType": "ScriptTask",
     "status": "Completed",
-    "startedAt": "2026-11-04T23:55:52.8572761Z",
-    "completedAt": "2026-11-04T23:55:53.0129412Z"
+    "startedAt": "2026-11-05T01:41:35.8089263Z",
+    "completedAt": "2026-11-05T01:41:35.9656469Z"
    },
    {
     "elementId": "pickTop",
     "elementType": "ScriptTask",
     "status": "Completed",
-    "startedAt": "2026-11-04T23:55:53.1227544Z",
-    "completedAt": "2026-11-04T23:55:53.2778665Z"
+    "startedAt": "2026-11-05T01:41:36.0365632Z",
+    "completedAt": "2026-11-05T01:41:36.2042986Z"
    },
    {
     "elementId": "noCase",
     "elementType": "InclusiveGateway",
     "status": "Completed",
-    "startedAt": "2026-11-04T23:55:53.3579126Z",
-    "completedAt": "2026-11-04T23:55:53.4679888Z"
+    "startedAt": "2026-11-05T01:41:36.2776265Z",
+    "completedAt": "2026-11-05T01:41:36.3460463Z"
    },
    {
     "elementId": "noCaseLedger",
     "elementType": "InclusiveGateway",
     "status": "Completed",
-    "startedAt": "2026-11-04T23:55:53.5499016Z",
-    "completedAt": "2026-11-04T23:55:53.6237638Z"
+    "startedAt": "2026-11-05T01:41:36.4231091Z",
+    "completedAt": "2026-11-05T01:41:36.4999982Z"
    },
    {
     "elementId": "noCaseEnd",
     "elementType": "ScriptTask",
     "status": "Completed",
-    "startedAt": "2026-11-04T23:55:53.7341035Z",
-    "completedAt": "2026-11-04T23:55:53.8943584Z"
+    "startedAt": "2026-11-05T01:41:36.5999007Z",
+    "completedAt": "2026-11-05T01:41:36.7462665Z"
    },
    {
     "elementId": "end",
     "elementType": "EndEvent",
     "status": "Completed",
-    "startedAt": "2026-11-04T23:55:53.9721417Z",
-    "completedAt": "2026-11-04T23:55:54.1283153Z"
+    "startedAt": "2026-11-05T01:41:36.8211572Z",
+    "completedAt": "2026-11-05T01:41:36.9630406Z"
    }
   ],
   "variables": {
    "elements": [
     {
      "elementId": "start",
-     "elementRunId": "059d6665-ee91-43af-85cc-6ec6e8d44647",
+     "elementRunId": "d5ee95e7-a770-474a-9719-52d4d3fb6f05",
      "isMarker": false,
      "inputs": {},
      "inputDefinitions": {},
@@ -143,7 +143,7 @@
     },
     {
      "elementId": "intake",
-     "elementRunId": "31c5c8f3-efff-4fa9-bf45-cc88fa068e53",
+     "elementRunId": "8a1fc13a-3434-4320-acf1-d7313538826b",
      "isMarker": false,
      "inputs": {
       "args": {
@@ -160,8 +160,10 @@
         "managerReviewNo.error": null,
         "start.output.asOf": "2026-11-04",
         "evidenceFailed.error": null,
+        "rqKillSwitch": false,
         "emailOut.error": null,
         "judgeOffer.output": null,
+        "end.rqKillSwitch": null,
         "letter.output": null,
         "store": {
          "source": "input",
@@ -170,9 +172,10 @@
         "specialistReviewNo.output": null,
         "book.error": null,
         "stylePass.error": null,
-        "ledgerNoCase.output": null,
         "carrierFailed.output": null,
+        "ledgerNoCase.output": null,
         "end.assessed": null,
+        "end.rqAsOf": null,
         "end.approval": null,
         "judgeOffer.error": null,
         "end2.liability": null,
@@ -181,6 +184,7 @@
         "negotiatorFailed.error": null,
         "docReview.output": null,
         "error": null,
+        "end2.rqClaims": null,
         "docFacts.error": null,
         "docReviewOk.output": null,
         "end2.emailValue": null,
@@ -208,41 +212,57 @@
         "findRepliesFailed.error": null,
         "carrierAgent.output": null,
         "getRecalls.output": null,
+        "end2.rqCounterparty": null,
         "specialistReview.output": null,
+        "rqRunId": "T15-S06",
         "end2.neg": null,
         "end.ledger": null,
         "inbox": [],
+        "end.rqRunId": null,
         "end2.storeValue": null,
         "specialistReviewOk.output": null,
         "docFacts.output": null,
         "end2.approval": null,
         "start.output.estimateFile": {
-         "ID": "6ca726f0-3aa3-425e-f295-08df3a6f511b",
+         "ID": "46e3b47d-4722-452d-e392-08df3a6f595b",
          "FullName": "estimate_CLM-00006.pdf",
          "MimeType": "application/pdf",
          "Metadata": {
           "size": "2322"
          }
         },
+        "end.rqKillNegotiation": null,
         "evidenceFailed.output": null,
         "eachClaim.error": null,
         "halt": {},
         "duel.error": null,
+        "end.rqClaimIds": null,
         "end.roi": null,
         "email": {
          "sent": false
         },
         "docReader.output": null,
         "ledgerAppend.error": null,
+        "end2.rqEstimateFile": null,
         "nextClaim.error": null,
+        "end.rqEstimateFile": null,
         "ranked": null,
         "markNeedsData.error": null,
         "noCaseEnd.output": null,
         "end.ranked": null,
         "evidenceAnalyst.output": null,
+        "end.rqClaims": null,
         "end2.roi": null,
         "estimate": null,
         "docReaderFailed.error": null,
+        "rqEstimateFile": {
+         "ID": "46e3b47d-4722-452d-e392-08df3a6f595b",
+         "FullName": "estimate_CLM-00006.pdf",
+         "MimeType": "application/pdf",
+         "Metadata": {
+          "size": "2322"
+         }
+        },
         "autoApprove.output": null,
         "docCtx.error": null,
         "sendSimReply.error": null,
@@ -255,8 +275,32 @@
         "noApproval.output": null,
         "docReviewNo.error": null,
         "book.output": null,
+        "rqClaims": [
+         {
+          "claim_id": "CLM-00006",
+          "scenario": "S06",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00006 (synthetic)",
+          "state": "TX",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HKXKG018156",
+          "loss_date": "2023-10-26",
+          "closed_date": "2023-12-13",
+          "loss_cause": "brake_failure_rear_end",
+          "paid_amount": "30000",
+          "deductible": "1000",
+          "insured_fault_pct": "0",
+          "matched_recall": "21V890000",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #9792. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+          "sol_days_left": "-374"
+         }
+        ],
         "managerReviewOk.output": null,
         "roundCtx.error": null,
+        "nightlySetup.output": null,
         "negCtx.error": null,
         "pickTop.error": null,
         "end2.document": null,
@@ -277,6 +321,7 @@
         "approvalCtx.output": null,
         "docReviewOk.error": null,
         "killSwitch": false,
+        "end2.rqClaimIds": null,
         "docReviewNo.output": null,
         "start.output.claimIds": null,
         "specialistReview.status": null,
@@ -312,6 +357,7 @@
         "end2.assessed": null,
         "end2.evidence": null,
         "end2.email": null,
+        "nightlySetup.error": null,
         "negotiation": null,
         "killNegotiation": null,
         "ledgerAppendFailed.error": null,
@@ -353,9 +399,12 @@
         "docReaderFailed.output": null,
         "negInit.error": null,
         "sendDemandFailed.error": null,
+        "rqAsOf": "2026-11-04",
         "start.output.killNegotiation": null,
+        "end2.rqKillNegotiation": null,
         "ledgerAppend.output": null,
         "liabilityFailed.error": null,
+        "rqClaimIds": null,
         "autoApprove.error": null,
         "ledgerNoCaseFailed.error": null,
         "evidence": null,
@@ -363,6 +412,7 @@
         "end2.ranked": null,
         "summary": null,
         "end2.inbox": null,
+        "rqSource": "input",
         "sendDemand.error": null,
         "end.doc": null,
         "ledgerNoCase.error": null,
@@ -381,6 +431,7 @@
         "doc": {
          "status": "NOT_REACHED"
         },
+        "end2.rqAsOf": null,
         "carrierFailed.error": null,
         "managerReviewNo.output": null,
         "emailValue": {
@@ -390,7 +441,7 @@
         "assess.output": null,
         "asOf": "2026-11-04",
         "estimateFile": {
-         "ID": "6ca726f0-3aa3-425e-f295-08df3a6f511b",
+         "ID": "46e3b47d-4722-452d-e392-08df3a6f595b",
          "FullName": "estimate_CLM-00006.pdf",
          "MimeType": "application/pdf",
          "Metadata": {
@@ -402,11 +453,12 @@
         "end.inbox": null,
         "guardCounter.error": null,
         "sendDemand.output": null,
-        "liabilityAssessor.error": null,
         "start.output.runId": "T15-S06",
+        "liabilityAssessor.error": null,
         "end2.estimate": null,
         "document": null,
         "docValidate.output": null,
+        "rqKillNegotiation": null,
         "start.output.counterparty": {
          "persona": "cooperative",
          "reservation_price": 5000
@@ -416,21 +468,30 @@
         "end.emailValue": null,
         "runId": "T15-S06",
         "liability": null,
+        "end2.rqRunId": null,
         "docCtx.output": null,
-        "letter.error": null,
         "roi": null,
+        "letter.error": null,
+        "end2.rqKillSwitch": null,
+        "end.rqSource": null,
         "claimIds": null,
+        "end2.rqSource": null,
+        "end.rqCounterparty": null,
         "neg": {},
-        "simReplyFailed.output": null
+        "simReplyFailed.output": null,
+        "rqCounterparty": {
+         "persona": "cooperative",
+         "reservation_price": 5000
+        }
        },
        "metadata": {
-        "InstanceId": "eeecc193-f091-4741-b54f-d7cfa257bef8",
-        "ExternalId": "08493459",
-        "ProcessKey": null,
-        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
         "ElementCount": {
          "start": 1
-        }
+        },
+        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+        "ProcessKey": null,
+        "ExternalId": "24501650",
+        "InstanceId": "194d6192-5819-47b9-b9f1-8d0e6bed15fb"
        }
       }
      },
@@ -490,23 +551,55 @@
     },
     {
      "elementId": "eachClaim",
-     "elementRunId": "5972a296-5769-4d8d-ad35-d9314bc51155",
+     "elementRunId": "cca29334-a504-4eee-818c-331a03b44df6",
      "isMarker": true,
      "inputs": {},
      "inputDefinitions": {},
      "outputs": {
+      "assess.output": {
+       "list": [
+        {
+         "claim_id": "CLM-00006",
+         "sol": {
+          "known": true,
+          "days_left": -374,
+          "expired": true,
+          "deadline_ms": 1761436800000
+         },
+         "negligence": {
+          "doctrine": "modified_51",
+          "insured_fault_pct": 0,
+          "barred": false,
+          "factor": 1
+         },
+         "recall": {
+          "match": true,
+          "campaign": "21V890000",
+          "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+         },
+         "gross": 31000,
+         "status": "CLOSED_SOL_EXPIRED",
+         "score": 0
+        }
+       ]
+      },
+      "assess.error": null,
+      "markNeedsData.output": null,
+      "nextClaim.error": null,
+      "nextClaim.output": 1,
+      "getRecalls.error": null,
       "markNeedsData.error": null,
       "getRecalls.output": {
        "code": 200,
        "headers": {
-        "x-amzn-RequestId": "ce7ab1af-c7f2-4eac-b140-0c842eefa248",
+        "x-amzn-RequestId": "ace2a13c-df30-48a1-a7dc-4845671c6d21",
         "x-amzn-Remapped-Connection": "keep-alive",
-        "x-amz-apigw-id": "GVvhMEznoAMFcoQ=",
+        "x-amz-apigw-id": "GV_ARFKgIAMF_wg=",
         "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
-        "x-amzn-Remapped-Date": "Wed, 04 Nov 2026 23:55:51 GMT",
-        "Date": "Wed, 04 Nov 2026 23:55:51 GMT",
+        "x-amzn-Remapped-Date": "Thu, 05 Nov 2026 01:41:34 GMT",
+        "Date": "Thu, 05 Nov 2026 01:41:34 GMT",
         "Connection": "keep-alive",
-        "Set-Cookie": "AWSALB=+Z2MPDoCekp+p4wIw4MqQBU9H3qdQ+5oF8spOUDLOoOT49mfpFh51x/djbc+2H0cjY0psC924baocf2RgBJy7B/mSoqEvWnu4saiivd/wrfo5cAyj5Evum4k/ul7; Expires=Wed, 11 Nov 2026 23:55:51 GMT; Path=/, AWSALBCORS=+Z2MPDoCekp+p4wIw4MqQBU9H3qdQ+5oF8spOUDLOoOT49mfpFh51x/djbc+2H0cjY0psC924baocf2RgBJy7B/mSoqEvWnu4saiivd/wrfo5cAyj5Evum4k/ul7; Expires=Wed, 11 Nov 2026 23:55:51 GMT; Path=/; SameSite=None",
+        "Set-Cookie": "AWSALB=Nn0FWUq0nlviDt0c1FzBACDlazMFqNteVxPjUDo3wQywg3iJ76ksn3+hSM2EDUDIcTEJgQhE84O9aKmaTKnnJQ/RE1X8wjrt1F4yC1w4gzJDEBdQ/OttwD3pUcoT; Expires=Thu, 12 Nov 2026 01:41:34 GMT; Path=/, AWSALBCORS=Nn0FWUq0nlviDt0c1FzBACDlazMFqNteVxPjUDo3wQywg3iJ76ksn3+hSM2EDUDIcTEJgQhE84O9aKmaTKnnJQ/RE1X8wjrt1F4yC1w4gzJDEBdQ/OttwD3pUcoT; Expires=Thu, 12 Nov 2026 01:41:34 GMT; Path=/; SameSite=None",
         "X-Content-Type-Options": "nosniff",
         "X-Frame-Options": "SAMEORIGIN",
         "Strict-Transport-Security": "max-age=31536000 ; includeSubDomains ; preload"
@@ -614,7 +707,6 @@
         ]
        }
       },
-      "markNeedsData.output": null,
       "assessed": [
        {
         "claim_id": "CLM-00006",
@@ -639,43 +731,12 @@
         "status": "CLOSED_SOL_EXPIRED",
         "score": 0
        }
-      ],
-      "nextClaim.output": 1,
-      "assess.error": null,
-      "nextClaim.error": null,
-      "getRecalls.error": null,
-      "assess.output": {
-       "list": [
-        {
-         "claim_id": "CLM-00006",
-         "sol": {
-          "known": true,
-          "days_left": -374,
-          "expired": true,
-          "deadline_ms": 1761436800000
-         },
-         "negligence": {
-          "doctrine": "modified_51",
-          "insured_fault_pct": 0,
-          "barred": false,
-          "factor": 1
-         },
-         "recall": {
-          "match": true,
-          "campaign": "21V890000",
-          "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
-         },
-         "gross": 31000,
-         "status": "CLOSED_SOL_EXPIRED",
-         "score": 0
-        }
-       ]
-      }
+      ]
      }
     },
     {
      "elementId": "rank",
-     "elementRunId": "1dbd5afa-c583-458b-889b-998c018157e4",
+     "elementRunId": "277e0409-2a25-426c-8eb1-7f8318b873b4",
      "isMarker": false,
      "inputs": {
       "args": {
@@ -692,8 +753,10 @@
         "managerReviewNo.error": null,
         "start.output.asOf": "2026-11-04",
         "evidenceFailed.error": null,
+        "rqKillSwitch": false,
         "emailOut.error": null,
         "judgeOffer.output": null,
+        "end.rqKillSwitch": null,
         "letter.output": null,
         "store": {
          "source": "input",
@@ -702,9 +765,10 @@
         "specialistReviewNo.output": null,
         "book.error": null,
         "stylePass.error": null,
-        "ledgerNoCase.output": null,
         "carrierFailed.output": null,
+        "ledgerNoCase.output": null,
         "end.assessed": null,
+        "end.rqAsOf": null,
         "end.approval": null,
         "judgeOffer.error": null,
         "end2.liability": null,
@@ -713,6 +777,7 @@
         "negotiatorFailed.error": null,
         "docReview.output": null,
         "error": null,
+        "end2.rqClaims": null,
         "docFacts.error": null,
         "docReviewOk.output": null,
         "end2.emailValue": null,
@@ -780,14 +845,14 @@
         "getRecalls.output": {
          "code": 200,
          "headers": {
-          "x-amzn-RequestId": "ce7ab1af-c7f2-4eac-b140-0c842eefa248",
+          "x-amzn-RequestId": "ace2a13c-df30-48a1-a7dc-4845671c6d21",
           "x-amzn-Remapped-Connection": "keep-alive",
-          "x-amz-apigw-id": "GVvhMEznoAMFcoQ=",
+          "x-amz-apigw-id": "GV_ARFKgIAMF_wg=",
           "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
-          "x-amzn-Remapped-Date": "Wed, 04 Nov 2026 23:55:51 GMT",
-          "Date": "Wed, 04 Nov 2026 23:55:51 GMT",
+          "x-amzn-Remapped-Date": "Thu, 05 Nov 2026 01:41:34 GMT",
+          "Date": "Thu, 05 Nov 2026 01:41:34 GMT",
           "Connection": "keep-alive",
-          "Set-Cookie": "AWSALB=+Z2MPDoCekp+p4wIw4MqQBU9H3qdQ+5oF8spOUDLOoOT49mfpFh51x/djbc+2H0cjY0psC924baocf2RgBJy7B/mSoqEvWnu4saiivd/wrfo5cAyj5Evum4k/ul7; Expires=Wed, 11 Nov 2026 23:55:51 GMT; Path=/, AWSALBCORS=+Z2MPDoCekp+p4wIw4MqQBU9H3qdQ+5oF8spOUDLOoOT49mfpFh51x/djbc+2H0cjY0psC924baocf2RgBJy7B/mSoqEvWnu4saiivd/wrfo5cAyj5Evum4k/ul7; Expires=Wed, 11 Nov 2026 23:55:51 GMT; Path=/; SameSite=None",
+          "Set-Cookie": "AWSALB=Nn0FWUq0nlviDt0c1FzBACDlazMFqNteVxPjUDo3wQywg3iJ76ksn3+hSM2EDUDIcTEJgQhE84O9aKmaTKnnJQ/RE1X8wjrt1F4yC1w4gzJDEBdQ/OttwD3pUcoT; Expires=Thu, 12 Nov 2026 01:41:34 GMT; Path=/, AWSALBCORS=Nn0FWUq0nlviDt0c1FzBACDlazMFqNteVxPjUDo3wQywg3iJ76ksn3+hSM2EDUDIcTEJgQhE84O9aKmaTKnnJQ/RE1X8wjrt1F4yC1w4gzJDEBdQ/OttwD3pUcoT; Expires=Thu, 12 Nov 2026 01:41:34 GMT; Path=/; SameSite=None",
           "X-Content-Type-Options": "nosniff",
           "X-Frame-Options": "SAMEORIGIN",
           "Strict-Transport-Security": "max-age=31536000 ; includeSubDomains ; preload"
@@ -895,41 +960,57 @@
           ]
          }
         },
+        "end2.rqCounterparty": null,
         "specialistReview.output": null,
+        "rqRunId": "T15-S06",
         "end2.neg": null,
         "end.ledger": null,
         "inbox": [],
+        "end.rqRunId": null,
         "end2.storeValue": null,
         "specialistReviewOk.output": null,
         "docFacts.output": null,
         "end2.approval": null,
         "start.output.estimateFile": {
-         "ID": "6ca726f0-3aa3-425e-f295-08df3a6f511b",
+         "ID": "46e3b47d-4722-452d-e392-08df3a6f595b",
          "FullName": "estimate_CLM-00006.pdf",
          "MimeType": "application/pdf",
          "Metadata": {
           "size": "2322"
          }
         },
+        "end.rqKillNegotiation": null,
         "evidenceFailed.output": null,
         "eachClaim.error": null,
         "halt": {},
         "duel.error": null,
+        "end.rqClaimIds": null,
         "end.roi": null,
         "email": {
          "sent": false
         },
         "docReader.output": null,
         "ledgerAppend.error": null,
+        "end2.rqEstimateFile": null,
         "nextClaim.error": null,
+        "end.rqEstimateFile": null,
         "ranked": null,
         "markNeedsData.error": null,
         "noCaseEnd.output": null,
         "end.ranked": null,
         "evidenceAnalyst.output": null,
+        "end.rqClaims": null,
         "end2.roi": null,
         "estimate": null,
         "docReaderFailed.error": null,
+        "rqEstimateFile": {
+         "ID": "46e3b47d-4722-452d-e392-08df3a6f595b",
+         "FullName": "estimate_CLM-00006.pdf",
+         "MimeType": "application/pdf",
+         "Metadata": {
+          "size": "2322"
+         }
+        },
         "autoApprove.output": null,
         "docCtx.error": null,
         "sendSimReply.error": null,
@@ -942,8 +1023,32 @@
         "noApproval.output": null,
         "docReviewNo.error": null,
         "book.output": null,
+        "rqClaims": [
+         {
+          "claim_id": "CLM-00006",
+          "scenario": "S06",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00006 (synthetic)",
+          "state": "TX",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HKXKG018156",
+          "loss_date": "2023-10-26",
+          "closed_date": "2023-12-13",
+          "loss_cause": "brake_failure_rear_end",
+          "paid_amount": "30000",
+          "deductible": "1000",
+          "insured_fault_pct": "0",
+          "matched_recall": "21V890000",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #9792. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+          "sol_days_left": "-374"
+         }
+        ],
         "managerReviewOk.output": null,
         "roundCtx.error": null,
+        "nightlySetup.output": null,
         "negCtx.error": null,
         "pickTop.error": null,
         "end2.document": null,
@@ -964,6 +1069,7 @@
         "approvalCtx.output": null,
         "docReviewOk.error": null,
         "killSwitch": false,
+        "end2.rqClaimIds": null,
         "docReviewNo.output": null,
         "start.output.claimIds": null,
         "specialistReview.status": null,
@@ -1048,6 +1154,7 @@
         "end2.assessed": null,
         "end2.evidence": null,
         "end2.email": null,
+        "nightlySetup.error": null,
         "negotiation": null,
         "killNegotiation": null,
         "ledgerAppendFailed.error": null,
@@ -1089,9 +1196,12 @@
         "docReaderFailed.output": null,
         "negInit.error": null,
         "sendDemandFailed.error": null,
+        "rqAsOf": "2026-11-04",
         "start.output.killNegotiation": null,
+        "end2.rqKillNegotiation": null,
         "ledgerAppend.output": null,
         "liabilityFailed.error": null,
+        "rqClaimIds": null,
         "autoApprove.error": null,
         "ledgerNoCaseFailed.error": null,
         "evidence": null,
@@ -1099,6 +1209,7 @@
         "end2.ranked": null,
         "summary": null,
         "end2.inbox": null,
+        "rqSource": "input",
         "sendDemand.error": null,
         "end.doc": null,
         "ledgerNoCase.error": null,
@@ -1141,6 +1252,7 @@
         "doc": {
          "status": "NOT_REACHED"
         },
+        "end2.rqAsOf": null,
         "carrierFailed.error": null,
         "managerReviewNo.output": null,
         "emailValue": {
@@ -1176,7 +1288,7 @@
         },
         "asOf": "2026-11-04",
         "estimateFile": {
-         "ID": "6ca726f0-3aa3-425e-f295-08df3a6f511b",
+         "ID": "46e3b47d-4722-452d-e392-08df3a6f595b",
          "FullName": "estimate_CLM-00006.pdf",
          "MimeType": "application/pdf",
          "Metadata": {
@@ -1188,11 +1300,12 @@
         "end.inbox": null,
         "guardCounter.error": null,
         "sendDemand.output": null,
-        "liabilityAssessor.error": null,
         "start.output.runId": "T15-S06",
+        "liabilityAssessor.error": null,
         "end2.estimate": null,
         "document": null,
         "docValidate.output": null,
+        "rqKillNegotiation": null,
         "start.output.counterparty": {
          "persona": "cooperative",
          "reservation_price": 5000
@@ -1202,23 +1315,32 @@
         "end.emailValue": null,
         "runId": "T15-S06",
         "liability": null,
+        "end2.rqRunId": null,
         "docCtx.output": null,
-        "letter.error": null,
         "roi": null,
+        "letter.error": null,
+        "end2.rqKillSwitch": null,
+        "end.rqSource": null,
         "claimIds": null,
+        "end2.rqSource": null,
+        "end.rqCounterparty": null,
         "neg": {},
-        "simReplyFailed.output": null
+        "simReplyFailed.output": null,
+        "rqCounterparty": {
+         "persona": "cooperative",
+         "reservation_price": 5000
+        }
        },
        "metadata": {
-        "InstanceId": "eeecc193-f091-4741-b54f-d7cfa257bef8",
-        "ExternalId": "08493459",
-        "ProcessKey": null,
-        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
         "ElementCount": {
          "fromBucket": 1,
          "intake": 1,
          "start": 1
-        }
+        },
+        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+        "ProcessKey": null,
+        "ExternalId": "24501650",
+        "InstanceId": "194d6192-5819-47b9-b9f1-8d0e6bed15fb"
        }
       }
      },
@@ -1264,7 +1386,7 @@
     },
     {
      "elementId": "pickTop",
-     "elementRunId": "19ca96cb-21c5-4b23-a822-9e4fa3247866",
+     "elementRunId": "8657c803-0ef5-43ec-a4d0-9fcbe2a74902",
      "isMarker": false,
      "inputs": {
       "args": {
@@ -1281,8 +1403,10 @@
         "managerReviewNo.error": null,
         "start.output.asOf": "2026-11-04",
         "evidenceFailed.error": null,
+        "rqKillSwitch": false,
         "emailOut.error": null,
         "judgeOffer.output": null,
+        "end.rqKillSwitch": null,
         "letter.output": null,
         "store": {
          "source": "input",
@@ -1291,9 +1415,10 @@
         "specialistReviewNo.output": null,
         "book.error": null,
         "stylePass.error": null,
-        "ledgerNoCase.output": null,
         "carrierFailed.output": null,
+        "ledgerNoCase.output": null,
         "end.assessed": null,
+        "end.rqAsOf": null,
         "end.approval": null,
         "judgeOffer.error": null,
         "end2.liability": null,
@@ -1302,6 +1427,7 @@
         "negotiatorFailed.error": null,
         "docReview.output": null,
         "error": null,
+        "end2.rqClaims": null,
         "docFacts.error": null,
         "docReviewOk.output": null,
         "end2.emailValue": null,
@@ -1369,14 +1495,14 @@
         "getRecalls.output": {
          "code": 200,
          "headers": {
-          "x-amzn-RequestId": "ce7ab1af-c7f2-4eac-b140-0c842eefa248",
+          "x-amzn-RequestId": "ace2a13c-df30-48a1-a7dc-4845671c6d21",
           "x-amzn-Remapped-Connection": "keep-alive",
-          "x-amz-apigw-id": "GVvhMEznoAMFcoQ=",
+          "x-amz-apigw-id": "GV_ARFKgIAMF_wg=",
           "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
-          "x-amzn-Remapped-Date": "Wed, 04 Nov 2026 23:55:51 GMT",
-          "Date": "Wed, 04 Nov 2026 23:55:51 GMT",
+          "x-amzn-Remapped-Date": "Thu, 05 Nov 2026 01:41:34 GMT",
+          "Date": "Thu, 05 Nov 2026 01:41:34 GMT",
           "Connection": "keep-alive",
-          "Set-Cookie": "AWSALB=+Z2MPDoCekp+p4wIw4MqQBU9H3qdQ+5oF8spOUDLOoOT49mfpFh51x/djbc+2H0cjY0psC924baocf2RgBJy7B/mSoqEvWnu4saiivd/wrfo5cAyj5Evum4k/ul7; Expires=Wed, 11 Nov 2026 23:55:51 GMT; Path=/, AWSALBCORS=+Z2MPDoCekp+p4wIw4MqQBU9H3qdQ+5oF8spOUDLOoOT49mfpFh51x/djbc+2H0cjY0psC924baocf2RgBJy7B/mSoqEvWnu4saiivd/wrfo5cAyj5Evum4k/ul7; Expires=Wed, 11 Nov 2026 23:55:51 GMT; Path=/; SameSite=None",
+          "Set-Cookie": "AWSALB=Nn0FWUq0nlviDt0c1FzBACDlazMFqNteVxPjUDo3wQywg3iJ76ksn3+hSM2EDUDIcTEJgQhE84O9aKmaTKnnJQ/RE1X8wjrt1F4yC1w4gzJDEBdQ/OttwD3pUcoT; Expires=Thu, 12 Nov 2026 01:41:34 GMT; Path=/, AWSALBCORS=Nn0FWUq0nlviDt0c1FzBACDlazMFqNteVxPjUDo3wQywg3iJ76ksn3+hSM2EDUDIcTEJgQhE84O9aKmaTKnnJQ/RE1X8wjrt1F4yC1w4gzJDEBdQ/OttwD3pUcoT; Expires=Thu, 12 Nov 2026 01:41:34 GMT; Path=/; SameSite=None",
           "X-Content-Type-Options": "nosniff",
           "X-Frame-Options": "SAMEORIGIN",
           "Strict-Transport-Security": "max-age=31536000 ; includeSubDomains ; preload"
@@ -1484,41 +1610,57 @@
           ]
          }
         },
+        "end2.rqCounterparty": null,
         "specialistReview.output": null,
+        "rqRunId": "T15-S06",
         "end2.neg": null,
         "end.ledger": null,
         "inbox": [],
+        "end.rqRunId": null,
         "end2.storeValue": null,
         "specialistReviewOk.output": null,
         "docFacts.output": null,
         "end2.approval": null,
         "start.output.estimateFile": {
-         "ID": "6ca726f0-3aa3-425e-f295-08df3a6f511b",
+         "ID": "46e3b47d-4722-452d-e392-08df3a6f595b",
          "FullName": "estimate_CLM-00006.pdf",
          "MimeType": "application/pdf",
          "Metadata": {
           "size": "2322"
          }
         },
+        "end.rqKillNegotiation": null,
         "evidenceFailed.output": null,
         "eachClaim.error": null,
         "halt": {},
         "duel.error": null,
+        "end.rqClaimIds": null,
         "end.roi": null,
         "email": {
          "sent": false
         },
         "docReader.output": null,
         "ledgerAppend.error": null,
+        "end2.rqEstimateFile": null,
         "nextClaim.error": null,
+        "end.rqEstimateFile": null,
         "ranked": null,
         "markNeedsData.error": null,
         "noCaseEnd.output": null,
         "end.ranked": null,
         "evidenceAnalyst.output": null,
+        "end.rqClaims": null,
         "end2.roi": null,
         "estimate": null,
         "docReaderFailed.error": null,
+        "rqEstimateFile": {
+         "ID": "46e3b47d-4722-452d-e392-08df3a6f595b",
+         "FullName": "estimate_CLM-00006.pdf",
+         "MimeType": "application/pdf",
+         "Metadata": {
+          "size": "2322"
+         }
+        },
         "autoApprove.output": null,
         "docCtx.error": null,
         "sendSimReply.error": null,
@@ -1531,8 +1673,32 @@
         "noApproval.output": null,
         "docReviewNo.error": null,
         "book.output": null,
+        "rqClaims": [
+         {
+          "claim_id": "CLM-00006",
+          "scenario": "S06",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00006 (synthetic)",
+          "state": "TX",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HKXKG018156",
+          "loss_date": "2023-10-26",
+          "closed_date": "2023-12-13",
+          "loss_cause": "brake_failure_rear_end",
+          "paid_amount": "30000",
+          "deductible": "1000",
+          "insured_fault_pct": "0",
+          "matched_recall": "21V890000",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #9792. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+          "sol_days_left": "-374"
+         }
+        ],
         "managerReviewOk.output": null,
         "roundCtx.error": null,
+        "nightlySetup.output": null,
         "negCtx.error": null,
         "pickTop.error": null,
         "end2.document": null,
@@ -1553,6 +1719,7 @@
         "approvalCtx.output": null,
         "docReviewOk.error": null,
         "killSwitch": false,
+        "end2.rqClaimIds": null,
         "docReviewNo.output": null,
         "start.output.claimIds": null,
         "specialistReview.status": null,
@@ -1637,6 +1804,7 @@
         "end2.assessed": null,
         "end2.evidence": null,
         "end2.email": null,
+        "nightlySetup.error": null,
         "negotiation": null,
         "killNegotiation": null,
         "ledgerAppendFailed.error": null,
@@ -1678,9 +1846,12 @@
         "docReaderFailed.output": null,
         "negInit.error": null,
         "sendDemandFailed.error": null,
+        "rqAsOf": "2026-11-04",
         "start.output.killNegotiation": null,
+        "end2.rqKillNegotiation": null,
         "ledgerAppend.output": null,
         "liabilityFailed.error": null,
+        "rqClaimIds": null,
         "autoApprove.error": null,
         "ledgerNoCaseFailed.error": null,
         "evidence": null,
@@ -1688,6 +1859,7 @@
         "end2.ranked": null,
         "summary": null,
         "end2.inbox": null,
+        "rqSource": "input",
         "sendDemand.error": null,
         "end.doc": null,
         "ledgerNoCase.error": null,
@@ -1765,6 +1937,7 @@
         "doc": {
          "status": "NOT_REACHED"
         },
+        "end2.rqAsOf": null,
         "carrierFailed.error": null,
         "managerReviewNo.output": null,
         "emailValue": {
@@ -1800,7 +1973,7 @@
         },
         "asOf": "2026-11-04",
         "estimateFile": {
-         "ID": "6ca726f0-3aa3-425e-f295-08df3a6f511b",
+         "ID": "46e3b47d-4722-452d-e392-08df3a6f595b",
          "FullName": "estimate_CLM-00006.pdf",
          "MimeType": "application/pdf",
          "Metadata": {
@@ -1812,11 +1985,12 @@
         "end.inbox": null,
         "guardCounter.error": null,
         "sendDemand.output": null,
-        "liabilityAssessor.error": null,
         "start.output.runId": "T15-S06",
+        "liabilityAssessor.error": null,
         "end2.estimate": null,
         "document": null,
         "docValidate.output": null,
+        "rqKillNegotiation": null,
         "start.output.counterparty": {
          "persona": "cooperative",
          "reservation_price": 5000
@@ -1826,24 +2000,33 @@
         "end.emailValue": null,
         "runId": "T15-S06",
         "liability": null,
+        "end2.rqRunId": null,
         "docCtx.output": null,
-        "letter.error": null,
         "roi": null,
+        "letter.error": null,
+        "end2.rqKillSwitch": null,
+        "end.rqSource": null,
         "claimIds": null,
+        "end2.rqSource": null,
+        "end.rqCounterparty": null,
         "neg": {},
-        "simReplyFailed.output": null
+        "simReplyFailed.output": null,
+        "rqCounterparty": {
+         "persona": "cooperative",
+         "reservation_price": 5000
+        }
        },
        "metadata": {
-        "InstanceId": "eeecc193-f091-4741-b54f-d7cfa257bef8",
-        "ExternalId": "08493459",
-        "ProcessKey": null,
-        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
         "ElementCount": {
          "eachClaim": 2,
          "fromBucket": 1,
          "intake": 1,
          "start": 1
-        }
+        },
+        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+        "ProcessKey": null,
+        "ExternalId": "24501650",
+        "InstanceId": "194d6192-5819-47b9-b9f1-8d0e6bed15fb"
        }
       }
      },
@@ -1860,7 +2043,7 @@
     },
     {
      "elementId": "noCaseEnd",
-     "elementRunId": "34cf20bc-70e6-4fa2-85b0-6fc083ce40df",
+     "elementRunId": "dc8b1251-c18d-4bde-821a-56bed30eae8c",
      "isMarker": false,
      "inputs": {
       "args": {
@@ -1877,8 +2060,10 @@
         "managerReviewNo.error": null,
         "start.output.asOf": "2026-11-04",
         "evidenceFailed.error": null,
+        "rqKillSwitch": false,
         "emailOut.error": null,
         "judgeOffer.output": null,
+        "end.rqKillSwitch": null,
         "letter.output": null,
         "store": {
          "source": "input",
@@ -1887,9 +2072,10 @@
         "specialistReviewNo.output": null,
         "book.error": null,
         "stylePass.error": null,
-        "ledgerNoCase.output": null,
         "carrierFailed.output": null,
+        "ledgerNoCase.output": null,
         "end.assessed": null,
+        "end.rqAsOf": null,
         "end.approval": null,
         "judgeOffer.error": null,
         "end2.liability": null,
@@ -1898,6 +2084,7 @@
         "negotiatorFailed.error": null,
         "docReview.output": null,
         "error": null,
+        "end2.rqClaims": null,
         "docFacts.error": null,
         "docReviewOk.output": null,
         "end2.emailValue": null,
@@ -1965,14 +2152,14 @@
         "getRecalls.output": {
          "code": 200,
          "headers": {
-          "x-amzn-RequestId": "ce7ab1af-c7f2-4eac-b140-0c842eefa248",
+          "x-amzn-RequestId": "ace2a13c-df30-48a1-a7dc-4845671c6d21",
           "x-amzn-Remapped-Connection": "keep-alive",
-          "x-amz-apigw-id": "GVvhMEznoAMFcoQ=",
+          "x-amz-apigw-id": "GV_ARFKgIAMF_wg=",
           "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
-          "x-amzn-Remapped-Date": "Wed, 04 Nov 2026 23:55:51 GMT",
-          "Date": "Wed, 04 Nov 2026 23:55:51 GMT",
+          "x-amzn-Remapped-Date": "Thu, 05 Nov 2026 01:41:34 GMT",
+          "Date": "Thu, 05 Nov 2026 01:41:34 GMT",
           "Connection": "keep-alive",
-          "Set-Cookie": "AWSALB=+Z2MPDoCekp+p4wIw4MqQBU9H3qdQ+5oF8spOUDLOoOT49mfpFh51x/djbc+2H0cjY0psC924baocf2RgBJy7B/mSoqEvWnu4saiivd/wrfo5cAyj5Evum4k/ul7; Expires=Wed, 11 Nov 2026 23:55:51 GMT; Path=/, AWSALBCORS=+Z2MPDoCekp+p4wIw4MqQBU9H3qdQ+5oF8spOUDLOoOT49mfpFh51x/djbc+2H0cjY0psC924baocf2RgBJy7B/mSoqEvWnu4saiivd/wrfo5cAyj5Evum4k/ul7; Expires=Wed, 11 Nov 2026 23:55:51 GMT; Path=/; SameSite=None",
+          "Set-Cookie": "AWSALB=Nn0FWUq0nlviDt0c1FzBACDlazMFqNteVxPjUDo3wQywg3iJ76ksn3+hSM2EDUDIcTEJgQhE84O9aKmaTKnnJQ/RE1X8wjrt1F4yC1w4gzJDEBdQ/OttwD3pUcoT; Expires=Thu, 12 Nov 2026 01:41:34 GMT; Path=/, AWSALBCORS=Nn0FWUq0nlviDt0c1FzBACDlazMFqNteVxPjUDo3wQywg3iJ76ksn3+hSM2EDUDIcTEJgQhE84O9aKmaTKnnJQ/RE1X8wjrt1F4yC1w4gzJDEBdQ/OttwD3pUcoT; Expires=Thu, 12 Nov 2026 01:41:34 GMT; Path=/; SameSite=None",
           "X-Content-Type-Options": "nosniff",
           "X-Frame-Options": "SAMEORIGIN",
           "Strict-Transport-Security": "max-age=31536000 ; includeSubDomains ; preload"
@@ -2080,41 +2267,57 @@
           ]
          }
         },
+        "end2.rqCounterparty": null,
         "specialistReview.output": null,
+        "rqRunId": "T15-S06",
         "end2.neg": null,
         "end.ledger": null,
         "inbox": [],
+        "end.rqRunId": null,
         "end2.storeValue": null,
         "specialistReviewOk.output": null,
         "docFacts.output": null,
         "end2.approval": null,
         "start.output.estimateFile": {
-         "ID": "6ca726f0-3aa3-425e-f295-08df3a6f511b",
+         "ID": "46e3b47d-4722-452d-e392-08df3a6f595b",
          "FullName": "estimate_CLM-00006.pdf",
          "MimeType": "application/pdf",
          "Metadata": {
           "size": "2322"
          }
         },
+        "end.rqKillNegotiation": null,
         "evidenceFailed.output": null,
         "eachClaim.error": null,
         "halt": {},
         "duel.error": null,
+        "end.rqClaimIds": null,
         "end.roi": null,
         "email": {
          "sent": false
         },
         "docReader.output": null,
         "ledgerAppend.error": null,
+        "end2.rqEstimateFile": null,
         "nextClaim.error": null,
+        "end.rqEstimateFile": null,
         "ranked": null,
         "markNeedsData.error": null,
         "noCaseEnd.output": null,
         "end.ranked": null,
         "evidenceAnalyst.output": null,
+        "end.rqClaims": null,
         "end2.roi": null,
         "estimate": null,
         "docReaderFailed.error": null,
+        "rqEstimateFile": {
+         "ID": "46e3b47d-4722-452d-e392-08df3a6f595b",
+         "FullName": "estimate_CLM-00006.pdf",
+         "MimeType": "application/pdf",
+         "Metadata": {
+          "size": "2322"
+         }
+        },
         "autoApprove.output": null,
         "docCtx.error": null,
         "sendSimReply.error": null,
@@ -2127,8 +2330,32 @@
         "noApproval.output": null,
         "docReviewNo.error": null,
         "book.output": null,
+        "rqClaims": [
+         {
+          "claim_id": "CLM-00006",
+          "scenario": "S06",
+          "synthetic": "true",
+          "policyholder": "Policyholder 00006 (synthetic)",
+          "state": "TX",
+          "make": "TOYOTA",
+          "model": "CAMRY",
+          "model_year": "2019",
+          "vin": "4T1B11HKXKG018156",
+          "loss_date": "2023-10-26",
+          "closed_date": "2023-12-13",
+          "loss_cause": "brake_failure_rear_end",
+          "paid_amount": "30000",
+          "deductible": "1000",
+          "insured_fault_pct": "0",
+          "matched_recall": "21V890000",
+          "data_status": "OK",
+          "police_report": "[SYNTHETIC] Officer #9792. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+          "sol_days_left": "-374"
+         }
+        ],
         "managerReviewOk.output": null,
         "roundCtx.error": null,
+        "nightlySetup.output": null,
         "negCtx.error": null,
         "pickTop.error": null,
         "end2.document": null,
@@ -2149,6 +2376,7 @@
         "approvalCtx.output": null,
         "docReviewOk.error": null,
         "killSwitch": false,
+        "end2.rqClaimIds": null,
         "docReviewNo.output": null,
         "start.output.claimIds": null,
         "specialistReview.status": null,
@@ -2233,6 +2461,7 @@
         "end2.assessed": null,
         "end2.evidence": null,
         "end2.email": null,
+        "nightlySetup.error": null,
         "negotiation": null,
         "killNegotiation": null,
         "ledgerAppendFailed.error": null,
@@ -2280,9 +2509,12 @@
         "docReaderFailed.output": null,
         "negInit.error": null,
         "sendDemandFailed.error": null,
+        "rqAsOf": "2026-11-04",
         "start.output.killNegotiation": null,
+        "end2.rqKillNegotiation": null,
         "ledgerAppend.output": null,
         "liabilityFailed.error": null,
+        "rqClaimIds": null,
         "autoApprove.error": null,
         "ledgerNoCaseFailed.error": null,
         "evidence": null,
@@ -2290,6 +2522,7 @@
         "end2.ranked": null,
         "summary": null,
         "end2.inbox": null,
+        "rqSource": "input",
         "sendDemand.error": null,
         "end.doc": null,
         "ledgerNoCase.error": null,
@@ -2367,6 +2600,7 @@
         "doc": {
          "status": "NOT_REACHED"
         },
+        "end2.rqAsOf": null,
         "carrierFailed.error": null,
         "managerReviewNo.output": null,
         "emailValue": {
@@ -2402,7 +2636,7 @@
         },
         "asOf": "2026-11-04",
         "estimateFile": {
-         "ID": "6ca726f0-3aa3-425e-f295-08df3a6f511b",
+         "ID": "46e3b47d-4722-452d-e392-08df3a6f595b",
          "FullName": "estimate_CLM-00006.pdf",
          "MimeType": "application/pdf",
          "Metadata": {
@@ -2414,11 +2648,12 @@
         "end.inbox": null,
         "guardCounter.error": null,
         "sendDemand.output": null,
-        "liabilityAssessor.error": null,
         "start.output.runId": "T15-S06",
+        "liabilityAssessor.error": null,
         "end2.estimate": null,
         "document": null,
         "docValidate.output": null,
+        "rqKillNegotiation": null,
         "start.output.counterparty": {
          "persona": "cooperative",
          "reservation_price": 5000
@@ -2428,18 +2663,23 @@
         "end.emailValue": null,
         "runId": "T15-S06",
         "liability": null,
+        "end2.rqRunId": null,
         "docCtx.output": null,
-        "letter.error": null,
         "roi": null,
+        "letter.error": null,
+        "end2.rqKillSwitch": null,
+        "end.rqSource": null,
         "claimIds": null,
+        "end2.rqSource": null,
+        "end.rqCounterparty": null,
         "neg": {},
-        "simReplyFailed.output": null
+        "simReplyFailed.output": null,
+        "rqCounterparty": {
+         "persona": "cooperative",
+         "reservation_price": 5000
+        }
        },
        "metadata": {
-        "InstanceId": "eeecc193-f091-4741-b54f-d7cfa257bef8",
-        "ExternalId": "08493459",
-        "ProcessKey": null,
-        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
         "ElementCount": {
          "eachClaim": 2,
          "fromBucket": 1,
@@ -2448,7 +2688,11 @@
          "pickTop": 1,
          "rank": 1,
          "start": 1
-        }
+        },
+        "FolderKey": "4167c81e-9521-4d51-bbd5-4f126762bc9e",
+        "ProcessKey": null,
+        "ExternalId": "24501650",
+        "InstanceId": "194d6192-5819-47b9-b9f1-8d0e6bed15fb"
        }
       }
      },
@@ -2462,7 +2706,7 @@
     },
     {
      "elementId": "end",
-     "elementRunId": "fe174c98-a1d9-4ae5-8ff5-43b78489a101",
+     "elementRunId": "dd957d48-ff4c-4fe5-84c2-9e72ab983d3a",
      "isMarker": false,
      "inputs": {},
      "inputDefinitions": {},
@@ -2470,25 +2714,60 @@
     }
    ],
    "globals": {
-    "email": {
-     "sent": false
-    },
-    "storeOut.output": null,
+    "findRepliesFailed.output": null,
     "storeValue": {
      "source": "input",
      "loaded": false
     },
-    "rank.error": null,
-    "evidenceAnalyst.error": null,
-    "estimate": null,
-    "approvalCtx.output": null,
-    "findReplies.output": null,
-    "managerReviewNo.error": null,
-    "start.output.counterparty": {
-     "persona": "cooperative",
-     "reservation_price": 5000
+    "rank.output": {
+     "ranked": [
+      {
+       "claim_id": "CLM-00006",
+       "sol": {
+        "known": true,
+        "days_left": -374,
+        "expired": true,
+        "deadline_ms": 1761436800000
+       },
+       "negligence": {
+        "doctrine": "modified_51",
+        "insured_fault_pct": 0,
+        "barred": false,
+        "factor": 1
+       },
+       "recall": {
+        "match": true,
+        "campaign": "21V890000",
+        "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+       },
+       "gross": 31000,
+       "status": "CLOSED_SOL_EXPIRED",
+       "score": 0
+      }
+     ],
+     "summary": {
+      "total": 1,
+      "pursue": 0,
+      "needs_data": 0,
+      "sol_expired": 1,
+      "barred": 0,
+      "no_case": 0,
+      "pipeline_demand": 0
+     }
     },
-    "autoApprove.output": null,
+    "findReplies.output": null,
+    "specialistReviewNo.error": null,
+    "negotiation": {
+     "status": "NO_CASE",
+     "simulated_counterparty": true,
+     "history": []
+    },
+    "stylePass.error": null,
+    "simReplyFailed.output": null,
+    "negInit.error": null,
+    "managerReviewNo.output": null,
+    "start.output.killSwitch": false,
+    "sendDemand.output": null,
     "roi": {
      "runs": 1,
      "approved": 0,
@@ -2497,145 +2776,44 @@
      "insurer_net": 0,
      "reconciles": true
     },
-    "ledgerAppend.output": null,
-    "sendDemand.output": null,
     "loadStore.output": null,
-    "parseStore.error": null,
-    "stylePass.output": null,
-    "ledgerNoCaseFailed.error": null,
-    "eachClaim.output": [
-     {
-      "markNeedsData": {
-       "output": null
-      },
-      "assess": {
-       "output": {
-        "list": [
-         {
-          "claim_id": "CLM-00006",
-          "sol": {
-           "known": true,
-           "days_left": -374,
-           "expired": true,
-           "deadline_ms": 1761436800000
-          },
-          "negligence": {
-           "doctrine": "modified_51",
-           "insured_fault_pct": 0,
-           "barred": false,
-           "factor": 1
-          },
-          "recall": {
-           "match": true,
-           "campaign": "21V890000",
-           "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
-          },
-          "gross": 31000,
-          "status": "CLOSED_SOL_EXPIRED",
-          "score": 0
-         }
-        ]
-       }
-      },
-      "nextClaim": {
-       "output": 1
-      }
-     }
-    ],
-    "evidenceFailed.error": null,
-    "liabilityAssessor.output": null,
-    "doc": {
-     "status": "NOT_REACHED"
+    "findRepliesFailed.error": null,
+    "nightlySetup.output": null,
+    "inbox": [],
+    "store": {
+     "source": "input",
+     "ledger_appended": false,
+     "ledger_ok": false,
+     "ledger_count": null
     },
-    "ledger": {
-     "ok": false,
-     "ledgerCount": null
-    },
-    "sendDemandFailed.error": null,
-    "docReader.error": null,
-    "liability": {},
-    "loadStore.error": null,
-    "start.output.claimIds": null,
+    "start.output.source": "input",
+    "docFacts.output": null,
+    "rqAsOf": "2026-11-04",
+    "docReader.output": null,
+    "storeOut.output": null,
     "liabilityFailed.output": null,
-    "ledgerNoCaseFailed.output": null,
-    "specialistReviewNo.output": null,
-    "managerReviewOk.error": null,
-    "docReviewOk.output": null,
-    "halt": {},
-    "autoApprove.error": null,
-    "sendSimReply.error": null,
-    "managerReview.status": null,
+    "docFacts.error": null,
+    "managerReview.output": null,
+    "book.output": null,
+    "pickTop.output": {
+     "found": false,
+     "assessment": {},
+     "claim": {},
+     "claimJson": "{}",
+     "assessmentJson": "{}"
+    },
+    "sendDemand.error": null,
+    "estimate": null,
     "start.output.estimateFile": {
-     "ID": "6ca726f0-3aa3-425e-f295-08df3a6f511b",
+     "ID": "46e3b47d-4722-452d-e392-08df3a6f595b",
      "FullName": "estimate_CLM-00006.pdf",
      "MimeType": "application/pdf",
      "Metadata": {
       "size": "2322"
      }
     },
-    "start.output.killNegotiation": null,
-    "approval": {},
-    "start.output.runId": "T15-S06",
-    "findRepliesFailed.error": null,
-    "ledgerNoCase.output": null,
-    "simReplyFailed.error": null,
-    "docReview.status": null,
-    "findReplies.error": null,
-    "specialistReviewOk.error": null,
-    "sendDemandFailed.output": null,
-    "emailValue": {
-     "sent": false
-    },
-    "docValidate.error": null,
-    "start.output.killSwitch": false,
-    "managerReviewNo.output": null,
-    "docFacts.error": null,
-    "simReplyFailed.output": null,
-    "negotiation": {
-     "status": "NO_CASE",
-     "simulated_counterparty": true,
-     "history": []
-    },
-    "ledgerNoCase.error": null,
-    "book.error": null,
-    "sendSimReply.output": null,
-    "liabilityFailed.error": null,
-    "docReaderFailed.output": null,
-    "docReader.output": null,
-    "evidence": {},
-    "docFacts.output": null,
-    "assessed": [
-     {
-      "claim_id": "CLM-00006",
-      "sol": {
-       "known": true,
-       "days_left": -374,
-       "expired": true,
-       "deadline_ms": 1761436800000
-      },
-      "negligence": {
-       "doctrine": "modified_51",
-       "insured_fault_pct": 0,
-       "barred": false,
-       "factor": 1
-      },
-      "recall": {
-       "match": true,
-       "campaign": "21V890000",
-       "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
-      },
-      "gross": 31000,
-      "status": "CLOSED_SOL_EXPIRED",
-      "score": 0
-     }
-    ],
-    "sent": {},
-    "storeLoadFailed.output": null,
-    "start.output.source": "input",
-    "docValidate.output": null,
-    "docReaderFailed.error": null,
-    "book.output": null,
-    "docReview.output": null,
+    "evidenceFailed.error": null,
+    "stylePass.output": null,
     "intake.output": {
      "items": [
       {
@@ -2686,55 +2864,85 @@
      ],
      "negotiation_paused": false
     },
-    "sendDemand.error": null,
+    "negInit.output": null,
+    "ledgerAppend.error": null,
+    "docReview.status": null,
+    "docReviewNo.output": null,
+    "specialistReviewOk.error": null,
+    "start.output.counterparty": {
+     "persona": "cooperative",
+     "reservation_price": 5000
+    },
+    "ledgerNoCaseFailed.error": null,
     "ledgerAppendFailed.error": null,
-    "letter.error": null,
-    "specialistReview.output": null,
+    "approvalCtx.error": null,
     "intake.error": null,
-    "evidenceFailed.output": null,
-    "specialistReview.status": null,
-    "rank.output": {
-     "ranked": [
-      {
-       "claim_id": "CLM-00006",
-       "sol": {
-        "known": true,
-        "days_left": -374,
-        "expired": true,
-        "deadline_ms": 1761436800000
-       },
-       "negligence": {
-        "doctrine": "modified_51",
-        "insured_fault_pct": 0,
-        "barred": false,
-        "factor": 1
-       },
-       "recall": {
-        "match": true,
-        "campaign": "21V890000",
-        "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
-       },
-       "gross": 31000,
-       "status": "CLOSED_SOL_EXPIRED",
-       "score": 0
+    "managerReview.status": null,
+    "eachClaim.output": [
+     {
+      "markNeedsData": {
+       "output": null
+      },
+      "assess": {
+       "output": {
+        "list": [
+         {
+          "claim_id": "CLM-00006",
+          "sol": {
+           "known": true,
+           "days_left": -374,
+           "expired": true,
+           "deadline_ms": 1761436800000
+          },
+          "negligence": {
+           "doctrine": "modified_51",
+           "insured_fault_pct": 0,
+           "barred": false,
+           "factor": 1
+          },
+          "recall": {
+           "match": true,
+           "campaign": "21V890000",
+           "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+          },
+          "gross": 31000,
+          "status": "CLOSED_SOL_EXPIRED",
+          "score": 0
+         }
+        ]
+       }
+      },
+      "nextClaim": {
+       "output": 1
       }
-     ],
-     "summary": {
-      "total": 1,
-      "pursue": 0,
-      "needs_data": 0,
-      "sol_expired": 1,
-      "barred": 0,
-      "no_case": 0,
-      "pipeline_demand": 0
      }
-    },
+    ],
+    "rqClaimIds": null,
+    "storeLoadFailed.output": null,
+    "ledgerNoCaseFailed.output": null,
+    "halt": {},
+    "pickTop.error": null,
+    "emailOut.error": null,
+    "evidenceAnalyst.output": null,
     "docReviewNo.error": null,
-    "noCaseEnd.output": {
-     "ledger_ok": false,
-     "ledger_count": null
+    "docValidate.output": null,
+    "specialistReviewOk.output": null,
+    "docReader.error": null,
+    "sendSimReply.error": null,
+    "noCaseEnd.error": null,
+    "start.output.asOf": "2026-11-04",
+    "book.error": null,
+    "docReview.output": null,
+    "autoApprove.output": null,
+    "letter.output": null,
+    "storeOut.error": null,
+    "loadStore.error": null,
+    "docValidate.error": null,
+    "rqKillSwitch": false,
+    "emailValue": {
+     "sent": false
     },
-    "start.output.claims": [
+    "rqClaims": [
      {
       "claim_id": "CLM-00006",
       "scenario": "S06",
@@ -2757,8 +2965,21 @@
       "sol_days_left": "-374"
      }
     ],
-    "stylePass.error": null,
-    "noApproval.error": null,
+    "emailOut.output": null,
+    "evidenceAnalyst.error": null,
+    "start.output.runId": "T15-S06",
+    "approvalCtx.output": null,
+    "evidence": {},
+    "parseStore.error": null,
+    "rqEstimateFile": {
+     "ID": "46e3b47d-4722-452d-e392-08df3a6f595b",
+     "FullName": "estimate_CLM-00006.pdf",
+     "MimeType": "application/pdf",
+     "Metadata": {
+      "size": "2322"
+     }
+    },
+    "parseStore.output": null,
     "ranked": [
      {
       "claim_id": "CLM-00006",
@@ -2784,20 +3005,16 @@
       "score": 0
      }
     ],
-    "negInit.error": null,
-    "liabilityAssessor.error": null,
-    "document": {
-     "status": "NOT_REACHED"
-    },
-    "letter.output": null,
-    "ledgerAppend.error": null,
-    "docCtx.output": null,
-    "noCaseEnd.error": null,
     "docCtx.error": null,
-    "managerReview.output": null,
     "ledgerAppendFailed.output": null,
-    "emailOut.error": null,
-    "docReviewOk.error": null,
+    "rqCounterparty": {
+     "persona": "cooperative",
+     "reservation_price": 5000
+    },
+    "rank.error": null,
+    "managerReviewOk.output": null,
+    "findReplies.error": null,
+    "specialistReview.output": null,
     "summary": {
      "total": 1,
      "pursue": 0,
@@ -2807,46 +3024,112 @@
      "no_case": 0,
      "pipeline_demand": 0
     },
-    "negInit.output": null,
-    "neg": {},
-    "pickTop.error": null,
-    "emailOut.output": null,
-    "findRepliesFailed.output": null,
-    "storeOut.error": null,
-    "docReviewNo.output": null,
-    "inbox": [],
-    "specialistReviewNo.error": null,
-    "approvalCtx.error": null,
-    "specialistReviewOk.output": null,
-    "pickTop.output": {
-     "found": false,
-     "assessment": {},
-     "claim": {},
-     "claimJson": "{}",
-     "assessmentJson": "{}"
+    "start.output.claimIds": null,
+    "letter.error": null,
+    "specialistReviewNo.output": null,
+    "start.output.killNegotiation": null,
+    "docCtx.output": null,
+    "nightlySetup.error": null,
+    "ledgerAppend.output": null,
+    "doc": {
+     "status": "NOT_REACHED"
     },
-    "noApproval.output": null,
-    "start.output.asOf": "2026-11-04",
+    "liabilityFailed.error": null,
+    "simReplyFailed.error": null,
+    "rqRunId": "T15-S06",
+    "sent": {},
+    "managerReviewOk.error": null,
+    "start.output.claims": [
+     {
+      "claim_id": "CLM-00006",
+      "scenario": "S06",
+      "synthetic": "true",
+      "policyholder": "Policyholder 00006 (synthetic)",
+      "state": "TX",
+      "make": "TOYOTA",
+      "model": "CAMRY",
+      "model_year": "2019",
+      "vin": "4T1B11HKXKG018156",
+      "loss_date": "2023-10-26",
+      "closed_date": "2023-12-13",
+      "loss_cause": "brake_failure_rear_end",
+      "paid_amount": "30000",
+      "deductible": "1000",
+      "insured_fault_pct": "0",
+      "matched_recall": "21V890000",
+      "data_status": "OK",
+      "police_report": "[SYNTHETIC] Officer #9792. Driver of insured vehicle stated brake pedal went to the floor before impact. Estimated other-party fault 80%.",
+      "sol_days_left": "-374"
+     }
+    ],
     "storeLoadFailed.error": null,
-    "parseStore.output": null,
-    "managerReviewOk.output": null,
-    "store": {
-     "source": "input",
-     "ledger_appended": false,
+    "rqSource": "input",
+    "approval": {},
+    "noApproval.error": null,
+    "docReviewOk.output": null,
+    "sendDemandFailed.output": null,
+    "ledger": {
+     "ok": false,
+     "ledgerCount": null
+    },
+    "document": {
+     "status": "NOT_REACHED"
+    },
+    "liability": {},
+    "managerReviewNo.error": null,
+    "email": {
+     "sent": false
+    },
+    "ledgerNoCase.error": null,
+    "noApproval.output": null,
+    "assessed": [
+     {
+      "claim_id": "CLM-00006",
+      "sol": {
+       "known": true,
+       "days_left": -374,
+       "expired": true,
+       "deadline_ms": 1761436800000
+      },
+      "negligence": {
+       "doctrine": "modified_51",
+       "insured_fault_pct": 0,
+       "barred": false,
+       "factor": 1
+      },
+      "recall": {
+       "match": true,
+       "campaign": "21V890000",
+       "component": "SERVICE BRAKES, HYDRAULIC:POWER ASSIST:VACUUM"
+      },
+      "gross": 31000,
+      "status": "CLOSED_SOL_EXPIRED",
+      "score": 0
+     }
+    ],
+    "rqKillNegotiation": null,
+    "docReaderFailed.output": null,
+    "docReaderFailed.error": null,
+    "docReviewOk.error": null,
+    "noCaseEnd.output": {
      "ledger_ok": false,
      "ledger_count": null
     },
-    "evidenceAnalyst.output": null
+    "liabilityAssessor.output": null,
+    "sendSimReply.output": null,
+    "liabilityAssessor.error": null,
+    "sendDemandFailed.error": null,
+    "ledgerNoCase.output": null,
+    "autoApprove.error": null,
+    "specialistReview.status": null,
+    "evidenceFailed.output": null,
+    "neg": {}
    },
-   "instanceId": "eeecc193-f091-4741-b54f-d7cfa257bef8",
-   "workflowId": "eeecc193-f091-4741-b54f-d7cfa257bef8/BpmnGenericWorkflow",
+   "instanceId": "194d6192-5819-47b9-b9f1-8d0e6bed15fb",
+   "workflowId": "194d6192-5819-47b9-b9f1-8d0e6bed15fb/BpmnGenericWorkflow",
    "parentElementId": null,
    "globalDefinitions": {
-    "email": {
-     "name": "email",
-     "type": "object"
-    },
-    "storeOut.output": {
+    "findRepliesFailed.output": {
      "name": "output",
      "type": "object"
     },
@@ -2854,19 +3137,7 @@
      "name": "storeValue",
      "type": "object"
     },
-    "rank.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "evidenceAnalyst.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "estimate": {
-     "name": "estimate",
-     "type": "file"
-    },
-    "approvalCtx.output": {
+    "rank.output": {
      "name": "output",
      "type": "object"
     },
@@ -2874,183 +3145,15 @@
      "name": "output",
      "type": "jsonSchema"
     },
-    "managerReviewNo.error": {
+    "specialistReviewNo.error": {
      "name": "error",
      "type": "object"
     },
-    "start.output.counterparty": {
-     "name": "counterparty",
+    "negotiation": {
+     "name": "negotiation",
      "type": "object"
     },
-    "autoApprove.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "roi": {
-     "name": "roi",
-     "type": "object"
-    },
-    "ledgerAppend.output": {
-     "name": "output",
-     "type": "jsonSchema"
-    },
-    "sendDemand.output": {
-     "name": "output",
-     "type": "jsonSchema"
-    },
-    "loadStore.output": {
-     "name": "output",
-     "type": "jsonSchema"
-    },
-    "parseStore.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "stylePass.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "ledgerNoCaseFailed.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "eachClaim.output": {
-     "name": "output",
-     "type": "array"
-    },
-    "evidenceFailed.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "liabilityAssessor.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "doc": {
-     "name": "doc",
-     "type": "object"
-    },
-    "ledger": {
-     "name": "ledger",
-     "type": "object"
-    },
-    "sendDemandFailed.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "docReader.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "liability": {
-     "name": "liability",
-     "type": "object"
-    },
-    "loadStore.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "start.output.claimIds": {
-     "name": "claimIds",
-     "type": "array"
-    },
-    "liabilityFailed.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "ledgerNoCaseFailed.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "specialistReviewNo.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "managerReviewOk.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "docReviewOk.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "halt": {
-     "name": "halt",
-     "type": "object"
-    },
-    "autoApprove.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "sendSimReply.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "managerReview.status": {
-     "name": "status",
-     "type": "string"
-    },
-    "start.output.estimateFile": {
-     "name": "estimateFile",
-     "type": "file"
-    },
-    "start.output.killNegotiation": {
-     "name": "killNegotiation",
-     "type": "boolean"
-    },
-    "approval": {
-     "name": "approval",
-     "type": "object"
-    },
-    "start.output.runId": {
-     "name": "runId",
-     "type": "string"
-    },
-    "findRepliesFailed.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "ledgerNoCase.output": {
-     "name": "output",
-     "type": "jsonSchema"
-    },
-    "simReplyFailed.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "docReview.status": {
-     "name": "status",
-     "type": "string"
-    },
-    "findReplies.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "specialistReviewOk.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "sendDemandFailed.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "emailValue": {
-     "name": "emailValue",
-     "type": "object"
-    },
-    "docValidate.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "start.output.killSwitch": {
-     "name": "killSwitch",
-     "type": "boolean"
-    },
-    "managerReviewNo.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "docFacts.error": {
+    "stylePass.error": {
      "name": "error",
      "type": "object"
     },
@@ -3058,211 +3161,35 @@
      "name": "output",
      "type": "object"
     },
-    "negotiation": {
-     "name": "negotiation",
-     "type": "object"
-    },
-    "ledgerNoCase.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "book.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "sendSimReply.output": {
-     "name": "output",
-     "type": "jsonSchema"
-    },
-    "liabilityFailed.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "docReaderFailed.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "docReader.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "evidence": {
-     "name": "evidence",
-     "type": "object"
-    },
-    "docFacts.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "assessed": {
-     "name": "assessed",
-     "type": "array"
-    },
-    "sent": {
-     "name": "sent",
-     "type": "object"
-    },
-    "storeLoadFailed.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "start.output.source": {
-     "name": "source",
-     "type": "string"
-    },
-    "docValidate.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "docReaderFailed.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "book.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "docReview.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "intake.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "sendDemand.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "ledgerAppendFailed.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "letter.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "specialistReview.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "intake.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "evidenceFailed.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "specialistReview.status": {
-     "name": "status",
-     "type": "string"
-    },
-    "rank.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "docReviewNo.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "noCaseEnd.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "start.output.claims": {
-     "name": "claims",
-     "type": "array"
-    },
-    "stylePass.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "noApproval.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "ranked": {
-     "name": "ranked",
-     "type": "array"
-    },
     "negInit.error": {
      "name": "error",
      "type": "object"
     },
-    "liabilityAssessor.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "document": {
-     "name": "document",
-     "type": "object"
-    },
-    "letter.output": {
+    "managerReviewNo.output": {
      "name": "output",
      "type": "object"
     },
-    "ledgerAppend.error": {
-     "name": "error",
-     "type": "object"
+    "start.output.killSwitch": {
+     "name": "killSwitch",
+     "type": "boolean"
     },
-    "docCtx.output": {
+    "sendDemand.output": {
      "name": "output",
+     "type": "jsonSchema"
+    },
+    "roi": {
+     "name": "roi",
      "type": "object"
     },
-    "noCaseEnd.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "docCtx.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "managerReview.output": {
+    "loadStore.output": {
      "name": "output",
-     "type": "object"
+     "type": "jsonSchema"
     },
-    "ledgerAppendFailed.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "emailOut.error": {
+    "findRepliesFailed.error": {
      "name": "error",
      "type": "object"
     },
-    "docReviewOk.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "summary": {
-     "name": "summary",
-     "type": "object"
-    },
-    "negInit.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "neg": {
-     "name": "neg",
-     "type": "object"
-    },
-    "pickTop.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "emailOut.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "findRepliesFailed.output": {
-     "name": "output",
-     "type": "object"
-    },
-    "storeOut.error": {
-     "name": "error",
-     "type": "object"
-    },
-    "docReviewNo.output": {
+    "nightlySetup.output": {
      "name": "output",
      "type": "object"
     },
@@ -3270,15 +3197,43 @@
      "name": "inbox",
      "type": "array"
     },
-    "specialistReviewNo.error": {
+    "store": {
+     "name": "store",
+     "type": "object"
+    },
+    "start.output.source": {
+     "name": "source",
+     "type": "string"
+    },
+    "docFacts.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "rqAsOf": {
+     "name": "rqAsOf",
+     "type": "string"
+    },
+    "docReader.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "storeOut.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "liabilityFailed.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "docFacts.error": {
      "name": "error",
      "type": "object"
     },
-    "approvalCtx.error": {
-     "name": "error",
+    "managerReview.output": {
+     "name": "output",
      "type": "object"
     },
-    "specialistReviewOk.output": {
+    "book.output": {
      "name": "output",
      "type": "object"
     },
@@ -3286,32 +3241,408 @@
      "name": "output",
      "type": "object"
     },
-    "noApproval.output": {
+    "sendDemand.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "estimate": {
+     "name": "estimate",
+     "type": "file"
+    },
+    "start.output.estimateFile": {
+     "name": "estimateFile",
+     "type": "file"
+    },
+    "evidenceFailed.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "stylePass.output": {
      "name": "output",
+     "type": "object"
+    },
+    "intake.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "negInit.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "ledgerAppend.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "docReview.status": {
+     "name": "status",
+     "type": "string"
+    },
+    "docReviewNo.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "specialistReviewOk.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "start.output.counterparty": {
+     "name": "counterparty",
+     "type": "object"
+    },
+    "ledgerNoCaseFailed.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "ledgerAppendFailed.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "approvalCtx.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "intake.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "managerReview.status": {
+     "name": "status",
+     "type": "string"
+    },
+    "eachClaim.output": {
+     "name": "output",
+     "type": "array"
+    },
+    "rqClaimIds": {
+     "name": "rqClaimIds",
+     "type": "array"
+    },
+    "storeLoadFailed.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "ledgerNoCaseFailed.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "halt": {
+     "name": "halt",
+     "type": "object"
+    },
+    "pickTop.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "emailOut.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "evidenceAnalyst.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "docReviewNo.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "docValidate.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "specialistReviewOk.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "docReader.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "sendSimReply.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "noCaseEnd.error": {
+     "name": "error",
      "type": "object"
     },
     "start.output.asOf": {
      "name": "asOf",
      "type": "string"
     },
-    "storeLoadFailed.error": {
+    "book.error": {
      "name": "error",
      "type": "object"
     },
+    "docReview.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "autoApprove.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "letter.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "storeOut.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "loadStore.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "docValidate.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "rqKillSwitch": {
+     "name": "rqKillSwitch",
+     "type": "boolean"
+    },
+    "emailValue": {
+     "name": "emailValue",
+     "type": "object"
+    },
+    "rqClaims": {
+     "name": "rqClaims",
+     "type": "array"
+    },
+    "emailOut.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "evidenceAnalyst.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "start.output.runId": {
+     "name": "runId",
+     "type": "string"
+    },
+    "approvalCtx.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "evidence": {
+     "name": "evidence",
+     "type": "object"
+    },
+    "parseStore.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "rqEstimateFile": {
+     "name": "rqEstimateFile",
+     "type": "file"
+    },
     "parseStore.output": {
      "name": "output",
+     "type": "object"
+    },
+    "ranked": {
+     "name": "ranked",
+     "type": "array"
+    },
+    "docCtx.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "ledgerAppendFailed.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "rqCounterparty": {
+     "name": "rqCounterparty",
+     "type": "object"
+    },
+    "rank.error": {
+     "name": "error",
      "type": "object"
     },
     "managerReviewOk.output": {
      "name": "output",
      "type": "object"
     },
-    "store": {
-     "name": "store",
+    "findReplies.error": {
+     "name": "error",
      "type": "object"
     },
-    "evidenceAnalyst.output": {
+    "specialistReview.output": {
      "name": "output",
+     "type": "object"
+    },
+    "summary": {
+     "name": "summary",
+     "type": "object"
+    },
+    "start.output.claimIds": {
+     "name": "claimIds",
+     "type": "array"
+    },
+    "letter.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "specialistReviewNo.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "start.output.killNegotiation": {
+     "name": "killNegotiation",
+     "type": "boolean"
+    },
+    "docCtx.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "nightlySetup.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "ledgerAppend.output": {
+     "name": "output",
+     "type": "jsonSchema"
+    },
+    "doc": {
+     "name": "doc",
+     "type": "object"
+    },
+    "liabilityFailed.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "simReplyFailed.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "rqRunId": {
+     "name": "rqRunId",
+     "type": "string"
+    },
+    "sent": {
+     "name": "sent",
+     "type": "object"
+    },
+    "managerReviewOk.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "start.output.claims": {
+     "name": "claims",
+     "type": "array"
+    },
+    "storeLoadFailed.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "rqSource": {
+     "name": "rqSource",
+     "type": "string"
+    },
+    "approval": {
+     "name": "approval",
+     "type": "object"
+    },
+    "noApproval.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "docReviewOk.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "sendDemandFailed.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "ledger": {
+     "name": "ledger",
+     "type": "object"
+    },
+    "document": {
+     "name": "document",
+     "type": "object"
+    },
+    "liability": {
+     "name": "liability",
+     "type": "object"
+    },
+    "managerReviewNo.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "email": {
+     "name": "email",
+     "type": "object"
+    },
+    "ledgerNoCase.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "noApproval.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "assessed": {
+     "name": "assessed",
+     "type": "array"
+    },
+    "rqKillNegotiation": {
+     "name": "rqKillNegotiation",
+     "type": "boolean"
+    },
+    "docReaderFailed.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "docReaderFailed.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "docReviewOk.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "noCaseEnd.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "liabilityAssessor.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "sendSimReply.output": {
+     "name": "output",
+     "type": "jsonSchema"
+    },
+    "liabilityAssessor.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "sendDemandFailed.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "ledgerNoCase.output": {
+     "name": "output",
+     "type": "jsonSchema"
+    },
+    "autoApprove.error": {
+     "name": "error",
+     "type": "object"
+    },
+    "specialistReview.status": {
+     "name": "status",
+     "type": "string"
+    },
+    "evidenceFailed.output": {
+     "name": "output",
+     "type": "object"
+    },
+    "neg": {
+     "name": "neg",
      "type": "object"
     }
    }

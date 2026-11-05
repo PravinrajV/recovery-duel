@@ -27,5 +27,6 @@
 | T23 fresh-clone check | done | (see git log) | Public repo; run.sh passes from a clean clone once the CLI + Flow SDK are installed (README fixed); mermaid renders; no secrets; no LICENSE (owner decision, rules 10.3) |
 | rd-mail asset | checked | | IMAP login works (job 6cd3db2a). Password rotation pending, needs browser (parent) |
 | T24 submission draft | draft | (see git log) | docs/SUBMISSION_DRAFT.md + SUBMISSION_CHECKLIST.md; not posted. Needs: video link, eligibility check, GitHub vs rules 10.1 |
-| NEXT | Owner: record demo video, confirm eligibility and GitHub publishing with UiPath, decide license, rotate IONOS password, then post via the form. Optional build: UiPath agent evaluation sets, schedule trigger | | |
+| Evals + schedule | done | (see git log) | Eval set 3e1ba295 (6 cases, 3 evaluators). UiPath eval runs a396522b/a0281217/f5884c92 blocked by 403 on inline agents (Community); local scoring on debug runs 6/6 (docs/EVALUATIONS.md). Nightly timer start + SDK entryPointId patch; time trigger fired job 923fcbe1 (bucket, SETTLED, test inbox, ledger), both triggers disabled. Escalation script not schedulable on tenant (needs uip CLI) |
+| NEXT | Owner: record demo video, confirm eligibility and GitHub publishing with UiPath, decide license, rotate IONOS password, then post via the form. | | |
 | (old) | T12: tune carrier persona prompt, NO_CASE guard branch, tenant runs for S02 stubborn + S03 lowball (impasse), then HITL approval tiers (T13) and storage-bucket JSON (T7/T8) | | |
