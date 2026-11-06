@@ -1,7 +1,7 @@
 # Build log
 
 Format: `## YYYY-MM-DD HH:MM ET | task | prompt | tool/command | result | fix`.
-Built by Grok Bot (coding agent) for Pravinraj Vincent. Times are America/New_York.
+Built by an unnamed coding agent using the UiPath CLI (`uip`) and UiPath skills for Pravinraj Vincent. Times are America/New_York.
 
 ## 2026-11-04 02:11 ET | T0 tooling
 - Prompt (owner): "i beleive they want to use uipath cli tool and uipath skills, so wonering ifyou can installuipath skills, or cli, and do the buidl as well."
@@ -215,14 +215,20 @@ Built by Grok Bot (coding agent) for Pravinraj Vincent. Times are America/New_Yo
 - Verify deploy (scratch copy, cron every 10 min): `uip solution pack`, `publish` (1.0.2), `deploy config link/set`, `deploy run` -> RecoveryDuel-schedule-verify, folder "RecoveryDuel Schedule". Deploy created trigger RecoveryDuel_TimeTrigger (012ade99) enabled even though config said disabled, and bound to the manual `#start` entry: its fire (job 26bd02c6, 01:40 UTC) ran with empty input, NO_CASE, no mail. Disabled it.
 - `uip or processes create --entry-point "content/RecoveryDuel.bpmn#nightly"` -> process RecoveryDuel-Nightly (17f413f2), `uip or triggers create --type time --cron "0 0/5 * * * ?"` (6da0c008; the CLI only accepts --runtime-type Serverless, the tenant stored ProcessOrchestration). Fired at 01:45 UTC: job 923fcbe1 Successful, source Schedule, bucket loaded (200 claims), CLM-00039 SETTLED $1,805 auto approved, demand emailed to recoveryduel@vncntlabs.com only, ledger appended (count 5). Trigger disabled right after the fire. Both triggers now disabled with cron 0 0 7 * * ? UTC. docs/runs/SCHEDULE_VERIFY.json.
 - Escalation script: it calls the `uip` CLI, which a serverless coded function can't run, so it isn't scheduled on the tenant. README gives a host cron line (dry run by default). Not installed.
-- Docs name the coding agent: Grok Bot, an AI assistant that drove `uip` and the UiPath skills.
+- Documentation credits an unnamed coding agent that drove the UiPath CLI (`uip`) and UiPath skills (maestro-flow, platform, functions, agents, tasks and human-in-the-loop); the as-built PDD/SDD use planner conventions.
 
 ## 2026-11-04 21:05 ET | Silent demo video + voice-over script (docs only for repo)
 - Owner asked for a silent demo he can voice over. Built slide-based MP4 with ffmpeg/PIL from real docs/runs numbers (no live UI). Output kept outside the repo: `/workspace/recovery-duel-demo/recovery-duel-demo-silent.mp4` (1280x720, 30 fps, 3:48, video-only).
-- Recurring on-screen badge: Built with UiPath CLI (uip) + UiPath skills, no canvas drag. Coding-agent beat cites uip 1.205.0, skills maestro-flow/platform/functions/agents/tasks/human-in-the-loop, 34 commits, BUILD_LOG/PROGRESS. No product name for the agent (owner correction).
+- Recurring on-screen badge: Built with UiPath CLI (uip) + UiPath skills, no canvas drag. The voice-over script now cites uip 1.205.0, skills maestro-flow/platform/functions/agents/tasks/human-in-the-loop, 43 commits (verified 2026-11-06 ET), BUILD_LOG/PROGRESS; the existing video retains its earlier commit-count slide and was not regenerated. No product name for the agent (owner correction).
 - Committed: `docs/VOICEOVER_SCRIPT.md` (timed narration + judging 30/40/30). Video and preview PNGs not committed (size).
 
 ## 2026-11-04 21:20 ET | Studio Web "editor failed to load" fix
 - Cause (best evidence): the Studio Web copy of solution 3f8821e0 came from a `uip maestro flow debug` upload of an unpatched compile, so the scheduled start had entryPointId "nightly" (not a GUID) in .flow, entry-points.json and the bpmn.
 - Fix: `bash tests/run.sh && uip solution upload solution/RecoveryDuel` (overwrote, snapshot kept). Re-download shows nightly entryPointId 9f30559a-9718-5624-86e2-6b35e31bb64e.
 - Rule: run `scripts/patch_entrypoints.py` (or `tests/run.sh`) before any `uip maestro flow debug` or `uip solution upload`.
+
+## 2026-11-06 ET | As-built process and solution documentation
+- Used `uipath-planner` Phase D / Maestro Flow SDD template conventions for `docs/recovery-duel-pdd.md` and `docs/recovery-duel-sdd.md`, with business, control-flow, document-validation, component and approval mermaid diagrams.
+- Grounded in Flow node/variable names, coded functions, rules and recorded tenant evidence; earlier design sketch identified as aspirational history only.
+- Write-ups credit the unnamed coding agent through the UiPath CLI (`uip`) and UiPath skills; README Layout links the new docs. Voice-over commit count updated to the verified 43-commit snapshot.
+- Documentation only: no implementation task derivation, no automation/code/test/trace changes, no tenant actions, no submission. Existing silent-video asset not changed.

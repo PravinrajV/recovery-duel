@@ -11,7 +11,7 @@ Do not name any coding-agent product. Credit the UiPath CLI (`uip`) and UiPath s
 |---|---|---|---|
 | 0:00 | 0:12 | `title` | Title card: Recovery Duel. SYNTHETIC claims, SIMULATED carrier. |
 | 0:12 | 0:28 | `problem` | NAIC 4.5% salvage+subrogation benchmark. |
-| 0:28 | 0:50 | `coding_agent` | AI coding agent + uip CLI + UiPath skills. 34 commits. BUILD_LOG. |
+| 0:28 | 0:50 | `coding_agent` | AI coding agent + uip CLI + UiPath skills. 43 commits. BUILD_LOG. |
 | 0:50 | 1:10 | `architecture` | Flow diagram: trigger/schedule -> NHTSA -> rules -> doc/agents -> duel -> approval -> ledger/email. |
 | 1:10 | 1:28 | `agents_rules` | Evidence/Liability agents vs rules engine. S01 $11,050. |
 | 1:28 | 1:48 | `document` | Document Reader: S01 validated, S05/S10 rejected, S14 injection flagged. |
@@ -43,9 +43,9 @@ _Words: 42. Comfortable target for this beat at ~140 wpm: about 37._
 
 ### 0:28–0:50  ·  coding_agent
 
-**On screen:** AI coding agent + uip CLI + UiPath skills. 34 commits. BUILD_LOG.
+**On screen:** AI coding agent + uip CLI + UiPath skills. 43 commits. BUILD_LOG.
 
-**Say:** I described the idea and the challenge rules. An AI coding agent did the whole build with the UiPath CLI, called uip, and the UiPath skills. No dragging nodes on the Studio canvas. The skills used include maestro-flow, platform, functions, agents, tasks, and human-in-the-loop. The repo has 34 commits and a BUILD_LOG that records every step.
+**Say:** I described the idea and the challenge rules. An AI coding agent did the whole build with the UiPath CLI, called uip, and the UiPath skills. No dragging nodes on the Studio canvas. The skills used include maestro-flow, platform, functions, agents, tasks, and human-in-the-loop. The repo has 43 commits and a BUILD_LOG that records every step.
 
 _Words: 56. Comfortable target for this beat at ~140 wpm: about 51._
 
@@ -138,7 +138,7 @@ Thanks for watching. The public repo is github.com/PravinrajV/recovery-duel.
 | Criterion | Weight | Where this demo shows it |
 |---|---|---|
 | Innovation | 30 | AI coding agent drove the whole build with `uip` and UiPath skills (typed flow source, not canvas drag); agents negotiate inside script clamps; Document Reader with Analyze Files checked by rules |
-| Build quality | 40 | 15/15 tenant scenarios, 7/7 document scenarios, local eval 6/6, kill switch and agent-error paths, schedule job 923fcbe1 verified then disabled, BUILD_LOG with 34 commits |
+| Build quality | 40 | 15/15 tenant scenarios, 7/7 document scenarios, local eval 6/6, kill switch and agent-error paths, schedule job 923fcbe1 verified then disabled, BUILD_LOG with 43 commits |
 | Real-world applicability | 30 | Live NHTSA, Action Center tiers ($5k / $25k), storage bucket ledger, demand email to recoveryduel@vncntlabs.com, NAIC 4.5% indicator with honest not-like-for-like note |
 
 ## Sources for on-screen numbers
@@ -148,7 +148,7 @@ Thanks for watching. The public repo is github.com/PravinrajV/recovery-duel.
 - T16 email / S14 injection floor $18,585: `docs/runs/T16_RESULTS.md`
 - Schedule job 923fcbe1 / CLM-00039 $1,805: `docs/runs/SCHEDULE_VERIFY.json`
 - ROI $72,791 / $2,890 / $69,901: `docs/roi_report.html`
-- Coding-agent evidence (CLI, skills, 34 commits): `BUILD_LOG.md`, `git rev-list --count HEAD`
+- Coding-agent evidence (CLI, skills, 43 commits): `BUILD_LOG.md`, `git rev-list --count HEAD`
 
 ## Gaps a browser session could add later
 
@@ -157,3 +157,5 @@ This cut is slide-based (no live UI footage). Optional inserts if you record on 
 - Action Center specialist / estimate validation forms
 - Orchestrator job 923fcbe1 and the disabled nightly trigger
 - Test inbox showing the demand letter subject for CLM-00039 or CLM-00017
+
+Commit-count snapshot: verified 2026-11-06 (ET) with `git rev-list --count HEAD`. Script text updated; the existing silent-video slide asset was not regenerated in this documentation pass.

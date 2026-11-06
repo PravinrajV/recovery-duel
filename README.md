@@ -22,7 +22,7 @@ the money.
 5. Document step (A1): if a repair estimate PDF is attached, a Document Reader agent reads it with the built-in Analyze Files tool. This is an AI agent checked by rules, not a trained Document Understanding model. A script (`rules/doc_rules.js`) checks claim ID, VIN, line-item math, the total against the claim, agent confidence and instruction-like text. If any check fails, a person validates the estimate in an Action Center form (Accept or Reject). The document only adds facts to the case; it never changes the demand or the floor.
 6. Two agents, the Evidence Analyst and the Liability Assessor, write the case with cited recall campaigns. They never set dollar amounts.
 7. The duel: our Negotiator agent trades offers with a SIMULATED carrier agent for up to 5 rounds. Every offer is clamped by script, so it cannot go below our floor, and the carrier cannot go above its private limit, which the Negotiator never sees. Carrier messages are tagged `[SIMULATED CARRIER]`.
-8. Approval by amount: auto under the first tier, a specialist form, or a manager form in Action Center. A script escalates approvals older than 24 hours.
+8. Approval by amount: auto under the first tier, a specialist form, or a manager form in Action Center. A host script can escalate approvals older than 24 hours; it is not scheduled on the tenant.
 9. Books the result to a ledger in the bucket, including the policyholder's deductible refund, and builds an ROI view.
 
 Error paths: an agent failure routes the claim to NEEDS_REVIEW_AGENT_ERROR instead of failing the run (tested on the tenant, job 007fde7b), a bucket outage falls back to the trigger input, and a ledger write never fails the run.
@@ -83,6 +83,8 @@ No real customer data and no employer data are used.
 - `scripts/` data generator, scenario harness, bucket sync, ROI report, approval escalation, eval set builder (`build_evals.py`), local eval scorer (`score_local.py`), entry point patch (`patch_entrypoints.py`)
 - `tests/` unit tests, scenarios, run inputs, `run.sh`
 - `docs/` tenant check, sources, demo script, run traces in `docs/runs/`
+- [Process Design Document (PDD)](docs/recovery-duel-pdd.md) as-built business process, scope, actors and evidence
+- [Solution Design Document (SDD)](docs/recovery-duel-sdd.md) as-built Maestro Flow design, node/variable inventory and mermaid diagrams
 - [BUILD_LOG.md](BUILD_LOG.md) every step, with the UiPath skill and `uip` commands used
 
 ## How to run
@@ -108,10 +110,10 @@ Bucket source: create a storage bucket, run `scripts/sync_bucket.sh <folder-key>
 Email path: deploy `functions_src/RdMail` as process `rdmail` and create a Credential asset `rd-mail` with the test mailbox login (see [BUILD_LOG.md](BUILD_LOG.md), T16). Change the hard-coded test recipient (`TEST_INBOX` in `functions_src/RdMail/functions/_mail.ts`) to your own test inbox first. The process keys of `rdstore` and `rdmail` are constants near the top of the flow source; set them to your own deployed processes. If a function call fails, the flow's error handlers carry on and the claim result is unchanged.
 
 ## How I built it with a coding agent
-I described the idea and the rules of the challenge, and my coding agent, Grok Bot (an AI assistant that drove the UiPath CLI `uip` and the UiPath skills), did the build, not by hand on the canvas. `BUILD_LOG.md` has every step.
+I described the idea and the rules of the challenge, and an unnamed coding agent using the UiPath CLI (`uip`) and UiPath skills did the build, not by hand on the canvas. `BUILD_LOG.md` has every step. The skills used were maestro-flow, platform, functions, agents, tasks and human-in-the-loop; the as-built PDD and SDD follow the planner skill.
 A few rounds that shaped the result:
 
-1. **Plan and tenant check.** The agent read the Maestro Flow, agents and HITL skills, then probed my Community tenant with `uip` before writing anything. It found Data Fabric is not available on Community and approval forms have no timeout. So we moved the data to an Orchestrator storage bucket and wrote a scheduled escalation script instead.
+1. **Plan and tenant check.** The agent read the Maestro Flow, agents and HITL skills, then probed my Community tenant with `uip` before writing anything. It found Data Fabric is not available on Community and approval forms have no timeout. So we moved the data to an Orchestrator storage bucket and wrote a host escalation script instead (not installed on a schedule).
 2. **Rules first, agents second.** It wrote the rules engine with 16 tests before any agent existed, so every dollar comes from script. The agents only explain and negotiate.
 3. **A bug the tests caught.** The first negotiation run let the simulated carrier settle above its own private limit. The agent added a script clamp and a test, and the scenario harness now checks it on every run.
 4. **Platform surprises.** Flow passes an extra `errorHandlingEnabled` argument to published functions, which a closed input schema rejects. The personal workspace allows only one published process, so the function went to a shared folder. `uip maestro flow check` flagged reads of branch-only outputs, fixed with flow variables.

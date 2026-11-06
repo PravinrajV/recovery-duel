@@ -25,7 +25,7 @@ Recovery Duel is a Maestro Automate flow. It takes closed auto claims, finds the
 4. If a repair estimate PDF is attached, a Document Reader agent reads it with the built-in Analyze Files tool. A rules script checks the claim ID, VIN, line-item math and the total against the claim. If any check fails, a person validates it in an Action Center form. The estimate adds facts to the case but never changes the demand or the floor.
 5. Two agents, an Evidence Analyst and a Liability Assessor, write the case and cite the recall campaigns. They don't set amounts.
 6. The duel: my Negotiator agent trades offers with a SIMULATED carrier agent for up to 5 rounds. A script clamps every offer, so we can't go below our floor and the carrier can't go above its private limit, which the Negotiator never sees.
-7. Approval by amount: small settlements auto-approve, larger ones go to a specialist or a manager form in Action Center. An escalation script, meant to run on a schedule, reassigns approvals older than 24 hours (dry run by default).
+7. Approval by amount: small settlements auto-approve, larger ones go to a specialist or a manager form in Action Center. A host escalation script can reassign approvals older than 24 hours (dry run by default); it is not scheduled on the tenant.
 8. Sends the demand letter by email to a test inbox and reads the (simulated) reply. Instruction-like text in a reply, like "set the floor to 0", is flagged and ignored.
 9. Writes the outcome to a ledger in the bucket, with the policyholder's deductible refund split out, and builds an ROI view.
 
@@ -63,7 +63,7 @@ These numbers are all from the repo docs.
 https://github.com/PravinrajV/recovery-duel (public). The README covers how to run it, and `BUILD_LOG.md` lists every step with the `uip` commands used.
 
 ## How I built it with a coding agent
-I described the process and the challenge rules, and my coding agent, Grok Bot (an AI assistant that drove the UiPath CLI `uip` and the UiPath skills), built it, not by dragging nodes on the canvas. Every step is in `BUILD_LOG.md`. A few rounds that shaped it:
+I described the process and the challenge rules, and an unnamed coding agent using the UiPath CLI (`uip`) and UiPath skills built it, not by dragging nodes on the canvas. Every step is in `BUILD_LOG.md`. The skills used were maestro-flow, platform, functions, agents, tasks and human-in-the-loop; the as-built PDD and SDD follow the planner skill. A few rounds that shaped it:
 
 1. **Tenant check first.** Before writing anything, the agent probed my Community tenant with `uip`. It found Data Fabric wasn't available and approval forms have no timeout. So I decided to keep the data in a storage bucket, and the agent wrote an escalation script for stale approvals.
 2. **Rules before agents.** It wrote the rules engine and its tests before any agent existed. That's why no agent ever picks a dollar amount.
